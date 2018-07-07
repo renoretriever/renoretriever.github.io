@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Life is ... Blog</title>
+        <link>https://renoretriever.github.io//blog</link>
+        <description>The best place to stay up-to-date with the latest Life is ... news and events.</description>
+        <lastBuildDate>Fri, 06 Jul 2018 06:00:00 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>Feed for Node.js</generator>
+        <image>
+            <title>Life is ... Blog</title>
+            <url>https://renoretriever.github.io//undefined</url>
+            <link>https://renoretriever.github.io//blog</link>
+        </image>
+        <copyright>Copyright © 2018 renoretriever</copyright>
+        <item>
+            <title><![CDATA[ディレクトリリスティング表示でアレっと思った話]]></title>
+            <link>https://renoretriever.github.io//blog/2018/07/06/directory-listing.html</link>
+            <guid>https://renoretriever.github.io//blog/2018/07/06/directory-listing.html</guid>
+            <pubDate>Fri, 06 Jul 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>WordPress 環境初期構築中に一時的にディレクトリリスティング表示を有効にしていてちょっとアレッと思ったお話</p>
+]]></description>
+        </item>
+    </channel>
+</rss>
