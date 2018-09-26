@@ -4,6 +4,8 @@
 <url> <loc>https://renoretriever.github.io/blog/2018/07/06/directory-listing.html</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://renoretriever.github.io/docs/firewalld.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://renoretriever.github.io/docs/firewalld.html" /> </url>
 <url> <loc>https://renoretriever.github.io/docs/index.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://renoretriever.github.io/docs/index.html" /> </url>
+<url> <loc>https://renoretriever.github.io/docs/pipenv.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://renoretriever.github.io/docs/pipenv.html" /> </url>
 <url> <loc>https://renoretriever.github.io/docs/search.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://renoretriever.github.io/docs/search.html" /> </url>
+<url> <loc>https://renoretriever.github.io/docs/template.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://renoretriever.github.io/docs/template.html" /> </url>
 <url> <loc>https://renoretriever.github.io/docs/terraform.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://renoretriever.github.io/docs/terraform.html" /> </url>
 </urlset>
