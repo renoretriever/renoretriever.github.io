@@ -4,7 +4,7 @@
         <title>Life is ... Blog</title>
         <link>https://renoretriever.github.io//blog</link>
         <description>The best place to stay up-to-date with the latest Life is ... news and events.</description>
-        <lastBuildDate>Fri, 06 Jul 2018 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 26 Sep 2018 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,21 @@
             <link>https://renoretriever.github.io//blog</link>
         </image>
         <copyright>Copyright © 2018 renoretriever</copyright>
+        <item>
+            <title><![CDATA[クレデンシャル情報がコンテンツ内に無いか確認]]></title>
+            <link>https://renoretriever.github.io//blog/2018/09/26/credential-info.html</link>
+            <guid>https://renoretriever.github.io//blog/2018/09/26/credential-info.html</guid>
+            <pubDate>Wed, 26 Sep 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>GitHub や GitLab などを使っていてうっかりクレデンシャル情報を載せてしまうと即死なので、
+記載されてないかチェックしたい。
+今回は下記を使ってみた。</p>
+<ul>
+<li>git-secrets</li>
+<li>gittyleaks</li>
+<li>truffleHog</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[ディレクトリリスティング表示でアレっと思った話]]></title>
             <link>https://renoretriever.github.io//blog/2018/07/06/directory-listing.html</link>
