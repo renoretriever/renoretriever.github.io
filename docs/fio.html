@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>fio · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- ディスク I/O を計測するコマンド"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="fio · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- ディスク I/O を計測するコマンド"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">fio</h1></header><article><div><span><ul>
+<li><p>ディスク I/O を計測するコマンド</p></li>
+<li><p>インストール</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum install libaio-devel libibverbs</span>
+<span class="hljs-meta">#</span><span class="bash"> wget -P /usr/<span class="hljs-built_in">local</span>/src/ http://pkgs.repoforge.org/fio/fio-2.1.7-1.el6.rf.x86_64.rpm</span>
+<span class="hljs-meta">#</span><span class="bash"> rpm -Uvh /usr/<span class="hljs-built_in">local</span>/src/fio-2.1.7-1.el6.rf.x86_64.rpm</span>
+<span class="hljs-meta">#</span><span class="bash"> rpm -qa | grep fio</span>
+fio-2.1.7-1.el6.rf.x86_64
+</code></pre></li>
+<li><p>CPU クロックパフォーマンステスト</p>
+<pre><code class="hljs"><span class="hljs-comment"># fio --cpuclock-test</span>
+cs: reliable_tsc: no
+time    <span class="hljs-number"> 12636 </span>cycles[0]=2600
+time    <span class="hljs-number"> 12636 </span>cycles[1]=2599
+time    <span class="hljs-number"> 12636 </span>cycles[2]=2599
+time    <span class="hljs-number"> 12636 </span>cycles[3]=2599
+time    <span class="hljs-number"> 12636 </span>cycles[4]=2599
+time    <span class="hljs-number"> 12636 </span>cycles[5]=2599
+time    <span class="hljs-number"> 12636 </span>cycles[6]=2599
+time    <span class="hljs-number"> 12636 </span>cycles[7]=2599
+time    <span class="hljs-number"> 12636 </span>cycles[8]=2599
+time    <span class="hljs-number"> 12636 </span>cycles[9]=2598
+time    <span class="hljs-number"> 12636 </span>cycles[10]=2599
+(中略)
+time    <span class="hljs-number"> 12724 </span>avg: 2600
+time    <span class="hljs-number"> 12724 </span>mean=2599.220000, S=0.668632
+time    <span class="hljs-number"> 12724 </span>inv_cycles_per_usec=6452
+cs: Testing<span class="hljs-number"> 3 </span>CPUs
+cs: cpu  0:<span class="hljs-number"> 62811301 </span>clocks seen
+cs: cpu  1:<span class="hljs-number"> 63239106 </span>clocks seen
+cs: cpu  2:<span class="hljs-number"> 54690194 </span>clocks seen
+cs: Pass!
+</code></pre></li>
+<li><p>ビルドインチェックサムコマンドスピードテスト</p>
+<pre><code class="hljs"><span class="hljs-meta">#  fio --crctest</span>
+<span class="hljs-symbol">md5:</span>    <span class="hljs-number">488.82</span> MB/<span class="hljs-keyword">sec</span>
+<span class="hljs-symbol">crc64:</span>  <span class="hljs-number">371.67</span> MB/<span class="hljs-keyword">sec</span>
+<span class="hljs-symbol">crc32:</span>  <span class="hljs-number">311.05</span> MB/<span class="hljs-keyword">sec</span>
+<span class="hljs-symbol">crc32c:</span> <span class="hljs-number">8045.76</span> MB/<span class="hljs-keyword">sec</span>
+<span class="hljs-symbol">crc16:</span>  <span class="hljs-number">339.03</span> MB/<span class="hljs-keyword">sec</span>
+<span class="hljs-symbol">crc7:</span>   <span class="hljs-number">331.25</span> MB/<span class="hljs-keyword">sec</span>
+<span class="hljs-symbol">sha1:</span>   <span class="hljs-number">366.12</span> MB/<span class="hljs-keyword">sec</span>
+<span class="hljs-symbol">sha256:</span> <span class="hljs-number">144.87</span> MB/<span class="hljs-keyword">sec</span>
+<span class="hljs-symbol">sha512:</span> <span class="hljs-number">208.34</span> MB/<span class="hljs-keyword">sec</span>
+<span class="hljs-symbol">xxhash:</span> <span class="hljs-number">4687.01</span> MB/<span class="hljs-keyword">sec</span>
+</code></pre></li>
+<li><p>/tmp/fio/ に、100 M のファイルを転送させる。</p>
+<ul>
+<li><p>設定ファイル</p>
+<pre><code class="hljs"><span class="hljs-comment"># cat random-read </span>
+<span class="hljs-section">[random-read]</span>
+<span class="hljs-attr">rw</span>=randread
+<span class="hljs-attr">size</span>=<span class="hljs-number">100</span>m
+<span class="hljs-attr">directory</span>=/tmp/fio/
+</code></pre></li>
+<li><p>計測</p>
+<pre><code class="hljs"><span class="hljs-comment"># fio random-read </span>
+random-read: (<span class="hljs-attribute">g</span>=0): <span class="hljs-attribute">rw</span>=randread, <span class="hljs-attribute">bs</span>=4K-4K/4K-4K/4K-4K, <span class="hljs-attribute">ioengine</span>=sync, <span class="hljs-attribute">iodepth</span>=1
+fio-2.1.7
+Starting 1 process
+Jobs: 1 (<span class="hljs-attribute">f</span>=1)
+random-read: (<span class="hljs-attribute">groupid</span>=0, <span class="hljs-attribute">jobs</span>=1): err= 0: <span class="hljs-attribute">pid</span>=13079: Sun Aug 10 05:44:09 2014
+  read : <span class="hljs-attribute">io</span>=102400KB, <span class="hljs-attribute">bw</span>=67280KB/s, <span class="hljs-attribute">iops</span>=16819, runt=  1522msec
+    clat (usec): <span class="hljs-attribute">min</span>=46, <span class="hljs-attribute">max</span>=312, <span class="hljs-attribute">avg</span>=56.07, stdev= 9.24
+     lat (usec): <span class="hljs-attribute">min</span>=46, <span class="hljs-attribute">max</span>=312, <span class="hljs-attribute">avg</span>=56.43, stdev= 9.25
+    clat percentiles (usec):
+     |  1.00th=[   50],  5.00th=[   51], 10.00th=[   52], 20.00th=[   53],
+     | 30.00th=[   54], 40.00th=[   54], 50.00th=[   54], 60.00th=[   55],
+     | 70.00th=[   55], 80.00th=[   56], 90.00th=[   59], 95.00th=[   64],
+     | 99.00th=[   90], 99.50th=[  121], 99.90th=[  155], 99.95th=[  197],
+     | 99.99th=[  278]
+    bw (KB  /s): <span class="hljs-attribute">min</span>=67136, <span class="hljs-attribute">max</span>=67464, <span class="hljs-attribute">per</span>=100.00%, <span class="hljs-attribute">avg</span>=67282.67, <span class="hljs-attribute">stdev</span>=166.73
+    lat (usec) : <span class="hljs-attribute">50</span>=0.98%, <span class="hljs-attribute">100</span>=98.32%, <span class="hljs-attribute">250</span>=0.69%, <span class="hljs-attribute">500</span>=0.01%
+  cpu          : <span class="hljs-attribute">usr</span>=5.19%, <span class="hljs-attribute">sys</span>=30.64%, <span class="hljs-attribute">ctx</span>=25604, <span class="hljs-attribute">majf</span>=0, <span class="hljs-attribute">minf</span>=27
+  IO depths    : <span class="hljs-attribute">1</span>=100.0%, <span class="hljs-attribute">2</span>=0.0%, <span class="hljs-attribute">4</span>=0.0%, <span class="hljs-attribute">8</span>=0.0%, <span class="hljs-attribute">16</span>=0.0%, <span class="hljs-attribute">32</span>=0.0%, &gt;=<span class="hljs-attribute">64</span>=0.0%
+     submit    : <span class="hljs-attribute">0</span>=0.0%, <span class="hljs-attribute">4</span>=100.0%, <span class="hljs-attribute">8</span>=0.0%, <span class="hljs-attribute">16</span>=0.0%, <span class="hljs-attribute">32</span>=0.0%, <span class="hljs-attribute">64</span>=0.0%, &gt;=<span class="hljs-attribute">64</span>=0.0%
+     complete  : <span class="hljs-attribute">0</span>=0.0%, <span class="hljs-attribute">4</span>=100.0%, <span class="hljs-attribute">8</span>=0.0%, <span class="hljs-attribute">16</span>=0.0%, <span class="hljs-attribute">32</span>=0.0%, <span class="hljs-attribute">64</span>=0.0%, &gt;=<span class="hljs-attribute">64</span>=0.0%
+     issued    : <span class="hljs-attribute">total</span>=r=25600/w=0/d=0, <span class="hljs-attribute">short</span>=r=0/w=0/d=0
+     latency   : <span class="hljs-attribute">target</span>=0, <span class="hljs-attribute">window</span>=0, <span class="hljs-attribute">percentile</span>=100.00%, <span class="hljs-attribute">depth</span>=1
+
+<span class="hljs-builtin-name">Run</span> status<span class="hljs-built_in"> group </span>0 (all jobs):
+   READ: <span class="hljs-attribute">io</span>=102400KB, <span class="hljs-attribute">aggrb</span>=67279KB/s, <span class="hljs-attribute">minb</span>=67279KB/s, <span class="hljs-attribute">maxb</span>=67279KB/s, <span class="hljs-attribute">mint</span>=1522msec, <span class="hljs-attribute">maxt</span>=1522msec
+
+Disk stats (read/write):
+  vda: <span class="hljs-attribute">ios</span>=23462/0, <span class="hljs-attribute">merge</span>=0/0, <span class="hljs-attribute">ticks</span>=809/0, <span class="hljs-attribute">in_queue</span>=794, <span class="hljs-attribute">util</span>=53.15%
+</code></pre></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>RPM(RPM Package Manager) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- コンパイルとインストールを作業を簡略"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="RPM(RPM Package Manager) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- コンパイルとインストールを作業を簡略"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">RPM(RPM Package Manager)</h1></header><article><div><span><ul>
+<li><p>コンパイルとインストールを作業を簡略</p></li>
+<li><p>導入されているパッケージに対応するファイル等のデータベースを保持しており、そこから検索、検証を行えるので、システムの整合性をすぐに調べることが可能</p></li>
+<li><p>実行可能なプログラム等を配置したバイナリパッケージ (RPM) と、ソースプログラムを収録したソースパッケージ (SRPM) がある</p></li>
+<li><p>依存関係があり、必要なパッケージがインストール済でないと、目的のパッケージもインストールできない</p></li>
+<li><p>パッケージには正当性をしめす、署名やダイジェストが含まれており、安全のため検証することは必須</p></li>
+<li><p>パッケージファイル名の構成(kernel-3.10.0-693.11.1.el7.x86_64)</p>
+<ul>
+<li>kernel
+<ul>
+<li>パッケージ名</li>
+</ul></li>
+<li>3.10.0
+<ul>
+<li>バージョン</li>
+</ul></li>
+<li>693.11.1.el7
+<ul>
+<li>リリース番号(ビルド番号)</li>
+</ul></li>
+<li>x86_64
+<ul>
+<li>アーキテクチャ(64 bit)</li>
+</ul></li>
+<li>その他
+<ul>
+<li>ソースパッケージの場合には src</li>
+<li>アーキテクチャに依存しないものは noarc</li>
+</ul></li>
+</ul></li>
+<li><p>インポートされているGPG公開鍵の確認</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> rpm -qai gpg-pubkey*</span>
+</code></pre></li>
+<li><p>GPG 公開鍵のインポート</p>
+<pre><code class="hljs"># rpm --<span class="hljs-keyword">import</span> <span class="hljs-regexp">/etc/</span>pki<span class="hljs-regexp">/rpm-gpg/</span>RPM-GPG-KEY-CentOS-Testing-<span class="hljs-number">7</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>コミュニティ</p>
+<ul>
+<li>IUS Community
+<ul>
+<li><a href="http://iuscommunity.org/">http://iuscommunity.org/</a></li>
+<li>Red Hat とそのクローン向けの RPM パッケージを提供しているコミュニティ</li>
+<li>epel 必須</li>
+</ul></li>
+</ul></li>
+<li><p>インストールされたパッケージ表示</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> rpm -qa</span>
+</code></pre></li>
+<li><p>パッケージによってインストールされたファイル表示</p>
+<ul>
+<li><p>全て</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> rpm -ql httpd</span>
+</code></pre></li>
+<li><p>設定ファイルのみ</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> rpm -qc httpd</span>
+</code></pre></li>
+</ul></li>
+<li><p>changelog 確認</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> rpm -q --changelog httpd</span>
+</code></pre></li>
+<li><p>パッケージの依存関係確認</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> rpm -qR httpd</span>
+</code></pre></li>
+<li><p>ファイルがどのパッケージに含まれているか</p>
+<pre><code class="hljs"># rpm -qf /usr/bin/w
+procps<span class="hljs-number">-3.2</span><span class="hljs-number">.8</span><span class="hljs-number">-30.</span>el6.x86_64
+</code></pre></li>
+<li><p>パッケージ情報表示</p>
+<pre><code class="hljs"># rpm -qi httpd
+Name        : <span class="hljs-type">httpd</span>                        Relocations: (<span class="hljs-keyword">not</span> relocatable)
+Version     : 2.2.15                            <span class="hljs-type">Vendor</span>: CentOS
+Release     : 39.<span class="hljs-type">el6.centos</span>                 Build Date: Thu <span class="hljs-number">16</span> Oct <span class="hljs-number">2014</span> <span class="hljs-number">11</span>:<span class="hljs-number">49</span>:<span class="hljs-number">26</span> PM JST
+Install Date: Sat <span class="hljs-number">20</span> Jun <span class="hljs-number">2015</span> <span class="hljs-number">11</span>:<span class="hljs-number">47</span>:<span class="hljs-number">54</span> PM JST      Build Host: c6b9.bsys.dev.centos.org
+Group       : <span class="hljs-type">System</span> Environment/Daemons    Source RPM: httpd-<span class="hljs-number">2.2</span>.<span class="hljs-number">15</span>-<span class="hljs-number">39</span>.el6.centos.src.rpm
+Size        : 3085394                          <span class="hljs-type">License</span>: ASL <span class="hljs-number">2.0</span>
+Signature   : <span class="hljs-type">RSA</span>/SHA1, Sat <span class="hljs-number">18</span> Oct <span class="hljs-number">2014</span> <span class="hljs-number">05</span>:<span class="hljs-number">02</span>:<span class="hljs-number">19</span> AM JST, Key ID <span class="hljs-number">0946</span>fca2c105b9de
+Packager    : <span class="hljs-type">CentOS</span> BuildSystem &lt;http://bugs.centos.org&gt;
+URL         : <span class="hljs-type">http</span>://httpd.apache.org/
+Summary     : <span class="hljs-type">Apache</span> HTTP Server
+Description :
+<span class="hljs-type">The</span> Apache HTTP Server <span class="hljs-keyword">is</span> a powerful, efficient, <span class="hljs-keyword">and</span> extensible
+web server.
+</code></pre></li>
+<li><p>rpmパッケージ内のファイルを全て展開</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> rpm2cpio target.rpm | cpio -idv</span>
+</code></pre></li>
+<li><p>パッケージの一覧表示</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> rpm2cpio target.rpm | cpio -t</span>
+
+or 
+<span class="hljs-meta">
+#</span><span class="bash"> rpm -qpl target.rpm</span>
+</code></pre></li>
+<li><p>rpmファイルから特定のファイルのみ展開</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> rpm2cpio target.rpm | cpio -idv targetfilename</span>
+</code></pre></li>
+<li><p>テスト実行</p>
+<pre><code class="hljs css languages- bash"><span class="hljs-comment"># rpm -i --test hogehoge.rpm</span>
+</code></pre></li>
+<li><p>パッケージ削除</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> rpm -e pachage.rpm</span>
+</code></pre></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

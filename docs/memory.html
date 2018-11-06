@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>memory · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- マイナーページ"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="memory · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- マイナーページ"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">memory</h1></header><article><div><span><ul>
+<li>マイナーページ
+<ul>
+<li>物理ページは存在するが、ページテーブルのページフォールトを発生させた仮想アドレスに対応するエントリに登録されていない状態</li>
+<li>OS のページフォールト・ハンドラは単にその物理ページを問題のページテーブルエントリに登録すればよく、二次記憶装置から物理メモリに内容を読み込む必要はない。このような状況は例えば共有メモリを使っていて、共有する相手側プログラムが先に共有メモリにアクセスし、物理メモリ上に内容が存在している場合に起きる。プロセスのワーキングセットからページを削除した場合も、ディスクに書き戻して消去するまでそのページはキャッシュとして保持され、同様の状況になりうる。例えばOpenVMSはワーキングセットが大きすぎると判断すると、ディスクに書き戻す必要のないページ（ディスクから読み込んだ後、一度も内容を変更されていないページなど）を除去し、フリーなページのリストにつなぐ。しかし、そのページを別の用途に再利用するまで内容はそのまま保持されるので、もともとそのページを使用していたプロセスがそのページの対応していた仮想アドレスを参照すると、マッピングを元に戻すことが可能である。マイナーなページフォールトではディスクアクセスが発生しないので、高速に処理できる。</li>
+</ul></li>
+</ul>
+<ul>
+<li>メジャー
+<ul>
+<li>ページフォールト発生時、問題のページがメモリ上にロードされていない場合。OSのページフォールト・ハンドラはフリーな物理ページを探し、なければ現に使われているページから再利用する物理ページを選ぶ。選択した物理ページの現在の内容が二次記憶装置に書き戻されていない場合、書き戻して完了を待つ必要がある。そして、必要なページ内容を二次記憶装置からその物理ページに読み込む。ここまで処理すると、やっとマイナーなページフォールトと同じ状況になり、後の処理は同じである。二次記憶装置の入出力を待ち合わせる必要があるため、メジャーなページフォールトを起こしたプログラム（プロセス）は即座に処理を再開することはできない。仮想記憶で物理メモリ容量以上のメモリ要求に対応できるのは、この機構のおかげである。</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>RAN(Random Access Memory)</p>
+<ul>
+<li>揮発性メモリ</li>
+<li>DRAM(Dynamic Random Access Memory)
+<ul>
+<li>コンデンサに電荷を蓄えた状態か否かによって 1 ビットを表現</li>
+<li>主記憶としてよく使用される</li>
+<li>SRAM とくらべて速度は劣るが、構造が単純でビットあたりの面積を小さく出来るので安価に高集積化(大容量化)が可能</li>
+<li><font color='red'>周期的にデータの再書き込み(リフレッシュ)が必要</font></li>
+<li>電源のない状態で記憶内容を保持することが不可</li>
+<li>価格
+<ul>
+<li>安い</li>
+</ul></li>
+<li>容量
+<ul>
+<li>大きい</li>
+</ul></li>
+<li>リフレッシュ
+<ul>
+<li>必要</li>
+</ul></li>
+<li>速度
+<ul>
+<li>遅い</li>
+</ul></li>
+</ul></li>
+<li>SRAM(Static RAM)
+<ul>
+<li>価格
+<ul>
+<li>高い</li>
+</ul></li>
+<li>容量
+<ul>
+<li>小さい</li>
+</ul></li>
+<li>リフレッシュ
+<ul>
+<li>不要</li>
+</ul></li>
+<li>速度
+<ul>
+<li>早い</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>ROM(Read Only Memory)</p>
+<ul>
+<li>不揮発性メモリ</li>
+<li>マスク ROM
+<ul>
+<li>最初からデータが書き込まれていて内容が変更できない</li>
+</ul></li>
+<li>PROM(Programmable ROM)
+<ul>
+<li>ユーザがデータを書き込んだり、削除したりできる</li>
+<li>一度だけ書き込み可能だったり、何度でも可能なものがある</li>
+<li>EPROM(Erasable PROM)
+<ul>
+<li>紫外線でデータを消去</li>
+</ul></li>
+<li>EEPROM(Electrical Erasable PROM)
+<ul>
+<li>電気的にデータを消去</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>SODIMM(Small Outline Dual In-line Memory Module)</p>
+<ul>
+<li>ノートパソコン向けのメモリ</li>
+</ul></li>
+<li><p>microDIMM</p>
+<ul>
+<li>ノートパソコン向けのメモリ</li>
+<li>SODIMMより小さめ</li>
+</ul></li>
+</ul>
+<ul>
+<li><a href="vmstat">vmstat</a></li>
+</ul>
+<ul>
+<li><p>高速化手法</p>
+<ul>
+<li>キャッシュメモリ系列
+<ul>
+<li>ライトスルー方式
+<ul>
+<li>書き込み動作が起こる時、キャッシュメモリとメインメモリの両方に書き込む方式</li>
+</ul></li>
+<li>ライトバック方式：
+<ul>
+<li>き込み動作が起こる時、キャッシュメモリだけ書き込む方式</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>メモリインタリーブ</p>
+<ul>
+<li>メインメモリをバンクと呼ばれる複数の区画に分割。この複数の区画には同時にアクセスすることが可能。</li>
+</ul></li>
+<li><p>キャッシュメモリの利用</p>
+<ul>
+<li>ヒット率
+<ul>
+<li>データががキャッシュメモリ上に存在する確率[&lt;-&gt;NFP(Not Found Probability)]</li>
+<li>ヒット率 + NFP = 1</li>
+</ul></li>
+</ul></li>
+<li><p>平均アクセス時間 = ヒット率 × tc(キャッシュメモリへのアクセス時間) + (1 - ヒット率) × tm(主記憶装置へアクセス時間)</p></li>
+<li><p>キャッシュメモリの割り当て</p>
+<ul>
+<li>ダイレクトマッピング
+<ul>
+<li>メインメモリのブロックをキャッシュメモリの決められた場所に割り付ける方法</li>
+<li>割り当てが単純な分、キャッシュミスが多くヒット率が低くなる</li>
+</ul></li>
+<li>フルアソシアティブ
+<ul>
+<li>メインメモリのブロックをキャッシュメモリのどの場所にもでも割り付けるようにする方法</li>
+<li>実際にはアドレス変換が複雑になり実現は難しい</li>
+</ul></li>
+<li>セットアソシアティブ
+<ul>
+<li>ダイレクトマッピングとフルアソシアティブを折衷した方式</li>
+<li>メインメモリのブロックを決められたセット内においてどこにでも割り付けるようにする方法</li>
+</ul></li>
+</ul></li>
+<li><p>SWAP</p>
+<ul>
+<li><code>/proc/PID/smaps</code> を見ると CoW で親子が共有しているメモリのだいたいのサイズが分かる</li>
+<li>CoWとはコピーオンライト機能によりメモリを一部共用</li>
+</ul></li>
+</ul>
+<pre><code class="hljs">cat /<span class="hljs-keyword">proc</span>/29917/smaps|<span class="hljs-title"> head</span>
+
+08048000-0941a000<span class="hljs-title"> rwxp</span> 00000000<span class="hljs-title"> fb:00</span> 147635                             /usr/bin/skype<span class="hljs-title">
+Size:</span>              20296<span class="hljs-title"> kB</span>
+Rss:               20296<span class="hljs-title"> kB</span>
+Pss:               20165<span class="hljs-title"> kB</span>
+Shared_Clean:        196<span class="hljs-title"> kB</span>
+Shared_Dirty:          0<span class="hljs-title"> kB</span>
+Private_Clean:         0<span class="hljs-title"> kB</span>
+Private_Dirty:     20100<span class="hljs-title"> kB</span>
+Referenced:        20296<span class="hljs-title"> kB</span>
+Swap:                  0<span class="hljs-title"> kB</span>
+</code></pre>
+<ul>
+<li>smaps では共有領域のサイズは Shared、そうでない領域のサイズは Private として報告</li>
+</ul>
+<pre><code class="hljs">cat /<span class="hljs-keyword">proc</span>/29917/statm<span class="hljs-title">
+
+        Provides</span> information<span class="hljs-title"> about</span> memory<span class="hljs-title"> status</span> in<span class="hljs-title"> pages.</span> <span class="hljs-title"> The</span> columns<span class="hljs-title"> are:</span>
+77878<span class="hljs-title">         size</span> <span class="hljs-title">      total</span> program<span class="hljs-title"> size</span>
+23470<span class="hljs-title">         resident</span> <span class="hljs-title">  resident</span> set<span class="hljs-title"> size</span>
+5596<span class="hljs-title">          share</span> <span class="hljs-title">     shared</span> pages
+5074<span class="hljs-title">          text</span> <span class="hljs-title">      text</span> (code)
+0<span class="hljs-title">             lib</span> <span class="hljs-title">       library</span>
+35454<span class="hljs-title">         data</span> <span class="hljs-title">      data/stack</span>
+0<span class="hljs-title">             dt</span> <span class="hljs-title">        dirty</span> pages (unused<span class="hljs-title"> in</span> Linux 2.6)<span class="hljs-title">
+
+  PID</span> USER<span class="hljs-title">      PR</span> <span class="hljs-title"> NI</span> <span class="hljs-title"> VIRT</span> <span class="hljs-title"> RES</span> <span class="hljs-title"> SHR</span> S %CPU %MEM<span class="hljs-title">    TIME+</span> <span class="hljs-title"> COMMAND</span>
+29917<span class="hljs-title"> takahash</span>  20   0  304m  91m  21m<span class="hljs-title"> S</span>    1  0.8   0:52.28<span class="hljs-title"> skype</span>
+</code></pre>
+<ul>
+<li>4kB を掛けたものが top の SHR カラムの値</li>
+<li>CoW で共有される領域は Shared_Dirty</li>
+<li>共有されていないプライベートデータは Private_Dirty</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="仮想メモリ"></a><a href="#仮想メモリ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>仮想メモリ</h2>
+<ul>
+<li><p>プロセスそれぞれにメモリ空間が存在</p>
+<ul>
+<li>単位は <code>ページ</code></li>
+<li>プロセスが仮想メモリーを利用する分だけ、ページ単位で物理メモリーから割り当てる</li>
+</ul></li>
+<li><p>空きメモリの調査</p>
+<ul>
+<li><a href="free">free</a> コマンド</li>
+</ul></li>
+<li><p>ページ回収</p>
+<ul>
+<li><p>キャッシュを解放して空きメモリーにすること</p></li>
+<li><p>キャッシュ追い出し</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> sync</span>
+<span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">echo</span> 3 &gt; /proc/sys/vm/drop_caches</span>
+</code></pre>
+<ul>
+<li>ディスクに書き込まれていないファイルを持つページキャッシュを解放しないように <code>sync</code> コマンドを実施する</li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#仮想メモリ">仮想メモリ</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

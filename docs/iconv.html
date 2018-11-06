@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>iconv · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 文字コードを変換して出力する"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="iconv · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 文字コードを変換して出力する"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">iconv</h1></header><article><div><span><ul>
+<li><p>文字コードを変換して出力する</p></li>
+<li><p>nkf コマンドも見てみる</p></li>
+<li><p>whois を正常に出してみる</p>
+<ul>
+<li><p>文字化け確認</p>
+<pre><code class="hljs">$ whois google.jp
+
+Domain Information: <span class="hljs-string">[B%I%a%$%s&gt;pJs]</span>
+<span class="hljs-string">[Domain Name]</span>                   GOOGLE.JP
+
+<span class="hljs-string">[BEPO?&lt;TL&gt;]</span>                      Google Inc.
+<span class="hljs-string">[Registrant]</span>                    Google Inc.
+
+<span class="hljs-string">[Name Server]</span>                   ns1.google.com
+<span class="hljs-string">[Name Server]</span>                   ns2.google.com
+<span class="hljs-string">[Name Server]</span>                   ns3.google.com
+<span class="hljs-string">[Name Server]</span>                   ns4.google.com
+<span class="hljs-string">[Signing Key]</span>
+
+<span class="hljs-string">[BEPO?G/7nF|]</span>                    <span class="hljs-number">2005</span>/<span class="hljs-number">05</span>/<span class="hljs-number">30</span>
+<span class="hljs-string">[BM-8z4|8B]</span>                      <span class="hljs-number">2015</span>/<span class="hljs-number">05</span>/<span class="hljs-number">31</span>
+<span class="hljs-string">[B&gt;uBV]</span>                          Active
+<span class="hljs-string">[B:G=*99?7]</span>                      <span class="hljs-number">2014</span>/<span class="hljs-number">06</span>/<span class="hljs-number">01</span> <span class="hljs-number">01</span>:<span class="hljs-number">05</span>:<span class="hljs-number">11</span> (JST)
+
+Contact Information: <span class="hljs-string">[B8x3+O"MmAk8}]</span>
+<span class="hljs-string">[BL&gt;A0]</span>                          Google Inc.
+<span class="hljs-string">[Name]</span>                          Google Inc.
+<span class="hljs-string">[Email]</span>                         dns-admin@google.com
+<span class="hljs-string">[Web Page]</span>
+<span class="hljs-string">[BM9JXHV9f]</span>                      <span class="hljs-number">94043</span>
+<span class="hljs-string">[B=;=j]</span>                          Mountain View
+                                <span class="hljs-number">1600</span> Amphitheatre Parkway
+                                US
+<span class="hljs-string">[Postal Address]</span>                Mountain View
+                                <span class="hljs-number">1600</span> Amphitheatre Parkway
+                                US
+<span class="hljs-string">[BEEOCHV9f]</span>                      <span class="hljs-number">16502530000</span>
+<span class="hljs-string">[FAXBHV9f]</span>                       <span class="hljs-number">16502530001</span>
+</code></pre></li>
+<li><p>変換</p>
+<pre><code class="hljs">$ whois google.jp | iconv -f iso<span class="hljs-number">-2022</span>-jp -t utf8
+
+<span class="hljs-symbol">Domain</span> <span class="hljs-symbol">Information</span>: [ドメイン情報]
+[<span class="hljs-symbol">Domain</span> <span class="hljs-symbol">Name</span>]                   <span class="hljs-symbol">GOOGLE</span>.<span class="hljs-symbol">JP</span>
+
+[登録者名]                      <span class="hljs-symbol">Google</span> <span class="hljs-symbol">Inc</span>.
+[<span class="hljs-symbol">Registrant</span>]                    <span class="hljs-symbol">Google</span> <span class="hljs-symbol">Inc</span>.
+
+[<span class="hljs-symbol">Name</span> <span class="hljs-symbol">Server</span>]                   ns1.google.com
+[<span class="hljs-symbol">Name</span> <span class="hljs-symbol">Server</span>]                   ns2.google.com
+[<span class="hljs-symbol">Name</span> <span class="hljs-symbol">Server</span>]                   ns3.google.com
+[<span class="hljs-symbol">Name</span> <span class="hljs-symbol">Server</span>]                   ns4.google.com
+[<span class="hljs-symbol">Signing</span> <span class="hljs-symbol">Key</span>]
+
+[登録年月日]                    <span class="hljs-number">2005</span>/<span class="hljs-number">05</span>/<span class="hljs-number">30</span>
+[有効期限]                      <span class="hljs-number">2015</span>/<span class="hljs-number">05</span>/<span class="hljs-number">31</span>
+[状態]                          <span class="hljs-symbol">Active</span>
+[最終更新]                      <span class="hljs-number">2014</span>/<span class="hljs-number">06</span>/<span class="hljs-number">01</span> <span class="hljs-number">01</span>:<span class="hljs-number">05</span>:<span class="hljs-number">11</span> (<span class="hljs-symbol">JST</span>)
+
+<span class="hljs-symbol">Contact</span> <span class="hljs-symbol">Information</span>: [公開連絡窓口]
+[名前]                          <span class="hljs-symbol">Google</span> <span class="hljs-symbol">Inc</span>.
+[<span class="hljs-symbol">Name</span>]                          <span class="hljs-symbol">Google</span> <span class="hljs-symbol">Inc</span>.
+[<span class="hljs-symbol">Email</span>]                         dns-admin@google.com
+[<span class="hljs-symbol">Web</span> <span class="hljs-symbol">Page</span>]
+[郵便番号]                      <span class="hljs-number">94043</span>
+[住所]                          <span class="hljs-symbol">Mountain</span> <span class="hljs-symbol">View</span>
+                                <span class="hljs-number">1600</span> <span class="hljs-symbol">Amphitheatre</span> <span class="hljs-symbol">Parkway</span>
+                                <span class="hljs-symbol">US</span>
+[<span class="hljs-symbol">Postal</span> <span class="hljs-symbol">Address</span>]                <span class="hljs-symbol">Mountain</span> <span class="hljs-symbol">View</span>
+                                <span class="hljs-number">1600</span> <span class="hljs-symbol">Amphitheatre</span> <span class="hljs-symbol">Parkway</span>
+                                <span class="hljs-symbol">US</span>
+[電話番号]                      <span class="hljs-number">16502530000</span>
+[<span class="hljs-symbol">FAX</span>番号]                       <span class="hljs-number">16502530001</span>
+</code></pre></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>lsmod · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- カーネルモジュール表示"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="lsmod · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- カーネルモジュール表示"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">lsmod</h1></header><article><div><span><ul>
+<li>カーネルモジュール表示</li>
+</ul>
+<pre><code class="hljs"># lsmod
+Module                  Size  Used by
+nfnetlink_queue        <span class="hljs-number">18197</span>  <span class="hljs-number">0</span>
+nfnetlink_log          <span class="hljs-number">17892</span>  <span class="hljs-number">0</span>
+bluetooth             <span class="hljs-number">548774</span>  <span class="hljs-number">0</span>
+rfkill                 <span class="hljs-number">22391</span>  <span class="hljs-number">1</span> bluetooth
+veth                   <span class="hljs-number">13410</span>  <span class="hljs-number">0</span>
+nf_conntrack_netlink    <span class="hljs-number">40450</span>  <span class="hljs-number">0</span>
+overlay                <span class="hljs-number">71964</span>  <span class="hljs-number">0</span>
+ipt_MASQUERADE         <span class="hljs-number">12678</span>  <span class="hljs-number">1</span>
+nf_nat_masquerade_ipv4    <span class="hljs-number">13412</span>  <span class="hljs-number">1</span> ipt_MASQUERADE
+xt_addrtype            <span class="hljs-number">12676</span>  <span class="hljs-number">2</span>
+br_netfilter           <span class="hljs-number">22256</span>  <span class="hljs-number">0</span>
+dm_thin_pool           <span class="hljs-number">66298</span>  <span class="hljs-number">0</span>
+dm_persistent_data     <span class="hljs-number">75269</span>  <span class="hljs-number">1</span> dm_thin_pool
+dm_bio_prison          <span class="hljs-number">18209</span>  <span class="hljs-number">1</span> dm_thin_pool
+dm_bufio               <span class="hljs-number">28015</span>  <span class="hljs-number">1</span> dm_persistent_data
+loop                   <span class="hljs-number">28072</span>  <span class="hljs-number">0</span>
+ip6t_rpfilter          <span class="hljs-number">12595</span>  <span class="hljs-number">1</span>
+ipt_REJECT             <span class="hljs-number">12541</span>  <span class="hljs-number">2</span>
+nf_reject_ipv4         <span class="hljs-number">13373</span>  <span class="hljs-number">1</span> ipt_REJECT
+ip6t_REJECT            <span class="hljs-number">12625</span>  <span class="hljs-number">2</span>
+nf_reject_ipv6         <span class="hljs-number">13717</span>  <span class="hljs-number">1</span> ip6t_REJECT
+xt_conntrack           <span class="hljs-number">12760</span>  <span class="hljs-number">14</span>
+ip_set                 <span class="hljs-number">40680</span>  <span class="hljs-number">0</span>
+nfnetlink              <span class="hljs-number">14490</span>  <span class="hljs-number">5</span> nfnetlink_log,ip_set,nf_conntrack_netlink,nfnetlink_queue
+ebtable_nat            <span class="hljs-number">12807</span>  <span class="hljs-number">1</span>
+ebtable_broute         <span class="hljs-number">12731</span>  <span class="hljs-number">1</span>
+bridge                <span class="hljs-number">146976</span>  <span class="hljs-number">2</span> br_netfilter,ebtable_broute
+stp                    <span class="hljs-number">12976</span>  <span class="hljs-number">1</span> bridge
+llc                    <span class="hljs-number">14552</span>  <span class="hljs-number">2</span> stp,bridge
+ip6table_nat           <span class="hljs-number">12864</span>  <span class="hljs-number">1</span>
+nf_conntrack_ipv6      <span class="hljs-number">18935</span>  <span class="hljs-number">8</span>
+nf_defrag_ipv6         <span class="hljs-number">35104</span>  <span class="hljs-number">1</span> nf_conntrack_ipv6
+nf_nat_ipv6            <span class="hljs-number">14131</span>  <span class="hljs-number">1</span> ip6table_nat
+ip6table_mangle        <span class="hljs-number">12700</span>  <span class="hljs-number">1</span>
+ip6table_security      <span class="hljs-number">12710</span>  <span class="hljs-number">1</span>
+ip6table_raw           <span class="hljs-number">12683</span>  <span class="hljs-number">1</span>
+iptable_nat            <span class="hljs-number">12875</span>  <span class="hljs-number">1</span>
+nf_conntrack_ipv4      <span class="hljs-number">15053</span>  <span class="hljs-number">8</span>
+nf_defrag_ipv4         <span class="hljs-number">12729</span>  <span class="hljs-number">1</span> nf_conntrack_ipv4
+nf_nat_ipv4            <span class="hljs-number">14115</span>  <span class="hljs-number">1</span> iptable_nat
+nf_nat                 <span class="hljs-number">26787</span>  <span class="hljs-number">3</span> nf_nat_ipv4,nf_nat_ipv6,nf_nat_masquerade_ipv4
+nf_conntrack          <span class="hljs-number">133053</span>  <span class="hljs-number">8</span> nf_nat,nf_nat_ipv4,nf_nat_ipv6,xt_conntrack,nf_nat_masquerade_ipv4,nf_conntrack_netlink,nf_conntrack_ipv4,nf_conntrack_ipv6
+iptable_mangle         <span class="hljs-number">12695</span>  <span class="hljs-number">1</span>
+iptable_security       <span class="hljs-number">12705</span>  <span class="hljs-number">1</span>
+iptable_raw            <span class="hljs-number">12678</span>  <span class="hljs-number">1</span>
+ebtable_filter         <span class="hljs-number">12827</span>  <span class="hljs-number">1</span>
+ebtables               <span class="hljs-number">35009</span>  <span class="hljs-number">3</span> ebtable_broute,ebtable_nat,ebtable_filter
+ip6table_filter        <span class="hljs-number">12815</span>  <span class="hljs-number">1</span>
+ip6_tables             <span class="hljs-number">26912</span>  <span class="hljs-number">5</span> ip6table_filter,ip6table_mangle,ip6table_security,ip6table_nat,ip6table_raw
+iptable_filter         <span class="hljs-number">12810</span>  <span class="hljs-number">1</span>
+kvm_amd              <span class="hljs-number">2176416</span>  <span class="hljs-number">0</span>
+kvm                   <span class="hljs-number">578558</span>  <span class="hljs-number">1</span> kvm_amd
+ppdev                  <span class="hljs-number">17671</span>  <span class="hljs-number">0</span>
+irqbypass              <span class="hljs-number">13503</span>  <span class="hljs-number">1</span> kvm
+sg                     <span class="hljs-number">40721</span>  <span class="hljs-number">0</span>
+joydev                 <span class="hljs-number">17389</span>  <span class="hljs-number">0</span>
+parport_pc             <span class="hljs-number">28205</span>  <span class="hljs-number">0</span>
+virtio_balloon         <span class="hljs-number">18015</span>  <span class="hljs-number">0</span>
+parport                <span class="hljs-number">46395</span>  <span class="hljs-number">2</span> ppdev,parport_pc
+i2c_piix4              <span class="hljs-number">22401</span>  <span class="hljs-number">0</span>
+pcspkr                 <span class="hljs-number">12718</span>  <span class="hljs-number">0</span>
+ip_tables              <span class="hljs-number">27126</span>  <span class="hljs-number">5</span> iptable_security,iptable_filter,iptable_mangle,iptable_nat,iptable_raw
+xfs                  <span class="hljs-number">1003971</span>  <span class="hljs-number">2</span>
+libcrc32c              <span class="hljs-number">12644</span>  <span class="hljs-number">4</span> xfs,dm_persistent_data,nf_nat,nf_conntrack
+sr_mod                 <span class="hljs-number">22416</span>  <span class="hljs-number">0</span>
+cdrom                  <span class="hljs-number">42556</span>  <span class="hljs-number">1</span> sr_mod
+ata_generic            <span class="hljs-number">12923</span>  <span class="hljs-number">0</span>
+pata_acpi              <span class="hljs-number">13053</span>  <span class="hljs-number">0</span>
+cirrus                 <span class="hljs-number">24383</span>  <span class="hljs-number">1</span>
+drm_kms_helper        <span class="hljs-number">177166</span>  <span class="hljs-number">1</span> cirrus
+syscopyarea            <span class="hljs-number">12529</span>  <span class="hljs-number">1</span> drm_kms_helper
+sysfillrect            <span class="hljs-number">12701</span>  <span class="hljs-number">1</span> drm_kms_helper
+sysimgblt              <span class="hljs-number">12640</span>  <span class="hljs-number">1</span> drm_kms_helper
+fb_sys_fops            <span class="hljs-number">12703</span>  <span class="hljs-number">1</span> drm_kms_helper
+ttm                    <span class="hljs-number">99555</span>  <span class="hljs-number">1</span> cirrus
+virtio_blk             <span class="hljs-number">18166</span>  <span class="hljs-number">4</span>
+drm                   <span class="hljs-number">397988</span>  <span class="hljs-number">4</span> ttm,drm_kms_helper,cirrus
+virtio_net             <span class="hljs-number">28063</span>  <span class="hljs-number">0</span>
+ata_piix               <span class="hljs-number">35052</span>  <span class="hljs-number">0</span>
+virtio_console         <span class="hljs-number">28075</span>  <span class="hljs-number">1</span>
+virtio_pci             <span class="hljs-number">22934</span>  <span class="hljs-number">0</span>
+virtio_ring            <span class="hljs-number">22746</span>  <span class="hljs-number">5</span> virtio_blk,virtio_net,virtio_pci,virtio_balloon,virtio_console
+floppy                 <span class="hljs-number">69432</span>  <span class="hljs-number">0</span>
+libata                <span class="hljs-number">243070</span>  <span class="hljs-number">3</span> pata_acpi,ata_generic,ata_piix
+i2c_core               <span class="hljs-number">63151</span>  <span class="hljs-number">3</span> drm,i2c_piix4,drm_kms_helper
+serio_raw              <span class="hljs-number">13434</span>  <span class="hljs-number">0</span>
+virtio                 <span class="hljs-number">14959</span>  <span class="hljs-number">5</span> virtio_blk,virtio_net,virtio_pci,virtio_balloon,virtio_console
+dm_mirror              <span class="hljs-number">22289</span>  <span class="hljs-number">0</span>
+dm_region_hash         <span class="hljs-number">20813</span>  <span class="hljs-number">1</span> dm_mirror
+dm_log                 <span class="hljs-number">18411</span>  <span class="hljs-number">2</span> dm_region_hash,dm_mirror
+dm_mod                <span class="hljs-number">123936</span>  <span class="hljs-number">11</span> dm_log,dm_mirror,dm_bufio,dm_thin_pool
+</code></pre>
+<ul>
+<li>Used by
+<ul>
+<li>依存関係のあるモジュール</li>
+<li>依存関係は <a href="depmod">depmod</a> コマンドを実行する</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

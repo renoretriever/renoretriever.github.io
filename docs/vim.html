@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>vim · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Command line"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="vim · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## Command line"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">vim</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="command-line"></a><a href="#command-line" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Command line</h2>
+<ul>
+<li><p>.vimrc 読み込まずに test.md を開く</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> vim -u NONE -N test.md</span>
+</code></pre>
+<ul>
+<li>.vimrc を読み込まないと vi 互換モードに退行するので、-N フラグを指定する</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="basic"></a><a href="#basic" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Basic</h2>
+<table>
+<thead>
+<tr><th>item</th><th>contents</th></tr>
+</thead>
+<tbody>
+<tr><td>Ctr+m</td><td>改行(enter)</td></tr>
+<tr><td>Ctr+i</td><td>タブ(TAB)</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="ノーマルモード"></a><a href="#ノーマルモード" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ノーマルモード</h3>
+<table>
+<thead>
+<tr><th>item</th><th>content</th></tr>
+</thead>
+<tbody>
+<tr><td>a</td><td>次のカーソルから入力モード</td></tr>
+<tr><td>A</td><td>行末から入力モード</td></tr>
+<tr><td>dd</td><td>カーソルがある行の削除</td></tr>
+<tr><td>D</td><td>現在のカーソルがある場所から行末までを削除</td></tr>
+<tr><td>数字dd</td><td>カーソルがある行から数字指定した行のまで削除</td></tr>
+<tr><td>gg</td><td>カーソルをファイルの先頭へ移動</td></tr>
+<tr><td>GG</td><td>カーソルをファイルの末尾へ移動</td></tr>
+<tr><td>i</td><td>現在のカーソルから入力モード</td></tr>
+<tr><td>I</td><td>行頭から入力モード</td></tr>
+<tr><td>o</td><td>次の行に空行を作り、入力モード</td></tr>
+<tr><td>O</td><td>前の行に空行を作り、入力モード</td></tr>
+<tr><td>p</td><td>次の行へペースト</td></tr>
+<tr><td>P</td><td>前の行へペースト</td></tr>
+<tr><td>x</td><td>カーソルがある場所の文字削除</td></tr>
+<tr><td>X</td><td>カーソルがある場所の前の文字削除</td></tr>
+<tr><td>数字x</td><td>カーソルがある場所から数字までの文字削除</td></tr>
+<tr><td>数字X</td><td>カーソルがある場所の前の数字の文字削除</td></tr>
+<tr><td>yy</td><td>行コピー</td></tr>
+<tr><td>数字yy</td><td>数字行コピー</td></tr>
+<tr><td>数字↑</td><td>指定した数の分だけカーソルを上へ移動</td></tr>
+<tr><td>数字↓</td><td>指定した数の分だけカーソルを下へ移動</td></tr>
+<tr><td>数字←</td><td>指定した数の分だけカーソルを左へ移動</td></tr>
+<tr><td>数字→</td><td>指定した数の分だけカーソルを右へ移動</td></tr>
+<tr><td>%</td><td>カーソル位置にある括弧と対になる括弧に移動</td></tr>
+<tr><td>{</td><td>カーソル位置の段落の先頭に移動</td></tr>
+<tr><td>}</td><td>カーソル位置の段落の末尾に移動</td></tr>
+<tr><td>[[</td><td>カーソル位置の前の段落に移動</td></tr>
+<tr><td>]]</td><td>カーソル位置の後の段落に移動</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="その他"></a><a href="#その他" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>その他</h3>
+<table>
+<thead>
+<tr><th>item</th><th>content</th></tr>
+</thead>
+<tbody>
+<tr><td>:new</td><td>新規ウィンドウ<br>Ctr + w hjkl : ウィンドウの移動</td></tr>
+<tr><td>:set number</td><td>行番号の表示</td></tr>
+<tr><td>:tabnew</td><td>新規タブの作成<br>:gt タブの移動</td></tr>
+<tr><td>:ls</td><td>バッファの確認</td></tr>
+<tr><td>:b 番号</td><td>バッファへ移動</td></tr>
+</tbody>
+</table>
+<ul>
+<li><p>コピーしたものをそのまま貼り付け ※ インデント無視したいときとか</p>
+<pre><code class="hljs">:<span class="hljs-builtin-name">set</span> paste
+</code></pre></li>
+<li><p>文字コードの指定してファイルを編集する</p>
+<ul>
+<li><p>ファイルオープン前</p>
+<pre><code class="hljs">vim -c <span class="hljs-string">":e ++enc=cp932"</span> test<span class="hljs-selector-class">.txt</span>
+</code></pre></li>
+<li><p>ファイルオープン後</p>
+<pre><code class="hljs">:e ++<span class="hljs-attribute">enc</span>=shift_jis
+:e ++<span class="hljs-attribute">enc</span>=iso-2022-jp
+:e ++<span class="hljs-attribute">enc</span>=euc_jp
+</code></pre></li>
+</ul></li>
+<li><p>新規ファイル作成</p>
+<pre><code class="hljs"><span class="hljs-selector-pseudo">:e</span> <span class="hljs-selector-tag">filename</span>
+</code></pre></li>
+<li><p>検索ハイライトを消す</p>
+<pre><code class="hljs"><span class="hljs-symbol">:noh</span>
+</code></pre></li>
+<li><p>move line number</p>
+<pre><code class="hljs">:[<span class="hljs-built_in">line</span> <span class="hljs-built_in">number</span>]
+</code></pre></li>
+<li><p>行末挿入</p>
+<ul>
+<li>矩形で、選択</li>
+<li>$ 指定で行末まで</li>
+<li>A で行末入力</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>直前の単語削除</p>
+<ul>
+<li>ctr + w</li>
+</ul></li>
+<li><p>インデント追加</p>
+<ul>
+<li>ctr + t</li>
+</ul></li>
+<li><p>インデント削除</p>
+<ul>
+<li>ctr + d</li>
+</ul></li>
+<li><p>対応括弧移動</p>
+<ul>
+<li>%</li>
+</ul></li>
+<li><p>一致した行を消す</p>
+<pre><code class="hljs"><span class="hljs-symbol">:%g/^</span>.*hoge.*<span class="hljs-variable">$/</span>d
+</code></pre></li>
+<li><p>一致しない行を消す</p>
+<pre><code class="hljs"><span class="hljs-symbol">:%v/^</span>.*hoge.*<span class="hljs-variable">$/</span>d
+</code></pre></li>
+<li><p>空白行を削除</p>
+<pre><code class="hljs"><span class="hljs-symbol">:g/^</span><span class="hljs-variable">$/</span>d
+</code></pre></li>
+<li><p>awk を利用して選択行の 1 番目を取得</p>
+<ul>
+<li><p>ヴィジュアルモード選択</p></li>
+<li><p>コロン押下で、! つけてあげて</p>
+<pre><code class="hljs"><span class="hljs-symbol">:<span class="hljs-string">'&lt;,'</span>&gt;</span>!awk <span class="hljs-string">'{print $1}'</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="プロファイリング"></a><a href="#プロファイリング" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>プロファイリング</h2>
+<ul>
+<li><p>vim が遅いとかに重宝</p>
+<ol>
+<li><p>ログの指定</p>
+<pre><code class="hljs">:<span class="hljs-keyword">profile</span> start <span class="hljs-keyword">profile</span>.<span class="hljs-keyword">log</span>
+</code></pre></li>
+<li><p>プロファイリング対象を決める</p>
+<pre><code class="hljs">:<span class="hljs-keyword">profile</span> func *
+:<span class="hljs-keyword">profile</span> <span class="hljs-keyword">file</span> *
+</code></pre></li>
+<li><p>測定したい動作を実施</p></li>
+<li><p>測定を終了</p>
+<pre><code class="hljs"><span class="hljs-selector-pseudo">:profile</span> <span class="hljs-selector-tag">pause</span>
+<span class="hljs-selector-pseudo">:noautocmd</span> <span class="hljs-selector-tag">qall</span>!
+</code></pre></li>
+</ol></li>
+<li><p>名前をつけて保存</p>
+<pre><code class="hljs"><span class="hljs-selector-pseudo">:w</span> <span class="hljs-selector-tag">filename</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>レジスタの値をペースト</p>
+<ul>
+<li><p>値確認</p>
+<pre><code class="hljs"><span class="hljs-string">:reg</span>
+
+<span class="hljs-bullet">-</span><span class="hljs-bullet">--</span> <span class="hljs-string">Registers</span> <span class="hljs-meta">---</span>
+<span class="hljs-string">""</span>   <span class="hljs-string">hogehoge</span>
+<span class="hljs-string">"0   hogehoge1
+"</span><span class="hljs-number">1</span>   <span class="hljs-string">hogehoge2</span>
+<span class="hljs-string">``</span>
+</code></pre></li>
+<li><p>1 を貼り付けしたい。貼り付けたい場所にカーソルをあわせる</p>
+<pre><code class="hljs"><span class="hljs-string">"1p</span>
+</code></pre></li>
+</ul></li>
+<li><p>外部コマンド実行 ※ ls 実行</p>
+<pre><code class="hljs"><span class="hljs-symbol">:!ls</span>
+</code></pre></li>
+<li><p>カーソル位置にファイルを読み込む</p>
+<pre><code class="hljs"><span class="hljs-selector-pseudo">:r</span> ファイル名
+</code></pre></li>
+<li><p>カーソル位置に ls コマンドの実行結果を貼り付ける</p>
+<pre><code class="hljs"><span class="hljs-selector-pseudo">:r</span>! <span class="hljs-selector-tag">ls</span>
+</code></pre></li>
+<li><p>ビジュアルモードで選択した部分の置換</p>
+<ol>
+<li>Crt + v で対象を選択(vでもOK)</li>
+<li>「:」押下</li>
+<li>:’&lt;,’&gt;   &lt;--  出てくる</li>
+<li>置換  :’&lt;,’&gt;:s/before/after/g</li>
+</ol></li>
+<li><p>ビジュアルモードで文末に文字を挿入する</p>
+<ol>
+<li>Ctr + v で対象を選択</li>
+<li>「$」で行末まで選択</li>
+<li>対象の行まで移動</li>
+<li>Crt + a を押下</li>
+<li>文字入れる</li>
+<li>ESC</li>
+</ol></li>
+<li><p>単語数(the)を調べる</p>
+<ol>
+<li>「:」押下</li>
+<li>:%s/the/&amp;/gn</li>
+</ol></li>
+<li><p>数字のインクリメント</p>
+<pre><code class="hljs">Ctr + <span class="hljs-selector-tag">a</span>
+</code></pre></li>
+<li><p>数字のデクリメント</p>
+<pre><code class="hljs">Ctr + <span class="hljs-keyword">x</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="tips"></a><a href="#tips" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tips</h2>
+<ul>
+<li><p>vim-markdonw の <code>Foldexpr_markdown</code> のせいで vim のタイプが異常に遅かったので無効化</p>
+<pre><code class="hljs"><span class="hljs-keyword">let</span> g:<span class="hljs-attr">vim_markdown_folding_disabled</span> = <span class="hljs-number">1</span> 
+</code></pre>
+<ul>
+<li><a href="https://github.com/plasticboy/vim-markdown/issues/162">参考 URL</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="クリップボードに-vim-からコピーできるように変更-for-mac"></a><a href="#クリップボードに-vim-からコピーできるように変更-for-mac" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>クリップボードに vim からコピーできるように変更 for mac</h2>
+<ul>
+<li><p>現在の設定を確認</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">vim</span> --<span class="hljs-keyword">version</span> | <span class="hljs-keyword">grep</span> clipboard
+-clipboard       +job             +path_extra      -toolbar
++ex_extra        -mouse_gpm       -sun_workshop    -xterm_clipboard
+</code></pre>
+<ul>
+<li>+clipboard ではないのでクリップボードが使用できない</li>
+</ul></li>
+<li><p>vim インストール</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> brew update</span>
+<span class="hljs-meta">$</span><span class="bash"> brew install vim</span>
+</code></pre></li>
+<li><p>インストール確認</p>
+<pre><code class="hljs">$ brew list vim
+<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/Cellar/</span>vim<span class="hljs-regexp">/8.0.1800/</span>bin/ex
+<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/Cellar/</span>vim<span class="hljs-regexp">/8.0.1800/</span>bin/rview
+<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/Cellar/</span>vim<span class="hljs-regexp">/8.0.1800/</span>bin/rvim
+<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/Cellar/</span>vim<span class="hljs-regexp">/8.0.1800/</span>bin/view
+<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/Cellar/</span>vim<span class="hljs-regexp">/8.0.1800/</span>bin/vim
+<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/Cellar/</span>vim<span class="hljs-regexp">/8.0.1800/</span>bin/vimdiff
+<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/Cellar/</span>vim<span class="hljs-regexp">/8.0.1800/</span>bin/vimtutor
+<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/Cellar/</span>vim<span class="hljs-regexp">/8.0.1800/</span>bin/xxd
+<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/Cellar/</span>vim<span class="hljs-regexp">/8.0.1800/</span>share<span class="hljs-regexp">/man/</span> (<span class="hljs-number">9</span> files)
+<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/Cellar/</span>vim<span class="hljs-regexp">/8.0.1800/</span>share<span class="hljs-regexp">/vim/</span> (<span class="hljs-number">1410</span> files)
+</code></pre></li>
+<li><p>クリップボードが使用できるか確認</p>
+<pre><code class="hljs">$ /usr/local/Cellar/<span class="hljs-keyword">vim</span>/<span class="hljs-number">8.0</span>.<span class="hljs-number">1800</span>/bin/<span class="hljs-keyword">vim</span> --<span class="hljs-keyword">version</span> | <span class="hljs-keyword">grep</span> clipboard
++clipboard         +jumplist          +persistent_undo   +virtualedit
+-ebcdic            -mouseshape        +statusline        -xterm_clipboard
+</code></pre>
+<ul>
+<li>+clipboard なので使用可能</li>
+</ul></li>
+<li><p>入れ替え</p>
+<ul>
+<li><p>既存を mv</p>
+<pre><code class="hljs">$ mv <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>vim <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>old_vim
+</code></pre></li>
+<li><p>シンボリックリンクはる</p>
+<pre><code class="hljs">$ ln -s <span class="hljs-meta-keyword">/usr/</span>local/Cellar<span class="hljs-meta-keyword">/vim/</span><span class="hljs-number">8.0</span><span class="hljs-number">.1800</span><span class="hljs-meta-keyword">/bin/</span>vim <span class="hljs-meta-keyword">/usr/</span>local<span class="hljs-meta-keyword">/bin/</span>vim
+</code></pre></li>
+</ul></li>
+<li><p>バージョン確認</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">vim</span> --<span class="hljs-keyword">version</span> | <span class="hljs-keyword">grep</span> clipboard
++clipboard         +jumplist          +persistent_undo   +virtualedit
+-ebcdic            -mouseshape        +statusline        -xterm_clipboard
+</code></pre></li>
+</ul>
+<ul>
+<li><code>&quot;hoge&quot;</code> の hoge を選択
+<ul>
+<li>vi&quot;</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="画面分割"></a><a href="#画面分割" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>画面分割</h3>
+<ul>
+<li><code>Ctr + w</code> が prefix</li>
+</ul>
+<table>
+<thead>
+<tr><th>item</th><th>content</th></tr>
+</thead>
+<tbody>
+<tr><td>:sp</td><td>上下分割<br>:sp filename で新規にファイルを開く<br>移動は Ctr+w =&gt; w<br>:close で閉じる</td></tr>
+<tr><td>:vsp</td><td>水平分割</td></tr>
+<tr><td>prefix + r</td><td>画面入れ替え</td></tr>
+<tr><td>prefix + &gt;</td><td>ウィンドウの幅を増やす</td></tr>
+<tr><td>prefix + &lt;</td><td>ウィンドウの幅を減らす</td></tr>
+<tr><td>prefix + +</td><td>ウィンドウの高さを増やす</td></tr>
+<tr><td>prefix + -</td><td>ウィンドウの高さを減らす</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="タブ"></a><a href="#タブ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>タブ</h3>
+<table>
+<thead>
+<tr><th>item</th><th>contents</th></tr>
+</thead>
+<tbody>
+<tr><td>:tabnew</td><td>新規タブ</td></tr>
+<tr><td>gT</td><td>move pre tab</td></tr>
+<tr><td>gt</td><td>move next tab</td></tr>
+<tr><td>2gt</td><td>move number 2 tab</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="tips-1"></a><a href="#tips-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tips</h3>
+<ul>
+<li>vim を終了することなく編集中ファイルのファイル名を変更する
+<ul>
+<li><p>通常</p>
+<pre><code class="hljs">$ mv aaa<span class="hljs-selector-class">.txt</span> bbb<span class="hljs-selector-class">.txt</span>
+$ vim bbb<span class="hljs-selector-class">.txt</span>
+</code></pre></li>
+<li><p>vim 上で</p>
+<pre><code class="hljs"><span class="hljs-selector-pseudo">:call</span> <span class="hljs-selector-tag">rename</span>(expand(<span class="hljs-string">'%'</span>), <span class="hljs-string">'bbb.txt'</span>)
+<span class="hljs-selector-pseudo">:e</span> <span class="hljs-selector-tag">bbb</span><span class="hljs-selector-class">.txt</span>
+</code></pre>
+<ul>
+<li>expand('%') で編集中ファイルのファイル名を得て、rename() で新しいファイル名に変更</li>
+<li><code>事前に古いファイルに編集中のデータを保存しておかなければ、新しいファイルに編集分が反映されないという問題点</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li><a href="http://qiita.com/uedatakeshi/items/31761b87ba8ecbaf2c1e">vimでMarkdownのプレビュー</a></li>
+<li><a href="http://qiita.com/jiminko/items/f4b337ab41db751388f7">NeoBundle から vim-plug に乗り換えてみた</a></li>
+<li><a href="https://qiita.com/okamu_/items/d9ee9cdc1b5005a0cf1c">vimium</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="プラグイン"></a><a href="#プラグイン" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>プラグイン</h2>
+<ul>
+<li>マネージャー
+<ul>
+<li><a href="vim-plug">vim-plug</a></li>
+</ul></li>
+<li>show file tree
+<ul>
+<li><a href="nerdtree">scrooloose/nerdtree</a></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#command-line">Command line</a></li><li><a href="#basic">Basic</a><ul class="toc-headings"><li><a href="#ノーマルモード">ノーマルモード</a></li><li><a href="#その他">その他</a></li></ul></li><li><a href="#プロファイリング">プロファイリング</a></li><li><a href="#tips">Tips</a></li><li><a href="#クリップボードに-vim-からコピーできるように変更-for-mac">クリップボードに vim からコピーできるように変更 for mac</a><ul class="toc-headings"><li><a href="#画面分割">画面分割</a></li><li><a href="#タブ">タブ</a></li><li><a href="#tips-1">Tips</a></li></ul></li><li><a href="#references">References</a></li><li><a href="#プラグイン">プラグイン</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

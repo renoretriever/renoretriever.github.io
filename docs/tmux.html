@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>tmux · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 設定"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="tmux · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 設定"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">tmux</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="設定"></a><a href="#設定" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>設定</h2>
+<ul>
+<li><p>クリップボード共有のため reattach-to-user-namespace のインストール</p>
+<pre><code class="hljs">$ brew <span class="hljs-keyword">install</span> reattach-<span class="hljs-keyword">to</span>-<span class="hljs-keyword">user</span>-namespace
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="コマンド"></a><a href="#コマンド" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コマンド</h2>
+<h3><a class="anchor" aria-hidden="true" id="コマンドライン"></a><a href="#コマンドライン" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コマンドライン</h3>
+<ul>
+<li><p>セッション</p>
+<ul>
+<li><p>check session</p>
+<pre><code class="hljs">$ tmux ls
+0:<span class="hljs-number"> 2 </span>windows (created Mon May<span class="hljs-number"> 14 </span>08:45:53 2018) [181x41] (attached)
+3:<span class="hljs-number"> 1 </span>windows (created Mon May<span class="hljs-number"> 14 </span>12:34:54 2018) [181x41] (attached)
+</code></pre></li>
+<li><p>最後に使用したセッションにアタッチ</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> tmux a</span>
+</code></pre></li>
+<li><p>start with session name</p>
+<pre><code class="hljs">$ tmux<span class="hljs-built_in"> new-session </span>-s NAME
+</code></pre></li>
+<li><p>セッション再開</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> tmux attach -t NAME(セッション名)</span>
+</code></pre></li>
+<li><p>セッション終了</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> tmux <span class="hljs-built_in">kill</span>-session -t <span class="hljs-string">"セッション名"</span></span>
+</code></pre></li>
+<li><p>共有</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> tmux -S /tmp/reno_sock </span>
+<span class="hljs-meta">$</span><span class="bash"> chmod 777 /tmp/reno_sock </span>
+<span class="hljs-meta">$</span><span class="bash"> tmux -S /tmp/reno_sock attach </span>
+</code></pre></li>
+</ul></li>
+<li><p>window kill</p>
+<ul>
+<li>prefix + &amp;</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="その他"></a><a href="#その他" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>その他</h3>
+<ul>
+<li><p>複数ペインにて同時コマンド実行</p>
+<pre><code class="hljs"><span class="hljs-string">C-prefix </span>: <span class="hljs-built_in">set-window-option</span> <span class="hljs-string">synchronize-panes </span><span class="hljs-string">on
+</span></code></pre></li>
+<li><p>画面分割の解除</p>
+<pre><code class="hljs">C-prefix + !
+</code></pre></li>
+</ul>
+<ul>
+<li><p>ウィンドウ作成</p>
+<pre><code class="hljs"><span class="hljs-attr">C-prefix</span> =&gt; c
+</code></pre></li>
+<li><p>ウィンドウ名変更</p>
+<pre><code class="hljs"><span class="hljs-attr">C-prefix</span> =&gt; ,
+</code></pre></li>
+<li><p>ウィンドウ分割</p>
+<ul>
+<li><p>縦</p>
+<pre><code class="hljs"><span class="hljs-attr">C-prefix</span> =&gt; %
+</code></pre></li>
+<li><p>横</p>
+<pre><code class="hljs"><span class="hljs-attr">C-prefix</span> =&gt; S
+</code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li>コピペ
+<ul>
+<li>コピー
+<ol>
+<li>prefix + [</li>
+<li>space</li>
+<li>対象まで移動</li>
+<li>enterでコピー</li>
+</ol></li>
+<li>ペースト
+<ol>
+<li>prefix + ]</li>
+</ol></li>
+</ul></li>
+</ul>
+<ul>
+<li>Ctr + q にて固まった画面を解除</li>
+<li>Ctr + s にて出力をストップ</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="tmuxconf"></a><a href="#tmuxconf" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>.tmux.conf</h2>
+<ul>
+<li><p>set default shell to zsh at .tmux.conf</p>
+<pre><code class="hljs"><span class="hljs-built_in">set-option</span> -g <span class="hljs-string">default-shell </span>/<span class="hljs-string">bin/</span><span class="hljs-string">zsh
+</span></code></pre></li>
+<li><p>auto rename off session</p>
+<pre><code class="hljs"><span class="hljs-built_in">set-option</span> -g <span class="hljs-string">allow-rename </span><span class="hljs-string">off
+</span></code></pre></li>
+</ul>
+<ul>
+<li>ペインリサイズ
+<ul>
+<li><p>設定</p>
+<pre><code class="hljs"><span class="hljs-comment">#パネルのサイズ変更(repeat on)</span>
+<span class="hljs-keyword">bind </span>-r <span class="hljs-keyword">J </span>resize-pane -D <span class="hljs-number">5</span>
+<span class="hljs-keyword">bind </span>-r K resize-pane -U <span class="hljs-number">5</span>
+<span class="hljs-keyword">bind </span>-r H resize-pane -L <span class="hljs-number">5</span>
+<span class="hljs-keyword">bind </span>-r L resize-pane -R <span class="hljs-number">5</span>
+</code></pre></li>
+<li><p>説明</p>
+<ul>
+<li>-r を付けると一番最初に prefix キーを押せば後は resize-pane に割り当てたキーを連続で押すだけでOK</li>
+</ul>
+<table>
+<thead>
+<tr><th>command</th><th>action</th></tr>
+</thead>
+<tbody>
+<tr><td>bind -r J resize-pane -D 5</td><td>上部ペインのサイズ変更<br>prefix 押下後、shift+j 押下でサイズ変更</td></tr>
+<tr><td>bind -r K resize-pane -U 5</td><td>下部ペインのサイズ変更<br>prefix 押下後、shift+k 押下でサイズ変更</td></tr>
+<tr><td>bind -r H resize-pane -L 5</td><td>左部ペインのサイズ変更<br>prefix 押下後、shift+h 押下でサイズ変更</td></tr>
+<tr><td>bind -r L resize-pane -R 5</td><td>右部ペインのサイズ変更<br>prefix 押下後、shift+l 押下でサイズ変更</td></tr>
+</tbody>
+</table>
+</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li><a href="http://dev.classmethod.jp/devenv/mastering-tmux-with-tpm-plugin/">tmuxを使いこなす / プラグイン開発で機能を拡張</a></li>
+<li><a href="http://qiita.com/koara-local/items/940ce66e2ecd8e4d8582">2015年の(ほどほどにつよい) tmux環境設定まとめ</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#設定">設定</a></li><li><a href="#コマンド">コマンド</a><ul class="toc-headings"><li><a href="#コマンドライン">コマンドライン</a></li><li><a href="#その他">その他</a></li></ul></li><li><a href="#tmuxconf">.tmux.conf</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

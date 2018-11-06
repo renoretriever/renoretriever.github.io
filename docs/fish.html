@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>fish · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 設定"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="fish · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 設定"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">fish</h1></header><article><div><span><ul>
+<li><p>設定</p>
+<ul>
+<li><p>インストール</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>fish
+</code></pre></li>
+<li><p>/etc/shells ファイルに <code>/usr/local/bin/fish</code> を追加</p></li>
+<li><p>change</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> chsh -s /usr/<span class="hljs-built_in">local</span>/bin/fish</span>
+</code></pre></li>
+</ul></li>
+<li><p>プラグインマネージャー</p>
+<ul>
+<li><p>fisherman 導入</p>
+<pre><code class="hljs"><span class="hljs-variable">$ </span>curl -Lo ~<span class="hljs-regexp">/.config/fish</span><span class="hljs-regexp">/functions/fisher</span>.fish --create-dirs <span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/git.io/fisher</span>
+</code></pre></li>
+<li><p>プラグイン導入</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> fisher z</span>
+<span class="hljs-meta">$</span><span class="bash"> fisher oh-my-fish/plugin-peco</span>
+</code></pre></li>
+</ul></li>
+<li><p>環境変数へ代入</p>
+<ul>
+<li><p>コマンドに「--export」か「-x」オプションを付けて export する</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">set</span> -x MyVariable SomeValue
+env | grep MyVariable
+<span class="hljs-attribute">MyVariable</span>=SomeValue
+</code></pre></li>
+<li><p>「-e」または「--erase」オプションで変数を削除</p>
+<pre><code class="hljs"><span class="hljs-keyword">set</span> -e <span class="hljs-comment">MyVariable</span>
+env |<span class="hljs-comment"> grep MyVariable</span>
+(no <span class="hljs-comment">output)</span>
+</code></pre></li>
+</ul></li>
+<li><p>ステータスコード</p>
+<ul>
+<li>$status</li>
+<li>0
+<ul>
+<li>成功</li>
+</ul></li>
+<li>1 以上
+<ul>
+<li>失敗</li>
+</ul></li>
+</ul></li>
+<li><p>コマンド置換</p>
+<ul>
+<li><p>他のシェルと違って 、fish はバッククォートのかわりに<code>()</code>を使用</p>
+<pre><code class="hljs">(<span class="hljs-name">pwd</span>)
+</code></pre></li>
+</ul></li>
+<li><p>if 文</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; curl -f 10.0.12.20 -o /dev/null -s; <span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> <span class="hljs-variable">$status</span> -ne 0; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$status</span>; end ;  end</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>for 文</p>
+<pre><code class="hljs"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> foo bar baz; echo $i; <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> sato suzuki takahashi tanaka ito watanabe yamamoto nakamura kobayashi kato yoshida yamada sasaki yamaguchi matsumoto inoue kimura hayashi saito shimizu ; curl -d <span class="hljs-string">"name="</span>$i -d <span class="hljs-string">"password="</span>{$i}<span class="hljs-number">201808</span> <span class="hljs-string">"http://localhost:5000/login"</span> ; sleep <span class="hljs-number">1</span>; <span class="hljs-keyword">end</span>
+</code></pre></li>
+<li><p>sample</p>
+<pre><code class="hljs">$ cat ~/.config/fish/config.fish
+
+<span class="hljs-keyword">set</span> -g fish_user_paths <span class="hljs-string">"/usr/local/sbin"</span> $fish_user_paths
+
+<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $HOME/.anyenv/<span class="hljs-keyword">bin</span> $<span class="hljs-keyword">PATH</span>
+eval (anyenv init - | <span class="hljs-keyword">source</span>)
+
+<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $HOME/<span class="hljs-keyword">Library</span>/Android/sdk/platform-tools/ $<span class="hljs-keyword">PATH</span>
+
+<span class="hljs-keyword">function</span> fish_user_key_bindings
+  bind \cr <span class="hljs-string">'peco_select_history (commandline -b)'</span>
+<span class="hljs-keyword">end</span>
+
+# <span class="hljs-keyword">go</span>
+<span class="hljs-keyword">set</span> -x GOROOT /usr/<span class="hljs-keyword">local</span>/opt/<span class="hljs-keyword">go</span>/libexec
+<span class="hljs-keyword">set</span> -x GOPATH $HOME/.go
+<span class="hljs-keyword">set</span> -x GOENV_ROOT $HOME/.goenv
+<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $<span class="hljs-keyword">PATH</span> $GOROOT/<span class="hljs-keyword">bin</span> $GOPATH/<span class="hljs-keyword">bin</span> $GOENV_ROOT/<span class="hljs-keyword">bin</span>
+eval (goenv init - | <span class="hljs-keyword">source</span>)
+
+#GOENV
+#<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $HOME/.goenv/<span class="hljs-keyword">bin</span> $<span class="hljs-keyword">PATH</span>
+#goenv rehash &gt;/dev/<span class="hljs-literal">null</span> ^&amp;<span class="hljs-number">1</span>
+
+# G Cloud
+<span class="hljs-keyword">set</span> fish_user_paths $HOME/google-cloud-sdk/<span class="hljs-keyword">bin</span>
+<span class="hljs-keyword">set</span> -x MANPATH $HOME/google-cloud-sdk/<span class="hljs-keyword">help</span>/man /usr/<span class="hljs-keyword">local</span>/<span class="hljs-keyword">share</span>/man /usr/<span class="hljs-keyword">share</span>/man /opt/x11/<span class="hljs-keyword">share</span>/man
+
+<span class="hljs-keyword">set</span> -g fish_user_paths <span class="hljs-string">"/usr/local/sbin"</span> $fish_user_paths
+</code></pre></li>
+<li><p>golang</p>
+<pre><code class="hljs"><span class="hljs-comment"># go</span>
+<span class="hljs-builtin-name">set</span> -x GOROOT /usr/local/opt/go/libexec
+<span class="hljs-builtin-name">set</span> -x GOPATH <span class="hljs-variable">$HOME</span>/go
+<span class="hljs-builtin-name">set</span> -x GOENV_ROOT <span class="hljs-variable">$HOME</span>/goenv
+<span class="hljs-builtin-name">set</span> -x PATH <span class="hljs-variable">$PATH</span> <span class="hljs-variable">$GOROOT</span>/bin <span class="hljs-variable">$GOPATH</span>/bin <span class="hljs-variable">$GOENV_ROOT</span>/bin
+eval (goenv init - | source)
+</code></pre></li>
+<li><p>ターミナル設定</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> fish_config</span>
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="centos"></a><a href="#centos" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CentOS</h3>
+<ul>
+<li><a href="https://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&amp;package=fish">ダウンロード</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li><a href="https://fishshell.com/docs/current/commands.html">Command reference</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

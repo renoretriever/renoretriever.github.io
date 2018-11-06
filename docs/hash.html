@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ハッシュ関数 · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 通信相手は正しいのか、受け取った情報は改ざんされていないかを検査するために使われるのがハッシュ関数"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ハッシュ関数 · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 通信相手は正しいのか、受け取った情報は改ざんされていないかを検査するために使われるのがハッシュ関数"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ハッシュ関数</h1></header><article><div><span><ul>
+<li>通信相手は正しいのか、受け取った情報は改ざんされていないかを検査するために使われるのがハッシュ関数</li>
+<li>実装
+<ul>
+<li><a href="sha">SHA()Secure Hash Algorithm)</a></li>
+</ul></li>
+<li>ハッシュ関数は、可変長のデータや文字列を入力すると一意に決まる固定長のデータ列（ハッシュ値）を出力するが、入力値が一文字でも違うと全く異なるハッシュ値になる特徴がある</li>
+<li>TLSでは、ハッシュを偽造できないように共通鍵とハッシュを組み合わせたHMAC（Hash-based Message Authentication Code）を通信データに付加することで完全性検証と認証を行っている
+<ul>
+<li>認証付き暗号を使っている場合HMACは不要</li>
+</ul></li>
+</ul>
+<ul>
+<li>RIPEMD(RACE Integrity Primitives Evaluation Message Digest)
+<ul>
+<li>暗号学的ハッシュ関数</li>
+<li>RIPEMD は MD4 の設計原理に基づいたものであり、SHA-1 と同程度のパフォーマンスを有している</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>入力データから固定長のビット列(128bit, 160 bit)を出力する関数で、出力されたハッシュ値から元の値を算出できない</p>
+<ul>
+<li>元のデータを一部変更するとハッシュ値が大きく異なるという性質がある</li>
+<li>出力された値
+<ul>
+<li>ハッシュ値</li>
+<li>メッセージダイジェスト</li>
+</ul></li>
+</ul></li>
+<li><p>ハッシュ関数の性質</p>
+<ul>
+<li>ハッシュ値から元の入力データの内容を推測できない</li>
+<li>元のデータの一部を変更するとハッシュ値が大きく異る</li>
+<li>同じハッシュ値になる入力データを見つけるのは困難</li>
+</ul></li>
+<li><p>ハッシュ関数の応用</p>
+<ul>
+<li>パスワードの保存</li>
+<li>デジタル証明書</li>
+<li>改ざん検知</li>
+<li>ワンタイムパスワード</li>
+</ul></li>
+<li><p>性質(下に行くにつれて困難)</p>
+<ul>
+<li>衝突発見困難性
+<ul>
+<li><font color='red'>ハッシュ値が一致する二つのメッセージの探索に要する計算量の大きさによる、探索の困難性</font></li>
+</ul></li>
+<li>第 2 原像計算困難性
+<ul>
+<li>データとそれに対するハッシュ値が与えられたとき、同じハッシュ値を生成するデータを求めることが計算量的に困難であること</li>
+</ul></li>
+<li>原像計算困難性
+<ul>
+<li>ハッシュ値が与えられたときに、元のメッセージの探索に要する計算量の大きさによる、探索の困難性</li>
+<li>ハッシュ値の元のメッセージの探索に要する最大の計算量は 2 の 256 乗</li>
+</ul></li>
+</ul></li>
+<li><p>代表的なハッシュ関数</p>
+<ul>
+<li><a href="md5">MD5</a></li>
+<li><a href="sha">SHA</a></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

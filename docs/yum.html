@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>yum · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- RPM パッケージを操作するためのコマンド"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="yum · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- RPM パッケージを操作するためのコマンド"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">yum</h1></header><article><div><span><ul>
+<li>RPM パッケージを操作するためのコマンド</li>
+<li>rpm との違い
+<ul>
+<li>複数のパッケージをまとめてダウンロード</li>
+<li>依存関係を考慮したパッケージ操作</li>
+<li>アップデートパッケージの管理</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>アップデート確認</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum list updates</span>
+<span class="hljs-meta">#</span><span class="bash"> yum check-update</span>
+</code></pre></li>
+<li><p>パッケージ情報の更新</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum makecache</span>
+</code></pre></li>
+<li><p>ライブラリ名からパッケージを検索</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum provides ライブラリ名</span>
+</code></pre></li>
+<li><p>changelog の導入</p>
+<ul>
+<li><p>パッチ等がリリースされたときに更新情報を確認する</p></li>
+<li><p>インストール</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum install yum-plugin-changelog</span>
+</code></pre></li>
+<li><p>httpd のチェンジログを確認</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum update --changelog httpd</span>
+</code></pre></li>
+</ul></li>
+<li><p>自身でインストールしたりアップデートしたパッケージを洗い出す</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum <span class="hljs-built_in">history</span> list all</span>
+</code></pre>
+<ul>
+<li><p>history list で得られた番号を指定するとそのトランザクションで何をしたかが分かる</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum <span class="hljs-built_in">history</span> info 10</span>
+</code></pre></li>
+</ul></li>
+<li><p><a href="http://server-setting.info/centos/firststep.html">yum を使って システムアップデートを行う (自動化も)</a></p></li>
+</ul>
+<ul>
+<li><p>パッケージ検索</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum search キーワード</span>
+</code></pre></li>
+<li><p>情報</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum info パッケージ名</span>
+</code></pre></li>
+<li><p>モジュールがどのパッケージに所属しているか表示</p>
+<pre><code class="hljs"><span class="hljs-comment"># yum provides /lib64/libwrap.so.0</span>
+</code></pre></li>
+<li><p>依存関係の検索</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum deplist dovecot</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>グループの一覧表示</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum grouplist</span>
+</code></pre>
+<ul>
+<li><p>指定したグループのインストール</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum groupinstallall グループ名</span>
+</code></pre></li>
+</ul></li>
+<li><p>インストール済</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum list installed</span>
+</code></pre></li>
+<li><p>全ての重複バージョンの検索</p>
+<ul>
+<li><p>list と search に対して有効</p>
+<pre><code class="hljs"><span class="hljs-comment"># yum --showduplicates search httpd</span>
+Loaded plugins: fastestmirror, ovl
+Loading<span class="hljs-built_in"> mirror </span>speeds <span class="hljs-keyword">from</span> cached hostfile
+ * base: www.ftp.ne.jp
+ * extras: www.ftp.ne.jp
+ * updates: www.ftp.ne.jp
+=================================== N/S matched: httpd ===================================
+keycloak-httpd-client-install-0.6-1.el7.noarch : Tools <span class="hljs-keyword">to</span> configure Apache HTTPD as
+                                               : Keycloak<span class="hljs-built_in"> client
+</span>libmicrohttpd-devel-0.9.33-2.el7.i686 : Development files <span class="hljs-keyword">for</span> libmicrohttpd
+libmicrohttpd-devel-0.9.33-2.el7.x86_64 : Development files <span class="hljs-keyword">for</span> libmicrohttpd
+libmicrohttpd-doc-0.9.33-2.el7.noarch : Documentation <span class="hljs-keyword">for</span> libmicrohttpd
+python2-keycloak-httpd-client-install-0.6-1.el7.noarch : Tools <span class="hljs-keyword">to</span> configure Apache HTTPD
+                                                       : as Keycloak<span class="hljs-built_in"> client
+</span>httpd-2.4.6-67.el7.centos.x86_64 : Apache HTTP<span class="hljs-built_in"> Server
+</span>httpd-2.4.6-67.el7.centos.2.x86_64 : Apache HTTP<span class="hljs-built_in"> Server
+</span>httpd-2.4.6-67.el7.centos.5.x86_64 : Apache HTTP<span class="hljs-built_in"> Server
+</span>httpd-2.4.6-67.el7.centos.6.x86_64 : Apache HTTP<span class="hljs-built_in"> Server
+</span>httpd-devel-2.4.6-67.el7.centos.x86_64 : Development interfaces <span class="hljs-keyword">for</span> the Apache HTTP<span class="hljs-built_in"> server
+</span>httpd-devel-2.4.6-67.el7.centos.2.x86_64 : Development interfaces <span class="hljs-keyword">for</span> the Apache HTTP
+                                         :<span class="hljs-built_in"> server
+</span>httpd-devel-2.4.6-67.el7.centos.5.x86_64 : Development interfaces <span class="hljs-keyword">for</span> the Apache HTTP
+                                         :<span class="hljs-built_in"> server
+</span>httpd-devel-2.4.6-67.el7.centos.6.x86_64 : Development interfaces <span class="hljs-keyword">for</span> the Apache HTTP
+                                         :<span class="hljs-built_in"> server
+</span>httpd-manual-2.4.6-67.el7.centos.noarch : Documentation <span class="hljs-keyword">for</span> the Apache HTTP<span class="hljs-built_in"> server
+</span>httpd-manual-2.4.6-67.el7.centos.2.noarch : Documentation <span class="hljs-keyword">for</span> the Apache HTTP<span class="hljs-built_in"> server
+</span>httpd-manual-2.4.6-67.el7.centos.5.noarch : Documentation <span class="hljs-keyword">for</span> the Apache HTTP<span class="hljs-built_in"> server
+</span>httpd-manual-2.4.6-67.el7.centos.6.noarch : Documentation <span class="hljs-keyword">for</span> the Apache HTTP<span class="hljs-built_in"> server
+</span>httpd-tools-2.4.6-67.el7.centos.x86_64 : Tools <span class="hljs-keyword">for</span> use with the Apache HTTP<span class="hljs-built_in"> Server
+</span>httpd-tools-2.4.6-67.el7.centos.2.x86_64 : Tools <span class="hljs-keyword">for</span> use with the Apache HTTP<span class="hljs-built_in"> Server
+</span>httpd-tools-2.4.6-67.el7.centos.5.x86_64 : Tools <span class="hljs-keyword">for</span> use with the Apache HTTP<span class="hljs-built_in"> Server
+</span>httpd-tools-2.4.6-67.el7.centos.6.x86_64 : Tools <span class="hljs-keyword">for</span> use with the Apache HTTP<span class="hljs-built_in"> Server
+</span>libmicrohttpd-0.9.33-2.el7.i686 : Lightweight library <span class="hljs-keyword">for</span> embedding a webserver <span class="hljs-keyword">in</span>
+                                : applications
+libmicrohttpd-0.9.33-2.el7.x86_64 : Lightweight library <span class="hljs-keyword">for</span> embedding a webserver <span class="hljs-keyword">in</span>
+                                  : applications
+mod_auth_mellon-0.11.0-4.el7.x86_64 : A SAML 2.0 authentication module <span class="hljs-keyword">for</span> the Apache
+                                    : Httpd<span class="hljs-built_in"> Server
+</span>mod_dav_svn-1.7.14-10.el7.x86_64 : Apache httpd module <span class="hljs-keyword">for</span> Subversion<span class="hljs-built_in"> server
+</span>mod_dav_svn-1.7.14-11.el7_4.x86_64 : Apache httpd module <span class="hljs-keyword">for</span> Subversion<span class="hljs-built_in"> server
+</span>
+  Name <span class="hljs-keyword">and</span> summary matches only, use <span class="hljs-string">"search all"</span> <span class="hljs-keyword">for</span> everything.
+</code></pre></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="tips"></a><a href="#tips" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tips</h2>
+<ul>
+<li><p>特定のパッケージを更新対象としない(kernel,sudoとつくもの) 場合には、<code>/etc/yum.conf</code> に下記を追加</p>
+<pre><code class="hljs"><span class="hljs-attr">exclude</span>=kernel* sudo*
+</code></pre></li>
+<li><p>特定のリポジトリを使用する(例は、remi)</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum --enablerepo=remi install httpd</span>
+</code></pre></li>
+<li><p>その他コマンド</p>
+<ul>
+<li>yum-builddep</li>
+<li>yum-config-manager</li>
+<li>yum-debug-dump</li>
+<li>yum-debug-restore</li>
+<li>yum-groups-manager</li>
+<li>yumdownloader</li>
+<li>yum-complete-transaction</li>
+<li>yumdb</li>
+<li>yum-utils</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="設定ファイル"></a><a href="#設定ファイル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>設定ファイル</h2>
+<ul>
+<li><p>/etc/yum.repos.d/CentOS-Base.repo</p>
+<table>
+<thead>
+<tr><th>item</th><th>contents</th></tr>
+</thead>
+<tbody>
+<tr><td>base</td><td>リポジトリID</td></tr>
+<tr><td>mirrorlist=<a href="http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os">http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os</a></td><td>自動的にミラーサイトを探し出す</td></tr>
+<tr><td>gpgcheck=1</td><td>GPG による署名のチェックが指定される</td></tr>
+<tr><td>gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6</td><td></td></tr>
+<tr><td>enabled=1</td><td>このリポジトリを使用する</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="エラー"></a><a href="#エラー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>エラー</h2>
+<ul>
+<li><p><code>Warning: RPMDB altered outside of yum</code></p>
+<ul>
+<li><p>yum 以外のコマンドやソフトで RPMDB が変更されたときに表示される</p></li>
+<li><p>解消するには下記を実行する</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum clean all</span>
+</code></pre></li>
+</ul></li>
+<li><p><code>There are unfinished transactions remaining. You might consider running yum-complete-transaction first to finish them.</code></p>
+<ul>
+<li><p>yum 実行中に接続が切れたりすると yum トランザクションが残っていることがある</p></li>
+<li><p>解消方法</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> sudo yum instal yum-utils</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo yum-complete-transaction</span>
+</code></pre></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#tips">Tips</a></li><li><a href="#設定ファイル">設定ファイル</a></li><li><a href="#エラー">エラー</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

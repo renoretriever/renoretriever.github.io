@@ -1,0 +1,288 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Linux kernel · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="| item | content |"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Linux kernel · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="| item | content |"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Linux kernel</h1></header><article><div><span><table>
+<thead>
+<tr><th>item</th><th>content</th></tr>
+</thead>
+<tbody>
+<tr><td>プロセス管理</td><td>システム上で動作するアプリケーションの実行制御<br>各プロセスごとに独自の実行環境を割り当て、マルチタスクを実現</td></tr>
+<tr><td>空間管理</td><td>プロセスごとに仮想メモリ空間を作り、メモリ割り当てを行なう<br>メモリ不足になると、その一部をディスクに退避させたりしてメモリを効率的に利用</td></tr>
+<tr><td>時間管理</td><td>システム実行時間の管理</td></tr>
+<tr><td>割り込み管理</td><td>HW からの信号を受け取ってプログラムを起動する割り込みの制御を行なう<br>キーボードの入力やディスク・ネットワークの入出力</td></tr>
+<tr><td>ファイルシステム</td><td>ファイル格納</td></tr>
+<tr><td>ネットワーク</td><td>ネットワーク通信機能の提供</td></tr>
+</tbody>
+</table>
+<ul>
+<li>プロセス管理</li>
+<li>メモリ管理
+<ul>
+<li><a href="memory">メモリ</a></li>
+<li>仮想メモリ</li>
+</ul></li>
+<li>ファイルシステム
+<ul>
+<li>ext4</li>
+<li>VFS(Virtual File System)</li>
+</ul></li>
+<li>ネットワーク</li>
+<li>割り込みとシグナル
+<ul>
+<li>ハードウェア割り込み</li>
+<li>ソフトウェア割り込み</li>
+</ul></li>
+<li>デバイス管理
+<ul>
+<li>デバイスファイル</li>
+<li>キャラクタデバイス
+<ul>
+<li>キーボード</li>
+<li>マウス</li>
+<li>USB カメラ</li>
+</ul></li>
+<li>ブロックデバイス
+<ul>
+<li>ハードディスク</li>
+<li>USB メモリ</li>
+<li>SD カード</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>起動に必要なファイルは <code>/boot</code> 配下に存在</p>
+<pre><code class="hljs">$ ll /boot/ | grep vmlinuz-
+-rwxr-xr-x.<span class="hljs-number"> 1 </span>root root <span class="hljs-number"> 5877760 </span> 9月<span class="hljs-number"> 21 </span><span class="hljs-number"> 2017 </span>vmlinuz-0-rescue-19f87e08fcd744f53d522029d0081944
+-rwxr-xr-x.<span class="hljs-number"> 1 </span>root root <span class="hljs-number"> 5877504 </span>12月 <span class="hljs-number"> 5 </span><span class="hljs-number"> 2017 </span>vmlinuz-3.10.0-693.11.1.el7.x86_64
+-rwxr-xr-x.<span class="hljs-number"> 1 </span>root root <span class="hljs-number"> 5877760 </span> 8月<span class="hljs-number"> 23 </span><span class="hljs-number"> 2017 </span>vmlinuz-3.10.0-693.el7.x86_64
+-rwxr-xr-x.<span class="hljs-number"> 1 </span>root root <span class="hljs-number"> 6242208 </span> 8月<span class="hljs-number"> 15 </span>07:02 vmlinuz-3.10.0-862.11.6.el7.x86_64
+</code></pre>
+<ul>
+<li><code>vmlinuz-</code> で始まる名前がカーネルの実体</li>
+<li>実際に動いているカーネルバージョンは <a href="uname">uname</a> コマンドを利用する</li>
+</ul></li>
+<li><p>カーネルモジュール</p>
+<ul>
+<li><p><code>/lib/modules/&lt;kernel-version&gt;/</code> 配下に置かれる</p>
+<pre><code class="hljs"># ll /lib/modules/<span class="hljs-number">3.10</span><span class="hljs-number">.0</span><span class="hljs-number">-693.11</span><span class="hljs-number">.1</span>.el7.x86_64/kernel/
+合計 <span class="hljs-number">16</span>
+drwxr-xr-x.  <span class="hljs-number">3</span> root root   <span class="hljs-number">17</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> arch
+drwxr-xr-x.  <span class="hljs-number">3</span> root root <span class="hljs-number">4096</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> crypto
+drwxr-xr-x. <span class="hljs-number">69</span> root root <span class="hljs-number">4096</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> drivers
+drwxr-xr-x. <span class="hljs-number">26</span> root root <span class="hljs-number">4096</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> fs
+drwxr-xr-x.  <span class="hljs-number">3</span> root root   <span class="hljs-number">19</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> kernel
+drwxr-xr-x.  <span class="hljs-number">4</span> root root  <span class="hljs-number">249</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> lib
+drwxr-xr-x.  <span class="hljs-number">2</span> root root   <span class="hljs-number">35</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> mm
+drwxr-xr-x. <span class="hljs-number">33</span> root root <span class="hljs-number">4096</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> net
+drwxr-xr-x. <span class="hljs-number">11</span> root root  <span class="hljs-number">162</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> sound
+drwxr-xr-x.  <span class="hljs-number">3</span> root root   <span class="hljs-number">17</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> virt
+</code></pre>
+<ul>
+<li>カテゴリごとに存在</li>
+</ul></li>
+<li><p>拡張子は <code>.ko</code></p></li>
+<li><p>現在読み込まれているモジュールの一覧は <a href="lsmod">lsmod</a> コマンドで確認できる</p></li>
+<li><p>モジュールの詳細は <a href="modinfo">modinfo</a> コマンドで確認する</p></li>
+<li><p>モジュールを手動で組み込むには <a href="modprobe">modprobe</a> コマンドを利用する</p></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>ビルド</p>
+<ul>
+<li>コンパイルや、ライブラリのリンクを実施して実行可能なプログラムを作ること</li>
+<li><a href="nice">nice</a> コマンドを利用することでタスクの優先順位を変更することが可能</li>
+</ul></li>
+<li><p>タスクスケジューラ</p>
+<ul>
+<li>CPU の利用時間を分割して複数のプロセスに分与</li>
+</ul></li>
+<li><p><code>/proc</code> 配下</p>
+<ul>
+<li>実在はしない</li>
+<li>カーネル内部の情報を擬似的に、ディレクトリで分けられたファイルとして見せているもの</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="デバイス管理"></a><a href="#デバイス管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>デバイス管理</h2>
+<ul>
+<li><p>デバイスファイル</p>
+<ul>
+<li>アプリケーションは基本的に、ファイル、を通じてデータの入出力を行う</li>
+<li>Linuxでの確認
+<ul>
+<li><p>/dev 配下にファイルとして存在する</p>
+<pre><code class="hljs"><span class="hljs-comment"># ll /dev/</span>
+total 0
+drwxr-xr-x<span class="hljs-number"> 2 </span>root root        <span class="hljs-number"> 700 </span>May<span class="hljs-number"> 30 </span>17:58 block
+drwxr-xr-x<span class="hljs-number"> 2 </span>root root         <span class="hljs-number"> 60 </span>May<span class="hljs-number"> 31 </span>02:58 bsg
+drwxr-xr-x<span class="hljs-number"> 3 </span>root root         <span class="hljs-number"> 60 </span>May<span class="hljs-number"> 30 </span>17:58 bus
+lrwxrwxrwx<span class="hljs-number"> 1 </span>root root          <span class="hljs-number"> 3 </span>May<span class="hljs-number"> 30 </span>17:58 cdrom -&gt; sr0
+drwxr-xr-x<span class="hljs-number"> 2 </span>root root       <span class="hljs-number"> 2720 </span>May<span class="hljs-number"> 30 </span>17:59 char
+crw-------<span class="hljs-number"> 1 </span>root root      5,  <span class="hljs-number"> 1 </span>May<span class="hljs-number"> 30 </span>17:58 console
+lrwxrwxrwx<span class="hljs-number"> 1 </span>root root         <span class="hljs-number"> 11 </span>May<span class="hljs-number"> 31 </span>02:58 core -&gt; /proc/kcore
+drwxr-xr-x<span class="hljs-number"> 6 </span>root root        <span class="hljs-number"> 140 </span>May<span class="hljs-number"> 30 </span>17:58 cpu
+crw-rw----<span class="hljs-number"> 1 </span>root root     10, <span class="hljs-number"> 61 </span>May<span class="hljs-number"> 30 </span>17:58 cpu_dma_latency
+crw-rw----<span class="hljs-number"> 1 </span>root root     10, <span class="hljs-number"> 62 </span>May<span class="hljs-number"> 30 </span>17:58 crash
+drwxr-xr-x<span class="hljs-number"> 5 </span>root root        <span class="hljs-number"> 100 </span>May<span class="hljs-number"> 31 </span>02:58 disk
+brw-rw----<span class="hljs-number"> 1 </span>root disk    253,  <span class="hljs-number"> 0 </span>May<span class="hljs-number"> 30 </span>17:58 dm-0
+brw-rw----<span class="hljs-number"> 1 </span>root disk    253,  <span class="hljs-number"> 1 </span>May<span class="hljs-number"> 30 </span>17:58 dm-1
+lrwxrwxrwx<span class="hljs-number"> 1 </span>root root          <span class="hljs-number"> 3 </span>May<span class="hljs-number"> 30 </span>17:58 dvd -&gt; sr0
+lrwxrwxrwx<span class="hljs-number"> 1 </span>root root          <span class="hljs-number"> 3 </span>May<span class="hljs-number"> 31 </span>02:58 fb -&gt; fb0
+crw-rw----<span class="hljs-number"> 1 </span>root root     29,  <span class="hljs-number"> 0 </span>May<span class="hljs-number"> 31 </span>02:58 fb0
+(中略)
+</code></pre>
+<ul>
+<li>b で始まるものは、ブロックデバイス</li>
+<li>c で始まるものは、キャラクタデバイス</li>
+<li>番号(左から)
+<ul>
+<li>メジャー番号
+<ul>
+<li>デバイスの種類を特定するもの(1 - 254)</li>
+<li>番号が一緒でも、ブロックデバイスとキャラクタデバイスのデバイスドライバは異なる</li>
+</ul></li>
+<li>マイナー番号
+<ul>
+<li>同じメジャー番号の中で、特定のデバイスを識別するもの</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>メリット</p>
+<ul>
+<li>デバイスを通常のファイルとして扱えるので、特殊な機構が必要ない</li>
+<li>他のファイルと同様に、所有者、アクセス権限を付与でき、ファイルシステムの機能を利用できる</li>
+</ul></li>
+<li><p>ハードディスク</p>
+<pre><code class="hljs">$ ll /dev/vda*
+brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 0 </span> 9月<span class="hljs-number"> 21 </span>15:04 /dev/vda
+brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 1 </span> 9月<span class="hljs-number"> 21 </span>15:04 /dev/vda1
+brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 2 </span> 9月<span class="hljs-number"> 21 </span>15:04 /dev/vda2
+brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 3 </span> 9月<span class="hljs-number"> 21 </span>15:04 /dev/vda3
+brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 5 </span> 9月<span class="hljs-number"> 21 </span>15:04 /dev/vda5
+</code></pre>
+<ul>
+<li>vda が 1 台目のハードディスク</li>
+<li>vda1, vda2 等が vda の中のパーティション</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>ハードウェアを制御するデバイスドライバのお話</p></li>
+<li><p>周辺機器に統一的なインタフェースを提供してくれる</p>
+<ul>
+<li>モニタ</li>
+<li>キーボード</li>
+<li>ハードディスク</li>
+<li>NIC</li>
+</ul></li>
+<li><p>各種規格が異なっても、吸収してくれる</p></li>
+<li><p>デバイス</p>
+<ul>
+<li>キャラクタデバイス
+<ul>
+<li>シーケンシャルなデータの入出力</li>
+<li>例
+<ul>
+<li>端末</li>
+<li>プリンタ</li>
+</ul></li>
+<li>ブロックデバイス
+<ul>
+<li>ブロック単位のデータ入出力</li>
+<li>ランダム読み書き</li>
+</ul></li>
+<li>例
+<ul>
+<li>HDD</li>
+</ul></li>
+<li>ネットワークデバイス
+<ul>
+<li>NIC などとのやり取り</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="parameter"></a><a href="#parameter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parameter</h2>
+<ul>
+<li>kernel.panic
+<ul>
+<li>カーネルパニック時に再起動するまでの秒数</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>vm.swappiness</p>
+<ul>
+<li>システムがスワップを行う程度の制御</li>
+<li>10 くらいが良い</li>
+</ul></li>
+<li><p>net.ipv4.tcp_fin_timeout</p>
+<ul>
+<li>FIN のタイムアウト値(秒)</li>
+<li>5 秒より短い時間でタイムアウトするように設定</li>
+</ul></li>
+<li><p>net.ipv4.ip_local_port_range</p>
+<ul>
+<li>外に向かう接続におけるローカルポートの範囲</li>
+<li>16384 - 65535 を使うよう設定</li>
+</ul></li>
+<li><p>net.ipv4.tcp_orphan_retries</p>
+<ul>
+<li>こちら側からクローズした TCP コネクションを終了する前の再送回数</li>
+<li>リソースの消費を防ぐため 2 に設定する。</li>
+</ul></li>
+<li><p>net.ipv4.tcp_tw_reuse</p>
+<ul>
+<li>TIME_WAIT 状態のコネクションを再利用するかどうか</li>
+<li>1(再利用する)に設定</li>
+</ul></li>
+<li><p>net.ipv4.tcp_max_tw_buckets</p>
+<ul>
+<li>システムが同時に保持する time-wait ソケットの最大数</li>
+<li>メモリ量に応じて調節するが 65535 ぐらいにしておく</li>
+</ul></li>
+<li><p>net.ipv4.tcp_rmem</p>
+<ul>
+<li>TCP 受信バッファサイズ。[min, default, max] の順番</li>
+<li>理想値
+<ul>
+<li>:</li>
+</ul></li>
+</ul></li>
+<li><p>net.ipv4.tcp_wmem</p>
+<ul>
+<li>TCP 送信バッファサイズ。[min, default, max] の順番</li>
+<li>理想値
+<ul>
+<li>:</li>
+</ul></li>
+</ul></li>
+<li><p>fs.file-max</p>
+<ul>
+<li>オープン可能なファイル数の上限</li>
+<li>65536 以上に設定</li>
+</ul></li>
+<li><p>net.core.somaxconn</p>
+<ul>
+<li>TCP の LISTEN Backlog</li>
+<li>2048 以上に設定</li>
+</ul></li>
+<li><p>net.core.netdev_max_backlog</p>
+<ul>
+<li>カーネルがキューイングするパケットの最大個数</li>
+<li>2048 以上に設定</li>
+</ul></li>
+<li><p>net.ipv4.tcp_max_syn_backlog</p>
+<ul>
+<li>SYN パケットを送った際に SYN/ACK の応答待ちに使うソケットの最大数</li>
+<li>2048 以上に設定</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>/sys/class/net/<em>/queues/rx-</em>/rps_cpus</p></li>
+<li><p>/sys/class/net/<em>/queues/rx-</em>/rps_flow_cnt</p></li>
+<li><p>net.core.rps_sock_flow_entries</p>
+<ul>
+<li>グローバルフローテーブルのエントリ数</li>
+<li>アクティブな接続の最大数ぐらいに設定</li>
+<li>推奨値は 32768</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#デバイス管理">デバイス管理</a></li><li><a href="#parameter">parameter</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

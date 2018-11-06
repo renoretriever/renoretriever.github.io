@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ip · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## アドレス操作"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ip · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## アドレス操作"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ip</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="アドレス操作"></a><a href="#アドレス操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>アドレス操作</h2>
+<ul>
+<li><p>デバイスに対するバインド状態を出力</p>
+<pre><code class="hljs"><span class="hljs-comment"># ip addr show</span>
+<span class="hljs-number">1</span>: lo: <span class="hljs-variable">&lt;LOOPBACK,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">65536</span> qdisc noqueue <span class="hljs-keyword">state</span> UNKNOWN qlen <span class="hljs-number">1</span>
+    link/loopback <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> brd <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>
+    <span class="hljs-keyword">inet</span> <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>/<span class="hljs-number">8</span> scope host lo
+       valid_lft forever preferred_lft forever
+    <span class="hljs-keyword">inet6</span> ::<span class="hljs-number">1</span>/<span class="hljs-number">128</span> scope host
+       valid_lft forever preferred_lft forever
+<span class="hljs-number">2</span>: eth0: <span class="hljs-variable">&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">1500</span> qdisc pfifo_fast <span class="hljs-keyword">state</span> UP qlen <span class="hljs-number">1000</span>
+    link/ether <span class="hljs-number">52</span>:<span class="hljs-number">54</span>:<span class="hljs-number">00</span>:<span class="hljs-number">5</span>f:<span class="hljs-number">94</span>:<span class="hljs-number">78</span> brd ff:ff:ff:ff:ff:ff
+    <span class="hljs-keyword">inet</span> <span class="hljs-number">10.0</span>.<span class="hljs-number">2.15</span>/<span class="hljs-number">24</span> brd <span class="hljs-number">10.0</span>.<span class="hljs-number">2.255</span> scope <span class="hljs-keyword">global</span> dynamic eth0
+       valid_lft <span class="hljs-number">86096</span>sec preferred_lft <span class="hljs-number">86096</span>sec
+    <span class="hljs-keyword">inet6</span> fe80::<span class="hljs-number">5054</span>:ff:fe5f:<span class="hljs-number">9478</span>/<span class="hljs-number">64</span> scope link
+       valid_lft forever preferred_lft forever
+<span class="hljs-number">3</span>: eth1: <span class="hljs-variable">&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">1500</span> qdisc pfifo_fast <span class="hljs-keyword">state</span> UP qlen <span class="hljs-number">1000</span>
+    link/ether <span class="hljs-number">08</span>:<span class="hljs-number">00</span>:<span class="hljs-number">27</span>:<span class="hljs-number">06</span>:e6:<span class="hljs-number">9</span>e brd ff:ff:ff:ff:ff:ff
+    <span class="hljs-keyword">inet</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">33.10</span>/<span class="hljs-number">24</span> brd <span class="hljs-number">192.168</span>.<span class="hljs-number">33.255</span> scope <span class="hljs-keyword">global</span> eth1
+       valid_lft forever preferred_lft forever
+    <span class="hljs-keyword">inet6</span> fe80::a00:<span class="hljs-number">27</span>ff:fe06:e69e/<span class="hljs-number">64</span> scope link
+       valid_lft forever preferred_lft forever
+</code></pre></li>
+</ul>
+<ul>
+<li><p>192.168.0.10 を eth0 のエイリアス(eth0:1)として追加する</p>
+<ul>
+<li><p>nmcli を利用しましょう</p>
+<pre><code class="hljs"># <span class="hljs-built_in">ip</span> addr <span class="hljs-keyword">add</span> local <span class="hljs-number">192.168</span><span class="hljs-meta">.0</span><span class="hljs-meta">.10</span>/<span class="hljs-number">24</span> dev eth0 label eth0:<span class="hljs-number">1</span>
+</code></pre></li>
+</ul></li>
+<li><p>192.168.0.10 の eth0 のエイリアス(eth0:1)を削除する</p>
+<ul>
+<li><p>nmcli を利用しましょう</p>
+<pre><code class="hljs"># ip addr <span class="hljs-built_in">del</span> <span class="hljs-built_in">local</span> <span class="hljs-number">192.168</span>.0.10/<span class="hljs-number">24</span> dev eth0 <span class="hljs-built_in">label</span> eth0:<span class="hljs-number">1</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="近隣キャッシュ操作"></a><a href="#近隣キャッシュ操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>近隣キャッシュ操作</h2>
+<ul>
+<li><p>ARP テーブルの状態表示</p>
+<pre><code class="hljs"># <span class="hljs-selector-tag">ip</span> <span class="hljs-selector-tag">neigh</span> <span class="hljs-selector-tag">show</span>
+10<span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.2</span> <span class="hljs-selector-tag">dev</span> <span class="hljs-selector-tag">eth0</span> <span class="hljs-selector-tag">lladdr</span> 52<span class="hljs-selector-pseudo">:54</span><span class="hljs-selector-pseudo">:00</span><span class="hljs-selector-pseudo">:12</span><span class="hljs-selector-pseudo">:35</span><span class="hljs-selector-pseudo">:02</span> <span class="hljs-selector-tag">REACHABLE</span>
+10<span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.3</span> <span class="hljs-selector-tag">dev</span> <span class="hljs-selector-tag">eth0</span> <span class="hljs-selector-tag">lladdr</span> 52<span class="hljs-selector-pseudo">:54</span><span class="hljs-selector-pseudo">:00</span><span class="hljs-selector-pseudo">:12</span><span class="hljs-selector-pseudo">:35</span><span class="hljs-selector-pseudo">:03</span> <span class="hljs-selector-tag">STALE</span>
+</code></pre>
+<ul>
+<li>REACHABLE
+<ul>
+<li>到達可能</li>
+</ul></li>
+<li>STALE
+<ul>
+<li>失効状態</li>
+</ul></li>
+<li>DELAY
+<ul>
+<li>猶予期間中</li>
+</ul></li>
+<li>PERMANENT
+<ul>
+<li>永続的設定</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="デバイス操作"></a><a href="#デバイス操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>デバイス操作</h2>
+<ul>
+<li><p>状態表示</p>
+<pre><code class="hljs"><span class="hljs-comment"># ip link show</span>
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode<span class="hljs-built_in"> DEFAULT </span>qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode<span class="hljs-built_in"> DEFAULT </span>qlen 1000
+    link/ether 52:54:00:5f:94:78 brd ff:ff:ff:ff:ff:ff
+3: eth1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode<span class="hljs-built_in"> DEFAULT </span>qlen 1000
+    link/ether 08:00:27:06:e6:9e brd ff:ff:ff:ff:ff:ff
+</code></pre></li>
+<li><p>統計情報の表示</p>
+<pre><code class="hljs"><span class="hljs-comment"># ip -s link show</span>
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu<span class="hljs-number"> 65536 </span>qdisc noqueue state UNKNOWN mode DEFAULT qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    RX: bytes  packets  errors  dropped overrun mcast
+   <span class="hljs-number"> 0 </span>        <span class="hljs-number"> 0 </span>      <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>      0
+    TX: bytes  packets  errors  dropped carrier collsns
+   <span class="hljs-number"> 0 </span>        <span class="hljs-number"> 0 </span>      <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>      0
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu<span class="hljs-number"> 1500 </span>qdisc pfifo_fast state UP mode DEFAULT qlen 1000
+    link/ether 52:54:00:5f:94:78 brd ff:ff:ff:ff:ff:ff
+    RX: bytes  packets  errors  dropped overrun mcast
+   <span class="hljs-number"> 190526 </span>   <span class="hljs-number"> 1505 </span>   <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>      0
+    TX: bytes  packets  errors  dropped carrier collsns
+   <span class="hljs-number"> 127639 </span>   <span class="hljs-number"> 962 </span>    <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>      0
+3: eth1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu<span class="hljs-number"> 1500 </span>qdisc pfifo_fast state UP mode DEFAULT qlen 1000
+    link/ether 08:00:27:06:e6:9e brd ff:ff:ff:ff:ff:ff
+    RX: bytes  packets  errors  dropped overrun mcast
+   <span class="hljs-number"> 1180 </span>     <span class="hljs-number"> 2 </span>      <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>      0
+    TX: bytes  packets  errors  dropped carrier collsns
+   <span class="hljs-number"> 1984 </span>     <span class="hljs-number"> 18 </span>     <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 0 </span>      0
+</code></pre></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#アドレス操作">アドレス操作</a></li><li><a href="#近隣キャッシュ操作">近隣キャッシュ操作</a></li><li><a href="#デバイス操作">デバイス操作</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

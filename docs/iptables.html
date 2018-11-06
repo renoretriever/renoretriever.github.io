@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>iptables · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Security"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="iptables · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## Security"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">iptables</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="security"></a><a href="#security" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Security</h2>
+<ul>
+<li><p>リセット</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> iptables -F</span>
+<span class="hljs-meta">#</span><span class="bash"> iptables -Z</span>
+<span class="hljs-meta">#</span><span class="bash"> iptables -X</span>
+</code></pre></li>
+<li><p>デフォルトルールの設定</p>
+<ul>
+<li><p>許可</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> iptables -P OUTPUT ACCEPT</span>
+</code></pre></li>
+<li><p>ドロップ</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> iptables -P INPUT DROP</span>
+<span class="hljs-meta">#</span><span class="bash"> iptables -P FORWARD DROP</span>
+</code></pre></li>
+</ul></li>
+<li><p>ループバックアドレス(lo) に関してはすべて許可</p>
+<pre><code class="hljs"><span class="hljs-comment"># iptables -A INPUT -i lo -j ACCEPT</span>
+<span class="hljs-comment"># iptables -A OUTPUT -o lo -j ACCEPT</span>
+</code></pre></li>
+<li><p>NEW ステートでありながら SYN フラグの立っていないパケットを破棄</p>
+<pre><code class="hljs"><span class="hljs-comment"># iptables -A INPUT -i eth0 -p tcp ! --syn -m state --state NEW -j DROP</span>
+</code></pre></li>
+<li><p>フラグメント化されたパケットを破棄</p>
+<pre><code class="hljs"><span class="hljs-comment"># iptables -A INPUT -i eth0 -f -j DROP</span>
+<span class="hljs-comment"># iptables -A INPUT -i eth0 -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP</span>
+<span class="hljs-comment"># iptables -A INPUT -i eth0 -p tcp --tcp-flags ALL ALL -j DROP</span>
+</code></pre></li>
+<li><p>TCP NULL ポートスキャン対策</p>
+<pre><code class="hljs"><span class="hljs-comment"># iptables -A INPUT -i eth0 -p tcp --tcp-flags ALL NONE -j DROP</span>
+<span class="hljs-comment"># iptables -A INPUT -i eth0 -p tcp --tcp-flags SYN,RST SYN,RST -j DROP</span>
+</code></pre></li>
+<li><p>TCP Xmas ポートスキャン対策</p>
+<pre><code class="hljs"><span class="hljs-comment"># iptables -A INPUT -i eth0 -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP</span>
+</code></pre></li>
+<li><p>TCP FIN ポートスキャン対策</p>
+<pre><code class="hljs"><span class="hljs-comment"># iptables -A INPUT -i eth0 -p tcp --tcp-flags FIN,ACK FIN -j DROP</span>
+<span class="hljs-comment"># iptables -A INPUT -i eth0 -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP</span>
+</code></pre></li>
+<li><p>ブロードキャストパケットを破棄</p>
+<pre><code class="hljs"># iptables -<span class="hljs-type">A</span> <span class="hljs-type">INPUT</span> -i eth0 -m pkt<span class="hljs-keyword">type</span> <span class="hljs-comment">--pkt-type broadcast -j DROP</span>
+</code></pre></li>
+<li><p>マルチキャストパケットを破棄</p>
+<pre><code class="hljs"># iptables -<span class="hljs-type">A</span> <span class="hljs-type">INPUT</span> -i eth0 -m pkt<span class="hljs-keyword">type</span> <span class="hljs-comment">--pkt-type multicast -j DROP</span>
+</code></pre></li>
+<li><p>無効なヘッダがある TCP パケットを破棄</p>
+<pre><code class="hljs"><span class="hljs-comment"># iptables -A INPUT -i eth0 -m state --state INVALID -j DROP</span>
+</code></pre></li>
+<li><p>HTTP へのアクセスを許可</p>
+<pre><code class="hljs"><span class="hljs-comment">#</span> <span class="hljs-comment">iptables</span> <span class="hljs-literal">-</span><span class="hljs-comment">A</span> <span class="hljs-comment">INPUT</span> <span class="hljs-literal">-</span><span class="hljs-comment">i</span> <span class="hljs-comment">eth0</span> <span class="hljs-literal">-</span><span class="hljs-comment">p</span> <span class="hljs-comment">tcp</span> <span class="hljs-literal">-</span><span class="hljs-comment">s</span> <span class="hljs-comment">0/0</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">sport</span> <span class="hljs-comment">1024:65535</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dport</span> <span class="hljs-comment">80</span> <span class="hljs-literal">-</span><span class="hljs-comment">m</span> <span class="hljs-comment">state</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">state</span> <span class="hljs-comment">NEW</span><span class="hljs-string">,</span><span class="hljs-comment">ESTABLISHED</span> <span class="hljs-literal">-</span><span class="hljs-comment">j</span> <span class="hljs-comment">ACCEPT</span>
+</code></pre></li>
+<li><p>ルータ外パケットの破棄とロギング</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> iptables -A INPUT -m <span class="hljs-built_in">limit</span> --<span class="hljs-built_in">limit</span> 5/m --<span class="hljs-built_in">limit</span>-burst 7 -j LOG --<span class="hljs-built_in">log</span>-prefix <span class="hljs-string">" DEFAULT DROP "</span></span>
+<span class="hljs-meta">#</span><span class="bash"> iptables -A INPUT -j DROP</span>
+</code></pre></li>
+<li><p>IP アドレスあたり 60 秒以内に 15 コネクション以上の接続を試みようとすると確立を阻止する</p>
+<pre><code class="hljs"><span class="hljs-comment">#</span> <span class="hljs-comment">iptables</span> <span class="hljs-literal">-</span><span class="hljs-comment">A</span> <span class="hljs-comment">INPUT</span> <span class="hljs-literal">-</span><span class="hljs-comment">p</span> <span class="hljs-comment">tcp</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dport</span> <span class="hljs-comment">80</span> <span class="hljs-literal">-</span><span class="hljs-comment">i</span> <span class="hljs-comment">eth0</span> <span class="hljs-literal">-</span><span class="hljs-comment">m</span> <span class="hljs-comment">state</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">state</span> <span class="hljs-comment">NEW</span> <span class="hljs-literal">-</span><span class="hljs-comment">m</span> <span class="hljs-comment">recent</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">set</span>
+<span class="hljs-comment">#</span> <span class="hljs-comment">iptables</span> <span class="hljs-literal">-</span><span class="hljs-comment">A</span> <span class="hljs-comment">INPUT</span> <span class="hljs-literal">-</span><span class="hljs-comment">p</span> <span class="hljs-comment">tcp</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dport</span> <span class="hljs-comment">80</span> <span class="hljs-literal">-</span><span class="hljs-comment">i</span> <span class="hljs-comment">eth0</span> <span class="hljs-literal">-</span><span class="hljs-comment">m</span> <span class="hljs-comment">state</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">state</span> <span class="hljs-comment">NEW</span> <span class="hljs-literal">-</span><span class="hljs-comment">m</span> <span class="hljs-comment">recent</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">update</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">seconds</span> <span class="hljs-comment">60</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">hitcount</span> <span class="hljs-comment">15</span> <span class="hljs-literal">-</span><span class="hljs-comment">j</span> <span class="hljs-comment">DROP</span>
+</code></pre>
+<ul>
+<li>Keep-Alive が有効だと、一度確立したコネクションを使いまわすため、上記の制限には引っかからない</li>
+<li>接続制限をすることが出来ない</li>
+</ul></li>
+<li><p>Smurf 攻撃対策</p>
+<pre><code class="hljs"># iptables -A INPUT -d <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>/<span class="hljs-number">8</span> -j DROP
+# iptables -A INPUT -d <span class="hljs-number">255.255</span><span class="hljs-number">.255</span><span class="hljs-number">.255</span> -j DROP
+</code></pre></li>
+</ul>
+<ul>
+<li><p>save</p>
+<ul>
+<li><a href="iptables-save">iptables-save</a></li>
+</ul></li>
+<li><p>リストア</p>
+<ul>
+<li><a href="iptables-restor">iptables-restore</a></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#security">Security</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
