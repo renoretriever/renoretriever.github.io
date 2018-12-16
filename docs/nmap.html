@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>nmap · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- ステータス情報"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="nmap · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- ステータス情報"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">nmap</h1></header><article><div><span><ul>
+<li><p>ステータス情報</p>
+<table>
+<thead>
+<tr><th>STATE</th><th>説明</th></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>ポートが開いている</td></tr>
+<tr><td>closed</td><td>ポートが閉じられている</td></tr>
+<tr><td>filtered</td><td>そのポートに対しパケットフィルタが適用されている</td></tr>
+<tr><td>unfiltered</td><td>ポートへのアクセスは可能</td></tr>
+<tr><td>open\</td><td>filtered</td></tr>
+<tr><td>closed\</td><td>filtered</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ul>
+<li><p>HOST への ping 疎通が可能か確認</p>
+<pre><code class="hljs"># nmap -<span class="hljs-built_in">sP</span> <span class="hljs-number">10.0</span><span class="hljs-meta">.12</span><span class="hljs-meta">.92</span>
+
+Starting Nmap <span class="hljs-number">6.40</span> ( http://nmap.org ) <span class="hljs-meta">at</span> <span class="hljs-number">2018</span>-<span class="hljs-number">06</span>-<span class="hljs-number">12</span> <span class="hljs-number">16</span>:<span class="hljs-number">45</span> JST
+Nmap scan report for <span class="hljs-number">10.0</span><span class="hljs-meta">.12</span><span class="hljs-meta">.92</span>
+Host is <span class="hljs-meta">up</span> (<span class="hljs-number">0.</span>00088s latency).
+MAC Address: <span class="hljs-number">52</span>:<span class="hljs-number">54</span>:<span class="hljs-number">00</span>:1E:AA:F5 (QEMU Virtual NIC)
+Nmap done: <span class="hljs-number">1</span> <span class="hljs-built_in">IP</span> address (<span class="hljs-number">1</span> host <span class="hljs-meta">up</span>) scanned <span class="hljs-keyword">in</span> <span class="hljs-number">0.05</span> seconds
+</code></pre></li>
+<li><p>開いているポートの確認コマンド</p></li>
+<li><p>例</p>
+<pre><code class="hljs">$ nmap -A -T4 <span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.100</span>
+
+Starting Nmap <span class="hljs-number">6.40</span> ( <span class="hljs-string">http:</span><span class="hljs-comment">//nmap.org ) at 2018-04-04 14:45 JST</span>
+Nmap scan report <span class="hljs-keyword">for</span> <span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.100</span>
+Host is up (<span class="hljs-number">0.00086</span>s latency).
+Not <span class="hljs-string">shown:</span> <span class="hljs-number">999</span> closed ports
+PORT   STATE SERVICE VERSION
+<span class="hljs-number">22</span>/tcp open  ssh     OpenSSH <span class="hljs-number">7.4</span> (protocol <span class="hljs-number">2.0</span>)
+| ssh-<span class="hljs-string">hostkey:</span> <span class="hljs-number">2048</span> <span class="hljs-number">69</span>:<span class="hljs-number">9</span><span class="hljs-string">e:</span><span class="hljs-number">11</span>:<span class="hljs-string">f8:</span><span class="hljs-number">88</span>:<span class="hljs-string">cf:</span><span class="hljs-string">cd:</span><span class="hljs-number">2</span><span class="hljs-string">e:</span><span class="hljs-string">a6:</span><span class="hljs-number">1</span><span class="hljs-string">d:</span><span class="hljs-number">90</span>:<span class="hljs-number">1</span><span class="hljs-string">d:</span><span class="hljs-number">01</span>:<span class="hljs-string">b2:</span><span class="hljs-string">b5:</span>aa (RSA)
+|_256 <span class="hljs-string">c9:</span><span class="hljs-number">27</span>:<span class="hljs-string">c5:</span><span class="hljs-number">09</span>:<span class="hljs-number">4</span><span class="hljs-string">d:</span><span class="hljs-number">3</span><span class="hljs-string">b:</span><span class="hljs-number">41</span>:<span class="hljs-number">87</span>:<span class="hljs-string">cb:</span><span class="hljs-number">88</span>:<span class="hljs-number">60</span>:<span class="hljs-number">8</span><span class="hljs-string">d:</span><span class="hljs-number">6</span><span class="hljs-string">b:</span><span class="hljs-number">40</span>:<span class="hljs-string">e2:</span>b4 (ECDSA)
+
+Service detection performed. Please report any incorrect results at <span class="hljs-string">http:</span><span class="hljs-comment">//nmap.org/submit/ .</span>
+Nmap <span class="hljs-string">done:</span> <span class="hljs-number">1</span> IP address (<span class="hljs-number">1</span> host up) scanned <span class="hljs-keyword">in</span> <span class="hljs-number">0.55</span> seconds
+</code></pre></li>
+</ul>
+<ul>
+<li><p>複数のホストを同時にスキャンする場合</p>
+<pre><code class="hljs">$ nmap <span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.55</span> <span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.56</span> <span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.57</span>
+</code></pre>
+<ul>
+<li><p>下記でも書くことができる</p>
+<pre><code class="hljs">$ nmap <span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.55</span><span class="hljs-number">-57</span>
+</code></pre></li>
+</ul></li>
+<li><p>TCP スキャン</p>
+<pre><code class="hljs">$ nmap -sT <span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.55</span>
+</code></pre>
+<ul>
+<li><p>オプション</p>
+<table>
+<thead>
+<tr><th>option</th><th>content</th></tr>
+</thead>
+<tbody>
+<tr><td>-sS</td><td>TCP の SYN パケットを送って SYN+ACK が返ってくるか調べる(TCP SYN スキャン / TCP ハーフスキャン)</td></tr>
+<tr><td>-sA</td><td>ACKフラグだけのパケットを送って調べる(TCP ACK スキャン)</td></tr>
+<tr><td>-sN</td><td>まったくフラグなしのパケットを送って調べる(TCP Null スキャン)</td></tr>
+<tr><td>-sF</td><td>FIN フラグだけのパケットを送って調べる(TCP FIN スキャン)</td></tr>
+<tr><td>-sX</td><td>FIN/PSH/URG フラグを立てたパケットを送って調べる(Xmas スキャン)</td></tr>
+</tbody>
+</table>
+</li>
+</ul></li>
+</ul>
+<ul>
+<li><a href="https://orebibou.com/2015/06/nmap%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%A7%E8%A6%9A%E3%81%88%E3%81%A6%E3%81%8A%E3%81%8D%E3%81%9F%E3%81%84%E4%BD%BF%E3%81%84%E6%96%B911%E5%80%8B/#TCP">nmapコマンドで覚えておきたい使い方11個</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

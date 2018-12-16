@@ -12,24 +12,20 @@
 </tbody>
 </table>
 <ul>
-<li>プロセス管理</li>
-<li>メモリ管理
+<li><p>プロセス管理</p></li>
+<li><p>メモリ管理</p>
 <ul>
 <li><a href="memory">メモリ</a></li>
 <li>仮想メモリ</li>
 </ul></li>
-<li>ファイルシステム
+<li><p><a href="filesystem">ファイルシステム</a></p>
 <ul>
 <li>ext4</li>
 <li>VFS(Virtual File System)</li>
 </ul></li>
-<li>ネットワーク</li>
-<li>割り込みとシグナル
-<ul>
-<li>ハードウェア割り込み</li>
-<li>ソフトウェア割り込み</li>
-</ul></li>
-<li>デバイス管理
+<li><p><a href="network">ネットワーク</a></p></li>
+<li><p><a href="interrupts-signal">割り込みとシグナル</a></p></li>
+<li><p>デバイス管理</p>
 <ul>
 <li>デバイスファイル</li>
 <li>キャラクタデバイス
@@ -44,6 +40,55 @@
 <li>USB メモリ</li>
 <li>SD カード</li>
 </ul></li>
+</ul></li>
+<li><p>設計思想および実装</p>
+<ul>
+<li>モノリシックカーネル
+<ul>
+<li>OS の主要構成要素をすべて 1 つのメモリ空間にて提供</li>
+<li>Linux</li>
+</ul></li>
+<li>マイクロカーネル
+<ul>
+<li>必要最小限のみをカーネルが提供し、それ以外の機能はカーネル外で提供</li>
+<li>Mac OS X</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="時間管理"></a><a href="#時間管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>時間管理</h2>
+<ul>
+<li>時刻管理機能
+<ul>
+<li>xtime
+<ul>
+<li>1970 年 1 月 1 日からの経過時間を秒単位/ナノ秒単位で保持する変数</li>
+</ul></li>
+<li>jiffiles
+<ul>
+<li>一定周期(タイマー割り込み)でカウントアップされる変数</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>クロックソース
+<ul>
+<li><p>タイマーデバイス</p>
+<ul>
+<li>TSC(Time Stamp Counter)
+<ul>
+<li>CPU 内部のカウンター</li>
+</ul></li>
+<li>HPET(High Precision Event Timer)</li>
+<li>PIT(Periodic Interrupt Timer)</li>
+</ul></li>
+<li><p>現状値</p>
+<pre><code class="hljs"># cat <span class="hljs-regexp">/sys/</span>devices<span class="hljs-regexp">/system/</span>clocksource<span class="hljs-regexp">/clocksource0/</span>current_clocksource
+kvm-clock
+</code></pre></li>
+<li><p>利用可能なクロックソース</p>
+<pre><code class="hljs"># cat <span class="hljs-regexp">/sys/</span>devices<span class="hljs-regexp">/system/</span>clocksource<span class="hljs-regexp">/clocksource0/</span>available_clocksource
+kvm-clock hpet acpi_pm
+</code></pre></li>
 </ul></li>
 </ul>
 <ul>
@@ -92,6 +137,23 @@ drwxr-xr-x.  <span class="hljs-number">3</span> root root   <span class="hljs-nu
 <li><p>タスクスケジューラ</p>
 <ul>
 <li>CPU の利用時間を分割して複数のプロセスに分与</li>
+<li>CFS(Completely Fair Scheduler)
+<ul>
+<li>各タスクの CPU 使用時間を n (ナノ) 秒精度で管理し、どのタスクも均等に CPU を使用できるようにするタスクスケジューラ</li>
+</ul></li>
+<li>autogroup スケジューリング
+<ul>
+<li><p>実行中のタスクを自動的にグループ分けして、各グループに対して均等に CPU 時間を割り当てる機能</p></li>
+<li><p>CFS だとすべてのタスクに均等に CPU 時間を割り当てるため、サーバープログラム配下のタスクが増えれば増えるほど、他のタスク(GUI アプリケーション) に割り当てる CPU 時間は少なくなるのでそれを解消するために</p></li>
+<li><p>現状値</p>
+<pre><code class="hljs"># cat <span class="hljs-regexp">/proc/</span>sys<span class="hljs-regexp">/kernel/</span>sched_autogroup_enabled
+<span class="hljs-number">0</span>
+</code></pre>
+<ul>
+<li>0 は無効</li>
+<li>1 は有効</li>
+</ul></li>
+</ul></li>
 </ul></li>
 <li><p><code>/proc</code> 配下</p>
 <ul>
@@ -101,103 +163,7 @@ drwxr-xr-x.  <span class="hljs-number">3</span> root root   <span class="hljs-nu
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="デバイス管理"></a><a href="#デバイス管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>デバイス管理</h2>
 <ul>
-<li><p>デバイスファイル</p>
-<ul>
-<li>アプリケーションは基本的に、ファイル、を通じてデータの入出力を行う</li>
-<li>Linuxでの確認
-<ul>
-<li><p>/dev 配下にファイルとして存在する</p>
-<pre><code class="hljs"><span class="hljs-comment"># ll /dev/</span>
-total 0
-drwxr-xr-x<span class="hljs-number"> 2 </span>root root        <span class="hljs-number"> 700 </span>May<span class="hljs-number"> 30 </span>17:58 block
-drwxr-xr-x<span class="hljs-number"> 2 </span>root root         <span class="hljs-number"> 60 </span>May<span class="hljs-number"> 31 </span>02:58 bsg
-drwxr-xr-x<span class="hljs-number"> 3 </span>root root         <span class="hljs-number"> 60 </span>May<span class="hljs-number"> 30 </span>17:58 bus
-lrwxrwxrwx<span class="hljs-number"> 1 </span>root root          <span class="hljs-number"> 3 </span>May<span class="hljs-number"> 30 </span>17:58 cdrom -&gt; sr0
-drwxr-xr-x<span class="hljs-number"> 2 </span>root root       <span class="hljs-number"> 2720 </span>May<span class="hljs-number"> 30 </span>17:59 char
-crw-------<span class="hljs-number"> 1 </span>root root      5,  <span class="hljs-number"> 1 </span>May<span class="hljs-number"> 30 </span>17:58 console
-lrwxrwxrwx<span class="hljs-number"> 1 </span>root root         <span class="hljs-number"> 11 </span>May<span class="hljs-number"> 31 </span>02:58 core -&gt; /proc/kcore
-drwxr-xr-x<span class="hljs-number"> 6 </span>root root        <span class="hljs-number"> 140 </span>May<span class="hljs-number"> 30 </span>17:58 cpu
-crw-rw----<span class="hljs-number"> 1 </span>root root     10, <span class="hljs-number"> 61 </span>May<span class="hljs-number"> 30 </span>17:58 cpu_dma_latency
-crw-rw----<span class="hljs-number"> 1 </span>root root     10, <span class="hljs-number"> 62 </span>May<span class="hljs-number"> 30 </span>17:58 crash
-drwxr-xr-x<span class="hljs-number"> 5 </span>root root        <span class="hljs-number"> 100 </span>May<span class="hljs-number"> 31 </span>02:58 disk
-brw-rw----<span class="hljs-number"> 1 </span>root disk    253,  <span class="hljs-number"> 0 </span>May<span class="hljs-number"> 30 </span>17:58 dm-0
-brw-rw----<span class="hljs-number"> 1 </span>root disk    253,  <span class="hljs-number"> 1 </span>May<span class="hljs-number"> 30 </span>17:58 dm-1
-lrwxrwxrwx<span class="hljs-number"> 1 </span>root root          <span class="hljs-number"> 3 </span>May<span class="hljs-number"> 30 </span>17:58 dvd -&gt; sr0
-lrwxrwxrwx<span class="hljs-number"> 1 </span>root root          <span class="hljs-number"> 3 </span>May<span class="hljs-number"> 31 </span>02:58 fb -&gt; fb0
-crw-rw----<span class="hljs-number"> 1 </span>root root     29,  <span class="hljs-number"> 0 </span>May<span class="hljs-number"> 31 </span>02:58 fb0
-(中略)
-</code></pre>
-<ul>
-<li>b で始まるものは、ブロックデバイス</li>
-<li>c で始まるものは、キャラクタデバイス</li>
-<li>番号(左から)
-<ul>
-<li>メジャー番号
-<ul>
-<li>デバイスの種類を特定するもの(1 - 254)</li>
-<li>番号が一緒でも、ブロックデバイスとキャラクタデバイスのデバイスドライバは異なる</li>
-</ul></li>
-<li>マイナー番号
-<ul>
-<li>同じメジャー番号の中で、特定のデバイスを識別するもの</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>メリット</p>
-<ul>
-<li>デバイスを通常のファイルとして扱えるので、特殊な機構が必要ない</li>
-<li>他のファイルと同様に、所有者、アクセス権限を付与でき、ファイルシステムの機能を利用できる</li>
-</ul></li>
-<li><p>ハードディスク</p>
-<pre><code class="hljs">$ ll /dev/vda*
-brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 0 </span> 9月<span class="hljs-number"> 21 </span>15:04 /dev/vda
-brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 1 </span> 9月<span class="hljs-number"> 21 </span>15:04 /dev/vda1
-brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 2 </span> 9月<span class="hljs-number"> 21 </span>15:04 /dev/vda2
-brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 3 </span> 9月<span class="hljs-number"> 21 </span>15:04 /dev/vda3
-brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 5 </span> 9月<span class="hljs-number"> 21 </span>15:04 /dev/vda5
-</code></pre>
-<ul>
-<li>vda が 1 台目のハードディスク</li>
-<li>vda1, vda2 等が vda の中のパーティション</li>
-</ul></li>
-</ul>
-<ul>
-<li><p>ハードウェアを制御するデバイスドライバのお話</p></li>
-<li><p>周辺機器に統一的なインタフェースを提供してくれる</p>
-<ul>
-<li>モニタ</li>
-<li>キーボード</li>
-<li>ハードディスク</li>
-<li>NIC</li>
-</ul></li>
-<li><p>各種規格が異なっても、吸収してくれる</p></li>
-<li><p>デバイス</p>
-<ul>
-<li>キャラクタデバイス
-<ul>
-<li>シーケンシャルなデータの入出力</li>
-<li>例
-<ul>
-<li>端末</li>
-<li>プリンタ</li>
-</ul></li>
-<li>ブロックデバイス
-<ul>
-<li>ブロック単位のデータ入出力</li>
-<li>ランダム読み書き</li>
-</ul></li>
-<li>例
-<ul>
-<li>HDD</li>
-</ul></li>
-<li>ネットワークデバイス
-<ul>
-<li>NIC などとのやり取り</li>
-</ul></li>
-</ul></li>
-</ul></li>
+<li><a href="device">デバイス管理</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="parameter"></a><a href="#parameter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parameter</h2>
 <ul>
@@ -284,5 +250,66 @@ brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-n
 <li>推奨値は 32768</li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#デバイス管理">デバイス管理</a></li><li><a href="#parameter">parameter</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<ul>
+<li><a href="systemtap">SystemTapp</a></li>
+</ul>
+<ul>
+<li><p>システムコール</p>
+<ul>
+<li>プロセス/スレッドからカーネルへの処理依頼するためのインタフェース</li>
+<li>ハードウェアとの直接操作することができないので、カーネル経由で処理を依頼する</li>
+<li>例
+<ul>
+<li>open</li>
+<li>read</li>
+<li>write</li>
+</ul></li>
+</ul></li>
+<li><p>ライブラリ</p>
+<ul>
+<li>関数がたくさん記載されたファイル</li>
+<li>関数の利用 = <code>リンク</code></li>
+<li>ライブラリ関数
+<ul>
+<li>printf()</li>
+<li>exit()</li>
+</ul></li>
+<li>標準 C ライブラリ
+<ul>
+<li><p>libc</p>
+<pre><code class="hljs"><span class="hljs-comment"># cat /etc/redhat-release</span>
+CentOS Linux release 7.5.1804 (Core)
+<span class="hljs-comment"># ll /lib64/libc.so</span>
+-rw-r--r--.<span class="hljs-number"> 1 </span>root root<span class="hljs-number"> 253 </span>10月<span class="hljs-number"> 30 </span>16:55 /lib64/libc.so
+</code></pre>
+<ul>
+<li>普段使われているのは GNU libc(glibc)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>API(Application Programming Interface)</p>
+<ul>
+<li>何かを使ってプログラミングするときのインタフェース</li>
+<li>ライブラリの API
+<ul>
+<li>関数</li>
+<li>マクロ</li>
+</ul></li>
+<li>カーネルの API
+<ul>
+<li>システムコール</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="ストリーム"></a><a href="#ストリーム" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストリーム</h3>
+<ul>
+<li>バイト列が流れる通り道</li>
+<li>FILE 型の値</li>
+<li>STREAMS カーネルモジュール</li>
+<li>POSIX IPC
+<ul>
+<li>ストリームを使わないプロセス間通信機構</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#時間管理">時間管理</a></li><li><a href="#デバイス管理">デバイス管理</a></li><li><a href="#parameter">parameter</a><ul class="toc-headings"><li><a href="#ストリーム">ストリーム</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

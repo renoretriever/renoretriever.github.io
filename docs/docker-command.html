@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Docker コマンド · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- オプション"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Docker コマンド · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- オプション"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Docker コマンド</h1></header><article><div><span><ul>
+<li><p>オプション</p>
+<table>
+<thead>
+<tr><th>値</th><th>内容</th></tr>
+</thead>
+<tbody>
+<tr><td>-p</td><td>ポートマッピング<br>コンテナ外:コンテナ内<br>8080:80</td></tr>
+<tr><td>-P</td><td>ポートの自動マッピング</td></tr>
+</tbody>
+</table>
+<ul>
+<li><a href="https://docs.docker.com/engine/reference/run/#general-form">Docker run reference</a></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>起動(例 : nginx)</p>
+<pre><code class="hljs">$ docker <span class="hljs-keyword">run</span><span class="bash"> -d nginx
+</span></code></pre>
+<ul>
+<li>コンテナ修了時に自動的にコンテナを削除するには run 時に <code>--rm</code> オプションをつける</li>
+</ul>
+<table>
+<thead>
+<tr><th>値</th><th>内容</th></tr>
+</thead>
+<tbody>
+<tr><td>-d</td><td>バックグラウンド起動</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ul>
+<li><p>停止</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker stop [コンテナ ID]</span>
+</code></pre></li>
+<li><p>コンテナ確認</p>
+<ul>
+<li><p>起動しているコンテナ</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker ps</span>
+</code></pre></li>
+<li><p>コンテナ一覧(未起動含む)</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker ps -a</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>全てのコンテナを修了</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker <span class="hljs-built_in">kill</span> $(docker ps -a)</span>
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="コンテナの削除"></a><a href="#コンテナの削除" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテナの削除</h3>
+<ul>
+<li><p>コンテナ</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker ps -a</span>
+<span class="hljs-meta">$</span><span class="bash"> docker rm &lt;container name&gt; </span>
+</code></pre>
+<pre><code class="hljs">$ docker rm `docker ps -<span class="hljs-literal">a</span> -q`
+</code></pre></li>
+<li><p>image</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker images</span>
+<span class="hljs-meta">$</span><span class="bash"> docker rmi &lt;repository name&gt; </span>
+</code></pre>
+<pre><code class="hljs"><span class="hljs-variable">$ </span>docker rmi <span class="hljs-variable">$(</span>docker images | awk <span class="hljs-string">'/^&lt;none&gt;/ { print $3 }'</span>)
+</code></pre></li>
+<li><p>すべての修了しているコンテナを削除</p>
+<pre><code class="hljs"><span class="hljs-variable">$ </span>docker rm <span class="hljs-variable">$(</span>docker ps -a -q)
+</code></pre></li>
+<li><p>動作しているコンテナを含めて、すべてのコンテナを削除</p>
+<pre><code class="hljs"><span class="hljs-variable">$ </span>docker rm -f <span class="hljs-variable">$(</span>docker ps -a -q)
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="コンテナでシェルを実行"></a><a href="#コンテナでシェルを実行" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテナでシェルを実行</h3>
+<ul>
+<li><p>コンテナ内にログイン</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker <span class="hljs-built_in">exec</span> -it centos /bin/bash</span>
+</code></pre>
+<table>
+<thead>
+<tr><th>値</th><th>内容</th></tr>
+</thead>
+<tbody>
+<tr><td>-t</td><td>Docker コンテナ内の標準出力とホスト側の出力をつなげるもの</td></tr>
+<tr><td>-i</td><td>ホスト側の入力を Docker コンテナの標準出力をつなげるもの<br>キーボードから入力した文字はコンテナ内のプロセスに送られ bash などでコマンドを実行できる</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ul>
+<li><p>コンテナをホスト名を指定して実行</p>
+<pre><code class="hljs">$ docker <span class="hljs-keyword">run</span><span class="bash"> --rm -h testhost -it centos /bin/bash
+</span>[root@testhost /]<span class="hljs-comment"># uname -n</span>
+testhost
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="コンテナのデタッチ-アタッチ"></a><a href="#コンテナのデタッチ-アタッチ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテナのデタッチ・アタッチ</h3>
+<ul>
+<li><p>デタッチ</p>
+<ul>
+<li><p>コンテナが起動してないことを確認</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker ps | grep -i centos</span>
+<span class="hljs-meta">$</span><span class="bash"></span>
+</code></pre></li>
+<li><p>起動とデタッチ( <code>Ctr + p + q</code> を実行)</p>
+<pre><code class="hljs">$ docker <span class="hljs-built_in">run</span> --rm -it centos /bin/bash
+[root<span class="hljs-symbol">@72ec6c952222</span> /]<span class="hljs-meta">#</span>
+[root<span class="hljs-symbol">@72ec6c952222</span> /]<span class="hljs-meta"># ⏎ </span>
+</code></pre></li>
+<li><p>デタッチされていることを確認</p>
+<pre><code class="hljs">$ docker ps | grep -i centos
+<span class="hljs-number">72</span>ec6c952222        centos                                     <span class="hljs-string">"/bin/bash"</span>              <span class="hljs-number">16</span> seconds ago      Up <span class="hljs-number">15</span> seconds                                cocky_villani
+</code></pre></li>
+</ul></li>
+<li><p>アタッチ</p>
+<pre><code class="hljs"><span class="hljs-variable">$ </span>docker attach <span class="hljs-number">72</span>ec6c952222
+[root<span class="hljs-variable">@72ec6c952222</span> /]<span class="hljs-comment">#</span>
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="実行中のコンテナにシェルで入る"></a><a href="#実行中のコンテナにシェルで入る" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>実行中のコンテナにシェルで入る</h3>
+<ul>
+<li><p>run</p>
+<pre><code class="hljs">$ docker ps | grep -i nginx
+<span class="hljs-number">208273</span>a0c4d9        nginx                                      <span class="hljs-string">"nginx -g 'daemon of…"</span>   <span class="hljs-number">3</span> minutes ago       Up <span class="hljs-number">3</span> minutes        <span class="hljs-number">80</span>/tcp                   quizzical_cohen
+</code></pre></li>
+<li><p>コンテナに入る</p>
+<pre><code class="hljs">$ docker exec -it <span class="hljs-number">208273</span>a0c4d9 /bin/bash
+root@<span class="hljs-number">208273</span><span class="hljs-symbol">a0c4d9:</span>/<span class="hljs-comment"># nginx -V</span>
+nginx <span class="hljs-symbol">version:</span> nginx/<span class="hljs-number">1.15</span>.<span class="hljs-number">7</span>
+built by gcc <span class="hljs-number">6.3</span>.<span class="hljs-number">0</span> <span class="hljs-number">20170516</span> (Debian <span class="hljs-number">6.3</span>.<span class="hljs-number">0</span>-<span class="hljs-number">18</span>+deb9u1)
+built <span class="hljs-keyword">with</span> OpenSSL <span class="hljs-number">1.1</span>.<span class="hljs-number">0</span>f  <span class="hljs-number">25</span> May <span class="hljs-number">2017</span>
+TLS SNI support enabled
+configure <span class="hljs-symbol">arguments:</span> --prefix=<span class="hljs-regexp">/etc/nginx</span> --sbin-path=<span class="hljs-regexp">/usr/sbin</span><span class="hljs-regexp">/nginx --modules-path=/usr</span><span class="hljs-regexp">/lib/nginx</span><span class="hljs-regexp">/modules --conf-path=/etc</span><span class="hljs-regexp">/nginx/nginx</span>.conf --error-log-path=<span class="hljs-regexp">/var/log</span><span class="hljs-regexp">/nginx/error</span>.log --http-log-path=<span class="hljs-regexp">/var/log</span><span class="hljs-regexp">/nginx/access</span>.log --pid-path=<span class="hljs-regexp">/var/run</span><span class="hljs-regexp">/nginx.pid --lock-path=/var</span><span class="hljs-regexp">/run/nginx</span>.lock --http-client-body-temp-path=<span class="hljs-regexp">/var/cache</span><span class="hljs-regexp">/nginx/client</span>_temp --http-proxy-temp-path=<span class="hljs-regexp">/var/cache</span><span class="hljs-regexp">/nginx/proxy</span>_temp --http-fastcgi-temp-path=<span class="hljs-regexp">/var/cache</span><span class="hljs-regexp">/nginx/fastcgi</span>_temp --http-uwsgi-temp-path=<span class="hljs-regexp">/var/cache</span><span class="hljs-regexp">/nginx/uwsgi</span>_temp --http-scgi-temp-path=<span class="hljs-regexp">/var/cache</span><span class="hljs-regexp">/nginx/scgi</span>_temp --user=nginx --group=nginx --<span class="hljs-keyword">with</span>-compat --<span class="hljs-keyword">with</span>-file-aio --<span class="hljs-keyword">with</span>-threads --<span class="hljs-keyword">with</span>-http_addition_module --<span class="hljs-keyword">with</span>-http_auth_request_module --<span class="hljs-keyword">with</span>-http_dav_module --<span class="hljs-keyword">with</span>-http_flv_module --<span class="hljs-keyword">with</span>-http_gunzip_module --<span class="hljs-keyword">with</span>-http_gzip_static_module --<span class="hljs-keyword">with</span>-http_mp4_module --<span class="hljs-keyword">with</span>-http_random_index_module --<span class="hljs-keyword">with</span>-http_realip_module --<span class="hljs-keyword">with</span>-http_secure_link_module --<span class="hljs-keyword">with</span>-http_slice_module --<span class="hljs-keyword">with</span>-http_ssl_module --<span class="hljs-keyword">with</span>-http_stub_status_module --<span class="hljs-keyword">with</span>-http_sub_module --<span class="hljs-keyword">with</span>-http_v2_module --<span class="hljs-keyword">with</span>-mail --<span class="hljs-keyword">with</span>-mail_ssl_module --<span class="hljs-keyword">with</span>-stream --<span class="hljs-keyword">with</span>-stream_realip_module --<span class="hljs-keyword">with</span>-stream_ssl_module --<span class="hljs-keyword">with</span>-stream_ssl_preread_module --<span class="hljs-keyword">with</span>-cc-opt=<span class="hljs-string">'-g -O2 -fdebug-prefix-map=/data/builder/debuild/nginx-1.15.7/debian/debuild-base/nginx-1.15.7=. -specs=/usr/share/dpkg/no-pie-compile.specs -fstack-protector-strong -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fPIC'</span> --<span class="hljs-keyword">with</span>-ld-opt=<span class="hljs-string">'-specs=/usr/share/dpkg/no-pie-link.specs -Wl,-z,relro -Wl,-z,now -Wl,--as-needed -pie'</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>コンテナの実行ユーザを指定</p>
+<pre><code class="hljs">$ docker run --rm -<span class="hljs-keyword">it </span>-u daemon centos /<span class="hljs-keyword">bin/bash
+</span><span class="hljs-keyword">bash-4.2$ </span>whoami
+<span class="hljs-symbol">daemon</span>
+</code></pre></li>
+<li><p>コンテナの作業ディレクトリを指定</p>
+<pre><code class="hljs">$ docker run <span class="hljs-params">--rm</span> -it -w <span class="hljs-string">/tmp</span> centos <span class="hljs-string">/bin/bash</span>
+[root@185da32f783c tmp]<span class="hljs-comment"># pwd</span>
+<span class="hljs-string">/tmp</span>
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="コンテナにホストのファイル-ディレクトリをマウント"></a><a href="#コンテナにホストのファイル-ディレクトリをマウント" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテナにホストのファイル・ディレクトリをマウント</h3>
+<ul>
+<li><p>オプション</p>
+<p>| 値 | 内容 |
+| -v | ボリュームのバインド<br>-v ホストパス:コンテナパス |</p></li>
+</ul>
+<ul>
+<li><p>共有用ディレクトリの作成</p>
+<pre><code class="hljs">$ mkdir testdir
+$ echo test &gt; testdir/test.md
+$ cat testdir/test.md
+<span class="hljs-keyword">test
+</span></code></pre></li>
+<li><p>ディレクトリをマウントして起動</p>
+<pre><code class="hljs">$ docker run <span class="hljs-params">--rm</span> -it -v <span class="hljs-string">/tmp/testdir</span>:<span class="hljs-string">/testdir</span> centos <span class="hljs-string">/bin/bash</span>
+[root@87ed57defafa /]<span class="hljs-comment">#</span>
+</code></pre></li>
+<li><p>マウント確認</p>
+<pre><code class="hljs">[root@87ed57defafa /]# ls /testdir/
+test.md
+[root@87ed57defafa /]# cat testdir/test.md
+<span class="hljs-keyword">test
+</span></code></pre></li>
+<li><p>コンテナ内でファイル作成</p>
+<pre><code class="hljs">[root<span class="hljs-symbol">@87ed57defafa</span> /]<span class="hljs-meta"># echo test02 &gt; /testdir/test02.md</span>
+[root<span class="hljs-symbol">@87ed57defafa</span> /]<span class="hljs-meta"># ls /testdir/test02.md</span>
+/testdir/test02.md
+</code></pre></li>
+<li><p>ログアウト(コンテナは削除される)</p></li>
+<li><p>ホスト側でファイルが残っていることを確認</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> cat testdir/test02.md</span>
+test02
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="コンテナで-ulimit-によるリソース制御"></a><a href="#コンテナで-ulimit-によるリソース制御" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテナで ulimit によるリソース制御</h3>
+<ul>
+<li>指定方法は <code>--ulimit リソース名=ソフトリミット:ハードリミット</code></li>
+<li>1 MB に制限
+<ul>
+<li><p>1 MB 作成してみると正常</p>
+<pre><code class="hljs">$ docker <span class="hljs-builtin-name">run</span> --rm -it --ulimit <span class="hljs-attribute">fsize</span>=1000000:1000000 centos dd <span class="hljs-attribute">if</span>=/dev/zero <span class="hljs-attribute">of</span>=file <span class="hljs-attribute">bs</span>=1 <span class="hljs-attribute">count</span>=1000000
+1000000+0 records <span class="hljs-keyword">in</span>
+1000000+0 records out
+1000000 bytes (1.0 MB) copied, 2.74646 s, 364 kB/s
+</code></pre></li>
+<li><p>2 MB 作成してみるとエラーになる</p>
+<pre><code class="hljs">$ docker <span class="hljs-keyword">run</span> --<span class="hljs-keyword">rm</span> -it --ulimit fsize=1000000:1000000 centos dd <span class="hljs-keyword">if</span>=/dev/zero of=<span class="hljs-keyword">file</span> <span class="hljs-keyword">bs</span>=1 <span class="hljs-keyword">count</span>=2000000
+dd: <span class="hljs-keyword">error</span> writing '<span class="hljs-keyword">file</span>': <span class="hljs-keyword">File</span> too large
+1000001+0 records <span class="hljs-keyword">in</span>
+1000000+0 records <span class="hljs-keyword">out</span>
+1000000 bytes (1.0 MB) copied, 2.10842 s, 474 kB/<span class="hljs-built_in">s</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="コンテナの-cpu-制限"></a><a href="#コンテナの-cpu-制限" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテナの CPU 制限</h3>
+<ul>
+<li>制限方法
+<ul>
+<li><code>--cpuset-cpus</code>
+<ul>
+<li>CPU コアの指定</li>
+</ul></li>
+<li><code>--cpu-quota</code> , <code>--cpu-period</code>
+<ul>
+<li>CPU 時間の指定</li>
+</ul></li>
+<li><code>--cpu-shares</code>
+<ul>
+<li>CPU の相対量の指定</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="コンテナのメモリ使用量制限"></a><a href="#コンテナのメモリ使用量制限" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテナのメモリ使用量制限</h3>
+<ul>
+<li><p>メモリ使用量は物理メモリとスワップメモリの両方を個別に指定できる</p></li>
+<li><p>制限方法</p>
+<ul>
+<li><code>--memory</code>, <code>-m</code>
+<ul>
+<li>利用する物理メモリ量を指定</li>
+</ul></li>
+<li><code>--memory-swap</code>
+<ul>
+<li>物理メモリとスワップメモリを合わせた量を指定</li>
+<li>省略すると <code>--memory-swap</code> は <code>--memory</code> の 2 倍に設定される</li>
+</ul></li>
+</ul></li>
+<li><p>制限なしの動作</p>
+<pre><code class="hljs">$ docker <span class="hljs-builtin-name">run</span> --rm centos dd <span class="hljs-attribute">if</span>=/dev/zero <span class="hljs-attribute">of</span>=/dev/null <span class="hljs-attribute">bs</span>=100M <span class="hljs-attribute">count</span>=1
+1+0 records <span class="hljs-keyword">in</span>
+1+0 records out
+104857600 bytes (105 MB) copied, 0.0440207 s, 2.4 GB/s
+</code></pre></li>
+<li><p>物理メモリ 50 MB, スワップメモリをなしにして実行すると異常修了することを確認</p>
+<pre><code class="hljs">$ docker <span class="hljs-builtin-name">run</span> --rm -it <span class="hljs-attribute">--memory</span>=50m <span class="hljs-attribute">--memory-swap</span>=50m centos dd <span class="hljs-attribute">if</span>=/dev/zero <span class="hljs-attribute">of</span>=/dev/zero <span class="hljs-attribute">bs</span>=100M <span class="hljs-attribute">count</span>=1
+$ echo <span class="hljs-variable">$status</span>
+137
+</code></pre></li>
+<li><p>物理メモリ 50 MB, スワップメモリを 100 MB して実行すると正常に動作することを確認</p>
+<pre><code class="hljs">$ docker <span class="hljs-builtin-name">run</span> --rm -it <span class="hljs-attribute">--memory</span>=50m <span class="hljs-attribute">--memory-swap</span>=150m centos dd <span class="hljs-attribute">if</span>=/dev/zero <span class="hljs-attribute">of</span>=/dev/zero <span class="hljs-attribute">bs</span>=100M <span class="hljs-attribute">count</span>=1
+1+0 records <span class="hljs-keyword">in</span>
+1+0 records out
+104857600 bytes (105 MB) copied, 0.344234 s, 305 MB/s
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="コンテナのプロセス数の制限"></a><a href="#コンテナのプロセス数の制限" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテナのプロセス数の制限</h3>
+<ul>
+<li><p>制限方法</p>
+<ul>
+<li>Kernel4.3 以降
+<ul>
+<li><code>--pid-limits</code></li>
+</ul></li>
+<li>Kernel4.3 以前
+<ul>
+<li><code>ulimit</code></li>
+<li>3 個に制限してみる
+<ul>
+<li><code>--ulimit nproc=3:3</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>プロセス数を 20 個に制限し、sleep コマンドを 20 回実行すると fork に失敗していることを確認</p>
+<pre><code class="hljs">[root@90af2bac3fdb /]# <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> $(seq 1 20); <span class="hljs-keyword">do</span> sleep 10 &amp; done
+[1] 15
+[2] 16
+[3] 17
+[4] 18
+[5] 19
+[6] 20
+[7] 21
+[8] 22
+[9] 23
+[10] 24
+[11] 25
+[12] 26
+[13] 27
+[14] 28
+[15] 29
+[16] 30
+[17] 31
+[18] 32
+bash: fork: retry:<span class="hljs-built_in"> Resource </span>temporarily unavailable
+[19] 34
+bash: fork: retry:<span class="hljs-built_in"> Resource </span>temporarily unavailable
+bash: fork: retry:<span class="hljs-built_in"> Resource </span>temporarily unavailable
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="コンテナと-docker-ホスト間でのファイルコピー"></a><a href="#コンテナと-docker-ホスト間でのファイルコピー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテナと Docker ホスト間でのファイルコピー</h3>
+<pre><code class="hljs">```
+$ sudo docker cp [コンテナID]:/path/to/file /tmp/
+```
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="ログの表示"></a><a href="#ログの表示" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ログの表示</h3>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker logs [コンテナ ID]</span>
+</code></pre>
+<ul>
+<li><p>出力開始日の指定</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker logs --since=<span class="hljs-string">"2018-03-13T23:00:00+09:00"</span> <span class="hljs-built_in">test</span>-new</span>
+</code></pre></li>
+<li><p>tailf</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker logs -f [コンテナ ID]</span>
+</code></pre></li>
+<li><p>ログの表示ができるのは、 Docker がログ記録用に json-file, journald のいずれかを使用している場合のみ</p>
+<pre><code class="hljs">$ docker <span class="hljs-builtin-name">info</span> | grep <span class="hljs-string">"Logging Driver"</span><span class="hljs-built_in">
+Logging </span>Driver: json-file
+</code></pre></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

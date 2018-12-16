@@ -184,84 +184,6 @@
 <li>スイッチ + ルーティング機能</li>
 </ul></li>
 </ul>
-<h2><a class="anchor" aria-hidden="true" id="osi-基本参照モデル"></a><a href="#osi-基本参照モデル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OSI 基本参照モデル</h2>
-<ul>
-<li><p>国際標準化機構である ISO(International Organization for Standardization) が制定したもの</p></li>
-<li><p>アプリケーション層</p>
-<ul>
-<li>HTTP</li>
-<li>SMTP</li>
-</ul></li>
-<li><p>プレゼンテーション層</p></li>
-<li><p>セッション層</p></li>
-<li><p>トランスポート層</p>
-<ul>
-<li>TCP</li>
-<li>UDP</li>
-<li>機器
-<ul>
-<li>ゲートウェイ(L4 以上)
-<ul>
-<li>異なったプロトコル体系のネットワーク間の接続などに用いられる</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>ネットワーク層</p>
-<ul>
-<li>ICMP</li>
-<li>機器
-- コリジョンドメイン
-- 分割する
-- ブロードキャストドメイン
-- 分割しない
-- 特徴
-- MAC アドレスを基にあて先を判断する
-- VLAN を利用することでブロードキャストドメインを分割できる
-<ul>
-<li>ブリッジ
-<ul>
-<li>コリジョンドメイン
-<ul>
-<li>分割する</li>
-</ul></li>
-<li>ブロードキャストドメイン
-<ul>
-<li>分割しない</li>
-</ul></li>
-<li>特徴
-<ul>
-<li>フレームフィルタリング機能</li>
-<li>MAC アドレスを基にあて先を判断する</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>物理層</p>
-<ul>
-<li>機器
-<ul>
-<li>ハブ / リピータハブ
-<ul>
-<li>コリジョンドメイン
-<ul>
-<li>分割しない</li>
-</ul></li>
-<li>ブロードキャストドメイン
-<ul>
-<li>分割しない</li>
-</ul></li>
-<li>特徴
-<ul>
-<li>受信ポート以外の全ポートからデータを送信する(あて先を判断しない)</li>
-</ul></li>
-</ul></li>
-<li>リピータ
-<ul>
-<li>伝送途中で減衰した信号レベルの補正と再生増幅を行なう</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
 <ul>
 <li>TCP/IP
 <ul>
@@ -391,5 +313,72 @@
 <li>ルーティングテーブルの中に、パケッtの宛先ネットワークアドレスと一致するエントリが複数ある場合、より長いビット数が一致したものを選ぶという規則</li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#lan">LAN</a></li><li><a href="#スイッチ">スイッチ</a></li><li><a href="#osi-基本参照モデル">OSI 基本参照モデル</a><ul class="toc-headings"><li><a href="#ドメインと-ip-アドレスの管理">ドメインと IP アドレスの管理</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<ul>
+<li>回線品質
+<ul>
+<li>保証型
+<ul>
+<li>最低 XX Mbsp 保証</li>
+<li>QoS(Quality of Service) を保証</li>
+</ul></li>
+<li>ベストエフォート型
+<ul>
+<li>最大限の努力</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>MTU(Maximum Transfer Unit)</p>
+<ul>
+<li>リンク層で送信できる最大データサイズ</li>
+<li>多くのイーサネットでは 1500 byte</li>
+</ul></li>
+<li><p>MSS(Maximum Segment Size)</p>
+<ul>
+<li>1 つの TCP セグメントで送信できる最大のデータサイズ</li>
+<li>最終的にリンク層を使ってデータが送信されるため、MSS はリンク層で送信できる最大サイズに依存</li>
+</ul></li>
+<li><p>OS のソケット</p>
+<ul>
+<li>ソケットバッファが作られる
+<ul>
+<li>送信バッファ
+<ul>
+<li>Web ブラウザから送信する場合は送信バッファに書き込む</li>
+<li>溜まったデータは OS によって TCP セグメントという箱に分割され、TCP ヘッダ、IP ヘッダ、MAC ヘッダという情報を付与されて Ethernet フレームという箱で送信される</li>
+</ul></li>
+<li>受信バッファ</li>
+</ul></li>
+<li>大量のデータ送信を行いためにスループットをあげたい場合はソケットバッファのサイズを大きくしたり、MTU サイズを大きくしたりしてチューニングを行う</li>
+</ul></li>
+</ul>
+<ul>
+<li>ジャーナリング
+<ul>
+<li>ジャーナルを残すこと</li>
+<li>ジャーナル
+<ul>
+<li>トランザクションや日々更新されるデータの変更履歴の事を指す</li>
+</ul></li>
+<li>ジャーナルの特徴
+<ul>
+<li>データ自身ではなく、処理(トランザクション) の内容が記録される</li>
+<li>データの一貫性や整合性が取れた時点で不要になる</li>
+<li>データ復旧時のロールバックやロールフォワードに利用される</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="標準化団体"></a><a href="#標準化団体" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>標準化団体</h3>
+<ul>
+<li><p>IEEE</p>
+<ul>
+<li>電気電子学会</li>
+</ul></li>
+<li><p>IETF</p>
+<ul>
+<li>インターネットで使われる様々な技術の標準化を行う団体</li>
+<li>RFC</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#lan">LAN</a></li><li><a href="#スイッチ">スイッチ</a><ul class="toc-headings"><li><a href="#ドメインと-ip-アドレスの管理">ドメインと IP アドレスの管理</a></li><li><a href="#標準化団体">標準化団体</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

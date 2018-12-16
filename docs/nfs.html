@@ -2,7 +2,7 @@
 <ul>
 <li><p>サーバ作業</p>
 <ul>
-<li><p>export ファイル編集。192.168.0.1 から/home/reno へマウントを許可</p>
+<li><p>export ファイル編集。192.168.0.1 から /home/reno へマウントを許可</p>
 <pre><code class="hljs">$ vim /etc/exports
 /home/reno <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>(rw)
 </code></pre></li>
@@ -30,5 +30,11 @@
 <tr><td>resvport</td><td>NFS クライアントはネットワーク接続が再確立された時に、新しい TCP 送信元ポートを使用<br> ネットワーク復旧イベント後の中断のない可用性が保証</td></tr>
 </tbody>
 </table>
+<ul>
+<li>注意点
+<ul>
+<li>NFS が SPOF になるのを防ぐためには、GlusterFS などのソリューションを検討する</li>
+</ul></li>
+</ul>
 </span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#nfsクライアント追加作業">NFSクライアント追加作業</a></li><li><a href="#options">Options</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

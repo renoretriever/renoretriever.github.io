@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>AIST パスワード認証方式 · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- AIST パスワード認証方式"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="AIST パスワード認証方式 · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- AIST パスワード認証方式"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">AIST パスワード認証方式</h1></header><article><div><span><ul>
+<li>AIST パスワード認証方式
+<ul>
+<li>ISO/IEC 11770-4:2017</li>
+<li>公開鍵証明書なしに、パスワードのみで安全な認証を実現
+<ul>
+<li>公開鍵証明書の検証処理が不要なため、同レベルの安全性を保証する「ISO/IEC 11770-4(第一版)」に掲載の既存の認証方式に比べて、少ない計算量で相互認証を実現できる</li>
+</ul></li>
+<li>パスワードの特定に対しては、構成を認証の確認時に用いる値を乱数と区別できないようにすることで、オフライン全数探索されても、攻撃者がパスワード探索に成功したかどうかを判別不可能
+にできる
+<ul>
+<li>パスワード自体ではなく、乱数を付加した情報をやり取りすることで、フィッシング攻撃によるパスワード詐取を防ぐとする</li>
+</ul></li>
+<li>AKAM3 は、従来のパスワード認証方式と同様に、ユーザー認証を必要とする電子メールや電子商取引、インターネットバンキングなどの各種サービス、アプリケーション、IoT 機器へのログイン
+などに適用可能</li>
+<li>産総研では IoT 向けの通信プロトコル「MQTT (Message Queueing Telemetry Transport)」へ適用するための研究も進めているという</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>AIST 匿名パスワード認証方式(SKI mechanism)</p>
+<ul>
+<li>ISO/IEC 20009-4:2017</li>
+<li>AIST 匿名パスワード認証方式では、匿名状態のままで特定の権限や属性の有無を認証できる</li>
+<li>パスワード認証時、「ユーザーが誰であるか」を特定せずに、ユーザーがある集団に属しているか否かをサーバーが確認できる、匿名認証を実現
+<ul>
+<li>特定の属性を有している集団を指定することにより、そのユーザーがその属性を有していることを属性認証サーバーに示しつつ、サーバーからはユーザーがその属性を有していること以外の
+情報を特定できない「属性認証」も、同パスワードを用いて実現できるという</li>
+</ul></li>
+<li>産総研では、方式の応用先として、組織内からの告発であることが確認できる内部告発、ある属性を持っていることが確認できる匿名のアンケート、サービス受給資格であることが確認できる匿
+名カウンセリング(医療相談、悩み相談、いじめ相談など)、目的限定型の匿名通信路、秘匿検索、秘匿マッチングなどを挙げている</li>
+</ul></li>
+<li><p>インターネットなど公衆回線上でユーザーを認証する方法として、パスワード認証は広く使われているが、認証やパスワードを暗号化して送受信するために、公開鍵証明書を用いたサーバー認証と、
+「SSL/TLS」など暗号化通信プロトコルとを併用することが一般的</p>
+<ul>
+<li>公開鍵証明書を用いた SSL/TLS の上でのパスワード認証方式を含む既存の認証方式は、以下のような問題を抱えており、解決が求められている</li>
+<li>公開鍵証明書の取得、配備などに手間がかかる</li>
+<li>暗号化や復号に要する計算量が大きいため、搭載プロセッサの性能が低く消費電力に制約のある IoT 機器での利用が困難</li>
+<li>公衆回線上でパスワードを暗号化して送信していたとしても、暗号文からオフライン全数探索によるパスワードの復元が可能</li>
+<li>フィッシング攻撃でユーザーがブラウザの警告を見逃すと、パスワードが盗まれてしまう</li>
+<li>サーバーからパスワードなどを含むデータが漏洩した場合、オフライン全数探索なしにユーザーになりすますことが可能で、パスワードリスト攻撃への対策が求められる</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

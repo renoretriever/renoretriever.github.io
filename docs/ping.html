@@ -33,6 +33,18 @@ round-trip min/avg/max/stddev = 7.456/8.265/9.228/0.608 ms
 <ul>
 <li>56 data bytes のパケットを google.co.jp に送る</li>
 </ul></li>
+<li><p>TTL を 5 にしてみる</p>
+<pre><code class="hljs"># cat /etc/redhat-release
+CentOS Linux release <span class="hljs-number">7.5</span><span class="hljs-number">.1804</span> (Core)
+# ping -c <span class="hljs-number">3</span> -t <span class="hljs-number">5</span> google.co.jp
+PING google.co.jp (<span class="hljs-number">216.58</span><span class="hljs-number">.197</span><span class="hljs-number">.195</span>) <span class="hljs-number">56</span>(<span class="hljs-number">84</span>) bytes of data.
+From <span class="hljs-number">118.23</span><span class="hljs-number">.10</span><span class="hljs-number">.85</span> (<span class="hljs-number">118.23</span><span class="hljs-number">.10</span><span class="hljs-number">.85</span>) icmp_seq=<span class="hljs-number">1</span> Time to live exceeded
+From <span class="hljs-number">118.23</span><span class="hljs-number">.10</span><span class="hljs-number">.85</span> (<span class="hljs-number">118.23</span><span class="hljs-number">.10</span><span class="hljs-number">.85</span>) icmp_seq=<span class="hljs-number">2</span> Time to live exceeded
+From <span class="hljs-number">118.23</span><span class="hljs-number">.10</span><span class="hljs-number">.85</span> (<span class="hljs-number">118.23</span><span class="hljs-number">.10</span><span class="hljs-number">.85</span>) icmp_seq=<span class="hljs-number">3</span> Time to live exceeded
+
+--- google.co.jp ping statistics ---
+<span class="hljs-number">3</span> packets transmitted, <span class="hljs-number">0</span> received, +<span class="hljs-number">3</span> errors, <span class="hljs-number">100</span>% packet loss, time <span class="hljs-number">2002</span>ms
+</code></pre></li>
 </ul>
 </span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

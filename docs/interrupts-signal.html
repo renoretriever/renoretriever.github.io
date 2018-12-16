@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>割り込みとシグナル · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- ハードウェア割り込み"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="割り込みとシグナル · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- ハードウェア割り込み"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">割り込みとシグナル</h1></header><article><div><span><ul>
+<li>ハードウェア割り込み
+<ul>
+<li>入出力装置から CPU に通知する割り込み</li>
+<li>例
+<ul>
+<li>ネットワークからのデータ受信で NIC から CPU に割り込みが入る</li>
+</ul></li>
+</ul></li>
+<li>ソフトウェア割り込み
+<ul>
+<li>プロセスの強制終了</li>
+<li>例
+<ul>
+<li>プロセスやスレッドが許可されていないメモリ上の位置にアクセス(セグメンテーション違反)</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="割り込み"></a><a href="#割り込み" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>割り込み</h2>
+<ul>
+<li><p>割り込み発生回数と割り込みの種類</p>
+<pre><code class="hljs">$ cat /<span class="hljs-keyword">proc</span>/interrupts<span class="hljs-title">
+           CPU0</span>
+  0:        303<span class="hljs-title">   IO-APIC-edge</span> <span class="hljs-title">     timer</span>
+  1:         10<span class="hljs-title">   IO-APIC-edge</span> <span class="hljs-title">     i8042</span>
+  8:          0<span class="hljs-title">   IO-APIC-edge</span> <span class="hljs-title">     rtc0</span>
+  9:          0<span class="hljs-title">   IO-APIC-fasteoi</span> <span class="hljs-title">  acpi</span>
+ 12:        155<span class="hljs-title">   IO-APIC-edge</span> <span class="hljs-title">     i8042</span>
+ 14:       3597<span class="hljs-title">   IO-APIC-edge</span> <span class="hljs-title">     ata_piix</span>
+ 15:          0<span class="hljs-title">   IO-APIC-edge</span> <span class="hljs-title">     ata_piix</span>
+ 19:        172<span class="hljs-title">   IO-APIC-fasteoi</span> <span class="hljs-title">  eth0</span>
+ 21:         24<span class="hljs-title">   IO-APIC-fasteoi</span> <span class="hljs-title">  snd_intel8x0</span>
+NMI:          0<span class="hljs-title">   Non-maskable</span> interrupts<span class="hljs-title">
+LOC:</span>      31838<span class="hljs-title">   Local</span> timer<span class="hljs-title"> interrupts</span>
+SPU:          0<span class="hljs-title">   Spurious</span> interrupts<span class="hljs-title">
+PMI:</span>          0<span class="hljs-title">   Performance</span> monitoring<span class="hljs-title"> interrupts</span>
+IWI:       1879<span class="hljs-title">   IRQ</span> work<span class="hljs-title"> interrupts</span>
+RTR:          0<span class="hljs-title">   APIC</span> ICR<span class="hljs-title"> read</span> retries<span class="hljs-title">
+RES:</span>          0<span class="hljs-title">   Rescheduling</span> interrupts<span class="hljs-title">
+CAL:</span>          0<span class="hljs-title">   Function</span> call<span class="hljs-title"> interrupts</span>
+TLB:          0<span class="hljs-title">   TLB</span> shootdowns<span class="hljs-title">
+TRM:</span>          0<span class="hljs-title">   Thermal</span> event<span class="hljs-title"> interrupts</span>
+THR:          0<span class="hljs-title">   Threshold</span> APIC<span class="hljs-title"> interrupts</span>
+DFR:          0<span class="hljs-title">   Deferred</span> Error<span class="hljs-title"> APIC</span> interrupts<span class="hljs-title">
+MCE:</span>          0<span class="hljs-title">   Machine</span> check<span class="hljs-title"> exceptions</span>
+MCP:          1<span class="hljs-title">   Machine</span> check<span class="hljs-title"> polls</span>
+ERR:          0<span class="hljs-title">
+MIS:</span>          0<span class="hljs-title">
+PIN:</span>          0<span class="hljs-title">   Posted-interrupt</span> notification<span class="hljs-title"> event</span>
+NPI:          0<span class="hljs-title">   Nested</span> posted-interrupt<span class="hljs-title"> event</span>
+PIW:          0<span class="hljs-title">   Posted-interrupt</span> wakeup<span class="hljs-title"> event</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="シグナル"></a><a href="#シグナル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>シグナル</h2>
+<ul>
+<li>Ctr + c を押して実行中のプロセスを止めることがあるが、この仕組を支えているもの</li>
+</ul>
+<table>
+<thead>
+<tr><th>表記</th><th>数値</th><th>意味</th></tr>
+</thead>
+<tbody>
+<tr><td>HUP</td><td>1</td><td>制御している端末／プロセスがハングアップした<br>端末は接続を切られる<br>デーモンは再起動</td></tr>
+<tr><td>INT</td><td>2</td><td>キーボードからの割り込み命令(［Ctrl］＋［C］キー)</td></tr>
+<tr><td>QUIT</td><td>3</td><td>キーボードからの中止命令（［Ctrl］＋［\］キー）</td></tr>
+<tr><td>TERM</td><td>15</td><td>プロセスの終了命令（デフォルト）</td></tr>
+<tr><td>KILL</td><td>9</td><td>プロセスの強制終了命令</td></tr>
+<tr><td>STOP</td><td>19</td><td>プロセスの停止命令（［Ctrl］＋［Z］キー）</td></tr>
+<tr><td>CONT</td><td>18</td><td>プロセスの再開命令</td></tr>
+</tbody>
+</table>
+<ul>
+<li>「SIGHUP」「SIGINT」のように“SIG”を付ける場合もある</li>
+</ul>
+<ul>
+<li><p>プロセス ID 100 のデーモンを再起動</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> sudo <span class="hljs-built_in">kill</span> -HUP 100</span>
+</code></pre></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#割り込み">割り込み</a></li><li><a href="#シグナル">シグナル</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
