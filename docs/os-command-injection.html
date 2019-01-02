@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>OS コマンドインジェクション · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 概要"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="OS コマンドインジェクション · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 概要"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">OS コマンドインジェクション</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="概要"></a><a href="#概要" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>概要</h2>
+<ul>
+<li>悪意のあるリクエストにより、ウェブアプリケーションが意図しない OS コマンドを実行してしまうことで、システムに不正にアクセスされてしまう脆弱性</li>
+<li>この脆弱性が悪用されてしまうとサーバ内のファイルが閲覧、改ざん、削除されたり、システムが不正に操作されたりしてしまう可能性がある</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="影響"></a><a href="#影響" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>影響</h2>
+<ul>
+<li>サーバ内のファイルが不正に操作される
+<ul>
+<li>個人情報や機密情報などが漏えいする可能性や、改ざん、消去されることで、ウェブページや設定ファイルが改ざんされたり、システムが停止したりするといった被害が発生する可能性がある</li>
+</ul></li>
+<li>不正にシステムを操作される
+<ul>
+<li>意図しない OS のシャットダウンが行われたり、ユーザの追加や変更が行われたりする可能性がある</li>
+</ul></li>
+<li>不正なプログラムがダウンロード、実行される
+<ul>
+<li>ウイルスやワーム、ボットに感染してしまったり、システムへ次回も不正に侵入が行えたりするようバックドアが設置されてしまう可能性がある</li>
+</ul></li>
+<li>他システムへの攻撃の踏み台にされる
+<ul>
+<li>他システムへの攻撃を行いサービス不能にしてしまったり、システム攻略のための調査に利用されたり、迷惑メールの送信を行うなど加害者となってしまう可能性がある</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="原理"></a><a href="#原理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>原理</h2>
+<ul>
+<li>ウェブアプリケーションがユーザからの攻撃リクエストをそのままの形(実行可能な形) でシェルに渡してしまうことで、シェルから OS にコマンド実行の命令が行われる</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="検査方法"></a><a href="#検査方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>検査方法</h2>
+<ul>
+<li><p>画面の入力パラメータに「&amp;/windows/system32/ping –n 21 127.0.0.1」を入れて、リクエスト送信</p>
+<ul>
+<li>処理に約20秒の遅延が発生した場合、脆弱性あり</li>
+</ul></li>
+<li><p>ブラウザのURL入力欄に表示されるGETリクエストの例</p>
+<pre><code class="hljs"><span class="hljs-symbol">http:</span><span class="hljs-comment">//example.com/test.php?oldname=example.txt&amp;newname=test.txt</span>
+</code></pre>
+<ul>
+<li>newname = を編集して newname=&amp; /windows/system32/ping –n 21 127.0.0.1 と編集して送信
+<ul>
+<li>脆弱性があれば、処理に遅延が発生</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="対策"></a><a href="#対策" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>対策</h2>
+<ul>
+<li>Web アプリケーションでの対策
+<ul>
+<li>シェルを起動できる言語機能の利用を避ける
+<ul>
+<li>PHP ふでファイル名を変更する場合場、 exec() の代わりに rename() を利用することで、シェルを使用せずにファイル名の変更が行える</li>
+</ul></li>
+<li>入力データに使用可能な文字種や書式などのルールを明確にする
+<ul>
+<li>ルールに沿ったでたーチェック</li>
+<li>ルールに沿わないのはエラーとして処理する
+<ul>
+<li>エスケープはしない</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>通信経路上での対策
+<ul>
+<li>WAF を利用して遮断する</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="脆弱性コードの発見と修正方法"></a><a href="#脆弱性コードの発見と修正方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>脆弱性コードの発見と修正方法</h2>
+<ul>
+<li><p>脆弱性がある箇所の発見方法</p>
+<ul>
+<li>シェル経由で OS コマンドを実行している箇所で、そのまま入力パラメータを文字列の連結により代入している場合に OS コマンド・インジェクションの脆弱性となる</li>
+</ul></li>
+<li><p>脆弱性があるコード</p>
+<pre><code class="hljs css languages- php"><span class="hljs-meta">&lt;?php</span>
+    define(<span class="hljs-string">'FILE_PATH'</span>, <span class="hljs-string">'/var/www/dt/tmpl/'</span>);
+    $pathAndOldname= FILE_PATH . basename($_GET[<span class="hljs-string">"oldname"</span>]);
+    $newname=$_GET[<span class="hljs-string">"newname"</span>];
+    <span class="hljs-comment">//脆弱なコード</span>
+    $result=exec(<span class="hljs-string">"rename "</span> . $pathAndOldname. <span class="hljs-string">" "</span> . $newname, $output);
+    <span class="hljs-keyword">echo</span> $output;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+<ul>
+<li>ファイルの変更処理に exec() で OS の rename コマンドを使っている例</li>
+</ul></li>
+<li><p>修正コード</p>
+<pre><code class="hljs css languages- php"><span class="hljs-meta">&lt;?php</span>
+    define(<span class="hljs-string">'FILE_PATH'</span>, <span class="hljs-string">'/var/www/dt/tmpl/'</span>);
+    $pathAndOldname= FILE_PATH . basename($_GET[<span class="hljs-string">"oldname"</span>]);
+    $pathAndNewname= FILE_PATH . basename($_GET[<span class="hljs-string">"newname"</span>]);
+    $result=rename($pathAndOldname,$pathAndNewname);
+    <span class="hljs-keyword">echo</span> $result;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+<ul>
+<li><p>シェル機能を呼び出せる関数(exec()等)は避け、同じ処理のできる別の関数を用いるようにする</p></li>
+<li><p>どうしてもシェル機能を呼び出せる関数を使う必要がある場合には、エスケープ処理を行なう</p>
+<pre><code class="hljs css languages- php"><span class="hljs-meta">&lt;?php</span>
+    define(<span class="hljs-string">'FILE_PATH'</span>, <span class="hljs-string">'/var/www/dt/tmpl/'</span>);
+    $pathAndOldname= FILE_PATH . basename($_GET[<span class="hljs-string">"oldname"</span>]);
+    $newname=$_GET[<span class="hljs-string">"newname"</span>];
+    $result=exec(<span class="hljs-string">"rename "</span> . escapeshellarg($pathAndOldname). <span class="hljs-string">" "</span> .
+            escapeshellarg($newname, $output));
+    <span class="hljs-keyword">echo</span> $output;
+<span class="hljs-meta">?&gt;</span>
+</code></pre></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#概要">概要</a></li><li><a href="#影響">影響</a></li><li><a href="#原理">原理</a></li><li><a href="#検査方法">検査方法</a></li><li><a href="#対策">対策</a></li><li><a href="#脆弱性コードの発見と修正方法">脆弱性コードの発見と修正方法</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

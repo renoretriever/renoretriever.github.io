@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Route 53 · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- Web ベースの DNS サービス"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Route 53 · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- Web ベースの DNS サービス"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Route 53</h1></header><article><div><span><ul>
+<li>Web ベースの DNS サービス</li>
+<li>SLA 100 %</li>
+<li>リージョンで提供されるのではなく、世界中に展開されているエッジロケーションで提供</li>
+<li>Anycast IP アドレスの仕組みを利用して、世界中のエッジロケーションの中でもっとも近いロケーションから応答を返す仕組み</li>
+</ul>
+<ul>
+<li>概念
+<ul>
+<li>Hosted Zone
+<ul>
+<li>管理される DNS レコードの集合</li>
+<li>ほかの DNS システムにおけるゾーンファイル</li>
+</ul></li>
+<li>Record Set
+<ul>
+<li>DNS レコード</li>
+</ul></li>
+<li>Routing Policy</li>
+<li>Set ID
+<ul>
+<li>Routing Policy を用いて複数の Record Set で同じ名前を設定する場合に、それぞれを一意に認識するために設定する ID</li>
+</ul></li>
+<li>ヘルスチェック
+<ul>
+<li>転送先ホストの状態をチェックするための設定</li>
+<li>HTTP/HTTPS/TCP</li>
+</ul></li>
+</ul></li>
+<li>Route 53 の基本操作</li>
+<li>Route 53 の利用停止</li>
+<li>VPC の内部 DNS としての利用</li>
+</ul>
+<ul>
+<li>制限
+<ul>
+<li>ホストゾーン
+<ul>
+<li>最大 500</li>
+</ul></li>
+<li>各ホストゾーンにつきリソースレコードセット
+<ul>
+<li>10000</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>ドメインとホストゾーン
+<ul>
+<li>ドメイン
+<ul>
+<li>一般的な DNS の概念</li>
+<li>ドメイン名は、容易に認識可能なインターネットリソース名で、数字でアドレスが割り当てられる</li>
+</ul></li>
+<li>ホストゾーン
+<ul>
+<li>Route 53 の概念</li>
+<li>ホストゾーンは、従来の DNS ゾーンファイルと類似し、シングルの親ドメイン名に属し、まとめて管理可能なレコードの集合を表す</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ドメインネームシステム-dns"></a><a href="#ドメインネームシステム-dns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ドメインネームシステム (DNS)</h4>
+<hr>
+<ul>
+<li><p>Route 53 はエニーキャストネットワークを使用</p>
+<ul>
+<li>エニーキャストは、お客様のエンドユーザーの DNS クエリが、任意のネットワーク状況下で最適化された Route 53 ロケーションから返信されるサポート</li>
+</ul></li>
+<li><p>管理可能なホストゾーン数</p>
+<ul>
+<li>Amazon Route 53 アカウント
+<ul>
+<li>ホストゾーンが最大 500</li>
+<li>各ホストゾーンに付きリソースレコードセットが 10,000</li>
+</ul></li>
+</ul></li>
+<li><p>レコードタイプ</p>
+<ul>
+<li>A（アドレスレコード）
+<ul>
+<li>ELB では使えない</li>
+</ul></li>
+<li>AAAA（IPv6 アドレスレコード）</li>
+<li>CNAME（正規名レコード）</li>
+<li>CAA (認証機関認可)</li>
+<li>MX (メール交換レコード)</li>
+<li>NAPTR (名前付け権限ポインタレコード)</li>
+<li>NS（ネームサーバーレコード）</li>
+<li>PTR（ポインターレコード）</li>
+<li>SOA（管理情報の始点レコード）</li>
+<li>SPF（センダー ポリシー フレームワーク）</li>
+<li>SRV（サービス ロケーター）</li>
+<li>TXT（テキストレコード）</li>
+<li>エイリアス
+<ul>
+<li>Route 53 固有の仮想レコード</li>
+<li>ホストゾーン内のリソースレコードセットを、ELB 、CloudFront ディストリビューション、Elastic Beanstalk 環境、またはウェブサイトとして設定されている S3 バケットにマッピングすること</li>
+<li>エイリアスレコードは CNAME レコードのように機能するので、DNS 名（example.com）を別の「ターゲット」DNS 名（elb1234.elb.amazonaws.com）にマッピングできる</li>
+<li>サブドメインでも利用可能</li>
+</ul></li>
+</ul></li>
+<li><p>ワイルドカードエントリをサポート</p></li>
+</ul>
+<ul>
+<li>DNS 設定の変更の全体適用
+<ul>
+<li>時間
+<ul>
+<li>通常の状況では 60 秒以内に DNS レコードへのアップデートを全世界の権威 DNS サーバーのネットワークに反映するよう設計</li>
+<li>API が INSYNC ステータスリストを返すと、変更が全世界に広まっていることを意味する</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="dns-ルーティングポリシー"></a><a href="#dns-ルーティングポリシー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DNS ルーティングポリシー</h4>
+<hr>
+<ul>
+<li>what
+<ul>
+<li>Route 53 が Record Set に対してどのようにルーティングを行なうか決定</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>Simple</p>
+<ul>
+<li>一般的な DNS と同じ挙動</li>
+</ul></li>
+<li><p>Weighted(重み付けラウンドロビン)</p>
+<ul>
+<li>転送先毎に重み付けを行い、その総和における指定された重みの時間割合で転送比率が決定</li>
+</ul></li>
+<li><p>Latency(レイテンシーベースルーティング)</p>
+<ul>
+<li>同じ名前が設定された複数のリージョンに配置された EC2 インスタンスのグローバル IP アドレスや ELB に対して、よりレイテンシーの小さくなるリージョンを選択してリクエストをルーティングしてくれる機能</li>
+</ul></li>
+<li><p>Failover(DNS フェイルオーバー)</p>
+<ul>
+<li>Primary に設定されたヘルスチェックに問題があると、Secondary に指定された転送先にルーティングされるようになる</li>
+</ul></li>
+<li><p>Geolocation(Geo Routing)</p>
+<ul>
+<li>レイテンシーベースルーティングがエンドポイントとのレイテンシーが小さくなるようにルーティングしていたのに対し、Geo Routing では、 DNS 問い合わせがあった場所に応じて転送先を変えることが可能</li>
+<li>ユーザーのリクエストに対して、ロケーションに依存する完全に適切なレスポンスを効率的に返すアプリケーションを構築することができるようになる
+<ul>
+<li>あるロケーションでは、S3から配信される静的なリソースを受け取り、別のロケーションでは、 EC2やElastic Beanstalkで実行しているアプリケーションからの動的なリソースをうけとるといった具合が可能</li>
+</ul></li>
+<li>3 つのレベルの地理的粒度（大陸、国、州）とグローバルレコードを用意
+<ul>
+<li>グローバルレコード
+<ul>
+<li>エンドユーザーの位置が作成したいずれの Geo DNS レコードにも一致しない場合に使用</li>
+</ul></li>
+<li>対象のエンドユーザーの場所について、Route 53 は最初に州レコードを返し、州レコードが見つからない場合、国レコードを返します。国レコードが見つからない場合は大陸レコードを返します。大陸レコードが見つからない場合はグローバルレコードを返します。</li>
+</ul></li>
+</ul></li>
+<li><p>レイテンシーベースルーティングと Geo DNS の違い</p>
+<ul>
+<li>Geo DNS
+<ul>
+<li>リクエストの地理的場所に基づくルーティングを決定</li>
+<li>コンプライアンス、ローカライズ要件、または特定の地域から特定のエンドポイント間の安定したルーティングを必要とするその他のユースケースがある場合、Geo DNS を使用することが推奨</li>
+</ul></li>
+<li>レイテンシーによるルーティング
+<ul>
+<li>ビューアネットワークと AWS データセンター間のレイテンシー計測を利用</li>
+<li>これらの計測は、どのエンドポイントがユーザーに最も近いかを判断するために使用</li>
+<li>レイテンシーを最小化することが目標である場合に利用</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="dns-トラフィックフロー"></a><a href="#dns-トラフィックフロー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DNS トラフィックフロー</h4>
+<hr>
+<ul>
+<li>what
+<ul>
+<li>グローバルトラフィック管理サービス</li>
+<li>世界中で複数のエンドポイントが実行され、レイテンシー、地理的場所、エンドポイントの状態に基づいてユーザーが最適なエンドポイントに接続されるため、エンドユーザーにとってアプリケーションのパフォーマンスと可用性を向上させることができます</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ヘルスチェック-dns-フェイルオーバー"></a><a href="#ヘルスチェック-dns-フェイルオーバー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ヘルスチェック &amp; DNS フェイルオーバー</h4>
+<hr>
+<ul>
+<li><p>DNS フェイルオーバー</p>
+<ul>
+<li>ヘルスチェックとフェイルオーバー 2 つの要素で構成
+<ul>
+<li>ヘルスチェック
+<ul>
+<li>自動化されたリクエストであり、インターネットを介してお客様のアプリケーションに送信</li>
+<li>この目的は、アプリケーションが到達可能で、使用可能で、機能していることを確認すること</li>
+<li>HTTP/HTTPS, TCP サポート</li>
+</ul></li>
+<li>DNS フェイルオーバー
+<ul>
+<li>お客様のアプリケーションの中に正常に動作していない部分がある場合は、その部分へのエンドユーザーからのアクセスは別の場所にルーティングされまる</li>
+</ul></li>
+</ul></li>
+<li>サポート
+<ul>
+<li>ELB エンドポイントをサポート</li>
+</ul></li>
+</ul></li>
+<li><p>Route 53 のヘルスチェックは HTTP の 3xx コードを成功応答と見なすので、リダイレクトにしたがいません。</p></li>
+</ul>
+<ul>
+<li><p>DNS フェイルオーバーを使用するときは、TTL を 60 秒以下にすることをお勧め</p>
+<ul>
+<li>これは、障害状態のエンドポイントへのトラフィックルーティングを停止するのに要する時間を最小化するため</li>
+<li>ELB および S3 ウェブサイトエンドポイントの DNS フェイルオーバーを設定するには、固定 TTL が 60 秒のエイリアスレコードを使用する必要がある
+<ul>
+<li>これらのエンドポイントタイプについては、DNS フェイルオーバーを使用するための TTL の調整は必要ない</li>
+</ul></li>
+</ul></li>
+<li><p>すべてのエンドポイントが障害状態である場合は、Route 53 はすべてのヘルスチェックが合格であるものとして動作</p></li>
+<li><p>HTTPS ヘルスチェックは Server Name Indication（SNI）をサポート</p></li>
+<li><p>Route 53 のヘルスチェックを使用して、サーバー応答の中に指定の文字列があるかどうかを調べることができる</p></li>
+<li><p>CPU 負荷、ネットワーク、メモリなどの内部ヘルスメトリクスに基づいて DNS フェイルオーバーを設定できる</p>
+<ul>
+<li>Amazon CloudWatch で利用可能な任意のメトリクスに基づいて DNS フェイルオーバーを実行</li>
+</ul></li>
+</ul>
+<ul>
+<li>ドメイン名をヘルスチェック対象として指定した場合、Route 53 は IPv4 アドレスを検索し、IPv4 を使用してエンドポイントに接続</li>
+</ul>
+<ul>
+<li>DDoS 対策
+<ul>
+<li>シャッフルシャーディング
+<ul>
+<li>データの水平パーティションが異なるデータベースサーバー間で分散され、それにより負荷が分散されるとともに冗長性が提供</li>
+<li>Route 53 はシャッフルシャーディングを使用して数多くのエンドポイントに DNS リクエストを分散させ、アプリケーションの複数のパスとルートを提供</li>
+</ul></li>
+<li>Anycast ルーティング
+<ul>
+<li>複数の PoP から同じ IP アドレスをアドバタイズすることで冗長性を高めます</li>
+<li>DDoS 攻撃が 1 つのエンドポイントを攻略した場合、シャッフルシャーディングによって障害が分離され、インフラストラクチャに追加のルートが提供</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>Roadworker</p>
+<ul>
+<li>Route53 のレコードをコード管理できるツール</li>
+</ul></li>
+<li><p>cli53</p>
+<ul>
+<li>Route 53 向けのコマンドラインツール</li>
+<li><a href="https://github.com/barnybug/cli53">cli53</a></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

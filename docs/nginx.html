@@ -1,0 +1,603 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>nginx · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- HTTP サーバ"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="nginx · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- HTTP サーバ"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">nginx</h1></header><article><div><span><ul>
+<li><p>HTTP サーバ</p>
+<ul>
+<li><a href="apache">Apache HTTP Server</a></li>
+<li><a href="varnish">Varnish Cache</a></li>
+</ul></li>
+<li><p>特徴</p>
+<ul>
+<li>C10K 問題を解消</li>
+<li>イベント駆動</li>
+<li>I/O Multiplexing</li>
+<li>ノンブロッキング I/O</li>
+<li>非同期 I/O</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="アーキテクチャ"></a><a href="#アーキテクチャ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>アーキテクチャ</h2>
+<ul>
+<li>イベント駆動
+<ul>
+<li>何らかのイベントが発生するまで待機し、発生したイベントの種類に応じて定められた手順を実行</li>
+<li>システムコール
+<ul>
+<li>epoll</li>
+<li>inotify</li>
+<li>sigaction</li>
+</ul></li>
+<li>ライブラリ
+<ul>
+<li>libevent</li>
+<li>libuv</li>
+</ul></li>
+<li>Web サーバのように同時に複数の処理を行うシステムでは、ディスクやネットワークといった I/O の多重化が必要
+<ul>
+<li>I/O 多重化を実装する select / poll といったシステムコールが利用される
+<ul>
+<li>プログラムがアクセスするファイルやネットワークソケットなどのファイルディスクリプタを 1 つ 1 つチェックするため、チェックするディスクリプタが増えると処理も増える</li>
+<li>O(n)</li>
+</ul></li>
+<li><code>epoll</code> はディスクリプタの状態がカーネル内で管理されるため、プログラムはディスクリプタを 1 つ 1 つチェックする必要が無くなる
+<ul>
+<li>O(1)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>I/O Multiplexing</p>
+<ul>
+<li>複数のファイルディスクリプタを監視し、それらのうちどれかが入出力可能になるまでプログラムを待機させる手法</li>
+<li>これにより複数のクライアントのディスクリプタとの入出力を並行して行うことができる</li>
+</ul></li>
+<li><p>ノンブロッキング I/O</p>
+<ul>
+<li>I/O 関連のシステムコールによってプログラムがブロックされる見込みの場合やまだ処理できるデータがない場合にエラーを返し、適切な errno がセット</li>
+<li>すぐに処理できないディスクリプタとの入出力処理は中断して別のディスクリプタとの入出力処理に移ることでプログラムの並行性を高めることができる</li>
+</ul></li>
+</ul>
+<ul>
+<li>非同期 I/O
+<ul>
+<li>入出力処理が開始されてもプログラムをブロックせず、入出力処理とそれ以外の処理を並行して実行するための仕組み</li>
+</ul></li>
+</ul>
+<ul>
+<li>動的コンテンツ
+<ul>
+<li>動的コンテンツは <a href="ssi">SSI(Server Side Include)</a> 以外は扱えない</li>
+<li>nginx とは別プロセスでアプリケーションプログラムを可動させる必要がある
+<ul>
+<li><a href="fastcgi">FastCGI</a></li>
+<li><a href="uwsgi">uWSGI</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="動作モデル"></a><a href="#動作モデル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>動作モデル</h2>
+<ul>
+<li>マルチプロセス構成
+<ul>
+<li>マスタープロセス
+<ul>
+<li>ワーカープロセスの制御と管理</li>
+<li>ワーカープロセスの PID を保持しているので設定ファイルの再読込などはマスタープロセスに対してシグナルを通して命令するだけで nginx 全体のプロセスを制御できる</li>
+</ul></li>
+<li>ワーカープロセス
+<ul>
+<li>クライアントからの接続要求にはじまる一連の処理をイベント駆動で実行</li>
+<li>シングルスレッドで動作</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="install"></a><a href="#install" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Install</h2>
+<ul>
+<li><p><a href="https://www.nginx.com/resources/wiki/start/topics/tutorials/install/">Install</a></p>
+<ul>
+<li><p>設定ファイル準備(/etc/yum.repos.d/nginx.repo)</p>
+<pre><code class="hljs"><span class="hljs-section">[nginx]</span>
+<span class="hljs-attr">name</span>=nginx repo
+<span class="hljs-attr">baseurl</span>=http://nginx.org/packages/centos/<span class="hljs-variable">$releasever</span>/<span class="hljs-variable">$basearch</span>/
+<span class="hljs-attr">gpgcheck</span>=<span class="hljs-number">0</span>
+<span class="hljs-attr">enabled</span>=<span class="hljs-number">1</span>
+</code></pre></li>
+<li><p>install</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum install nginx</span>
+</code></pre></li>
+</ul></li>
+<li><p>conf チェック</p>
+<pre><code class="hljs"># nginx -t
+nginx: the configuration <span class="hljs-keyword">file</span> /etc/nginx/nginx.<span class="hljs-keyword">conf</span> <span class="hljs-keyword">syntax</span> <span class="hljs-keyword">is</span> ok
+nginx: configuration <span class="hljs-keyword">file</span> /etc/nginx/nginx.<span class="hljs-keyword">conf</span> test <span class="hljs-keyword">is</span> successful
+</code></pre>
+<ul>
+<li><p>設定ファイルが別のデフォルト以外にある場合</p>
+<pre><code class="hljs"># nginx -<span class="hljs-keyword">c</span> /path/<span class="hljs-keyword">to</span>/nginx.conf
+</code></pre></li>
+</ul></li>
+<li><p>起動</p>
+<pre><code class="hljs"><span class="hljs-comment"># cat /etc/redhat-release</span>
+CentOS Linux release 7.6.1810 (Core)
+<span class="hljs-comment"># systemctl start nginx</span>
+<span class="hljs-comment"># ps auxfww | grep [n]ginx</span>
+root     <span class="hljs-number"> 3777 </span> 0.0  0.1 <span class="hljs-number"> 46320 </span> <span class="hljs-number"> 968 </span>?        Ss   15:57   0:00 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf
+nginx    <span class="hljs-number"> 3778 </span> 0.0  0.3 <span class="hljs-number"> 46720 </span><span class="hljs-number"> 1928 </span>?        S    15:57   0:00  \_ nginx: worker process
+</code></pre>
+<ul>
+<li><code>reload</code> は現在処理中のリクエストは中断しない</li>
+</ul></li>
+</ul>
+<ul>
+<li>バージョン
+<ul>
+<li>stable 版
+<ul>
+<li>API 非互換はありえない</li>
+<li>高いバグ修正のみ取り込まれる</li>
+</ul></li>
+<li>mainline 版
+<ul>
+<li>新機能やバグフィックスが最初に取り込まれる</li>
+<li>API 非互換がありえる</li>
+<li>通常はこちらを利用する</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="基本設定"></a><a href="#基本設定" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基本設定</h2>
+<ul>
+<li>main ディレクティブ</li>
+<li>events ディレクティブ</li>
+<li>http ディレクティブ</li>
+<li>server ディレクティブ</li>
+<li><a href="nginx-location">location</a> ディレクティブ</li>
+</ul>
+<ul>
+<li><p>url に応じてバックエンドサーバの振り分けを変更する</p>
+<pre><code class="hljs"><span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span>       <span class="hljs-number">80</span> default_server;
+    <span class="hljs-attribute">listen</span>       [::]:<span class="hljs-number">80</span> default_server;
+    <span class="hljs-attribute">server_name</span>  _;
+    <span class="hljs-attribute">root</span>         /usr/share/nginx/html;
+
+    <span class="hljs-comment"># Load configuration files for the default server block.</span>
+    <span class="hljs-attribute">include</span> /etc/nginx/default.d/<span class="hljs-regexp">*.conf</span>;
+
+    <span class="hljs-attribute">location</span> /team01 {
+        <span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^/(.+)</span> <span class="hljs-variable">$1</span> <span class="hljs-literal">break</span>;
+        <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:3001/<span class="hljs-variable">$1</span>;
+    }
+    <span class="hljs-attribute">location</span> /team02 {
+        <span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^/(.+)</span> <span class="hljs-variable">$1</span> <span class="hljs-literal">break</span>;
+        <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:3002/<span class="hljs-variable">$1</span>;
+    }
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="リバースプロキシ"></a><a href="#リバースプロキシ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>リバースプロキシ</h2>
+<ul>
+<li><p>nginx を経由してバックエンド( Apache 等)が処理</p></li>
+<li><p>注意</p>
+<ul>
+<li>Apache のアクセスログを見るとアクセス元が 127.0.0.1 になっている
+<ul>
+<li>mod_rpaf の導入</li>
+<li>nginx の設定に X-Real-IP を HTTP ヘッダに追加する設定が必要
+<ul>
+<li>mod_rpaf はプロキシサーバーが追加した X-Real-IP ヘッダをアクセス元として扱うモジュール</li>
+</ul></li>
+<li>mod_rpaf は 127.0.0.1 からのアクセスだけに対して処理をするのでもし、リバースプロキシが他のホストにあるのであれば /etc/apache2/mods-enabled/rpaf.conf の RPAFproxy_ips をリバースプロキシサーバーのIPアドレスに変更する</li>
+</ul></li>
+</ul></li>
+<li><p>リバースプロキシ設定 1</p>
+<pre><code class="hljs">server {
+    location / {
+
+        <span class="hljs-string">//</span> リクエストボディのバッファリングに関する設定
+        client_max_body_size 8m;
+        client_body_buffer_size 16k;
+        client_body_temp_path <span class="hljs-string">/dev/shm/nginx_client_body_temp</span>;
+
+        <span class="hljs-string">//</span> アップストリームサーバからのレスポンスのバッファリングに関する設定
+        proxy_buffering on;
+        proxy_buffer_size 8k;
+        proxy_buffers 64 8k;
+        proxy_max_temp_file_size 1024m;
+        proxy_temp_path <span class="hljs-string">/dev/shm/nginx_client_body_temp</span>;
+
+        <span class="hljs-string">//</span> タイムアウトに関する設定
+        proxy_<span class="hljs-keyword">connect</span>_timeout 5s;
+        proxy_send_timeout 10s;
+        proxy_read_timeout 10s;
+
+        <span class="hljs-string">//</span> アップストリームへ
+        proxy_pass http:<span class="hljs-string">//172.17.0.3</span>;
+        <span class="hljs-string">//</span> ソケット経由
+        <span class="hljs-string">//</span> proxy_pass http:<span class="hljs-string">//unix</span>:<span class="hljs-string">/var/run/nginx.sock</span>:<span class="hljs-string">/api/</span>;
+    }
+}
+</code></pre></li>
+</ul>
+<ul>
+<li><p>リバースプロキシ設定 2</p>
+<pre><code class="hljs"><span class="hljs-attribute">upstream</span> backend {
+    <span class="hljs-attribute">server</span> <span class="hljs-number">127.0.0.1:8080</span>;
+}
+ 
+
+<span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span>   <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> _;
+    <span class="hljs-attribute">location</span> / {
+        <span class="hljs-attribute">proxy_redirect</span>                          <span class="hljs-literal">off</span>;
+        <span class="hljs-attribute">proxy_set_header</span> Host                   <span class="hljs-variable">$host</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Real-IP              <span class="hljs-variable">$remote_addr</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Host       <span class="hljs-variable">$host</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Server     <span class="hljs-variable">$host</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For        <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;
+        <span class="hljs-attribute">proxy_pass</span> http://backend;
+    }
+}
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="apache-httpd-からの乗り換えポイント"></a><a href="#apache-httpd-からの乗り換えポイント" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Apache HTTPD からの乗り換えポイント</h2>
+<h3><a class="anchor" aria-hidden="true" id="乗り換え時のポイント"></a><a href="#乗り換え時のポイント" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>乗り換え時のポイント</h3>
+<h4><a class="anchor" aria-hidden="true" id="動的機能の対応"></a><a href="#動的機能の対応" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>動的機能の対応</h4>
+<ul>
+<li>CGI や PHP などの動的機能の利用を考える
+<ul>
+<li>nginx をリバースプロキシとして利用し、バックエンドのサーバ(upstream ディレクティブ指定) に動的機能を任せる形</li>
+<li>FastCGI や Apache(mod_php) を併用</li>
+</ul></li>
+<li>SSI は対応しているがすべての SSI コマンドには対応していない
+<ul>
+<li><a href="http://nginx.org/en/docs/http/ngx_http_ssi_module.html">ngx_http_ssi_module</a></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="コンテンツのストレージ"></a><a href="#コンテンツのストレージ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテンツのストレージ</h4>
+<ul>
+<li><p>コンテンツキャッシュ機能において、キャッシュのストレージはディスクのみ</p>
+<ul>
+<li>Apache 2.4 で言う mod_cache_disk のみが可能</li>
+</ul></li>
+<li><p>tmpfs</p>
+<ul>
+<li>キャッシュをオンメモリで処理したい場合には、キャッシュの保存場所を tmpfs にする</li>
+<li>CentOS 7
+<ul>
+<li>/dev/shm</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="allow-deny-でホスト名の指定"></a><a href="#allow-deny-でホスト名の指定" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>allow, deny でホスト名の指定</h4>
+<ul>
+<li>nginx の allow ディレクティブや deny ディレクティブには、ホスト名での指定ができない</li>
+<li>どうしてもホスト名での指定が必要な場合には、ngx_http_rdns_module などのサードパーティモジュールを検討してみる</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="コンテンツレベルでの設定上書き"></a><a href="#コンテンツレベルでの設定上書き" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテンツレベルでの設定上書き</h4>
+<ul>
+<li>nginx では .htaccess が無いので、サーバ管理者の作業(nginx の reload 等) が必要</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ログフォーマットの互換性"></a><a href="#ログフォーマットの互換性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ログフォーマットの互換性</h4>
+<ul>
+<li>log_format ディレクティブで任意に設定できるため、Apache と揃えることが可能</li>
+<li>%D (応答時間) の単位に注意
+<ul>
+<li>nginx($request_time) の単位はミリ秒</li>
+<li>Apache($D) はマイクロ秒</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="cpu-メモリなどのリソース-キャパシティ"></a><a href="#cpu-メモリなどのリソース-キャパシティ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CPU・メモリなどのリソース、キャパシティ</h4>
+<ul>
+<li><p>静的コンテンツ配信のサーバを Apache から nginx に変更すると、nginx のイベントドリブン実装が影響し、CPU 利用率、メモリ使用量は少なくなる</p></li>
+<li><p>メモリ使用量
+<img src="nginx_memory.png" alt="nginx_memory"></p>
+<ul>
+<li>nginx と Apache で 100 並列アクセス(keepalive 接続)した状態のメモリ使用量を確認</li>
+<li>nginx の優位性</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="設定ファイルのコンバート"></a><a href="#設定ファイルのコンバート" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>設定ファイルのコンバート</h3>
+<h4><a class="anchor" aria-hidden="true" id="ssl-中間証明書の設定方法"></a><a href="#ssl-中間証明書の設定方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SSL 中間証明書の設定方法</h4>
+<ul>
+<li>Apache は SSLCertificateChainFile ディレクティブで中間証明書の指定を行なうが、 nginx にはない
+<ul>
+<li>nginx では SSL 証明書の下部に中間証明書を追記する</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="apache-設定ファイルの秘匿"></a><a href="#apache-設定ファイルの秘匿" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Apache 設定ファイルの秘匿</h4>
+<ul>
+<li><p>nginx に移行した際に、.ht〜 ファイル(.htaccess や .htpasswd) が外部から意図せずアクセスできる状態にならないように設定を入れる</p>
+<pre><code class="hljs"><span class="hljs-keyword">location</span> <span class="hljs-title">~* \.ht</span>.*$ {
+    <span class="hljs-keyword">deny</span> all;
+}
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="mod-rewrite-の書き換え"></a><a href="#mod-rewrite-の書き換え" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>mod_rewrite の書き換え</h4>
+<ul>
+<li>mod_rewrite の移植が難しい</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="設定ファイル以外の変更"></a><a href="#設定ファイル以外の変更" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>設定ファイル以外の変更</h3>
+<h4><a class="anchor" aria-hidden="true" id="ログローテーション"></a><a href="#ログローテーション" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ログローテーション</h4>
+<ul>
+<li>Apache で rotatelogs プログラムを使っている場合は、ログローテーションのための外部設定は必要ないけど、nginx にはない</li>
+<li>rpm でインストールすると logrotate の設定が <code>/etc/logrotate.d/nginx</code> に入る</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="security"></a><a href="#security" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Security</h2>
+<ul>
+<li><p>クライアントの IP アドレスでアクセスを制限する</p>
+<pre><code class="hljs">location / {
+    # <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span> からのアクセスを拒否
+    deny <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>;
+
+    # サブネット単にでの拒否
+    deny <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span> ;
+
+    # 特定の IP アドレスを許可
+    allow <span class="hljs-number">192.168</span><span class="hljs-number">.3</span><span class="hljs-number">.1</span>;
+
+    # サブネット単位で許可
+    allow <span class="hljs-number">192.168</span><span class="hljs-number">.4</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>;
+
+    # 他はすべて拒否
+    deny all;
+}
+</code></pre>
+<ul>
+<li><p>複数の IP を 1 行で指定することは不可</p></li>
+<li><p>最初に deny all; を指定してしまうと 2 行目の allow 以降は評価されない</p>
+<pre><code class="hljs"><span class="hljs-keyword">location</span> <span class="hljs-title">/ {
+    deny</span> all;
+    allow <span class="hljs-number">192.168</span>.<span class="hljs-number">3.1</span>;
+    ...
+}
+</code></pre></li>
+<li><p>ホスト名やドメイン名を指定することは不可</p></li>
+</ul></li>
+<li><p>ユーザエージェントタイプでアクセスを制限する</p>
+<ul>
+<li>★</li>
+</ul></li>
+<li><p>HTTP メソッドを制限する</p>
+<ul>
+<li><p>GET と HEAD と POST に限定してみる。それ以外は 444 を返して、クライアントには応答せず、コネクションを閉じる</p>
+<pre><code class="hljs"><span class="hljs-keyword">if</span> ($request_method !~ ^(GET<span class="hljs-params">|HEAD|</span>POST)$) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">444</span>;
+}
+</code></pre></li>
+</ul></li>
+<li><p>ユーザ認証を設定</p>
+<ul>
+<li><p>server ディレクティブのコンテキストで指定するとバーチャルサーバ単位で設定可能</p></li>
+<li><p>http ディレクティブのコンテキストでは Nginx 単位でユーザ認証を実施できるようになる</p></li>
+<li><p>auth_basic ディレクティブを off に指定すると、Basic 認証方式のアクセス制限を無効にする</p></li>
+<li><p>サンプル</p>
+<pre><code class="hljs"><span class="hljs-keyword">location</span> <span class="hljs-title">/ {
+    auth_basic</span> <span class="hljs-string">"Restricted"</span>;
+    auth_basic_user_file /etc/nginx/passwd;
+}
+</code></pre></li>
+<li><p>バーチャルサーバ単位でユーザ認証を有効にしつつ、特定のディレクトリだけユーザ認証を行わないようにする</p>
+<pre><code class="hljs">server {
+    ...
+    auth_basic <span class="hljs-string">"closed website"</span><span class="hljs-comment">;</span>
+    auth_basic_user_file /etc/nginx/passwd<span class="hljs-comment">;</span>
+
+    location /public/ {
+        auth_basic off<span class="hljs-comment">;</span>
+    }
+}
+</code></pre></li>
+</ul></li>
+<li><p>複数のアクセス制限を組み合わせる</p></li>
+<li><p>ホットリンク(直リンク) を禁止する</p></li>
+<li><p>X-Frame-Options ヘッダ対策</p></li>
+<li><p>X-Content-Type-Options ヘッダ対策</p>
+<ul>
+<li><a href="x-content-type-options">X-Content-Type-Options</a></li>
+</ul></li>
+<li><p>X-XSS-Protection ヘッダ対策</p></li>
+<li><p>Content-Security-Policy ヘッダ対策</p></li>
+<li><p>不要なモジュールの見直し</p></li>
+<li><p>バージョン情報を隠蔽</p>
+<pre><code class="hljs"><span class="hljs-attribute">server_tokens</span>
+</code></pre></li>
+<li><p>DoS / DDoS 攻撃によるメモリ枯渇に備える</p>
+<ul>
+<li>client_body_buffer_size</li>
+<li>client_header_buffer_size</li>
+<li>client_max_body_size</li>
+<li>large_client_header_buffers</li>
+</ul></li>
+<li><p>ModSecurity</p></li>
+<li><p>CRS(ModSecurity Core Rule Set)</p></li>
+<li><p>iptables でパケットフィルタリング</p>
+<ul>
+<li><a href="iptables#セキュリティ">iptables</a></li>
+</ul></li>
+<li><p>SELinux を利用する</p></li>
+<li><p>SYN flood 攻撃対策</p>
+<ul>
+<li><p>無効</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> sysctl -w net.ipv4.tcp_syncookies=0</span>
+</code></pre></li>
+</ul></li>
+<li><p>ブロードキャスト ping に応えない(Smurf 攻撃対策)</p>
+<ul>
+<li><p>応えない</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=1</span>
+</code></pre></li>
+</ul></li>
+<li><p>RFC 1337 に準拠させる</p>
+<ul>
+<li><p>準拠させると TIME_WAIT 状態の時に RST を受信した場合、TIME_WAIT 期間の終了を待たずにそのコネクションをクローズできるようになりたい</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> sysctl -w net.ipv4.tcp_rfc1337=1</span>
+</code></pre></li>
+</ul></li>
+<li><p>TIME-WAIT ソケットを高速にリサイクルする</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> sysctl -w net.ipv4.tcp_tw_recycle=1</span>
+</code></pre>
+<ul>
+<li>TIME_WAIT 状態のコネクションを再利用すると、TIME_WAIT 状態を管理するためのキャッシュがオーバーフローするのを防ぎ、TIME_WAIT 状態のコネクションを減らすことができる</li>
+</ul></li>
+<li><p>DoS 対策攻撃</p>
+<ul>
+<li>TIME_WAIT 状態のコネクションが大量に残るような場合、最終 FIN パケットを待つ時間を短くすることで解消することができる</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> sysctl -w net.ipv4.tcp_fin_timeout=15</span>
+</code></pre></li>
+<li><p>Ping of Death(PoD) 攻撃対策</p>
+<ul>
+<li><a href="pod">Pod</a></li>
+</ul></li>
+<li><p>ICMP リダイレクトパケットを拒否する</p>
+<ul>
+<li>ICMP リダイレクトパケットを送信することで、ルーティング情報を変更することができるようになる</li>
+<li>不正な ICMP リダイレクトパケットによりネットワーク経路を強制的に変更され、パケットの盗聴や改ざんされると言った危険にさらされる可能性がある</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> sysctl -w net.ipv4.conf.*.accept_redirects=0</span>
+</code></pre>
+<ul>
+<li>設定は全ネットワークインタフェースに対して行なう必要がある</li>
+<li>起動時には次のようなシェルスクリプトを実行し有効化する
+<ul>
+<li><a href="sysctl_accept_redirects">sysctl_accept_redirects</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>IP スプーフィング攻撃対策</p>
+<ul>
+<li><p>送信元ホストの IP アドレスを偽装したパケットによる攻撃</p></li>
+<li><p>対策としては、Linux で送信元ホストの IP アドレスが正しいかどうかを確認するようにする</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> sysctl -w net.ipv4.conf.*.rp_filter=1</span>
+</code></pre>
+<ul>
+<li>設定は全ネットワークインタフェースに対して行なう必要がある</li>
+<li>起動時には次のようなシェルスクリプトを実行し有効化する
+<ul>
+<li><a href="sysctl_rp_filter">sysctl_rp_filter</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>ソースルーティングされたパケットを拒否</p>
+<ul>
+<li><p>ソースルーティングを使うと、中継ルータを指定することができる</p></li>
+<li><p>これを悪用すると、送信元の IP アドレスを詐称して送信先ホストと IP 通信を行なうことが可能になる</p></li>
+<li><p>SSR オプションがついたパケットを拒否することで、ソースルーティングされたパケット無効化できる</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> sysctl -w net.ipv4.conf.*.accept_source_route=0</span>
+</code></pre>
+<ul>
+<li>設定は全ネットワークインタフェースに対して行なう必要がある</li>
+<li>起動時には次のようなシェルスクリプトを実行し有効化する
+<ul>
+<li><a href="sysctl_accept_source_route">sysctl_accept_source_route</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>HTTPS を強制する</p>
+<ul>
+<li><a href="hsts">HSTS</a></li>
+</ul></li>
+<li><p>DH パラメーターを強固にする</p></li>
+<li><p>暗号化プロトコルの設定</p>
+<ol>
+<li>使用する TLS/SSL のバージョンを限定する
+<ul>
+<li>SSLv2, SSLv3 を使用しない</li>
+<li>使用されているかどうかは curl コマンドで確認できる
+<ul>
+<li><a href="curl">curl</a></li>
+</ul></li>
+</ul></li>
+<li>使用する暗号化スイートを限定する</li>
+<li>サーバ側が指定した暗号スイートを優先する</li>
+</ol></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="cacti"></a><a href="#cacti" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cacti</h2>
+<ul>
+<li><p>pecrona 使用</p></li>
+<li><p>下記を追加(/etc/nginx/default.conf)</p>
+<pre><code class="hljs"><span class="hljs-attribute">location</span> /server-status {
+    <span class="hljs-attribute">stub_status</span> <span class="hljs-literal">on</span>;
+    <span class="hljs-attribute">access_log</span> <span class="hljs-literal">off</span>;
+    <span class="hljs-attribute">allow</span> <span class="hljs-number">127.0.0.1</span>;
+    <span class="hljs-attribute">deny</span> all;
+}
+</code></pre></li>
+<li><p>local から接続確認</p>
+<pre><code class="hljs"><span class="hljs-comment"># curl localhost/server-status</span>
+Active connections: 1 <span class="hljs-built_in">
+server </span>accepts handled requests
+1019 1019 1112 
+Reading: 0 Writing: 1 Waiting: 0
+</code></pre>
+<table>
+<thead>
+<tr><th>item</th><th>content</th></tr>
+</thead>
+<tbody>
+<tr><td>Active connections</td><td>現在の接続数</td></tr>
+<tr><td>server accepts handled requests</td><td>接続数<br>ハンドラ数<br>1 リクエスト当たりのハンドラ数</td></tr>
+<tr><td>Reading</td><td>リスクエストヘッダ読み取り数</td></tr>
+<tr><td>Writing</td><td>リクエストに応じた応答数</td></tr>
+<tr><td>Waiting</td><td>キープアライブ数<br>active - (reading + writing)</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="stream"></a><a href="#stream" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Stream</h2>
+<ul>
+<li>任意のポートで TCP 接続を待ち受けることができる</li>
+<li><a href="http://nginx.org/en/docs/stream/ngx_stream_core_module.html">ngx_stream_core_module</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li><p>設定ファイルをいい感じに出力してくれる</p>
+<ul>
+<li><a href="https://nginxconfig.io/">nginxconfig</a></li>
+</ul></li>
+<li><p><a href="https://github.com/yandex/gixy">gixy</a></p>
+<ul>
+<li>設定フィアルの改善提案ツール</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="パフォーマンス"></a><a href="#パフォーマンス" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>パフォーマンス</h3>
+<ul>
+<li><p>ファイルオープン</p>
+<ul>
+<li>worker_rlimit_nofile
+<ul>
+<li>1 プロセスで同時にオープン可能なファイルディスクリプタの数を指定</li>
+</ul></li>
+<li>open_file_cache
+<ul>
+<li>一度オープンしたファイルを一定期間保存</li>
+<li><code>open_file_cache max=1000 inactive=60s</code>
+<ul>
+<li>キャッシュは最大 1000 登録でき、キャッシュに最後にアクセスがあってから 60 秒間有効</li>
+</ul></li>
+</ul></li>
+<li>open_file_cache_errors
+<ul>
+<li>オープンしたファイルのエラー情報のキャッシュ設定</li>
+</ul></li>
+</ul></li>
+<li><p>CPU</p>
+<ul>
+<li>worker_cpu_affinity
+<ul>
+<li>各ワーカープロセスを特定の CPU コアに割り当てることができる</li>
+<li>CPU の割り当ては各プロセスをどの CPU コアに割り当てるか 2 進数のビットマスクで指定</li>
+<li><code>worker_cpu_affinity 0001 0010 0100 1000;</code>
+<ul>
+<li>4 コアに対して 4 つのワーカープロセスがそれぞれ 1 つずつ CPU コアを使用</li>
+</ul></li>
+<li>あんまり使用しない</li>
+</ul></li>
+<li>worker_priotiry</li>
+</ul></li>
+</ul>
+<ul>
+<li>open_file_cache_valid</li>
+<li>open_file_cache_min_uses</li>
+<li>open_file_cache_errors</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#アーキテクチャ">アーキテクチャ</a></li><li><a href="#動作モデル">動作モデル</a></li><li><a href="#install">Install</a></li><li><a href="#基本設定">基本設定</a></li><li><a href="#リバースプロキシ">リバースプロキシ</a></li><li><a href="#apache-httpd-からの乗り換えポイント">Apache HTTPD からの乗り換えポイント</a><ul class="toc-headings"><li><a href="#乗り換え時のポイント">乗り換え時のポイント</a></li><li><a href="#設定ファイルのコンバート">設定ファイルのコンバート</a></li><li><a href="#設定ファイル以外の変更">設定ファイル以外の変更</a></li></ul></li><li><a href="#security">Security</a></li><li><a href="#cacti">Cacti</a></li><li><a href="#stream">Stream</a></li><li><a href="#references">References</a><ul class="toc-headings"><li><a href="#パフォーマンス">パフォーマンス</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

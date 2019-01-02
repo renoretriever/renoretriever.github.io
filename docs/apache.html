@@ -4,5 +4,91 @@
 <li>実際に HTTP リクエストを処理しているエンティティ</li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h2><a class="anchor" aria-hidden="true" id="アクセス認証"></a><a href="#アクセス認証" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>アクセス認証</h2>
+<ul>
+<li><p><a href="basic-authentication">BASIC 認証</a></p>
+<ul>
+<li><p>構文</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> htpasswd [オプション] ファイル名 ユーザ名</span>
+</code></pre>
+<ul>
+<li>-c
+<ul>
+<li>新規にパスワードファイルを指定</li>
+</ul></li>
+<li>-D
+<ul>
+<li>指定されたユーザをファイルから削除</li>
+</ul></li>
+</ul></li>
+<li><p>使用例</p>
+<ul>
+<li><p>新規作成</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> htpasswd -c /tmp/.access <span class="hljs-built_in">test</span></span>
+<span class="hljs-meta">#</span><span class="bash"> cat /tmp/.access</span>
+test:6m1Ebu8dv18Wg
+</code></pre>
+<ul>
+<li>ユーザ名:暗号化パスワード</li>
+</ul></li>
+<li><p>追記 ※すでにユーザが存在する場合には、パスワードのアップデート</p>
+<pre><code class="hljs"><span class="hljs-meta"># htpasswd /tmp/.access test02</span>
+<span class="hljs-meta"># cat /tmp/.access</span>
+<span class="hljs-symbol">test:</span><span class="hljs-number">6</span>m1Ebu8dv18Wg
+<span class="hljs-symbol">test02:</span>C908y/nF53zyM
+</code></pre></li>
+<li><p>削除</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> htpasswd -D /tmp/.access test02</span>
+<span class="hljs-meta">#</span><span class="bash"> cat /tmp/.access</span>
+test:6m1Ebu8dv18Wg
+</code></pre></li>
+</ul></li>
+<li><p>httpd.conf</p>
+<pre><code class="hljs">&lt;Directory <span class="hljs-string">"/va/www/html"</span>&gt;
+    AuthType <span class="hljs-keyword">Basic
+</span>    AuthName <span class="hljs-string">"Auth"</span>
+    AuthUserFile <span class="hljs-string">"/etc/httpd/.access"</span>
+    <span class="hljs-meta">Require</span> valid-user
+&lt;/Directory&gt;
+</code></pre></li>
+<li><p>その他</p>
+<ul>
+<li>AuthGroupFile ディレクティブを使用すると、グループ単位でアクセス認証を行うことも可能</li>
+<li>都度ファイルを読みに行くため、プロセス再起動等は不要</li>
+</ul></li>
+</ul></li>
+<li><p><a href="digest-authentication">ダイジェスト認証</a></p>
+<ul>
+<li><p>構文</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> htdigest -c <span class="hljs-string">"/var/www/html/.htdigest"</span> <span class="hljs-string">"Digest Auth"</span> <span class="hljs-built_in">test</span></span>
+</code></pre>
+<ul>
+<li><p>htdigest オプション パスワードファイル名 領域名 ユーザー名</p>
+<ul>
+<li>-c
+<ul>
+<li>新規作成</li>
+</ul></li>
+<li>領域名
+<ul>
+<li>AuthNameで指定する領域名と同じ</li>
+</ul></li>
+</ul>
+<pre><code class="hljs"><span class="hljs-tag">&lt;Directory "/va/www/html"&gt;</span>
+  AuthType Digest
+  AuthName <span class="hljs-string">"Digest Auth"</span>
+
+  AuthUserFile <span class="hljs-string">"/var/www/html/.htdigest"</span>
+  Require valid-<span class="hljs-keyword">user</span>
+<span class="hljs-title">&lt;/Directory</span>&gt;
+</code></pre></li>
+</ul></li>
+<li><p>その他</p>
+<ul>
+<li>auth_digest_module 追加</li>
+<li>AuthDigestDomain を使用すると複数のページへのアクセス制限を一元化して行うことをが可能。</li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#アクセス認証">アクセス認証</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

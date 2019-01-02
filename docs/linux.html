@@ -86,5 +86,40 @@ drwxrwxrwt.<span class="hljs-number"> 9 </span>root root<span class="hljs-number
 <ul>
 <li><a href="cron">cron</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#起動シーケンスover-rhel-7">起動シーケンス(over RHEL 7)</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h2><a class="anchor" aria-hidden="true" id="etc-resolvconf"></a><a href="#etc-resolvconf" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>/etc/resolv.conf</h2>
+<ul>
+<li><p>自マシンが利用するDNSサーバを指定する</p></li>
+<li><p><code>nameserver 192.168.0.1</code></p>
+<ul>
+<li>必須</li>
+<li>DNS サーバの IP アドレス</li>
+<li>3 つ指定可能</li>
+</ul></li>
+<li><p><code>domain example.com.</code></p>
+<ul>
+<li>上記指定で、www にアクセスしようとすると、<a href="http://www.example.com">www.example.com</a> で名前解決する</li>
+</ul></li>
+<li><p>search</p>
+<ul>
+<li>domain を複数指定できるようにしたもの</li>
+<li>search test.example.com. example.com.
+<ul>
+<li>www にアクセスしようとするとまず、<a href="http://www.test.example.com">www.test.example.com</a> で名前解決を行い、解決できなければ，<a href="http://www.example.com">www.example.com</a> でひく</li>
+</ul></li>
+</ul></li>
+</ul>
+<pre><code class="hljs"><span class="hljs-regexp">/etc/</span>resolv.conf
+<span class="hljs-string">timeout:</span><span class="hljs-number">1</span> <span class="hljs-string">attempts:</span><span class="hljs-number">1</span>
+</code></pre>
+<ul>
+<li><p>timeout:1</p>
+<ul>
+<li>DNS 問い合わせの応答待ち時間が 1 秒だった場合にタイムアウトとなり次の問い合わせに移る</li>
+</ul></li>
+<li><p>attempts:1</p>
+<ul>
+<li>DNS 問い合わせが 1 回 NG だったら次の DNS サーバに問い合わせる</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#起動シーケンスover-rhel-7">起動シーケンス(over RHEL 7)</a></li><li><a href="#etc-resolvconf">/etc/resolv.conf</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

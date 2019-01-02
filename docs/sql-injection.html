@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SQL インジェクション · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 不正な SQL を投入することで、通常はアクセスできないデータにアクセスしたり更新したりする攻撃"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="SQL インジェクション · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 不正な SQL を投入することで、通常はアクセスできないデータにアクセスしたり更新したりする攻撃"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">SQL インジェクション</h1></header><article><div><span><ul>
+<li><p>不正な SQL を投入することで、通常はアクセスできないデータにアクセスしたり更新したりする攻撃</p></li>
+<li><p>一般的な影響</p>
+<ul>
+<li>データベースの非公開情報を閲覧される</li>
+<li>データベースの内容を改ざん、消去される</li>
+<li>認証回避により不正にログインされる</li>
+<li>ストアドプロシージャなどを利用した OS コマンドを実行される</li>
+</ul></li>
+<li><p>例</p>
+<ul>
+<li><img src="sql_injection_example.png" alt="">
+<ul>
+<li>「name='SHOEISHA' AND passwd = ''」と常に真となる「'1' = '1'」 との OR 条件となり、その結果、members のすべてのレコードが選択されることになる</li>
+</ul></li>
+</ul></li>
+<li><p>種類</p>
+<ul>
+<li><p>文字リテラルに対する SQL インジェクション</p>
+<ul>
+<li>SQL 文の文字列要素に SQL 文の断片や SQL コメントを入力することでデータベースへ不正な操作が行われるタイプ</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">'yamada'</span>;
+</code></pre></li>
+<li><p>数値リテラルに対する SQL インジェクション</p>
+<ul>
+<li>SQL 文の数値要素に、 SQL 文の断片や悪意のある SQL 文を入力することで、データベースへ不正な操作が行われるタイプ</li>
+</ul>
+<pre><code class="hljs">SELECT * <span class="hljs-keyword">FROM</span><span class="hljs-built_in"> user </span>WHERE age &gt; 25;
+</code></pre></li>
+</ul></li>
+<li><p>SQL インジェクションの脆弱性があるサイトの動作</p>
+<ul>
+<li>画面入力パラメータに「'」を入れて送信するとデータベースエラーが発生する</li>
+</ul></li>
+<li><p>脆弱性例</p>
+<ul>
+<li><p>脆弱性あるコード</p>
+<pre><code class="hljs css languages- php"><span class="hljs-meta">&lt;?php</span>
+    $db = <span class="hljs-keyword">$this</span> -&gt; get_db();
+    $id = $_GET[<span class="hljs-string">"id"</span>];
+    $name = $_GET[<span class="hljs-string">"name"</span>];
+    <span class="hljs-comment">// 脆弱なコード</span>
+    $stmt = $db-&gt;prepare(<span class="hljs-string">"SELECT * FROM user WHERE id = '"</span> . $id . <span class="hljs-string">"' AND name = '"</span> . $name . <span class="hljs-string">"' ;"</span>);
+    $stmt-&gt;execute();
+<span class="hljs-meta">?&gt;</span>
+</code></pre></li>
+<li><p>修正コード</p>
+<pre><code class="hljs css languages- php"><span class="hljs-meta">&lt;?php</span>
+    $db = <span class="hljs-keyword">$this</span> -&gt; get_db();
+    $id = $_GET[<span class="hljs-string">"id"</span>];
+    $name = $_GET[<span class="hljs-string">"name"</span>];
+    $stmt = $db-&gt;prepare(<span class="hljs-string">"SELECT * FROM user WHERE id = ? AND name = ?;"</span>);
+    $stmt-&gt;execute(<span class="hljs-keyword">array</span>($id,$name));
+<span class="hljs-meta">?&gt;</span>
+</code></pre></li>
+</ul></li>
+<li><p>対策</p>
+<ul>
+<li>プレースホルダによる SQL 文の組み立てを行なう
+<ul>
+<li><img src="static_placce_holder.png" alt="static_placce_holder">
+<ul>
+<li>検索条件などのパラメータ部分を「?」 などの記号で示しておき、後から実際の値を機械的な処理で割り当てる方法</li>
+<li>実際の変数を割り当てることを「バインドする」と呼ぶ</li>
+</ul></li>
+<li>種類
+<ul>
+<li>静的プレースホルダ(プリペアドステートメント)
+<ul>
+<li>プレースホルダのままの SQL 文をデータベース側にあらかじめ送信して、実行前に、SQL 文の構文解析などの準備をしておく方式</li>
+<li>SQL 実行の段階で、実際のパラメータの値をデータベース側に送信し、データベース側がバインド処理</li>
+<li><code>静的プレースホルダ</code> は、SQLを準備する段階でSQL文の構文が確定し、後から構文が変化することがないため安全</li>
+</ul></li>
+<li>動的プレースホルダ
+<ul>
+<li>静的プレースホルダとは異なり、プレースホルダを利用するものの、値のバインド処理をデータベース側で行うのではなく、ウェブアプリケーション側のライブラリ内で実行する方式</li>
+<li><code>動的プレースホルダ</code> はライブラリの実装に問題があると、SQL 文を変化させるような SQL インジェクションを許してしまう可能性があるため注意が必要</li>
+<li><font color="Salmon">静的プレースホルダがサポートされているデータベースでは、静的プレースホルダを使用しましょう</font></li>
+</ul></li>
+</ul></li>
+<li>文字列連結により SQL 文を組み立てる場合は、文字列をエスケープする必要があります。エスケープするべき特殊文字はデータベースによって異なるため、エスケープを行う関数やライブラリ、データベースのエスケープ関数などを使用するようにしましょう。</li>
+</ul></li>
+<li>WAF の利用</li>
+<li>RDBMS のアクセス権設定を必要最低限にする</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>原因</p>
+<ul>
+<li>外部からの入力に対する値のチェックが不十分</li>
+<li>特殊文字のエスケープ</li>
+</ul></li>
+<li><p>特殊文字</p>
+<ul>
+<li>文字列やコマンドの区切り
+<ul>
+<li>スペース</li>
+<li>&quot;</li>
+<li>'</li>
+<li>,</li>
+<li>;</li>
+</ul></li>
+<li>変数の設定
+<ul>
+<li>:</li>
+</ul></li>
+<li>演算子
+<ul>
+<li>&lt;</li>
+<li>=</li>
+<li><blockquote>
+</blockquote></li>
+<li>&amp;</li>
+<li>&amp;</li>
+<li><ul>
+<li></li>
+</ul></li>
+<li>/</li>
+<li>|</li>
+</ul></li>
+<li>フィールドの指定
+<ul>
+<li>.</li>
+</ul></li>
+<li>正規表現で使われる
+<ul>
+<li>%</li>
+<li>?</li>
+<li><ul>
+<li></li>
+</ul></li>
+<li>_</li>
+</ul></li>
+</ul></li>
+<li><p>Blind SQL インジェクション</p>
+<ul>
+<li><p>SQL 文は検索結果の表示以外にも使われます。例えば、利用者登録画面があるとして利用者が任意のIDを使用することができるとします。しかし、一意に管理するためにはIDの重複を避けなければいけません。この際に、一般的にIDの重複チェック機能を実装</p></li>
+<li><p>このときにSQL文の検索結果を使いますが、表示や更新は行っていません</p></li>
+<li><p>下記では入力したIDが使われていたら「既に使われているIDです」そうでなければ、「使用可能です」と返す処理を行います。</p>
+<pre><code class="hljs css languages- php">$stmt = $db-&gt;prepare(<span class="hljs-string">"SELECT * FROM user WHERE id= '"</span> .  $_GET[<span class="hljs-string">"id"</span>] . <span class="hljs-string">"' "</span>);
+$stmt-&gt;execute();
+$user = $stmt-&gt;fetch();
+<span class="hljs-keyword">if</span> ($user) {
+    $message=<span class="hljs-string">"既に使われているIDです。"</span>;
+} <span class="hljs-keyword">else</span> {
+    $message=<span class="hljs-string">"使用可能です。"</span>;
+}
+</code></pre>
+<ul>
+<li>このように実行結果を画面へ出力しない SQL 文において、SQL インジェクションの脆弱性があることを、<code>ブラインド SQL インジェクション</code> の脆弱性と呼ぶ</li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

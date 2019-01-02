@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>CVSS(Common Vulnerability Scoring System : 共通脆弱性評価システム) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 脆弱性の深刻度を表す指標"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="CVSS(Common Vulnerability Scoring System : 共通脆弱性評価システム) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 脆弱性の深刻度を表す指標"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">CVSS(Common Vulnerability Scoring System : 共通脆弱性評価システム)</h1></header><article><div><span><ul>
+<li>脆弱性の深刻度を表す指標</li>
+<li>基準
+<ul>
+<li>基本評価基準
+<ul>
+<li>脆弱性そのものの特性を評価する基準</li>
+<li>機密性、完全性、可用性に対する影響を評価し、 CVSS 基本値を算出</li>
+</ul></li>
+<li>現状評価基準
+<ul>
+<li>脆弱性の現状の深刻度を評価する基準</li>
+<li>攻撃コードの出現有無や対策情報が利用可能であるかといった基準で評価し、CVSS 現状値を算出</li>
+</ul></li>
+<li>環境評価基準
+<ul>
+<li>製品利用者の利用環境も含め、最終的な脆弱性の深刻度を評価する基準</li>
+<li>攻撃による被害の大きさや対象製品の使用状況といった基準で評価し、CVSS 環境値を算出</li>
+</ul></li>
+</ul></li>
+<li>CVSSv2
+<ul>
+<li>攻撃対象となるホストやシステムにおいての <code>脆弱性による深刻度</code> を評価</li>
+<li>攻撃元区分 (AV：Access Vector)
+<ul>
+<li>脆弱性のあるシステムをどこから攻撃可能であるかを評価</li>
+<li>ローカル（L） / 隣接（A） / ネットワーク（N）</li>
+</ul></li>
+<li>攻撃条件の複雑さ (AC：Access Complexity)
+<ul>
+<li>脆弱性のあるシステムを攻撃する際に必要な条件の複雑さを評価</li>
+<li>高（H） / 中（M） / 低（L）</li>
+</ul></li>
+<li>攻撃前の認証要否 (Au: Authentication)
+<ul>
+<li>脆弱性を攻撃するために対象システムの認証が必要であるかどうかを評価</li>
+<li>複数（M） / 単一（S） / 不要（N）</li>
+</ul></li>
+<li>機密性への影響 （情報漏えいの可能性、 C: Confidentiality Impact ）
+<ul>
+<li>脆弱性を攻撃された際に、対象システム内の機密情報が漏えいする可能性を評価</li>
+<li>なし（N） / 部分的（P） / 全面的（C）</li>
+</ul></li>
+<li>完全性への影響 （情報改ざんの可能性、 I: Integrity Impact ）
+<ul>
+<li>脆弱性を攻撃された際に、対象システム内の情報が改ざんされる可能性を評価</li>
+<li>なし（N） / 部分的（P） / 全面的（C）</li>
+</ul></li>
+<li>可用性への影響 （業務停止の可能性、 A: Availability Impact ）
+<ul>
+<li>脆弱性を攻撃された際に、対象システム内の業務が遅延・停止する可能性を評価</li>
+<li>なし（N） / 部分的（P） / 全面的（C）</li>
+</ul></li>
+</ul></li>
+<li>CVSSv3
+<ul>
+<li>仮想化やサンドボックス化などが進んできていることから、コンポーネント単位で評価する手法を取り込んだ仕様</li>
+<li>攻撃元区分(AV：Attack Vector)
+<ul>
+<li>脆弱性のあるコンポーネントをどこから攻撃可能であるかを評価</li>
+<li>物理(P) / ローカル(L) / 隣接(A) / ネットワーク(N)</li>
+</ul></li>
+<li>攻撃条件の複雑さ (AC：Access Complexity)
+<ul>
+<li>脆弱性のあるコンポーネントを攻撃する際に必要な条件の複雑さを評価</li>
+<li>高(H) / 低(L)</li>
+</ul></li>
+<li>必要な特権レベル(PR：Privileges Required)
+<ul>
+<li>脆弱性のあるコンポーネントを攻撃する際に必要な特権のレベルを評価</li>
+<li>高(H) / 低(L) / 不要(N)</li>
+</ul></li>
+<li>ユーザ関与レベル(UI：User Interaction)
+<ul>
+<li>脆弱性のあるコンポーネントを攻撃する際に必要なユーザ関与レベルを評価</li>
+<li>要(R) / 不要(N)</li>
+</ul></li>
+<li>スコープ(S：Scope)
+<ul>
+<li>脆弱性のあるコンポーネントへの攻撃による影響範囲を評価</li>
+<li>変更なし(U) / 変更あり(C)</li>
+</ul></li>
+<li>機密性への影響 （情報漏えいの可能性、C: Confidentiality Impact ）
+<ul>
+<li>脆弱性を攻撃された際に、対象とする影響想定範囲の情報が漏えいする可能性を評価</li>
+<li>なし(N) / 低(L)  / 高(H)</li>
+</ul></li>
+<li>完全性への影響 （情報改ざんの可能性、 I: Integrity Impact ）
+<ul>
+<li>脆弱性を攻撃された際に、対象とする影響想定範囲の情報が改ざんされる可能性を評価</li>
+<li>なし(N) / 低(L)  / 高(H)</li>
+</ul></li>
+<li>可用性への影響 （業務停止の可能性、 A: Availability Impact ）
+<ul>
+<li>脆弱性を攻撃された際に、対象とする影響想定範囲の業務が遅延・停止する可能性を評価</li>
+<li>なし(N) / 低(L)  / 高(H)</li>
+</ul></li>
+</ul></li>
+<li>例
+<ul>
+<li><p>Meltdownは、「CVE-2017-5754」の例</p></li>
+<li><p><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-5754">https://nvd.nist.gov/vuln/detail/CVE-2017-5754</a></p>
+<pre><code class="hljs">CVSS Severity (version <span class="hljs-number">2.0</span>):
+
+CVSS v2 Base <span class="hljs-string">Score:</span>　<span class="hljs-number">4.7</span> MEDIUM
+<span class="hljs-symbol">
+Vector:</span>　(<span class="hljs-string">AV:</span>L<span class="hljs-regexp">/AC:M/</span><span class="hljs-string">Au:</span>N<span class="hljs-regexp">/C:C/</span><span class="hljs-string">I:</span>N/<span class="hljs-string">A:</span>N) (legend)
+
+Impact <span class="hljs-string">Subscore:</span>　<span class="hljs-number">6.9</span>
+
+Exploitability <span class="hljs-string">Subscore:</span>　<span class="hljs-number">3.4</span>
+
+
+
+CVSS Severity (version <span class="hljs-number">3.0</span>):
+
+CVSS v3 Base <span class="hljs-string">Score:</span>　<span class="hljs-number">5.6</span> Medium
+<span class="hljs-symbol">
+Vector:</span>　<span class="hljs-string">CVSS:</span><span class="hljs-number">3.0</span><span class="hljs-regexp">/AV:L/</span><span class="hljs-string">AC:</span>H<span class="hljs-regexp">/PR:L/</span><span class="hljs-string">UI:</span>N<span class="hljs-regexp">/S:C/</span><span class="hljs-string">C:</span>H<span class="hljs-regexp">/I:N/</span><span class="hljs-string">A:</span>N (legend)
+
+Impact <span class="hljs-string">Score:</span>　<span class="hljs-number">4.0</span>
+
+Exploitability <span class="hljs-string">Score:</span>　<span class="hljs-number">1.1</span>
+</code></pre></li>
+<li><p>[v2の場合]</p>
+<ul>
+<li>AV:L　 　ー＞　攻撃元区分：ローカル</li>
+<li>AC:M　　ー＞　攻撃条件の複雑さ：中</li>
+<li>Au:N　 　ー＞　攻撃前の認証要否：不要</li>
+<li>C:C　　　ー＞　機密性への影響 ：全面的</li>
+<li>I:N　　　ー＞　完全性への影響：なし</li>
+<li>A:N　　　ー＞　可用性への影響：なし</li>
+</ul></li>
+<li><p>[v3の場合]</p>
+<ul>
+<li>AV：L　ー＞　攻撃元区分：ローカル</li>
+<li>AC：H　ー＞　攻撃条件の複雑さ：高</li>
+<li>PR：L　ー＞　必要な特権レベル：低</li>
+<li>UI：N　ー＞　ユーザ関与レベル：不要</li>
+<li>S：C　ー＞　スコープ： 変更あり</li>
+<li>C：H　ー＞　機密性への影響：高</li>
+<li>I：N　ー＞　完全性への影響：なし</li>
+<li>A：N　ー＞　可用性への影響：なし</li>
+</ul></li>
+<li><p>CVSS スコアだけではなく、Vector も確認することにより脆弱性情報の適切な認識ができ、慌てることなく緊急対応可否の判断ができると思われます</p></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

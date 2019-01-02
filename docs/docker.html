@@ -1,24 +1,63 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Docker · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 仕組み"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Docker · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 仕組み"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Docker</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="仕組み"></a><a href="#仕組み" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>仕組み</h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Docker · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- Docker 社が開発して無償配布する OSS"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Docker · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- Docker 社が開発して無償配布する OSS"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Docker</h1></header><article><div><span><ul>
+<li><p>Docker 社が開発して無償配布する OSS</p></li>
+<li><p>コンテナ技術の利用</p>
 <ul>
-<li><p>chroot を利用して独自のファイルシステムを実現</p></li>
-<li><p><a href="cgroups">cgroups</a></p></li>
-<li><p>namespace</p>
-<ul>
-<li>プロセス ID 名前空間
-<ul>
-<li>コンテナ単位でプロセス ID 空間を保持</li>
+<li>ソフトウェア実行環境</li>
+<li>ソフトウェア的に独立しているため、アプリケーション間で動作に必要なライブラリが競合しない</li>
 </ul></li>
-<li>ネットワーク名前空間
+<li><p>Docker エンジン</p>
 <ul>
-<li>コンテナ単位でネットワークインタフェース、ポート番号等のネットワークスタックを保持</li>
+<li>コンテナをベースにしたアプリケーションの実行環境</li>
 </ul></li>
-<li>プロセス間通信(IPC) 名前空間
+<li><p>プロビジョニング支援ツール</p>
 <ul>
-<li>コンテナ単位で共有メモリやセマフォといった、 System V IPC リソース空間を保持</li>
+<li>オーケストレーション
+<ul>
+<li>アプリケーションの配備</li>
+<li><a href="capistrano">Capistrano</a></li>
+<li><a href="fabric">Fabric</a></li>
+<li><a href="func">Func</a></li>
 </ul></li>
-<li>マウント名前空間</li>
-<li>ホスト名名前空間</li>
-<li>ユーザ名前空間</li>
+<li>設定
+<ul>
+<li>システム設定</li>
+<li><a href="chef">Chef</a></li>
+<li><a href="puppet">Puppet</a></li>
+<li><a href="aws-opsworks">AWS OpsWorks</a></li>
+</ul></li>
+<li>ブートストラッピング
+<ul>
+<li>クラウド/仮想イメージの実行や OS インストール</li>
+<li>Docker</li>
+<li><a href="vagrant">Vagrant</a></li>
+<li><a href="packer">Packer</a></li>
+<li><a href="aws">AWS</a></li>
+<li><a href="openstack">OpenStack</a></li>
+<li><a href="kickstart">Kickstart</a></li>
+</ul></li>
+</ul></li>
+<li><p>コンテナ管理ソフト</p>
+<ul>
+<li>LXC(Linux Container) =&gt; libcontainer</li>
+</ul></li>
+</ul>
+<ul>
+<li>イメージ
+<ul>
+<li>AUFS</li>
+<li>Overlayfs</li>
+<li>Device Mapper</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="仕組み"></a><a href="#仕組み" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>仕組み</h2>
+<ul>
+<li><p>Docker は Linux カーネルの複数の機能を活用してコンテナ型仮想化を実現</p>
+<ul>
+<li><a href="chroot">chroot</a></li>
+<li><a href="cgroups">cgroups</a></li>
+<li><a href="namespace">Namespace</a></li>
+<li>仮想ネットワークドライバ</li>
+<li>Netfilter</li>
 </ul></li>
 <li><p><a href="docker_command">Docker コマンド</a></p></li>
 </ul>
@@ -36,10 +75,20 @@
 </ul></li>
 </ul>
 <ul>
-<li>Docker Cloud
-<ul>
-<li>ブラウザ上で</li>
-</ul></li>
+<li><p><a href="docker-cloud">Docker Cloud</a></p></li>
+<li><p>Docker のデータ保存場所</p>
+<pre><code class="hljs"><span class="hljs-comment"># ll /var/lib/docker/</span>
+合計 0
+drwx------.<span class="hljs-number"> 2 </span>root root <span class="hljs-number"> 6 </span>11月<span class="hljs-number"> 28 </span>12:10 containers
+drwx------.<span class="hljs-number"> 3 </span>root root<span class="hljs-number"> 22 </span>11月<span class="hljs-number"> 28 </span>12:10 image
+drwxr-x---.<span class="hljs-number"> 3 </span>root root<span class="hljs-number"> 19 </span>11月<span class="hljs-number"> 28 </span>12:10 network
+drwx------.<span class="hljs-number"> 3 </span>root root<span class="hljs-number"> 40 </span>12月<span class="hljs-number"> 17 </span>09:19 overlay2
+drwx------.<span class="hljs-number"> 4 </span>root root<span class="hljs-number"> 32 </span>11月<span class="hljs-number"> 28 </span>12:10 plugins
+drwx------.<span class="hljs-number"> 2 </span>root root <span class="hljs-number"> 6 </span>11月<span class="hljs-number"> 28 </span>12:10 swarm
+drwx------.<span class="hljs-number"> 2 </span>root root <span class="hljs-number"> 6 </span>11月<span class="hljs-number"> 28 </span>12:10 tmp
+drwx------.<span class="hljs-number"> 2 </span>root root <span class="hljs-number"> 6 </span>11月<span class="hljs-number"> 28 </span>12:10 trust
+drwx------.<span class="hljs-number"> 2 </span>root root<span class="hljs-number"> 25 </span>11月<span class="hljs-number"> 28 </span>12:10 volumes
+</code></pre></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="mysql"></a><a href="#mysql" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MySQL</h3>
 <ul>
@@ -48,5 +97,52 @@
 <li><a href="https://github.com/vsamov/mysql-5.1.73">mysql-5.1.73</a></li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#仕組み">仕組み</a><ul class="toc-headings"><li><a href="#mysql">MySQL</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2018 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h3><a class="anchor" aria-hidden="true" id="エラー"></a><a href="#エラー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>エラー</h3>
+<ul>
+<li>host にマウントしたディレクトリにアクセスできない
+<ul>
+<li><p>SELinux 疑ってみる</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> getenforce</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="tips"></a><a href="#tips" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tips</h2>
+<ul>
+<li>改行コード
+<ul>
+<li><p>通常の run は LF</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> sudo docker run --rm centos <span class="hljs-built_in">echo</span> <span class="hljs-string">"test"</span> | cat -e</span>
+<span class="hljs-meta">test$</span><span class="bash"></span>
+</code></pre></li>
+<li><p>TTY を有効にすると、CRLF</p>
+<pre><code class="hljs">$ sudo docker <span class="hljs-keyword">run</span> --<span class="hljs-keyword">rm</span> -t centos echo <span class="hljs-string">"test"</span> | <span class="hljs-keyword">cat</span> -<span class="hljs-built_in">e</span>
+<span class="hljs-keyword">test</span>^<span class="hljs-keyword">M</span>$
+</code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li>ホスト側で NTPD などで時刻同期をしていれば、コンテナ内の時刻管理は必要がないらしい
+<ul>
+<li><a href="https://qiita.com/hirotaka-tajiri/items/f5900b236a005d7ffe58">Docker コンテナの時刻同期(時刻データ)について</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li><a href="https://docs.docker.com/engine/getstarted/">Get Started with Docker</a>
+<ul>
+<li><a href="https://docs.docker.com/engine/installation/linux/centos/">CnetOS</a></li>
+</ul></li>
+<li><a href="https://thinkit.co.jp/story/2015/05/26/6037">Dockerコンテナのパフォーマンス劣化とチューニング</a></li>
+<li><a href="https://thinkit.co.jp/story/2015/06/09/6105">DockerとLinux OSのリソース共有状況の調査</a></li>
+<li><a href="http://qiita.com/kyanon30/items/9ad2ceb4933b85f96c0a?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items">dockerコンテナ自動テストツール dgossを使ってみた</a></li>
+<li>CentOS 過去イメージ
+<ul>
+<li><a href="http://cloud.centos.org/centos/7/vagrant/x86_64/images/">CentOS</a></li>
+</ul></li>
+<li>systemd 利用できるコンテナ
+<ul>
+<li><a href="https://hub.docker.com/r/centos/systemd/">centos/systemd</a></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#仕組み">仕組み</a><ul class="toc-headings"><li><a href="#mysql">MySQL</a></li><li><a href="#エラー">エラー</a></li></ul></li><li><a href="#tips">Tips</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
