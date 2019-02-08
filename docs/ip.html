@@ -1,17 +1,129 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>IP(Internet Protocol) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- レイヤー 3 / ネットワーク層"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="IP(Internet Protocol) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- レイヤー 3 / ネットワーク層"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">IP(Internet Protocol)</h1></header><article><div><span><ul>
-<li><p>レイヤー 3 / ネットワーク層</p></li>
-<li><p><a href="ipv4">IPv4</a></p></li>
-<li><p><a href="ipv6">IPv6</a></p></li>
-<li><p>機能</p>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>IP(Internet Protocol) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 目的のホストまでパケットを届けてくれる"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="IP(Internet Protocol) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 目的のホストまでパケットを届けてくれる"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">IP(Internet Protocol)</h1></header><article><div><span><ul>
+<li>目的のホストまでパケットを届けてくれる</li>
+<li>レイヤー 3 / ネットワーク層</li>
+<li><a href="ipv4">IPv4</a></li>
+<li><a href="ipv6">IPv6</a></li>
+<li>目的
 <ul>
-<li>IP アドレスによる最終宛先へのデータ転送</li>
-<li>ルーティング</li>
+<li><a href="ipaddress">IP アドレス</a>による最終宛先へのデータ転送</li>
+<li>ルーティングテーブルを用いてルーティングを行う</li>
 </ul></li>
-<li><p>IP パケット</p>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ip-パケット"></a><a href="#ip-パケット" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>IP パケット</h2>
+<hr>
 <ul>
-<li>TCP セグメント + IP ヘッダー</li>
+<li><p>構造</p>
+<pre><code class="hljs">--------------------------------------------------------------------------------
+|<span class="hljs-built_in"> Ethernet </span>ヘッダ |<span class="hljs-built_in"> IP </span>ヘッダ | オプション(4 x n バイト) |<span class="hljs-built_in"> IP </span>ペイロード | FCS |
+--------------------------------------------------------------------------------
+</code></pre></li>
+<li><p>エラー処理は <a href="icmp">ICMP</a> を利用</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="ip-ヘッダ20-バイト"></a><a href="#ip-ヘッダ20-バイト" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>IP ヘッダ(20 バイト)</h3>
+<hr>
+<pre><code class="hljs"><span class="hljs-section">0           3 4   7 8   13 14 15 16       18 19                      31(bit)
+----------------------------------------------------------------------</span>
+<span class="hljs-section">| バージョン | IHL | DSCP | ECN |             パケット長             |
+----------------------------------------------------------------------</span>
+<span class="hljs-section">|            識別子             | O | F | M | フラグメントオフセット |
+----------------------------------------------------------------------</span>
+<span class="hljs-section">|   TTL   |   プロトコル番号    |         ヘッダチェックサム         |
+----------------------------------------------------------------------</span>
+<span class="hljs-section">|                          始点 IP アドレス                          |
+----------------------------------------------------------------------</span>
+<span class="hljs-section">|                          終点 IP アドレス                          |
+----------------------------------------------------------------------</span>
+<span class="hljs-section">|                       オプション                      | パディング |
+----------------------------------------------------------------------</span>
+</code></pre>
+<ul>
+<li><p>バージョン</p>
+<ul>
+<li>IP バージョン</li>
 </ul></li>
-<li><p>IP での通信</p>
+<li><p>IHL(ヘッダ長 : Internet Header Length)</p>
+<ul>
+<li>IP ヘッダの長さ</li>
+</ul></li>
+<li><p>DSCP(Differentiated Service CodePoint)</p>
+<ul>
+<li>DiffServ を運用するときに使われる
+<ul>
+<li>=&gt; IP に QoS を導入することができる</li>
+</ul></li>
+</ul></li>
+<li><p>ECN(Explicit Congestion Notification)</p>
+<ul>
+<li>途中のルータがふくそう状態かどうかを通知するために使われる</li>
+</ul></li>
+<li><p>パケット長</p>
+<ul>
+<li>IP データグラム全体のバイト長</li>
+</ul></li>
+<li><p>識別子</p>
+<ul>
+<li>フラグメントを復元するときの識別子として使われる</li>
+</ul></li>
+<li><p>フラグ</p>
+<ul>
+<li>IP パケットの分割処理を制御する 3 ビットのフィールド</li>
+<li>O
+<ul>
+<li>未使用</li>
+<li>O にしなければならない</li>
+</ul></li>
+<li>F
+<ul>
+<li>途中のルータに分割してよいかを指示</li>
+<li>0
+<ul>
+<li>分割可</li>
+</ul></li>
+<li>1
+<ul>
+<li>分割不可</li>
+</ul></li>
+</ul></li>
+<li>M
+<ul>
+<li>運んでいるデータがフラグメントの途中か最後かを示す</li>
+<li>0
+<ul>
+<li>最後のフラグメント</li>
+<li>フラグメントしていない</li>
+</ul></li>
+<li>1
+<ul>
+<li>途中のフラグメント</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>フラグメントオフセット</p>
+<ul>
+<li>分割されたデータが、オリジナルデータのどこに位置しているかを意味する</li>
+</ul></li>
+<li><p><code>チェックサム</code></p>
+<ul>
+<li>IP パケットがネットワーク中を転送されている間に、ノイズなどによって IP ヘッダが壊されていないことを保証するための情報を格納する場所</li>
+<li>保証対象
+<ul>
+<li>バージョン</li>
+<li>ヘッダ長</li>
+<li>DSCP</li>
+<li>ECN</li>
+<li>パケット長</li>
+<li>識別子</li>
+<li>フラグ</li>
+<li>フラブメントオフセット</li>
+<li>生存期間</li>
+<li>プロトコル番号</li>
+<li>始点 IP アドレス</li>
+<li>終点 IP アドレス</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>IP での通信
 <ul>
 <li>IP の通信では MAC アドレスを利用して通信を行う
 <ul>
@@ -20,5 +132,20 @@
 <li><a href="arp">ARP</a> を利用して、宛先 IP アドレスをもとに MAC アドレスを調べる</li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h2><a class="anchor" aria-hidden="true" id="制限"></a><a href="#制限" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>制限</h2>
+<hr>
+<ul>
+<li>パケットが目的地まで到達する保証はない</li>
+<li>送信したパケットが順番通りに届く保証はない</li>
+<li>1 つのパケットが複数に増える可能性がないとは言えない</li>
+<li>ペイロードが壊れていないことを保証しない</li>
+<li>一度に運べるペイロードの最大サイズは 65515 バイトに制限
+<ul>
+<li>=&gt; MTU よりも大きなデータを送信しなければならなくなった場合、IP は 1 つの IP パケットを複数のデータリンクのフレームに分けて送信
+<ul>
+<li>=&gt; <code>IP フラグメンテーション</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ip-パケット">IP パケット</a><ul class="toc-headings"><li><a href="#ip-ヘッダ20-バイト">IP ヘッダ(20 バイト)</a></li></ul></li><li><a href="#制限">制限</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

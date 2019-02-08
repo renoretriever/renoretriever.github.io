@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>/proc/meminfo · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="```"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="/proc/meminfo · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="```"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">/proc/meminfo</h1></header><article><div><span><pre><code class="hljs"><span class="hljs-comment"># cat /etc/redhat-release</span>
+CentOS Linux release 7.5.1804 (Core)
+<span class="hljs-comment"># uname -a</span>
+Linux master 3.10.0-862.14.4.el7.x86_64 <span class="hljs-comment">#1 SMP Wed Sep 26 15:12:11 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span>
+<span class="hljs-comment"># cat /proc/meminfo</span>
+<span class="hljs-section">MemTotal:         499316 kB</span>
+<span class="hljs-section">MemFree:            6552 kB</span>
+<span class="hljs-section">MemAvailable:     203752 kB</span>
+<span class="hljs-section">Buffers:               0 kB</span>
+<span class="hljs-section">Cached:           189456 kB</span>
+<span class="hljs-section">SwapCached:        41296 kB</span>
+<span class="hljs-section">Active:           190144 kB</span>
+<span class="hljs-section">Inactive:         214860 kB</span>
+<span class="hljs-section">Active(anon):      97236 kB</span>
+<span class="hljs-section">Inactive(anon):   119776 kB</span>
+<span class="hljs-section">Active(file):      92908 kB</span>
+<span class="hljs-section">Inactive(file):    95084 kB</span>
+<span class="hljs-section">Unevictable:           0 kB</span>
+<span class="hljs-section">Mlocked:               0 kB</span>
+<span class="hljs-section">SwapTotal:       1048572 kB</span>
+<span class="hljs-section">SwapFree:         841724 kB</span>
+<span class="hljs-section">Dirty:                 0 kB</span>
+<span class="hljs-section">Writeback:             0 kB</span>
+<span class="hljs-section">AnonPages:        195556 kB</span>
+<span class="hljs-section">Mapped:            30960 kB</span>
+<span class="hljs-section">Shmem:              1464 kB</span>
+<span class="hljs-section">Slab:              53272 kB</span>
+<span class="hljs-section">SReclaimable:      22320 kB</span>
+<span class="hljs-section">SUnreclaim:        30952 kB</span>
+<span class="hljs-section">KernelStack:        3024 kB</span>
+<span class="hljs-section">PageTables:         6128 kB</span>
+<span class="hljs-section">NFS_Unstable:          0 kB</span>
+<span class="hljs-section">Bounce:                0 kB</span>
+<span class="hljs-section">WritebackTmp:          0 kB</span>
+<span class="hljs-section">CommitLimit:     1298228 kB</span>
+<span class="hljs-section">Committed_AS:    1183944 kB</span>
+<span class="hljs-section">VmallocTotal:   34359738367 kB</span>
+<span class="hljs-section">VmallocUsed:        9576 kB</span>
+<span class="hljs-section">VmallocChunk:   34359723772 kB</span>
+<span class="hljs-section">HardwareCorrupted:     0 kB</span>
+<span class="hljs-section">AnonHugePages:         0 kB</span>
+<span class="hljs-section">CmaTotal:              0 kB</span>
+<span class="hljs-section">CmaFree:               0 kB</span>
+<span class="hljs-section">HugePages_Total:       0</span>
+<span class="hljs-section">HugePages_Free:        0</span>
+<span class="hljs-section">HugePages_Rsvd:        0</span>
+<span class="hljs-section">HugePages_Surp:        0</span>
+<span class="hljs-section">Hugepagesize:       2048 kB</span>
+<span class="hljs-section">DirectMap4k:      114680 kB</span>
+<span class="hljs-section">DirectMap2M:      409600 kB</span>
+</code></pre>
+<ul>
+<li><code>MemAvailable</code>
+<ul>
+<li>従来は MemFree 項目と Buffers 項目、 Cached 項目の数字を足したものが利用可能なメモリとして概算する必要があったが、 <code>MemAvailable</code> の項目ができて一目瞭然になった</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

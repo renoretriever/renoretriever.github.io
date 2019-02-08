@@ -4,7 +4,7 @@
         <title>Life is ... Blog</title>
         <link>https://renoretriever.github.io//blog</link>
         <description>The best place to stay up-to-date with the latest Life is ... news and events.</description>
-        <lastBuildDate>Wed, 26 Sep 2018 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 08 Feb 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://renoretriever.github.io//blog</link>
         </image>
         <copyright>Copyright © 2019 renoretriever</copyright>
+        <item>
+            <title><![CDATA[読了 : FACTFULNESS（ファクトフルネス）10の思い込みを乗り越え、データを基に世界を正しく見る習慣]]></title>
+            <link>https://renoretriever.github.io//blog/2019/02/08/reading-factfulness.html</link>
+            <guid>https://renoretriever.github.io//blog/2019/02/08/reading-factfulness.html</guid>
+            <pubDate>Fri, 08 Feb 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><a href="https://www.amazon.co.jp/dp/B07LG7TG5N/">FACTFULNESS（ファクトフルネス）10の思い込みを乗り越え、データを基に世界を正しく見る習慣</a> はここ数年見た中で一番おもしろかった！</p>
+<p><img src="https://images-fe.ssl-images-amazon.com/images/I/410QuKHYY3L.jpg" alt=""></p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[クレデンシャル情報がコンテンツ内に無いか確認]]></title>
             <link>https://renoretriever.github.io//blog/2018/09/26/credential-info.html</link>

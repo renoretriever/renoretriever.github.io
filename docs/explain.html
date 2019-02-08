@@ -1,0 +1,310 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>EXPLAIN · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- SQL の実行計画についての情報を取得するためのステートメント"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="EXPLAIN · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- SQL の実行計画についての情報を取得するためのステートメント"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">EXPLAIN</h1></header><article><div><span><ul>
+<li>SQL の実行計画についての情報を取得するためのステートメント</li>
+<li>注意点
+<ul>
+<li>EXPLAIN 実行時の負荷に注意
+<ul>
+<li>MySQL 5.5 以下でサブクエリがあると、サブクエリが実行されるのでご注意</li>
+<li>MySQL 5.6 以上は特段の負荷はなさそう</li>
+</ul></li>
+<li>統計データは推定値であり、確実に正確ではない</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>例</p>
+<pre><code class="hljs">MySQL [employees]&gt; EXPLAIN SELECT * FROM employees WHERE hire_date = '1986-06-26';
++<span class="hljs-params">----</span>+<span class="hljs-params">-------------</span>+<span class="hljs-params">-----------</span>+<span class="hljs-params">------------</span>+<span class="hljs-params">------</span>+<span class="hljs-params">---------------</span>+<span class="hljs-params">------</span>+<span class="hljs-params">---------</span>+<span class="hljs-params">------</span>+<span class="hljs-params">--------</span>+<span class="hljs-params">----------</span>+<span class="hljs-params">-------------</span>+
+| id | select_type | table     | partitions | type | possible_keys | key  | key_len | ref  | rows   | filtered | Extra       |
++<span class="hljs-params">----</span>+<span class="hljs-params">-------------</span>+<span class="hljs-params">-----------</span>+<span class="hljs-params">------------</span>+<span class="hljs-params">------</span>+<span class="hljs-params">---------------</span>+<span class="hljs-params">------</span>+<span class="hljs-params">---------</span>+<span class="hljs-params">------</span>+<span class="hljs-params">--------</span>+<span class="hljs-params">----------</span>+<span class="hljs-params">-------------</span>+
+|  1 | SIMPLE      | employees | NULL       | ALL  | NULL          | NULL | NULL    | NULL | 299778 |    10.00 | Using where |
++<span class="hljs-params">----</span>+<span class="hljs-params">-------------</span>+<span class="hljs-params">-----------</span>+<span class="hljs-params">------------</span>+<span class="hljs-params">------</span>+<span class="hljs-params">---------------</span>+<span class="hljs-params">------</span>+<span class="hljs-params">---------</span>+<span class="hljs-params">------</span>+<span class="hljs-params">--------</span>+<span class="hljs-params">----------</span>+<span class="hljs-params">-------------</span>+
+1 row in <span class="hljs-keyword">set</span>, 1 warning <span class="hljs-params">(0.00 sec)</span>
+</code></pre>
+<ul>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_id">id</a></p>
+<ul>
+<li>SELECT 識別子</li>
+<li>サブクエリなどがあると増える</li>
+<li>特に気にしなくて良さそう</li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_select_type">select_type</a></p>
+<ul>
+<li>SELECT の種類</li>
+<li>オプティマイザがどんなクエリの解析を行っているか見る</li>
+<li>例
+<ul>
+<li><p>SIMPLE</p>
+<ul>
+<li>クエリにサブクエリや UNION が含まれていないことを意味する</li>
+</ul></li>
+<li><p>SUBQUERY</p>
+<pre><code class="hljs">MySQL [sakila]&gt; EXPLAIN SELECT ( SELECT <span class="hljs-number">1</span> FROM actor LIMIT <span class="hljs-number">1</span> ) FROM film;
++----+-------------+-------+------------+-------+---------------+---------------------+---------+------+------+----------+-------------+
+| <span class="hljs-type">id</span> | <span class="hljs-type">select_type</span> | <span class="hljs-type">table</span> | <span class="hljs-type">partitions</span> | <span class="hljs-type">type</span>  | <span class="hljs-type">possible_keys</span> | <span class="hljs-type">key</span>                 | <span class="hljs-type">key_len</span> | <span class="hljs-type">ref</span>  | <span class="hljs-type">rows</span> | <span class="hljs-type">filtered</span> | <span class="hljs-type">Extra</span>       |
+<span class="hljs-type">+----+-------------+-------+------------+-------+---------------+---------------------+---------+------+------+----------+-------------+
+|  1</span> | <span class="hljs-type">PRIMARY</span>     | <span class="hljs-type">film</span>  | <span class="hljs-type">NULL</span>       | <span class="hljs-type">index</span> | <span class="hljs-type">NULL</span>          | <span class="hljs-type">idx_fk_language_id</span>  | <span class="hljs-type">1</span>       | <span class="hljs-type">NULL</span> | <span class="hljs-type">1000</span> |   <span class="hljs-type">100</span><span class="hljs-number">.00</span> | <span class="hljs-type">Using</span> index |
+<span class="hljs-type">|  2</span> | <span class="hljs-type">SUBQUERY</span>    | <span class="hljs-type">actor</span> | <span class="hljs-type">NULL</span>       | <span class="hljs-type">index</span> | <span class="hljs-type">NULL</span>          | <span class="hljs-type">idx_actor_last_name</span> | <span class="hljs-type">137</span>     | <span class="hljs-type">NULL</span> |   <span class="hljs-type">13</span> |   <span class="hljs-type">100</span><span class="hljs-number">.00</span> | <span class="hljs-type">Using</span> index |
+<span class="hljs-type">+----+-------------+-------+------------+-------+---------------+---------------------+---------+------+------+----------+-------------+
+2</span> rows <span class="hljs-built_in">in</span> <span class="hljs-built_in">set</span>, <span class="hljs-number">1</span> warning (<span class="hljs-number">0.07</span> sec)
+</code></pre>
+<ul>
+<li>サブクエリが含まれている SELECT 文である</li>
+<li>ただ、 FROM 句には含まれていない</li>
+</ul></li>
+<li><p>DERIVED</p>
+<pre><code class="hljs">MySQL [sakila]&gt; EXPLAIN SELECT film_id FROM ( SELECT film_id FROM film GROUP BY film_id ) AS der;
++----+-------------+------------+------------+-------+------------------------------------------------------------------+---------+---------+------+------+----------+-------------+
+| <span class="hljs-type">id</span> | <span class="hljs-type">select_type</span> | <span class="hljs-type">table</span>      | <span class="hljs-type">partitions</span> | <span class="hljs-type">type</span>  | <span class="hljs-type">possible_keys</span>                                                    | <span class="hljs-type">key</span>     | <span class="hljs-type">key_len</span> | <span class="hljs-type">ref</span>  | <span class="hljs-type">rows</span> | <span class="hljs-type">filtered</span> | <span class="hljs-type">Extra</span>       |
+<span class="hljs-type">+----+-------------+------------+------------+-------+------------------------------------------------------------------+---------+---------+------+------+----------+-------------+
+|  1</span> | <span class="hljs-type">PRIMARY</span>     | <span class="hljs-type">&lt;derived2</span>&gt; | <span class="hljs-type">NULL</span>       | <span class="hljs-type">ALL</span>   | <span class="hljs-type">NULL</span>                                                             | <span class="hljs-type">NULL</span>    | <span class="hljs-type">NULL</span>    | <span class="hljs-type">NULL</span> | <span class="hljs-type">1000</span> |   <span class="hljs-type">100</span><span class="hljs-number">.00</span> | <span class="hljs-type">NULL</span>        |
+<span class="hljs-type">|  2</span> | <span class="hljs-type">DERIVED</span>     | <span class="hljs-type">film</span>       | <span class="hljs-type">NULL</span>       | <span class="hljs-type">index</span> | <span class="hljs-type">PRIMARY</span>,idx_title,idx_fk_language_id,idx_fk_original_language_id | <span class="hljs-type">PRIMARY</span> | <span class="hljs-type">2</span>       | <span class="hljs-type">NULL</span> | <span class="hljs-type">1000</span> |   <span class="hljs-type">100</span><span class="hljs-number">.00</span> | <span class="hljs-type">Using</span> index |
+<span class="hljs-type">+----+-------------+------------+------------+-------+------------------------------------------------------------------+---------+---------+------+------+----------+-------------+
+2</span> rows <span class="hljs-built_in">in</span> <span class="hljs-built_in">set</span>, <span class="hljs-number">1</span> warning (<span class="hljs-number">0.01</span> sec)
+</code></pre>
+<ul>
+<li>FROM 句にサブクエリが含まれている SELECT 文である</li>
+</ul></li>
+<li><p>UNION / UNION RESULT</p>
+<pre><code class="hljs">MySQL [sakila]&gt; EXPLAIN SELECT customer_id FROM payment WHERE payment_date &gt;= '<span class="hljs-number">2005</span><span class="hljs-number">-05</span><span class="hljs-number">-01</span>' AND payment_date &lt; '<span class="hljs-number">2005</span><span class="hljs-number">-06</span><span class="hljs-number">-01</span>' UNION SELECT customer_id FROM payment WHERE payment_date &gt;= '<span class="hljs-number">2005</span><span class="hljs-number">-06</span><span class="hljs-number">-01</span>' AND payment_date &lt; '<span class="hljs-number">2005</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span>';
++----+--------------+------------+------------+------+---------------+------+---------+------+------+----------+-----------------+
+| <span class="hljs-type">id</span> | <span class="hljs-type">select_type</span>  | <span class="hljs-type">table</span>      | <span class="hljs-type">partitions</span> | <span class="hljs-type">type</span> | <span class="hljs-type">possible_keys</span> | <span class="hljs-type">key</span>  | <span class="hljs-type">key_len</span> | <span class="hljs-type">ref</span>  | <span class="hljs-type">rows</span> | <span class="hljs-type">filtered</span> | <span class="hljs-type">Extra</span>           |
+<span class="hljs-type">+----+--------------+------------+------------+------+---------------+------+---------+------+------+----------+-----------------+
+|  1</span> | <span class="hljs-type">PRIMARY</span>      | <span class="hljs-type">payment</span>    | <span class="hljs-type">NULL</span>       | <span class="hljs-type">ALL</span>  | <span class="hljs-type">NULL</span>          | <span class="hljs-type">NULL</span> | <span class="hljs-type">NULL</span>    | <span class="hljs-type">NULL</span> |    <span class="hljs-type">1</span> |   <span class="hljs-type">100</span><span class="hljs-number">.00</span> | <span class="hljs-type">Using</span> <span class="hljs-keyword">where</span>     |
+<span class="hljs-type">|  2</span> | <span class="hljs-type">UNION</span>        | <span class="hljs-type">payment</span>    | <span class="hljs-type">NULL</span>       | <span class="hljs-type">ALL</span>  | <span class="hljs-type">NULL</span>          | <span class="hljs-type">NULL</span> | <span class="hljs-type">NULL</span>    | <span class="hljs-type">NULL</span> |    <span class="hljs-type">1</span> |   <span class="hljs-type">100</span><span class="hljs-number">.00</span> | <span class="hljs-type">Using</span> <span class="hljs-keyword">where</span>     |
+<span class="hljs-type">| NULL</span> | <span class="hljs-type">UNION</span> RESULT | <span class="hljs-type">&lt;union1</span>,<span class="hljs-number">2</span>&gt; | <span class="hljs-type">NULL</span>       | <span class="hljs-type">ALL</span>  | <span class="hljs-type">NULL</span>          | <span class="hljs-type">NULL</span> | <span class="hljs-type">NULL</span>    | <span class="hljs-type">NULL</span> | <span class="hljs-type">NULL</span> |     <span class="hljs-type">NULL</span> | <span class="hljs-type">Using</span> temporary |
+<span class="hljs-type">+----+--------------+------------+------------+------+---------------+------+---------+------+------+----------+-----------------+
+3</span> rows <span class="hljs-built_in">in</span> <span class="hljs-built_in">set</span>, <span class="hljs-number">1</span> warning (<span class="hljs-number">0.01</span> sec)
+</code></pre>
+<ul>
+<li>UNION : UNION の 2 つ目のクエリであることを示す</li>
+<li>UNION RESULT : UNION の無名の一時テーブルから結果を取得するための SELECT 文</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_table">table</a></p>
+<ul>
+<li><p>対象のテーブル</p></li>
+<li><p>AS 句でエイリアスを指定している場合には、エイリアス名</p></li>
+<li><p>FROM 句にサブクエリが含まれる場合、table 列は <derivedN> 形式となり、N はサブクエリの id を示す</p>
+<ul>
+<li>前掲 DERIVED の EXPLAIN 情報を参照</li>
+</ul></li>
+<li><p>UNION が含まれる場合、UNION RESULT テーブル列には UNION の対象となる id のリストが含まれる</p>
+<ul>
+<li>前掲 UNION / UNION RESULT の EXPLAIN 情報を参照</li>
+</ul></li>
+<li><p>例</p>
+<pre><code class="hljs">1     MySQL [sakila]&gt; EXPLAIN
+2     SELECT actor_id,
+3         ( SELECT 1 FROM film_actor WHERE film_actor.actor_id = 
+4            der_1.actor_id LIMIT 1 )
+5     FROM (
+6         SELECT actor_id
+7         FROM actor LIMIT 5
+8     ) AS der_1
+9     UNION ALL
+10    SELECT film_id,
+11        ( SELECT <span class="hljs-meta">@var1</span> FROM rental LIMIT 1 )
+12    FROM (
+13        SELECT film_id,
+14        ( SELECT 1 FROM store LIMIT 1 )
+15        FROM film LIMIT 5
+16    ) AS der_2;
++----+----------------------+------------+------------+-------+---------------+---------------------+---------+----------------+------+----------+-------------+
+|<span class="hljs-string"> id </span>|<span class="hljs-string"> select_type          </span>|<span class="hljs-string"> table      </span>|<span class="hljs-string"> partitions </span>|<span class="hljs-string"> type  </span>|<span class="hljs-string"> possible_keys </span>|<span class="hljs-string"> key                 </span>|<span class="hljs-string"> key_len </span>|<span class="hljs-string"> ref            </span>|<span class="hljs-string"> rows </span>|<span class="hljs-string"> filtered </span>|<span class="hljs-string"> Extra       </span>|
++----+----------------------+------------+------------+-------+---------------+---------------------+---------+----------------+------+----------+-------------+
+|<span class="hljs-string">  1 </span>|<span class="hljs-string"> PRIMARY              </span>|<span class="hljs-string"> &lt;derived3&gt; </span>|<span class="hljs-string"> NULL       </span>|<span class="hljs-string"> ALL   </span>|<span class="hljs-string"> NULL          </span>|<span class="hljs-string"> NULL                </span>|<span class="hljs-string"> NULL    </span>|<span class="hljs-string"> NULL           </span>|<span class="hljs-string">    5 </span>|<span class="hljs-string">   100.00 </span>|<span class="hljs-string"> NULL        </span>|
+|<span class="hljs-string">  3 </span>|<span class="hljs-string"> DERIVED              </span>|<span class="hljs-string"> actor      </span>|<span class="hljs-string"> NULL       </span>|<span class="hljs-string"> index </span>|<span class="hljs-string"> NULL          </span>|<span class="hljs-string"> idx_actor_last_name </span>|<span class="hljs-string"> 137     </span>|<span class="hljs-string"> NULL           </span>|<span class="hljs-string">   13 </span>|<span class="hljs-string">   100.00 </span>|<span class="hljs-string"> Using index </span>|
+|<span class="hljs-string">  2 </span>|<span class="hljs-string"> DEPENDENT SUBQUERY   </span>|<span class="hljs-string"> film_actor </span>|<span class="hljs-string"> NULL       </span>|<span class="hljs-string"> ref   </span>|<span class="hljs-string"> PRIMARY       </span>|<span class="hljs-string"> PRIMARY             </span>|<span class="hljs-string"> 2       </span>|<span class="hljs-string"> der_1.actor_id </span>|<span class="hljs-string">   27 </span>|<span class="hljs-string">   100.00 </span>|<span class="hljs-string"> Using index </span>|
+|<span class="hljs-string">  4 </span>|<span class="hljs-string"> UNION                </span>|<span class="hljs-string"> &lt;derived6&gt; </span>|<span class="hljs-string"> NULL       </span>|<span class="hljs-string"> ALL   </span>|<span class="hljs-string"> NULL          </span>|<span class="hljs-string"> NULL                </span>|<span class="hljs-string"> NULL    </span>|<span class="hljs-string"> NULL           </span>|<span class="hljs-string">    5 </span>|<span class="hljs-string">   100.00 </span>|<span class="hljs-string"> NULL        </span>|
+|<span class="hljs-string">  6 </span>|<span class="hljs-string"> DERIVED              </span>|<span class="hljs-string"> film       </span>|<span class="hljs-string"> NULL       </span>|<span class="hljs-string"> index </span>|<span class="hljs-string"> NULL          </span>|<span class="hljs-string"> idx_fk_language_id  </span>|<span class="hljs-string"> 1       </span>|<span class="hljs-string"> NULL           </span>|<span class="hljs-string"> 1000 </span>|<span class="hljs-string">   100.00 </span>|<span class="hljs-string"> Using index </span>|
+|<span class="hljs-string">  7 </span>|<span class="hljs-string"> SUBQUERY             </span>|<span class="hljs-string"> store      </span>|<span class="hljs-string"> NULL       </span>|<span class="hljs-string"> index </span>|<span class="hljs-string"> NULL          </span>|<span class="hljs-string"> idx_unique_manager  </span>|<span class="hljs-string"> 1       </span>|<span class="hljs-string"> NULL           </span>|<span class="hljs-string">    1 </span>|<span class="hljs-string">   100.00 </span>|<span class="hljs-string"> Using index </span>|
+|<span class="hljs-string">  5 </span>|<span class="hljs-string"> UNCACHEABLE SUBQUERY </span>|<span class="hljs-string"> rental     </span>|<span class="hljs-string"> NULL       </span>|<span class="hljs-string"> index </span>|<span class="hljs-string"> NULL          </span>|<span class="hljs-string"> idx_fk_staff_id     </span>|<span class="hljs-string"> 1       </span>|<span class="hljs-string"> NULL           </span>|<span class="hljs-string">    1 </span>|<span class="hljs-string">   100.00 </span>|<span class="hljs-string"> Using index </span>|
++----+----------------------+------------+------------+-------+---------------+---------------------+---------+----------------+------+----------+-------------+
+7 rows in set, 2 warnings (0.00 sec)
+</code></pre>
+<ul>
+<li>EXPLAIN 結果 1 行目
+<ul>
+<li>最初の SELECT 文</li>
+<li>table が <derived3> となっているため、id 3 を参照する</li>
+</ul></li>
+<li>EXPLAIN 結果 2 行目
+<ul>
+<li>元の SQL の 6 〜 7 行目</li>
+<li>id 3 は FROM 句のサブクエリになっているため、 DERIVED と表示されている</li>
+<li>id が 3 なのはクエリの 3 つ目の SELECT 文の一部であるから</li>
+</ul></li>
+<li>EXPLAIN 結果 3 行目
+<ul>
+<li>元の SQL の 3 〜 4 行目</li>
+<li>DEPENDENT SUBQUERY と表示されているので EXPLAIN 結果の 2 行目の結果に依存することを意味する
+<ul>
+<li>相関サブクエリ</li>
+</ul></li>
+</ul></li>
+<li>EXPLAIN 結果 4 行目
+<ul>
+<li>元の SQL の 9 行目</li>
+<li>UNION と表示されているため、これ以降は 2 つ目の SELECT 文であることを示す</li>
+<li>table が <derived6> となっているため、id 6 を参照する</li>
+</ul></li>
+<li>EXPLAIN 結果 5 行目
+<ul>
+<li>元の SQL の 13 〜 15 行目</li>
+<li>id 6 は FROM 句のサブクエリになっているため、 DERIVED と表示されている</li>
+</ul></li>
+<li>EXPLAIN 結果 6 行目
+<ul>
+<li>元の SQL の 14 行目</li>
+</ul></li>
+<li>EXPLAIN 結果 7 行目
+<ul>
+<li>元の SQL の 11 行目</li>
+<li>ユーザ変数を利用しているため UNCACHEABLE SUBQUERY となっている</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_partitions">partitions</a></p>
+<ul>
+<li>レコードが参照するパーティション</li>
+<li>PARTITIONS 句が指定されている場合のみなので、 NULL の場合が多いかと</li>
+<li>特に気にしなくて良い</li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_type">type</a></p>
+<ul>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain-join-types">EXPLAIN 結合型</a></p></li>
+<li><p>対象のテーブルに対してどのような方法でアクセスするか、インデックスの利用有無、読み取り範囲など分かる</p>
+<ul>
+<li>Optimizer が見積もった結果</li>
+<li>特に InnoDB はクラスターインデックスなので、下手にセカンダリーインデックスを使うよりも速いケースもある</li>
+</ul></li>
+<li><p>下記は最も重要なアクセスタイプを、最も不適切なものから順に示す</p>
+<table>
+<thead>
+<tr><th>型</th><th>内容</th></tr>
+</thead>
+<tbody>
+<tr><td>ALL</td><td>行を検索するためにテーブルを最初から最後までスキャンする必要がある(フルテーブルスキャン)ので遅い</td></tr>
+<tr><td>index</td><td>インデックスの順序でテーブルをスキャンするので遅い。カバリングインデックス(Extra 列に &quot;Using index&quot; が表示)を利用している場合は良い。</td></tr>
+<tr><td>range</td><td>制限付きのインデックススキャン。フルスキャンよりは良い。WHERE 句に BETWEEN, &lt;, IN, OR などが含まれているクエリは範囲スキャンである。</td></tr>
+<tr><td>ref</td><td>非ユニークキーによる選択。単一の値にマッチする行を返すインデックスアクセスなので良い。</td></tr>
+<tr><td>eq_ref</td><td>最大で 1 つの値が返されることを MySQL が知っているインデックスルックアップなので良い。JOIN において PRIARY KEY または UNIQUE KEY が利用される時のアクセスタイプ。</td></tr>
+<tr><td>const, system</td><td>テーブルアクセスが 1 回のため最速</td></tr>
+<tr><td>NULL</td><td>テーブルアクセスが不必要な場合。インデックス付きの列から最小値を取得するとか</td></tr>
+</tbody>
+</table>
+<ul>
+<li><font color='Salmon'>ダメなのは ALL ではなく、本当の最適なアクセスと違うとき</font>
+<ul>
+<li>rows, key_len が判断の助けになる</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_possible_keys">possible_keys</a></p>
+<ul>
+<li>MySQL がこのテーブル内の行の検索に使用するために選択できるインデックスを示す</li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_key">key</a></p>
+<ul>
+<li>実際に使用されたインデックスを表示</li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_key_len">key_len</a></p>
+<ul>
+<li>選択されたインデックスキーのバイト数</li>
+<li>インデックスキーの長さが短いほうが高速に走査される</li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_ref">ref</a></p>
+<ul>
+<li><p>インデックスと比較されるカラム</p></li>
+<li><p>JOIN が実行されている時には、結合する相手側のテーブルで検索条件として利用されているカラムが表示される</p></li>
+<li><p>例えば次の例では、Country テーブルは City テーブルと City.CountryCode カラムで JOIN されるということを示している。</p>
+<pre><code class="hljs">mysql&gt; EXPLAIN SELECT * FROM Country,City WHERE Country.Code=City.CountryCode AND Country.Name LIKE 'A%';
++----+-------------+---------+--------+---------------+---------+---------+------------------------+------+-------------+
+| <span class="hljs-type">id</span> | <span class="hljs-type">select_type</span> | <span class="hljs-type">table</span>   | <span class="hljs-type">type</span>   | <span class="hljs-type">possible_keys</span> | <span class="hljs-type">key</span>     | <span class="hljs-type">key_len</span> | <span class="hljs-type">ref</span>                    | <span class="hljs-type">rows</span> | <span class="hljs-type">Extra</span>       |
+<span class="hljs-type">+----+-------------+---------+--------+---------------+---------+---------+------------------------+------+-------------+
+|  1</span> | <span class="hljs-type">SIMPLE</span>      | <span class="hljs-type">City</span>    | <span class="hljs-type">ALL</span>    | <span class="hljs-type">NULL</span>          | <span class="hljs-type">NULL</span>    | <span class="hljs-type">NULL</span>    | <span class="hljs-type">NULL</span>                   | <span class="hljs-type">4079</span> |             <span class="hljs-type">|
+|  1</span> | <span class="hljs-type">SIMPLE</span>      | <span class="hljs-type">Country</span> | <span class="hljs-type">eq_ref</span> | <span class="hljs-type">PRIMARY</span>       | <span class="hljs-type">PRIMARY</span> | <span class="hljs-type">3</span>       | <span class="hljs-type">world</span>.City.CountryCode |    <span class="hljs-type">1</span> | <span class="hljs-type">Using</span> <span class="hljs-keyword">where</span> |
+<span class="hljs-type">+----+-------------+---------+--------+---------------+---------+---------+------------------------+------+-------------+
+2</span> rows <span class="hljs-built_in">in</span> <span class="hljs-built_in">set</span> (<span class="hljs-number">0.00</span> sec)
+</code></pre></li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_rows">rows</a></p>
+<ul>
+<li>調査される行の大まかな見積もり</li>
+<li>インデックスを付与することで、この行数が減ったかどうかを確認する</li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_filtered">filtered</a></p>
+<ul>
+<li>テーブル条件によってフィルタ処理される行の割合</li>
+</ul></li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain_extra">Extra</a></p>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html#explain-extra-information">EXPLAIN 追加情報</a></li>
+<li>そのクエリを実行するためにオプティマイザがどのような戦略を選択したかということを示すフィールド</li>
+<li>Executor の都合により表示</li>
+<li>例
+<ul>
+<li>Using index
+<ul>
+<li>カバリングインデックスを使用することを示す。</li>
+</ul></li>
+<li>Using where
+<ul>
+<li>既存のインデックスでは WHERE 句をすべて満たせていないため、インデックスを再確認する</li>
+</ul></li>
+<li>Using temporary
+<ul>
+<li>クエリの実行にテンポラリテーブルを必要としている</li>
+<li>最悪ディスクに書き出すので適切なインデックスを付与する、クエリの書き換えを検討する</li>
+</ul></li>
+<li>Using filesort
+<ul>
+<li>インデックスを使用しないで、メモリ上でソート処理を行おうとするので遅くなる</li>
+<li>WHERE 句の結果が小さい場合にはそこまで問題ならないが、大きい場合には注意が必要</li>
+</ul></li>
+<li>Using where; Using filesort
+<ul>
+<li>Executor が WHERE をフィルタしている、Executor が ORDER BY のソートを行っている</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>ドキュメント</p>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain.html">13.8.2 EXPLAIN 構文</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/5.6/ja/explain-output.html">8.8.2 EXPLAIN 出力フォーマット</a></li>
+</ul></li>
+<li><p>その他</p>
+<ul>
+<li>オプティマイザが判断したインデックスが本当に最適なインデックスかどうかは USE INDEX および IGNORE INDEX 構文を利用して見る
+<ul>
+<li>USE INDEX
+<ul>
+<li>possible_keys の値を書き換えるためのキーワード</li>
+</ul></li>
+<li>IGNORE INDEX
+<ul>
+<li>オプティマイザが選んだ possible_keys から特定のインデックスを除外する</li>
+</ul></li>
+<li>実際に実行して見る場合には複数回実行すること
+<ul>
+<li>バッファープールにのっているかどうかで結果が変わってくる</li>
+</ul></li>
+</ul></li>
+<li>更新クエリの場合には SELECT に置き換えて実施してみる</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>フルスキャン</p>
+<ul>
+<li>テーブルに含まれているレコード数を最初から最後まで全部読み込む方法</li>
+<li>テーブルフルアクセス</li>
+</ul></li>
+<li><p>レンジスキャン</p>
+<ul>
+<li>テーブルの一部のレコードのみアクセスする方法</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

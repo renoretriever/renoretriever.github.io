@@ -9,7 +9,7 @@
 <li>IEEE 802.11 a/b/g/n/ac</li>
 <li>IEEE 802.1X
 <ul>
-<li>WPA(WiFi Protected Access) や WPA2 では無線アクセスポイントに接続する無線端末を認証するのに利用</li>
+<li>WPA や WPA2 では無線アクセスポイントに接続する無線端末を認証するのに利用</li>
 <li>無線アクセスポイントから無線端末に暗号化鍵を配布できるようにしている
 <ul>
 <li>WPA や WPA2 では利用者認証のほか、動的に更新される暗号化鍵を用いて暗号化通信を行なうことができる</li>
@@ -71,7 +71,7 @@
 </ul></li>
 </ul>
 <ul>
-<li><p>IEEE802.11a</p>
+<li>IEEE802.11a
 <ul>
 <li>5 GHz 帯</li>
 <li>伝送速度 54 Mbps</li>
@@ -81,7 +81,7 @@
 </ul></li>
 <li>屋内では使用不可</li>
 </ul></li>
-<li><p>IEEE802.11b</p>
+<li>IEEE802.11b
 <ul>
 <li>2.4 GHz</li>
 <li>伝送速度 11 Mbps</li>
@@ -91,7 +91,7 @@
 <li><font color='red'>2.4 GHz 帯は家電製品との電波の干渉で速度が低下する場合がある</font></li>
 </ul></li>
 </ul></li>
-<li><p>IEEE802.11g</p>
+<li>IEEE802.11g
 <ul>
 <li>2.4 GHz</li>
 <li>伝送速度 54 Mbps</li>
@@ -101,7 +101,7 @@
 <li>移行が容易なことから現在の主流</li>
 </ul></li>
 </ul></li>
-<li><p>IEEE802.11n</p>
+<li>IEEE802.11n
 <ul>
 <li>2.4 GHz / 5 GHz</li>
 <li>伝送速度 600 Mbps</li>
@@ -112,67 +112,26 @@
 <li>国内では電波法上の制約から伝送速度は 300 Mbps に抑えられている</li>
 </ul></li>
 </ul></li>
-<li><p>セキュリティ対策</p>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="セキュリティ対策"></a><a href="#セキュリティ対策" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>セキュリティ対策</h2>
 <ul>
-<li>WEP(Wired Equivalant Privacy)
-<ul>
-<li>共通鍵暗号方式による暗号化通信を行う</li>
-<li>秘密鍵暗号方式の RC4 を用いて鍵長 40 / 128 bit でパケットを暗号化する無線 LAN 方式</li>
-<li>既に脆弱性が指摘され、解析ツールを使用すると数十秒で暗号鍵が解析されてしまう</li>
-</ul></li>
-<li>WPA(Wi-Fi Protected Access) / WPA2-PSK
-<ul>
-<li>WPA では、WEP の脆弱性に対して RC4 128 bit の鍵を使用し、TKIP(Temporal Key Integrity Protocol) により動的に鍵を変更することで強度を高めている</li>
-<li>事前鍵共有モード(PSK) では 8 〜 63 文字のパスフレーズか、 64 桁の 16 進数を事前設定しておくことにより、IEEE802.1x 認証サーバを不要としている</li>
-<li>WAP-TKIP では認証時のパケットからパスフレーズを解析する脆弱性が見つかっており、安全に使うには 21 文字以上の長いパスフレーズを使用するなどの注意が必要</li>
-<li>WPA2 では暗号アルゴリズムに AES を用いることで改善が図られている</li>
-</ul></li>
-<li>WPA / WPA2-EAP
-<ul>
-<li>IEEE802.1x 認証とプロトコル「TKIP」を組み合わせたもので、認証サーバの設置が必要となる</li>
-<li><a href="eap">EAP(Extensible Authentication Protocol)</a></li>
-<li>暗号方式
-<ul>
-<li>EAP-TLS
-<ul>
-<li>認証
-<ul>
-<li><font color='red'>ディジタル証明書による認証サーバとクライアントの相互認証</font></li>
-<li>TLS のハンドシェイクプロトコルで用いられているサーバ証明書とクライアント証明書の検証によって、認証サーバとクライアントの相互認証を行うことができる</li>
-</ul></li>
-</ul></li>
-<li>EAP-TTLS
-<ul>
-<li>認証
-<ul>
-<li>ディジタル証明書による認証サーバとID, パスワード</li>
-</ul></li>
-</ul></li>
-<li>etc</li>
-</ul></li>
-</ul></li>
-<li><a href="IEEE802_1X">IEEE802.1X</a></li>
-<li>ESSID
+<li><p><a href="wep">WEP(Wired Equivalant Privacy)</a></p></li>
+<li><p><a href="wpa">WPA(Wi-Fi Protected Access)</a></p></li>
+<li><p><a href="IEEE802_1X">IEEE802.1X</a></p></li>
+<li><p>ESSID</p>
 <ul>
 <li>複数のアクセスポイントをグループ化する識別符号(ID)</li>
 <li>ESSID 隠蔽昨日</li>
 <li>ESSID を「ANY」に設定したクライアントからの接続を拒否する機能を備えるもの</li>
 <li>ステルス化</li>
 </ul></li>
-<li>MAC アドレスフィルタリング
-<ul>
-<li>登録した NIC の MAC アドレス以外を接続できなくする機能</li>
-<li>脆弱性
-<ul>
-<li>パソコンの MAC アドレスは簡単に書き換えることができ、MAC アドレス自体が平文で流れているので簡単に偽装されてしまう</li>
-</ul></li>
-</ul></li>
-<li>VPN の併用
-<ul>
-<li>IPSec を使用して、暗号化された VPN で通信を行なうようにする対策がある</li>
-<li>無線 LAN 同士が IPSec を使わずに通信できていしまうことや、だまされて偽のアクセスポイントと通信してしまう等のクライアント側の対策が必要</li>
-</ul></li>
-</ul></li>
+<li><p>MAC アドレスフィルタリング
+- 登録した NIC の MAC アドレス以外を接続できなくする機能
+- 脆弱性
+- パソコンの MAC アドレスは簡単に書き換えることができ、MAC アドレス自体が平文で流れているので簡単に偽装されてしまう</p></li>
+<li><p>VPN の併用
+- IPSec を使用して、暗号化された VPN で通信を行なうようにする対策がある
+- 無線 LAN 同士が IPSec を使わずに通信できていしまうことや、だまされて偽のアクセスポイントと通信してしまう等のクライアント側の対策が必要</p></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="セキュリティ強化策"></a><a href="#セキュリティ強化策" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>セキュリティ強化策</h3>
 <ul>
@@ -226,5 +185,18 @@
 <li>受信したLLDPパケットに含まれる情報は、装置のリモートテーブルに保持されます。</li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h2><a class="anchor" aria-hidden="true" id="others"></a><a href="#others" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Others</h2>
+<hr>
+<ul>
+<li><p>WPS(Wi-Fi Protected Setup)</p>
+<ul>
+<li>複雑な設定項目を自動で設定できる</li>
+</ul></li>
+<li><p>AOSS(AirStation One-Touch Secure System)</p>
+<ul>
+<li>バッファロー社が提供</li>
+<li>無線 LAN の簡単設定</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#セキュリティ対策">セキュリティ対策</a><ul class="toc-headings"><li><a href="#セキュリティ強化策">セキュリティ強化策</a></li></ul></li><li><a href="#others">Others</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

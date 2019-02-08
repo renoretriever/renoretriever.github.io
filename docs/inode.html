@@ -2,17 +2,7 @@
 <li><p>i ノード領域には、ファイルがディスク上にある位置やアクセス権限などの情報を保持</p></li>
 <li><p>ファイルが多く作られて i ノード領域が足りなくなると、そのファイルシステムにデータを書き込める空き領域があっても、新規のファイルが作成できなくなる</p></li>
 <li><p><img src="i-node.png" alt="inode"></p></li>
-<li><p>iノード情報の確認</p>
-<pre><code class="hljs">$ df -i
-Filesystem                        Inodes IUsed    IFree IUse% Mounted on
-/dev/mapper/VolGroup00-LogVol00 <span class="hljs-number">19644416</span> <span class="hljs-number">31360</span> <span class="hljs-number">19613056</span>    <span class="hljs-number">1</span>% /
-devtmpfs                           <span class="hljs-number">59573</span>   <span class="hljs-number">331</span>    <span class="hljs-number">59242</span>    <span class="hljs-number">1</span>% /dev
-tmpfs                              <span class="hljs-number">62549</span>     <span class="hljs-number">1</span>    <span class="hljs-number">62548</span>    <span class="hljs-number">1</span>% /dev/shm
-tmpfs                              <span class="hljs-number">62549</span>   <span class="hljs-number">377</span>    <span class="hljs-number">62172</span>    <span class="hljs-number">1</span>% /run
-tmpfs                              <span class="hljs-number">62549</span>    <span class="hljs-number">16</span>    <span class="hljs-number">62533</span>    <span class="hljs-number">1</span>% /sys/fs/cgroup
-/dev/sda2                         <span class="hljs-number">524288</span>   <span class="hljs-number">328</span>   <span class="hljs-number">523960</span>    <span class="hljs-number">1</span>% /boot
-tmpfs                              <span class="hljs-number">62549</span>     <span class="hljs-number">1</span>    <span class="hljs-number">62548</span>    <span class="hljs-number">1</span>% /run/user/<span class="hljs-number">1000</span>
-</code></pre></li>
+<li><p><a href="df">df</a> コマンドを利用して使用率を表示</p></li>
 </ul>
 </span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

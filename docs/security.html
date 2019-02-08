@@ -17,58 +17,6 @@
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="other"></a><a href="#other" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other</h2>
 <ul>
-<li>認証局(CA : Certification Authority, 認証機関)
-<ul>
-<li>クライアントとサーバーが双方ともに信頼する第三者機関がその立場であり、公開鍵が本物であることを証明する機関</li>
-<li>利用
-<ol>
-<li>サーバーの運営者が認証機関に公開鍵を提出</li>
-<li>認証機関はその提出された公開鍵にデジタル署名を施し、署名済の公開鍵を作る</li>
-<li>その署名済の公開鍵が公開鍵証明書(デジタル証明書)に収められる</li>
-</ol></li>
-<li>証明書を受け取った</li>
-</ul></li>
-</ul>
-<ul>
-<li>SSL 証明書
-<ul>
-<li><a href="https://www.jp.websecurity.symantec.com/welcome/pdf/wp_sslandroot-certificate.pdf">いまさら聞けない、SSLサーバ証明書とルート証明書の関係</a></li>
-<li>サイトチェッカー
-<ul>
-<li>不要な中間証明書等も検知してくれるから優秀
-<ul>
-<li><a href="https://www.ssllabs.com/ssltest/">https://www.ssllabs.com/ssltest/</a></li>
-<li>「Do not show the results on the boards」にチェック入れないと画面下のドメイン一覧にのってしまう</li>
-</ul></li>
-</ul></li>
-<li><a href="https://www.websecurity.symantec.com/ja/jp/theme/ssl-compare">SSLサーバ証明書の種類と比較</a>
-<ul>
-<li>DV (Domain Validation)
-<ul>
-<li>ドメイン認証</li>
-<li>ドメインの管理権限をもとに発行される</li>
-</ul></li>
-<li>OV (Organaization Validation)
-<ul>
-<li>企業認証</li>
-<li>組織情報の審査を経て発行される</li>
-</ul></li>
-<li>EV (Extended Validation)
-<ul>
-<li>通信相手が実在する企業であるかを確かめる役割をもった証明書</li>
-<li>ブラウザのアドレスバーの色が緑色になる</li>
-<li>SSL 証明書の発行にて一定の基準に基づき、それをクリアして発行された証明書</li>
-<li>EV 証明書ガイドライン
-<ul>
-<li>企業の法的実体の確認</li>
-<li>ドメインの所有権の確認</li>
-<li>担当者の身元証明と署名</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-<ul>
 <li>クライアント証明書
 <ul>
 <li>サーバーが通信している相手が意図したクライアントであることを証明</li>
@@ -94,7 +42,7 @@
 </ul></li>
 <li><p>設定や設計の不備による脆弱性</p>
 <ul>
-<li>強制ブラウジング
+<li><code>強制ブラウジング</code>
 <ul>
 <li>公開することを意図していないファイルが閲覧可能な状態になっていること
 <ul>
@@ -111,6 +59,10 @@
 <ul>
 <li>指定した任意の URL にリダイレクトする機能</li>
 </ul></li>
+<li><code>ディレクトリリスティング</code>
+<ul>
+<li>URL でディレクトリを指定すると、ディレクトリに含まれるファイル一覧を表示する Web サーバー(Apache, IIS 等) の機能</li>
+</ul></li>
 </ul></li>
 </ul>
 <ul>
@@ -120,12 +72,124 @@
 </ul></li>
 </ul>
 <ul>
-<li>クリックジャッキング
+<li><code>クリックジャッキング</code>
 <ul>
 <li>透明なボタンやリンクを罠となる Web ページに埋め込み、そのリンクをユーザにクリックさせることで意図しないコンテンツにアクセスさせる攻撃</li>
 <li>UI Redressing</li>
 <li><a href="x-frame-options">X-Frame-Options</a></li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ソフトウェア製品等の脆弱性を識別-評価する仕組み">ソフトウェア製品等の脆弱性を識別/評価する仕組み</a></li><li><a href="#other">Other</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h2><a class="anchor" aria-hidden="true" id="waf"></a><a href="#waf" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>WAF</h2>
+<ul>
+<li>改行コードインジェクション
+<ul>
+<li>動的にヘッダを生成する Web ページに対し、改行コードをヘッダ内に挿入することで任意の文字列を生成させて不正な動作を引き起こされる攻撃方法</li>
+</ul></li>
+<li>LDAP コードインジェクション
+<ul>
+<li>検索フィルタ文字列に、LDAP クエリとして意味がある文字(メタ文字) を混ぜ込む攻撃方法</li>
+</ul></li>
+<li>ファイルインクルード
+<ul>
+<li>アプリケーションが使用しているスクリプト言語の include 系関数で、アプリケーションが意図していないファイルを読み込ませる攻撃方法</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="脆弱性"></a><a href="#脆弱性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>脆弱性</h2>
+<hr>
+<ul>
+<li><p>SSL/TLS のバージョンロールバック攻撃</p>
+<ul>
+<li>通信プロトコルの古いバージョンを意図的に使用させることにより、当該バージョンに存在する脆弱性を突いて暗号化通信の解読等を試みる手法</li>
+<li>例
+<ul>
+<li>OpenSSL 0.9.8 以前のバージョンには、サーバのオプションとして、クライアントの不具合を回避する SSL_OP_ALL を指定した場合、バージョンのロールバック攻撃により、SSL 2.0 プロトコルによる通信を受け入れてしまうという問題</li>
+</ul></li>
+</ul></li>
+<li><p>Logjam 攻撃</p>
+<ul>
+<li>TLS 1.2 を使用した通信において，DH 鍵交換アルゴリズムの脆弱性を突く攻撃</li>
+<li>交換されたセッション鍵を窃取して暗号化通信の内容を解読できる</li>
+<li>DH 鍵交換法の脆弱性を突いて、TLS 接続を 512 ビットの輸出グレード暗号にダウングレードさせ、通信内容の解読を試みる</li>
+</ul></li>
+<li><p>Dropping the change cipher spec message</p>
+<ul>
+<li>SSL のハンドシェイクプロトコルの終了前で、使用暗号化アルゴリズムの変更メッセージを、通信経路に介在する攻撃者が削除することによって、通信者が暗号化無しでセッションを開始し、攻撃者がセッションの全通信を盗聴したり改ざんしたりする</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="脆弱性診断ツール"></a><a href="#脆弱性診断ツール" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>脆弱性診断ツール</h3>
+<ul>
+<li><a href="openscap">OpenSCAP</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="2014"></a><a href="#2014" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2014</h3>
+<ul>
+<li><p>Heartbleed</p>
+<ul>
+<li>OpenSSL のバージョン 1.0.1 で実装された SSL の死活監視機能である「Heartbeat」に深刻な脆弱性が存在</li>
+<li>悪用されると SSL 通信を行っているサーバのメモリに格納されている情報が第三者によって閲覧され、暗号化通信の内容は SSL 証明書の秘密鍵などの機密情報が漏洩する可能性がある</li>
+</ul></li>
+<li><p>ShellShock</p>
+<ul>
+<li>GNU bash の脆弱性</li>
+</ul></li>
+<li><p>POODLE(Padding Oracle On Downgraded Legacy Encryption)</p>
+<ul>
+<li>SSL 3.0 において、中間者攻撃によって暗号化された通信が解読されてしまう脆弱性が存在することが判明</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="2015"></a><a href="#2015" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2015</h3>
+<ul>
+<li><p>GHOST</p>
+<ul>
+<li>glibc の脆弱性</li>
+</ul></li>
+<li><p>FREAK(Factoring attack on RSA-EXPORT Keys)</p>
+<ul>
+<li>SSL/TLS の脆弱性</li>
+<li>輸出グレードの弱い暗号強度の RSA 暗号をサポートしていたことに起因する脆弱性が存在</li>
+<li>悪用されると、中間者攻撃により、暗号化された通信が解読されてしまう可能性がある</li>
+</ul></li>
+</ul>
+<ul>
+<li>VENOM
+<ul>
+<li>QEMU の脆弱性</li>
+</ul></li>
+</ul>
+<ul>
+<li>Logjam
+<ul>
+<li>TLS の脆弱性</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="others"></a><a href="#others" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Others</h2>
+<ul>
+<li>SIEM(Security Information and Event Management)
+<ul>
+<li>何らかのセキュリティインシデントが発生した場合、それを統合して把握するというアプローチ</li>
+<li>ログの収集、ネットワークの監視結果などの情報をリアルタイムに収集して確認できるようにしておく</li>
+</ul></li>
+</ul>
+<ul>
+<li>デジタルフォレンジック
+<ul>
+<li>犯罪や法的紛争が生じた際に、ハードディスク上のデータやログ、ネットワーク通信記録を収集・分析し、法的解決を図ること</li>
+<li>ディジタルフォレンジックスにて証拠を収集する際には、証拠の滅失を避けるために原則として <code>揮発性の高い情報から順に処理</code>
+<ul>
+<li>IPA によるRFC3227の日本語訳「証拠収集とアーカイビングのためのガイドライン」では、典型的なシステムにおける揮発性の例が挙げられている</li>
+<li><img src="digital_forensic_basic_principle.png" alt="">
+<ul>
+<li><a href="https://www.ipa.go.jp/security/rfc/RFC3227JA.html#021">参考URL: RFC3227日本語訳 証拠収集とアーカイビングのためのガイドライン</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><code>FISMA(連邦情報セキュリティ管理法)</code>
+<ul>
+<li>連邦政府機関や連邦政府機関から業務委託を受けている民間の外部委託先が、情報セキュリティを強化することが義務付けられている</li>
+<li>さらに、最低でも年に一度情報セキュリティの有効性についてのレビューを行い、OMB(Office of Management and Budget：米国合衆国行政管理予算局) に報告書を提出することも義務付けられている</li>
+<li>各省庁では昨今耳にするようになった CSO(Chief Security Officer：情報セキュリティ責任者) の設置なども求められている</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ソフトウェア製品等の脆弱性を識別-評価する仕組み">ソフトウェア製品等の脆弱性を識別/評価する仕組み</a></li><li><a href="#other">Other</a></li><li><a href="#waf">WAF</a></li><li><a href="#脆弱性">脆弱性</a><ul class="toc-headings"><li><a href="#脆弱性診断ツール">脆弱性診断ツール</a></li><li><a href="#2014">2014</a></li><li><a href="#2015">2015</a></li></ul></li><li><a href="#others">Others</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

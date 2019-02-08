@@ -49,9 +49,15 @@
 <li><p>UDP Flood 攻撃</p></li>
 </ul>
 <ul>
-<li>Smurf 攻撃
+<li><code>Smurf 攻撃</code>
 <ul>
 <li>ICMP の応答パケットを大量に送りつける</li>
+<li>LAN 内ではブロードキャストを利用して、同一ネットワークに属するすべてのコンピュータに同じメッセージを送信できるため、これを悪用
+<ul>
+<li>あるコンピュータから LAN 内すべてのコンピュータに ping を実行</li>
+<li>このコマンドを受信した LAN 内のすべてのコンピュータは、それぞれのコンピュータから応答パケットを送信</li>
+<li>このとき、送信元の IP アドレスとして特定のコンピュータを指定することで、そのコンピュータに大きな負荷をかけることができる</li>
+</ul></li>
 </ul></li>
 </ul>
 <ul>
@@ -65,6 +71,17 @@
 <li>EDoS 攻撃(Economic Denial of Service attack)
 <ul>
 <li>経済的な損失を与えることを目的とした DoS 攻撃</li>
+</ul></li>
+</ul>
+<ul>
+<li><p><code>ボットネット</code></p>
+<ul>
+<li>使用者が知らないところで乗っ取られたコンピュータの集まり</li>
+<li>悪意のあるプログラムを使用して乗っ取ったコンピュータに対して、外部から攻撃の指示を送る</li>
+</ul></li>
+<li><p>F5 攻撃</p>
+<ul>
+<li>キーボードの F5 を実行すると Web サイトのリロードが実行されるので、F5 を連続で実行することで Web サーバに大きな負荷をかける</li>
 </ul></li>
 </ul>
 </span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));

@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>CPU(Central Processing Unit) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- OS からの命令を受け、データに対して演算処理を行い、結果を返却"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="CPU(Central Processing Unit) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- OS からの命令を受け、データに対して演算処理を行い、結果を返却"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">CPU(Central Processing Unit)</h1></header><article><div><span><ul>
 <li>OS からの命令を受け、データに対して演算処理を行い、結果を返却</li>
-<li>プロセッサ</li>
-<li>中央処理装置</li>
+<li>機械語(マシン語) で記述されたソフトウェアを理解し、実行することができる</li>
+<li>プロセッサ、中央処理装置</li>
 <li>基本構図
 <ol>
 <li>演算装置(コア)
@@ -40,6 +40,11 @@
 <ul>
 <li>クロック周波数
 <ul>
+<li><code>クロック(同期信号)</code>
+<ul>
+<li>電圧の「高」と「低」を繰り返し入力</li>
+</ul></li>
+<li>1 秒間にクロックを何回刻むかを表した数値</li>
 <li>CPU の名前の表記の後ろに 1.8 GHz とか 2.4 GHz とか書いてある数字の事
 <ul>
 <li>1.8 GHz の場合、1 秒間に 18 億回切り替えが可能</li>
@@ -98,5 +103,88 @@
 <li>スケールアップで対応</li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#リソース分析">リソース分析</a></li><li><a href="#ボトルネック">ボトルネック</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h2><a class="anchor" aria-hidden="true" id="仮想化"></a><a href="#仮想化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>仮想化</h2>
+<hr>
+<ul>
+<li><p>CPU 仮想化支援機能(CPU エミュレーション)</p>
+<ul>
+<li>ソフトウェアレベルで行っていた仮想化の仕組みを CPU で実現するための拡張機能</li>
+<li>Intel VT(intel)</li>
+<li>AMD-V(amd)</li>
+</ul></li>
+<li><p><code>SLAT(Second Level Address Translation)</code></p>
+<ul>
+<li>複数のゲスト OS とホスト OS(ハイパーバイザー) 間のアドレス処理をハードウェアが担うことにより、安全にハイパフォーマンスを提供する仮想化支援</li>
+<li>Intel
+<ul>
+<li><code>EAP(Extended Page Table)</code> と呼ばれる</li>
+</ul></li>
+<li>AMD
+<ul>
+<li><code>NPT(Nested Page Table)</code> と呼ばれる</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><code>CPU フラグ</code>
+<ul>
+<li>仮想化支援機能が利用できる場合の目印</li>
+<li><code>/proc/cpuinfo</code> を見る</li>
+<li>Intel
+<ul>
+<li><code>vmx</code></li>
+</ul></li>
+<li>AMD
+<ul>
+<li><code>svm</code></li>
+</ul></li>
+<li>注意
+<ul>
+<li>BIOS レベルで無効化されている可能性がある</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="others"></a><a href="#others" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Others</h2>
+<hr>
+<ul>
+<li>CPU モード / 特権レベル
+<ul>
+<li><code>特権モード(カーネルモード)</code>
+<ul>
+<li>CPU が備えるすべての機能を無制限に利用できる</li>
+<li>特権 CPU 命令
+<ul>
+<li>特権モードでの CPU に対する命令</li>
+</ul></li>
+</ul></li>
+<li><code>ユーザモード</code>
+<ul>
+<li>CPU 利用に制限が課せられた CPU モード</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>SMP(Symmetric Multiple-Processor)</p>
+<ul>
+<li>対称型マルチプロセッシング</li>
+<li>複数のプロセッサに処理を分散することで並列処理を行う方式</li>
+<li>一つのシステムに複数の CPU やプロセッサコアがあり、それらに特別な役割や主従関係などがなく対等、対称な関係になっているシステム</li>
+</ul></li>
+<li><p>コンペア・アンド・スワップ(Compare-and-Swap、CAS)</p>
+<ul>
+<li>アトミックに、あるメモリ位置の内容と指定された値を比較し、等しければそのメモリ位置に別の指定された値を格納する CPU の特別な命令の一種</li>
+</ul></li>
+<li><p>テスト・アンド・セット</p>
+<ul>
+<li>あるメモリ位置へアトミックに書き込みを行うコンピュータの命令</li>
+</ul></li>
+</ul>
+<ul>
+<li>8, 16, 32, 64 ビット
+<ul>
+<li>CPU や CPU レジスタの大きさ、レジスタとメモリとを結ぶデータバスが、8, 16, 32, 64 となっている</li>
+<li>ビット数の量のデータを一度に処理したり転送したりすることができる</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#リソース分析">リソース分析</a></li><li><a href="#ボトルネック">ボトルネック</a></li><li><a href="#仮想化">仮想化</a></li><li><a href="#others">Others</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -1,22 +1,197 @@
 <!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>DNS(Domain Name System) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- ドメイン名と IP アドレスの名前解決を提供"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="DNS(Domain Name System) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- ドメイン名と IP アドレスの名前解決を提供"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">DNS(Domain Name System)</h1></header><article><div><span><ul>
-<li>ドメイン名と IP アドレスの名前解決を提供</li>
-<li>ルートゾーンKSKロールオーバー
+<li><p>ドメイン名と IP アドレスの名前解決を提供</p></li>
+<li><p>ルートゾーンKSKロールオーバー</p>
 <ul>
 <li><a href="https://internet.watch.impress.co.jp/docs/special/1147030.html">いよいよ明日10月11日深夜に実施、「ルートゾーンKSKロールオーバー」は過度に恐れる必要は無い!?（普段からきちんと管理されているネットワークであれば）</a></li>
 </ul></li>
 </ul>
 <ul>
-<li>DNSSEC(DNS Security Extensions)
+<li><p><a href="dns-amp">DNS リフレクション (DNS amp) 攻撃</a></p></li>
+<li><p>ダイナミック DNS</p>
 <ul>
-<li>ディジタル署名によって応答の正当性を確認できるようにした DNS の拡張仕様</li>
-<li>DNS キャッシュポイズニング攻撃への有効な対策
-<ul>
-<li>名前解決要求に対して応答を返す DNS サーバが、自身の秘密鍵を用いて応答レコードにディジタル署名を検証することで、応答レコードの正当性、完全性を確認する</li>
+<li>IP アドレスが変わってしまったときに DNS サーバへ通知して、ホスト名と IP アドレスの対応を動的に変更する仕組み</li>
 </ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="仕組み"></a><a href="#仕組み" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>仕組み</h2>
+<h3><a class="anchor" aria-hidden="true" id="レコード"></a><a href="#レコード" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>レコード</h3>
+<ul>
+<li><p>SOAコード(Start Of Authority)</p>
+<ul>
+<li><p>このゾーンの権威サーバであることを示す</p></li>
+<li><p>確認</p>
+<pre><code class="hljs">$ host -t soa renoretriever<span class="hljs-selector-class">.net</span>.
+renoretriever<span class="hljs-selector-class">.net</span> has SOA record <span class="hljs-number">01</span><span class="hljs-selector-class">.dnsv</span><span class="hljs-selector-class">.jp</span>. hostmaster<span class="hljs-selector-class">.dnsv</span><span class="hljs-selector-class">.jp</span>. <span class="hljs-number">1390534911</span> <span class="hljs-number">3600</span> <span class="hljs-number">900</span> <span class="hljs-number">604800</span> <span class="hljs-number">300</span>
+</code></pre>
+<table>
+<thead>
+<tr><th>項目</th><th>説明</th></tr>
+</thead>
+<tbody>
+<tr><td>01.dnsv.jp.</td><td>このゾーンのプライマリー DNS サーバ</td></tr>
+<tr><td>hostmaster.dnsv.jp.</td><td>ゾーン管理者のメールアドレス<br>. を @ に変えたもの</td></tr>
+<tr><td>1390534911</td><td>シリアル値<br>ゾーンファイルを修正した時には値の大きい物をつけるようにする<br>スレーブは自分がもっているシリアル値より大きい値であることを確認したら、新規にゾーンを取得する動作となる</td></tr>
+<tr><td>3600</td><td>スレーブがマスターの情報が更新されていないかをチェックする間隔<br>シリアル値を確認し、値が大きくなっていれば転送依頼をかける</td></tr>
+<tr><td>900</td><td>上記チェックにて失敗した時のリトライ間隔</td></tr>
+<tr><td>604800</td><td>期限切れの時間<br>スレーブがマスターに最後に接続してから、この時間が過ぎるとスレーブは自分が持っている情報を全部無効とする</td></tr>
+<tr><td>300</td><td>ネガティブキャッシュ<br>存在しない情報だった場合、その情報をどれくらいキャッシュするかの時間</td></tr>
+</tbody>
+</table>
+</li>
+</ul></li>
+<li><p>A レコード(アドレス)</p>
+<ul>
+<li><p>名前と IP アドレスのヒモ付を行うもの</p></li>
+<li><p>確認</p>
+<pre><code class="hljs">$ host -t a renoretriever.net.
+renoretriever.net has<span class="hljs-built_in"> address </span>158.199.143.102
+</code></pre></li>
+</ul></li>
+<li><p>MX レコード(mail exchange)</p>
+<ul>
+<li><p>メール配送に利用されるレコード</p></li>
+<li><p>確認</p>
+<pre><code class="hljs">$ host -t mx renoretriever<span class="hljs-selector-class">.net</span>.
+renoretriever<span class="hljs-selector-class">.net</span> mail is handled by <span class="hljs-number">20</span> mail02<span class="hljs-selector-class">.renoretriever</span><span class="hljs-selector-class">.net</span>.
+renoretriever<span class="hljs-selector-class">.net</span> mail is handled by <span class="hljs-number">10</span> mail01<span class="hljs-selector-class">.renoretriever</span><span class="hljs-selector-class">.net</span>.
+</code></pre>
+<ul>
+<li>数字は優先度(0〜65535 の間)</li>
+<li>低い値が優先度が高く、先に利用される</li>
+</ul></li>
+</ul></li>
+<li><p>NS レコード(mail exchange)</p>
+<ul>
+<li><p>ネームサーバの指定</p></li>
+<li><p>確認</p>
+<pre><code class="hljs">$ host -t ns renoretriever.net.
+renoretriever.net name<span class="hljs-built_in"> server </span>01.dnsv.jp.
+renoretriever.net name<span class="hljs-built_in"> server </span>02.dnsv.jp.
+renoretriever.net name<span class="hljs-built_in"> server </span>03.dnsv.jp.
+renoretriever.net name<span class="hljs-built_in"> server </span>04.dnsv.jp.
+</code></pre></li>
 </ul></li>
 </ul>
 <ul>
-<li><a href="dns-amp">DNS リフレクション (DNS amp) 攻撃</a></li>
+<li>TXT レコード(text)
+<ul>
+<li>ドメインに関する情報の記載。SPF や DKMI など</li>
+</ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<ul>
+<li><p>CAA(Certification Authority Authorization)</p>
+<ul>
+<li><p>ドメインに関する証明書を発行できる認証局の指定</p></li>
+<li><p>例</p>
+<pre><code class="hljs">example1<span class="hljs-selector-class">.jp</span>.    IN  CAA <span class="hljs-number">0</span> issue <span class="hljs-string">"letsencrypt.org"</span>
+</code></pre></li>
+</ul></li>
+<li><p><code>PTR</code></p>
+<ul>
+<li>IP アドレスに対応するホスト名</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="bind"></a><a href="#bind" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>BIND</h2>
+<ul>
+<li>メッセージ判断
+<ul>
+<li>DNS では、DNS メッセージ中に ID という 16 ビットの識別子が用意されている
+<ul>
+<li>応答メッセージを受信したときに、それがどの問い合わせメッセージに対するものかを判断するために使用</li>
+</ul></li>
+<li>キャッシュサーバは、問い合わせメッセージ中に ID を指定して送信し、あとで DNS メッセージを受信したときにそのメッセージ中の ID を調べ、問い合わせたときの ID と一致するものを、対応する応答メッセージとして処理</li>
+<li>問い合わせのときに指定した ID と、応答パケットに含まれる ID が一致しない場合は、不正なDNSメッセージとして破棄</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>バージョンの調べ方</p>
+<pre><code class="hljs">$ dig <span class="hljs-keyword">@nameserver</span> chaos txt <span class="hljs-keyword">version</span>.bind
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="google-public-dns"></a><a href="#google-public-dns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Google Public DNS</h2>
+<ul>
+<li><a href="http://eng-blog.iij.ad.jp/archives/85">Google Public DNS over HTTPS を試す</a></li>
+<li><a href="http://rp.delaat.net/2014-2015/p75/report.pdf">Google Public DNS の内部構造について調査した論文 (PDF)</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="word"></a><a href="#word" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Word</h2>
+<ul>
+<li>ドメイン</li>
+</ul>
+<ul>
+<li><p>ゾーン</p>
+<ul>
+<li>DNS サーバが管理する範囲のこと</li>
+<li>DNS サーバに登録されているリソースレコードの集まり</li>
+</ul></li>
+<li><p>オープンリゾルバ</p>
+<ul>
+<li>組織内部だけでなく外部からも利用できるキャッシュサーバ</li>
+</ul></li>
+<li><p>ネガティブキャッシュ</p>
+<ul>
+<li>検索対象が存在しない結果のキャッシュ</li>
+</ul></li>
+<li><p>逆引き</p>
+<ul>
+<li>必須ではないが、メールサーバで正引き・逆引きの整合性がチェックされるケースがある</li>
+<li>設定しておくメリット
+<ul>
+<li>telnetやらsshd などが接続処理の中で逆引きを調べるプログラムが存在する</li>
+<li>どの組織にIPブロックが割り当てられているか調べられる</li>
+<li>メールサーバでは逆引きできないとメールの配送を受け付けない設定をしているのがある。</li>
+<li>こんなのがあるとき、待ち時間が発生して、処理遅延が起きる</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="名前解決フロー"></a><a href="#名前解決フロー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>名前解決フロー</h2>
+<ul>
+<li><code>www.example.com</code> をブラウザから閲覧したことを想定して以下フローとなる</li>
+</ul>
+<ol>
+<li>クライアント =&gt; キャッシュ DNS サーバ
+<ul>
+<li>自分の PC に設定してある DNS サーバに問い合わせを行う</li>
+<li>通常はプロバイダの <code>キャッシュ DNS サーバ</code> を設定している</li>
+</ul></li>
+<li>キャッシュ DNS サーバ =&gt; ルート DNS サーバ
+<ul>
+<li>キャッシュ DNS サーバが知らないホスト名のリクエストを受けた場合、 <code>ルート DNS サーバ</code> に問い合わせを行う</li>
+<li>キャッシュがあればその情報をクライアントに返す</li>
+</ul></li>
+<li>ルート DNS サーバ =&gt; キャッシュ DNS サーバ
+<ul>
+<li><code>.com</code> の DNS サーバに問い合わせするように指示</li>
+</ul></li>
+<li>キャッシュ DNS サーバ =&gt; .com の DNS サーバ
+<ul>
+<li><code>example.com</code> の DNS サーバの情報を返す</li>
+</ul></li>
+<li>キャッシュ DNS サーバ =&gt; example.com の DNS サーバ
+<ul>
+<li><code>www.example.com</code> の情報を保持しているので、その IP アドレスを返す</li>
+</ul></li>
+<li>キャッシュ DNS サーバ =&gt; クライアント
+<ul>
+<li><code>www.example.com</code> の IP アドレスを返す</li>
+</ul></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="攻撃"></a><a href="#攻撃" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>攻撃</h2>
+<hr>
+<ul>
+<li><code>DNS スプーフィング</code>
+<ul>
+<li>hosts ファイルの書き換えなど、DNS サーバに偽の応答を行わせる方法</li>
+</ul></li>
+<li><a href="dns-cache-poisoning">DNS キャッシュポイズニング</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<hr>
+<ul>
+<li><a href="http://www.geekpage.jp/blog/?id=2011/10/27/1">なぜ「DNSの浸透」は問題視されるのか</a></li>
+<li><a href="https://dns.google.com/">lookup</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="others"></a><a href="#others" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Others</h2>
+<ul>
+<li><a href="dns-cache-poisoning">DNS キャッシュポイズニング</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#仕組み">仕組み</a><ul class="toc-headings"><li><a href="#レコード">レコード</a></li></ul></li><li><a href="#bind">BIND</a></li><li><a href="#google-public-dns">Google Public DNS</a></li><li><a href="#word">Word</a></li><li><a href="#名前解決フロー">名前解決フロー</a></li><li><a href="#攻撃">攻撃</a></li><li><a href="#references">References</a></li><li><a href="#others">Others</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

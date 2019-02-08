@@ -17,5 +17,70 @@
 <li>パーセンタイル</li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h2><a class="anchor" aria-hidden="true" id="パフォーマンス分析"></a><a href="#パフォーマンス分析" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>パフォーマンス分析</h2>
+<ul>
+<li><p>必要な情報を取る</p>
+<ul>
+<li>サマリ形式
+<ul>
+<li>一定期間の情報を合計もしくは平均を見せてくれる</li>
+<li><a href="iostat">iostat</a></li>
+<li><a href="netstat">netstat</a>
+<ul>
+<li><a href="ss">ss</a></li>
+</ul></li>
+<li><a href="sar">sar</a></li>
+<li><a href="vmstat">vmstat</a></li>
+<li><a href="perf">perf</a></li>
+</ul></li>
+<li>イベント記録形式
+<ul>
+<li>個々のイベントを逐次記録する方式</li>
+<li><a href="tcpdump">tcpdump</a></li>
+<li><a href="strace">strace</a></li>
+<li>デメリット
+<ul>
+<li>データが大きくなる</li>
+<li>負荷が大きくなる</li>
+</ul></li>
+</ul></li>
+<li>スナップショット形式
+<ul>
+<li>その瞬間の状態を記録</li>
+<li>定期的に実行する必要がある</li>
+<li><a href="ps">ps</a></li>
+<li><a href="top">top</a></li>
+<li><a href="pstack">pstack</a></li>
+</ul></li>
+</ul></li>
+<li><p>最低でも 1 分間隔で取得する</p></li>
+</ul>
+<ul>
+<li><a href="queueing-theory">待ち行列理論</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="web-サーバのパフォーマンス分析"></a><a href="#web-サーバのパフォーマンス分析" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Web サーバのパフォーマンス分析</h2>
+<ul>
+<li>アクセスログを出力
+<ul>
+<li>リクエストの応答時間を出す</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="db-サーバのパフォーマンス分析"></a><a href="#db-サーバのパフォーマンス分析" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DB サーバのパフォーマンス分析</h2>
+<ul>
+<li>スローログを出す
+<ul>
+<li>スローログはあくまで結果なので、それを引き起こした原因がもしかしたら OS 側にあるかもしれないので要注意</li>
+</ul></li>
+<li>CPU or I/O 待ちかを見極める</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ストレージのパフォーマンス分析"></a><a href="#ストレージのパフォーマンス分析" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストレージのパフォーマンス分析</h2>
+<ul>
+<li>スループット or <a href="iops">IOPS</a> を見る</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ネットワークのパフォーマンス分析"></a><a href="#ネットワークのパフォーマンス分析" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ネットワークのパフォーマンス分析</h2>
+<ul>
+<li>スループット or <a href="iops">IOPS</a> を見る</li>
+<li>帯域制御</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#パフォーマンス分析">パフォーマンス分析</a></li><li><a href="#web-サーバのパフォーマンス分析">Web サーバのパフォーマンス分析</a></li><li><a href="#db-サーバのパフォーマンス分析">DB サーバのパフォーマンス分析</a></li><li><a href="#ストレージのパフォーマンス分析">ストレージのパフォーマンス分析</a></li><li><a href="#ネットワークのパフォーマンス分析">ネットワークのパフォーマンス分析</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>シングルサインオン(SSO) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基礎"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="シングルサインオン(SSO) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基礎"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">シングルサインオン(SSO)</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基礎"></a><a href="#基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基礎</h2>
+<hr>
+<ul>
+<li><p>アクセするサーバごとに異なるユーザ名やパスワードで行われているユーザ認証を、一元的な方法で行なうための仕組み</p></li>
+<li><p>認証を必要とする複数のシステムが存在する場合に、最初に 1 回認証が成功すれば、以降は利用するシステムが変わっても、利用が許可されているシステムであれば、認証プロセスを経ることなくそのまま利用できるようにする認証システム</p></li>
+<li><p>導入する場合は、次のように検討・実施するのが望ましい</p>
+<ol>
+<li>利用者のユーザ ID とパスワードの各々の統一</li>
+<li>複数アプリケーションの認証インタフェースの統合</li>
+<li>各アプリケーションに対するアクセス制御の実施</li>
+</ol></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="実装方法"></a><a href="#実装方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>実装方法</h2>
+<hr>
+<ul>
+<li><a href="openid-connect">OpenID Connect</a></li>
+<li><a href="oauth">OAuth</a></li>
+<li><a href="saml">SAML</a></li>
+</ul>
+<ul>
+<li><p>プロビジョニング</p>
+<ul>
+<li>人事・組織に関するイベントにより統合 ID 管理システムが管理するアカウントや各種情報の更新を行い、クライアントシステムへ自動反映を行なうこと</li>
+</ul></li>
+<li><p>ID 管理) プロビジョニング</p>
+<ul>
+<li>認証/認可の大前提となる ID の登録
+<ul>
+<li>認証の 8 大プロセス
+<ul>
+<li>存在確認</li>
+<li>身分証明書発行</li>
+<li>システム用の ID コードと認証手段のデータベース登録</li>
+<li>ユーザ認証</li>
+<li>認証結果表明発行</li>
+<li>認証結果表明送付</li>
+<li>認証結果表明確認</li>
+<li>リリース使用の認可</li>
+</ul></li>
+<li>認証/認可を&quot;正しく&quot;行なうために信頼できる ID 情報を登録する必要がある</li>
+</ul></li>
+<li>プロビジョニングの重要性
+<ul>
+<li>ID 管理システムが&quot;正しく、信頼できる&quot;プロビジョニングを行なうことにより識別、認証、認可が正しく実行できる</li>
+<li>ID 管理システム
+<ul>
+<li>役割
+<ul>
+<li>他のシステムに信頼に足る ID 情報を提供する</li>
+</ul></li>
+<li>統合認証システムに対して、認証用属性の提供(クレデンシャル)</li>
+<li>アプリに対して、認可用属性の提供</li>
+</ul></li>
+<li>統合認証システム
+<ul>
+<li>役割
+<ul>
+<li>ユーザの正当性を検証す</li>
+</ul></li>
+<li>アプリに対して、認証結果の提供</li>
+</ul></li>
+<li>アプリ
+<ul>
+<li>役割
+<ul>
+<li>認可コントロールを行なう</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>B2E シナリオにおける ID 基盤
+<ul>
+<li>理想
+<ul>
+<li>アプリケーション
+<ul>
+<li>全てのアプリケーションが統合認証システムへ認証機能を委譲
+<ul>
+<li>標準プロトコルへの対応し、パスワードは持たない</li>
+</ul></li>
+<li>ID 管理システムから同期される共通属性に基づく認可コントロールだけを行なう</li>
+</ul></li>
+<li>統合認証システム
+<ul>
+<li>標準プロトコルのサポート</li>
+<li>アプリケーションのコンテキストに応じた認証コントロール(MFA など)</li>
+</ul></li>
+<li>ID 管理システム
+<ul>
+<li>統合された源泉(人事等)から ID を取り込み、精度・鮮度の保証された ID 情報を管理・配布</li>
+</ul></li>
+</ul></li>
+<li>現実
+<ul>
+<li>アプリケーション
+<ul>
+<li>一部のアプリケーションが統合認証システムへ認証機能を委譲</li>
+<li>ID 管理システムからパスワードを同期</li>
+<li>ID 管理システムから同期される属性だけでは認可コントロールできないので独自管理</li>
+</ul></li>
+<li>統合認証システム
+<ul>
+<li>標準プロトコルのサポート</li>
+<li>アプリケーションのコンテキストに応じた認証コントロール(MFA など)</li>
+</ul></li>
+<li>ID 管理システム
+<ul>
+<li>複数の源泉(人事やグループウェア)から ID を取り込み、複雑なルールを実装</li>
+<li>精度は微妙</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>SSO リクエストはサービスプロバイダーの WEB サイトかまたは SSO ベンダーの WEB サイトから開始できる
+<ul>
+<li>SAML はどちらの方法もサポートする</li>
+<li>OpenID はサービスプロバイダーの WEB サイトにアクセスする必要がある</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="実装方式"></a><a href="#実装方式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>実装方式</h2>
+<ul>
+<li>Cookie を使う SSO
+<ul>
+<li>エージェント型 SSO</li>
+<li>最初のログインの際には、Web サーバにインストールされたエージェントが認証サーバにアクセスで認証を行う</li>
+<li>その認証・識別情報を Cookie に含めクライアントに返す</li>
+<li>別の Web サーバにアクセスがあった場合には、エージェントが認証サーバにアクセスし Cookie 情報をもとに認証を行う</li>
+<li>制限
+<ul>
+<li>Cookie 共有可能な範囲内(同一ドメイン内) でしか、SSO システムを構築できない</li>
+<li>クライアントが Cookie 使用を制限している場合には使用できない</li>
+</ul></li>
+</ul></li>
+<li>リバースプロキシ型 SSO
+<ul>
+<li>すべての Web サーバへのアクセスをリバースプロキシに集約</li>
+<li>リバースプロキシはアクセスしてきたユーザを認証</li>
+<li>ログインに成功すると、リバースプロキシは Web サーバに代理アクセスし結果をユーザに返す</li>
+<li>制限
+<ul>
+<li>ネットワーク構成による制約</li>
+</ul></li>
+</ul></li>
+<li><a href="saml">SAML(Security Assertion Markup Language)</a></li>
+</ul>
+<ul>
+<li>エージェント方式
+<ul>
+<li>Web アプリケーションサーバに、認証を代行する「エージェント」モジュールを組み込む方式</li>
+<li>リクエストは Web が受け取り、Web サーバ内の「エージェント」がシングルサインオンサーバに問い合わせを実施</li>
+<li>メリット
+<ul>
+<li>ネットワーク構成を変更せず導入できる</li>
+<li>拡張性に優れている</li>
+</ul></li>
+<li>デメリット
+<ul>
+<li>「エージェント」のインストール/アップデート対応等が必要</li>
+<li>「エージェント」未対応の可能性</li>
+</ul></li>
+</ul></li>
+<li>リバースプロキシ方式
+<ul>
+<li>ブラウザと Web アプリケーションサーバ間に「リバースプロキシ」サーバを設置し、「リバースプロキシ」サーバにエージェントソフトを導入することで、シングルサインオンを実現</li>
+<li>利用者の認証情報としてディジタル証明書を利用することができる</li>
+<li>メリット
+<ul>
+<li>リバースプロキシを経由することで Web アプリケーションサーバが隠蔽され、安全性・安定性を一層高めることができる</li>
+<li>個々の Web アプリケーションサーバへのエージェント導入が不要</li>
+<li>プラットフォームに依存しない</li>
+</ul></li>
+<li>デメリット
+<ul>
+<li>ネットワーク構成の変更が必要</li>
+<li>リバースプロキシ自体の冗長化</li>
+</ul></li>
+</ul></li>
+<li>代理認証方式
+<ul>
+<li>対象の Web アプリケーションやクラウドサービスのログインページに対して、ユーザの代わりに ID/パスワードを送信し、自動的に代理入力することによってログインを完了</li>
+<li>メリット
+<ul>
+<li>IDaaS と組み合わせることで簡単にシングルサインオン対象にできる</li>
+<li>Web アプリケーションやクラウドサービスのサービス事業者側で特別な改修がいらない</li>
+<li>Web アプリケーションではない、サーバ/クライアントアプリケーションにも対応</li>
+</ul></li>
+<li>デメリット
+<ul>
+<li>クライアント側にエージェントをインストールする必要がある</li>
+<li>Web アプリケーションやクラウドサービスによっては代理認証に対応できないこともある</li>
+</ul></li>
+</ul></li>
+<li>フェデレーション方式
+<ul>
+<li>クラウドサービス間を、パスワードの代わりにチケットと呼ばれる情報を受け渡しすることで、シングルサインオンを実現</li>
+<li>プロトコル
+<ul>
+<li>SAML</li>
+<li>OpenID Connect</li>
+</ul></li>
+<li>メリット
+<ul>
+<li>標準プロトコル(SAML 等) に対応するだけで、シングルサインオンが実現</li>
+</ul></li>
+<li>デメリット
+<ul>
+<li>標準プロトコル(SAML 等)への対応が必要</li>
+<li>国産クラウドサービスが標準プロトコル(SAML 等)に対応していないことも</li>
+</ul></li>
+</ul></li>
+<li>透過型方式
+<ul>
+<li>ユーザが Web アプリケーションへアクセスする際の送信を監視し、ユーザ認証が必要なときのみ、認証情報を Web サーバへ送付する仕組み</li>
+<li>メリット
+<ul>
+<li>クライアントのブラウザやネットワーク経路に影響されない</li>
+<li>代理認証方式やエージェント方式が選択できる</li>
+<li>既存のネットワークに簡単に挿入できる</li>
+</ul></li>
+<li>デメリット
+<ul>
+<li>透過モードに設定したサーバあるいはエージェントが必要</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="oss"></a><a href="#oss" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OSS</h2>
+<hr>
+<ul>
+<li><a href="openam">OpenAM</a></li>
+<li><a href="keycloak">Keycloak</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基礎">基礎</a></li><li><a href="#実装方法">実装方法</a></li><li><a href="#実装方式">実装方式</a></li><li><a href="#oss">OSS</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

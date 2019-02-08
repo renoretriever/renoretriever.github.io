@@ -9,7 +9,21 @@
 <ul>
 <li><code>Cookie</code> ヘッダーフィールドに値を入れて送信</li>
 </ul></li>
-<li><p>Cookie 属性</p>
+<li><p>処理方法</p>
+<ul>
+<li><code>ファーストパーティ</code>
+<ul>
+<li>表示している Web サイトから送信されてくる Cookie</li>
+</ul></li>
+<li><code>サードパーティ</code>
+<ul>
+<li>表示している Web サイト内で開かれる他の Web サイトの広告から送信されてくる Cookie</li>
+<li>マーケティングに利用</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="cookie-属性"></a><a href="#cookie-属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cookie 属性</h2>
+<hr>
 <table>
 <thead>
 <tr><th>項目</th><th>説明</th></tr>
@@ -19,12 +33,14 @@
 <tr><td>Domain</td><td>ラウザがクッキー値を送信するサーバのドメイン<br>異なるドメインに対するクッキー設定はできない<br>属性を指定しない場合、クッキーを生成したサーバにのみクッキーが送られる<br><font color='red'>属性を設定しない状態が一番セキュア</font></td></tr>
 <tr><td>Path</td><td>ブラウザがクッキー値を送信する URL のディレクトリ</td></tr>
 <tr><td>Expires</td><td>クッキー値の有効期限<br>必要以上に長く設定していると、クライアント側の問題によってクッキーが悪用される可能性がある<br>想定しない場合にはブラウザの終了まで</td></tr>
-<tr><td>Secure</td><td>SSL の場合のみクッキーを送信</td></tr>
+<tr><td>secure</td><td>SSL/TLS 通信の場合のみクッキーを送信</td></tr>
 <tr><td>HttpOnly</td><td>この属性が指定されたクッキーは Javascript からアクセスできない</td></tr>
 <tr><td>SameSite 属性</td><td>RFC には存在しない<br>Chrome がバージョン 51 で導入<br>同じオリジンのドメインに対して送信するようになる</td></tr>
 </tbody>
 </table>
-</li>
+<h2><a class="anchor" aria-hidden="true" id="others"></a><a href="#others" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Others</h2>
+<ul>
+<li>Cookie Sync</li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#cookie-属性">Cookie 属性</a></li><li><a href="#others">Others</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

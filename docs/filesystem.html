@@ -61,6 +61,70 @@
 </ul></li>
 </ul></li>
 </ul>
+<h2><a class="anchor" aria-hidden="true" id="ファイルシステムの種類"></a><a href="#ファイルシステムの種類" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ファイルシステムの種類</h2>
+<hr>
+<ul>
+<li>ext2, ext3, ext4
+<ul>
+<li><a href="ext">ext</a> 参照</li>
+</ul></li>
+<li><a href="xfs">XFS</a></li>
+<li>Btrfs
+<ul>
+<li>Linux 向けの堅牢なファイルシステム</li>
+</ul></li>
+<li>FAT/FAT32
+<ul>
+<li>フラッシュメモリ等で使われるファイルシステム</li>
+</ul></li>
+<li>NTFS
+<ul>
+<li>Windows NT/2000 以降が採用するファイルシステム</li>
+</ul></li>
+<li><a href="nfs">NFS</a></li>
+<li>procfs
+<ul>
+<li>プロセス情報を扱う仮想ファイルシステム</li>
+</ul></li>
+<li>sysfs
+<ul>
+<li>デバイス情報を扱う仮想ファイルシステム</li>
+</ul></li>
+<li>tmpfs
+<ul>
+<li>メモリ上に作成可能なファイルシステム</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="ファイルシステムの暗号化"></a><a href="#ファイルシステムの暗号化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ファイルシステムの暗号化</h3>
+<ul>
+<li><p>LUKS(Linux Unified Key Setup)</p>
+<ul>
+<li>RHEL や CentOS で採用</li>
+</ul></li>
+<li><p>OS インストール後に暗号化</p>
+<ul>
+<li><p>パッケージインストール</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum install cryptsetup-luks</span>
+</code></pre></li>
+<li><p>暗号化</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> cryptsetup create <span class="hljs-built_in">test</span> /dev/vda2</span>
+</code></pre>
+<ul>
+<li>test
+<ul>
+<li>名前</li>
+</ul></li>
+<li>/dev/vda2
+<ul>
+<li>デバイスファイル名</li>
+</ul></li>
+</ul></li>
+<li><p><code>/dev/mapper</code> 配下に指定した名前のデバイスファイルが作成される</p></li>
+<li><p>ext4 にてファイルシステムを作成</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> mkfs -t ext4 /dev/mapper/<span class="hljs-built_in">test</span></span>
+</code></pre></li>
+</ul></li>
+</ul>
 <h2><a class="anchor" aria-hidden="true" id="linuxのファイル管理"></a><a href="#linuxのファイル管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linuxのファイル管理</h2>
 <ul>
 <li><p>パーティション</p>
@@ -122,15 +186,16 @@
 <li>ディスクキャッシュと物理デバイス間のデータ転送を行う</li>
 </ul></li>
 </ul></li>
-<li><p>バッファキャッシュ</p>
+<li><p>ディスクキャッシュ</p>
 <ul>
-<li>ディスクキャッシュのひとつ</li>
-<li>バッファキャッシュは、ディスクへの書き込みが終わったディスクバッファ上のデータおｗ保持しておくことで、再度読み出しが発生した時にそれを利用して高速化を実現するタイプのキャッシュ</li>
+<li><code>バッファキャッシュ</code>
+<ul>
+<li>ディスクへの書き込みが終わったディスクバッファ上のデータを保持しておくことで、再度読み出しが発生した時にそれを利用して高速化を実現するタイプのキャッシュ</li>
 </ul></li>
-<li><p>ページキャッシュ</p>
+<li><code>ページキャッシュ</code>
 <ul>
-<li>ディスクキャッシュのひとつ</li>
 <li>ページ単位で管理されるメモリ上の情報を保持しておくタイプのキャッシュ</li>
+</ul></li>
 </ul></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="テ-ィスクのハ-ーティション"></a><a href="#テ-ィスクのハ-ーティション" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ディスクのパーティション</h2>
@@ -362,55 +427,6 @@ Units = シリンダ数 of<span class="hljs-number"> 16065 </span>*<span clas
 </ul></li>
 </ul>
 <ul>
-<li><p>ジャーナリング機能</p>
-<ul>
-<li>ファイルシステムに対する書き換え処理のコマンドをファイルシステムに逐一記録する機能</li>
-<li>コンピュータが急停止し、ファイルのデータがファイルシステムに書き込み途中である場合、処理されていないコマンドを対処する
-<ul>
-<li>ファイルの書き込み途中の場合、書き込み終わっていないデータが無くて書き込みを終われないので、途中までディスクに保存されているファイルの管理情報を消し、書き込み途中のファイルが作られなかった状態にする</li>
-</ul></li>
-<li>モード
-<ul>
-<li>journal
-<ul>
-<li>メインファイルシステムより前に、すべてのデータがジャーナルに記録される</li>
-</ul></li>
-<li>ordered
-<ul>
-<li>メタデータがジャーナルに記録される前に、すべてのデータがメインファイルシステムに直接書き出される(デフォルト)</li>
-</ul></li>
-<li>writeback
-<ul>
-<li>メタデータがジャーナルに記録された後で、データがメインファイルシステムに書き込まれる</li>
-<li>ファイルシステムの完全性が保証されるが、クラッシュ後のリカバリでファイルの内容が以前の内容に戻ることもある</li>
-</ul></li>
-</ul></li>
-<li>sdc1(3 つ目のインターフェースの 1 つ目のパーティション) に ext3 形式のファイルシステムを作成</li>
-</ul>
-<pre><code class="hljs"><span class="hljs-comment"># mkfs -t ext3 -c /dev/sdc1</span>
-mke2fs 1.39 (29-May-2006) Filesystem <span class="hljs-attribute">label</span>=opt
-(ハードディスクのラベル)
- OS type: Linux
- Block <span class="hljs-attribute">size</span>=4096 (<span class="hljs-attribute">log</span>=2)
- Fragment <span class="hljs-attribute">size</span>=4096 (<span class="hljs-attribute">log</span>=2)
- 70400 inodes, 140568 blocks
- 7028 blocks (5.00%) reserved <span class="hljs-keyword">for</span> the super<span class="hljs-built_in"> user
-</span> First data <span class="hljs-attribute">block</span>=0
- Maximum filesystem <span class="hljs-attribute">blocks</span>=146800640
- 5 block groups
- 32768 blocks per group, 32768 fragments per<span class="hljs-built_in"> group
-</span> 14080 inodes per<span class="hljs-built_in"> group
-</span> Superblock backups stored on blocks:
-         32768, 98304
- Checking <span class="hljs-keyword">for</span> bad blocks (read-only test): done
- Writing inode tables: done
- Creating journal (4096 blocks): done
- Writing superblocks <span class="hljs-keyword">and</span> filesystem<span class="hljs-built_in"> accounting </span>information: done
- This filesystem will be automatically checked every 22 mounts <span class="hljs-keyword">or</span>
- 180 days, whichever comes first.  Use tune2fs -c <span class="hljs-keyword">or</span> -i <span class="hljs-keyword">to</span> override.
-</code></pre></li>
-</ul>
-<ul>
 <li><p>ext2/ext3/ext4 ファイルシステムでは、万が一ファイルシステムの全ブロックを一般ユーザが使い切った場合でも、 root による作業を可能にするため、root ユーザ専用の領域が確保されるようになっている</p></li>
 <li><p>ラベル</p>
 <ul>
@@ -421,7 +437,6 @@ mke2fs 1.39 (29-May-2006) Filesystem <span class="hljs-attribute">label</span>=o
 <li>e2label コマンドの利用</li>
 </ul></li>
 </ul></li>
-<li><p><a href="xfs">XFS</a></p></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="マウント"></a><a href="#マウント" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>マウント</h2>
 <ul>
@@ -434,50 +449,8 @@ mke2fs 1.39 (29-May-2006) Filesystem <span class="hljs-attribute">label</span>=o
 <li><p><a href="../../os/linux/command#linux-コマンド_mount">マウント(mount)</a></p></li>
 <li><p><a href="../../os/linux/command#linux-コマンド_umount">アンマウント(umount)</a></p></li>
 </ul>
-<h2><a class="anchor" aria-hidden="true" id="スワッフ-領域の作成"></a><a href="#スワッフ-領域の作成" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>スワップ領域の作成</h2>
-<ul>
-<li><p>推奨設定値</p>
-<ul>
-<li><a href="https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-swapspace">第14章 SWAP領域</a></li>
-</ul></li>
-<li><p>前提</p>
-<ul>
-<li>/var/cache/swapという、128 MBファイルを作成して、SWAPとして利用</li>
-</ul></li>
-<li><p>ファイル作成</p>
-<pre><code class="hljs css languages- bash"><span class="hljs-comment"># dd if=/dev/zero of=/var/cache/swap bs=1M count=128</span>
-128+0 records <span class="hljs-keyword">in</span>
-128+0 records out
-134217728 bytes (134 MB) copied, 0.298168 seconds, 450 MB/s
-</code></pre>
-<ul>
-<li>dd if=/dev/zero of=swap用ファイルのパス名 bs=単位 count=サイズ</li>
-<li>bs に指定するサイズでメモリを確保しようとするので、メモリ残容量が少ない場合には、小さい単ににする</li>
-</ul></li>
-<li><p>SWAP形式へと変換</p>
-<pre><code class="hljs css languages- bash"><span class="hljs-comment"># mkswap /var/cache/swap</span>
-Setting up swapspace version 1, size = 134213 kB
-</code></pre></li>
-<li><p>SWAPとして利用</p>
-<pre><code class="hljs css languages- bash"><span class="hljs-comment"># swapon /var/cache/swap</span>
-</code></pre></li>
-<li><p>SWAP一覧の表示</p>
-<pre><code class="hljs css languages- bash"><span class="hljs-comment"># swapon -s</span>
-Filename                    　　　　　　　　Type          Size     Used     Priority
-/dev/mapper/VolGroup00-LogVol01         partition      1048568     0     -1
-/var/cache/swap                        　　　  file             131064     0     -2
-</code></pre></li>
-<li><p>SWAPとしての登録抹消</p>
-<pre><code class="hljs css languages- bash"><span class="hljs-comment"># swapoff /var/cache/swap</span>
-</code></pre></li>
-<li><p>fstab への記載</p>
-<ul>
-<li>自動的にマウントするように追加してやる必要がある。</li>
-</ul>
-<pre><code class="hljs">/path/to/<span class="hljs-keyword">swap</span>          <span class="hljs-keyword">swap</span>                    <span class="hljs-keyword">swap</span>    defaults        <span class="hljs-number">0</span> <span class="hljs-number">0</span>
-</code></pre></li>
-</ul>
 <h2><a class="anchor" aria-hidden="true" id="自動マウント"></a><a href="#自動マウント" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自動マウント</h2>
+<hr>
 <ul>
 <li><p><code>/etc/fstab</code> への記載</p>
 <pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> cat /etc/fstab</span>
@@ -690,5 +663,8 @@ $ cat /sys/block/sda/queue<span class="hljs-built_in">/scheduler
 </table>
 </li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#linuxのファイル管理">Linuxのファイル管理</a></li><li><a href="#ファイルシステムの操作">ファイルシステムの操作</a></li><li><a href="#テ-ィスクのハ-ーティション">ディスクのパーティション</a></li><li><a href="#ファイルシステム">ファイルシステム</a></li><li><a href="#マウント">マウント</a></li><li><a href="#スワッフ-領域の作成">スワップ領域の作成</a></li><li><a href="#自動マウント">自動マウント</a></li><li><a href="#iノート">iノード</a></li><li><a href="#ハート-リンクとシンホ-リックリンク">ハードリンクとシンボリックリンク</a></li><li><a href="#テ-ィスクを管理するコマント">ディスクを管理するコマンド</a><ul class="toc-headings"><li><a href="#i-o-スケジューラ">I/O スケジューラ</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<ul>
+<li><a href="swap">スワップ</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ファイルシステムの種類">ファイルシステムの種類</a><ul class="toc-headings"><li><a href="#ファイルシステムの暗号化">ファイルシステムの暗号化</a></li></ul></li><li><a href="#linuxのファイル管理">Linuxのファイル管理</a></li><li><a href="#ファイルシステムの操作">ファイルシステムの操作</a></li><li><a href="#テ-ィスクのハ-ーティション">ディスクのパーティション</a></li><li><a href="#ファイルシステム">ファイルシステム</a></li><li><a href="#マウント">マウント</a></li><li><a href="#自動マウント">自動マウント</a></li><li><a href="#iノート">iノード</a></li><li><a href="#ハート-リンクとシンホ-リックリンク">ハードリンクとシンボリックリンク</a></li><li><a href="#テ-ィスクを管理するコマント">ディスクを管理するコマンド</a><ul class="toc-headings"><li><a href="#i-o-スケジューラ">I/O スケジューラ</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

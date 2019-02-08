@@ -207,7 +207,7 @@
 <ul>
 <li>OS レベルで実装されるブロックデバイスの抽象化テクノロジー</li>
 <li>RAID やブロックストレージから任意のサイズの論理ボリュームを作り出す</li>
-<li>LVM</li>
+<li><a href="lvm">LVM</a></li>
 </ul></li>
 <li>仮想ディスク
 <ul>
@@ -329,7 +329,7 @@
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="ルール規約-と作法処理方式"></a><a href="#ルール規約-と作法処理方式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ルール(規約) と作法(処理方式)</h4>
 <ul>
-<li>IETF</li>
+<li><a href="ietf">IETF</a></li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="非機能要件を満たす機能と技術"></a><a href="#非機能要件を満たす機能と技術" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>非機能要件を満たす機能と技術</h4>
 <ul>
@@ -539,6 +539,7 @@
 <li>ホスティング
 <ul>
 <li>すでに用意されたネットワークやサーバ機器を借りて運用</li>
+<li>レンタルサーバ</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -603,14 +604,229 @@
 <li>クラウド型</li>
 </ul></li>
 </ul>
+<h2><a class="anchor" aria-hidden="true" id="ソース-ファイルから実行可能なファイルができるまで"></a><a href="#ソース-ファイルから実行可能なファイルができるまで" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ソース・ファイルから実行可能なファイルができるまで</h2>
+<ul>
+<li><p>ネイティブ・コード(マシン語)</p>
+<ul>
+<li>CPU が解釈・実行できる形式のプログラム</li>
+<li>コンパイルを実行することで得られる</li>
+</ul></li>
+<li><p>リンク</p>
+<ul>
+<li>複数のオブジェクトファイル(中間言語)を結合して 1 つの OS 上で起動可能な実行可能形式のファイルを作成</li>
+<li>リンカはオブジェクトコード中から呼び出されるコードが収録された他のオブジェクトファイルやライブラリファイルなどを連結あるいは参照し、実行時に適切に呼び出せるよう繋ぎこむ</li>
+<li>静的リンク
+<ul>
+<li>リンカがコード中から参照されるライブラリ関数などすべての機械語プログラムを一つのファイルに格納し、単体で実行可能なファイルを生成</li>
+</ul></li>
+<li>動的リンク
+<ul>
+<li>外部プログラムの連結は実行時に行われるため、リンカは実行ファイルにローダなど外部コードを呼び出す仕組みを組み込む</li>
+</ul></li>
+<li>リンカー
+<ul>
+<li>リンクを実行するツール</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>ライブラリー</p>
+<ul>
+<li>複数のオブジェクトファイルをまとめて収録したファイル</li>
+<li>リンカーにライブラリを指定すると、その中から必要なオブジェクトだけを抽出し、それを他のオブジェクトと結合して EXE ファイルを生成してくれる</li>
+<li>標準関数</li>
+<li><code>DLL(Dynamic Link Library)</code>
+<ul>
+<li>プログラムの実行時に結合されるもの</li>
+<li>メリット</li>
+</ul></li>
+<li>スタティックリンクライブラリ
+<ul>
+<li>オブジェクトファイルの実体を格納し、EXE ファイルに直接結合してしまう形式のライブラリ</li>
+</ul></li>
+</ul></li>
+<li><p>ソースコード</p>
+<ul>
+<li>何らかのプログラミング言語で記述したプログラムのこと</li>
+<li>ソースファイル
+<ul>
+<li>ソースコードをファイルとして保存したもの</li>
+</ul></li>
+</ul></li>
+<li><p>コンパイラ</p>
+<ul>
+<li><p>C 言語などの高水準言語で記述されたソースコードをネイティブ・コードに翻訳する機能を持ったプログラム</p></li>
+<li><p>CPU の種類が異なれば、ネイティブコードの種類も異なる</p></li>
+<li><p>ネイティブコードの生成</p>
+<ul>
+<li>ソースコードの字句解析 =&gt; 構文解析 =&gt; 意味解析 =&gt; ネイティブコード生成</li>
+</ul></li>
+<li><p>例</p>
+<ul>
+<li><code>C コンパイラ</code>
+<ul>
+<li>C 言語で記述されたソースコードをネイティブコードに翻訳するコンパイラ</li>
+</ul></li>
+</ul></li>
+<li><p>実行例 : Borland C++ コンパイラ(bcc32.exe)</p>
+<pre><code class="hljs">bcc<span class="hljs-number">32</span> -W -<span class="hljs-keyword">c</span> Sample<span class="hljs-number">1</span>.<span class="hljs-keyword">c</span>
+</code></pre>
+<ul>
+<li><p>実行後は <code>Sample1.obj</code> が生成される</p></li>
+<li><p>実行可能な EXE ファイルを得るためには <code>リンク</code> という動作が必要</p>
+<pre><code class="hljs">ilink32 -Tpe -c -x -aa c0w32<span class="hljs-selector-class">.obj</span> Sample1<span class="hljs-selector-class">.obj</span>, Sample1<span class="hljs-selector-class">.exe</span>,,import32<span class="hljs-selector-class">.lib</span> cw32lib
+</code></pre>
+<ul>
+<li><code>-Tpe -c -x -aa</code>
+<ul>
+<li>Windows 用の EXE ファイルを生成することを指定</li>
+</ul></li>
+<li><code>c0w32.obj</code>
+<ul>
+<li>スタートアップ</li>
+<li>すべてのプログラムの先頭に結合する共通的な処理が記述されたオブジェクト・ファイル</li>
+<li>Borland C++ によって提供されているプログラム</li>
+</ul></li>
+<li><code>import32.lib cw32lib</code>
+<ul>
+<li>ライブラリファイル</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>インタブリタ</p>
+<ul>
+<li>実行時にソースコードの内容を 1 行ずつ解釈して処理</li>
+</ul></li>
+<li><p>ビルド</p>
+<ul>
+<li>コンパイル =&gt; リンクを続けて行う意味</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="システム障害"></a><a href="#システム障害" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>システム障害</h2>
+<hr>
+<ul>
+<li>フェールセーフ
+<ul>
+<li>システムに障害が発生したときでも、常に安全側にシステムを制御する</li>
+<li>例
+<ul>
+<li>制御プログラムの障害時に，システムの暴走を避け，安全に停止できるようにする</li>
+</ul></li>
+</ul></li>
+<li>フェールソフト
+<ul>
+<li>異常が発生しても機能を縮退させて運用を継続</li>
+<li>例
+<ul>
+<li>ハードウェアの障害時に，パフォーマンスは低下するが，構成を縮小して運転を続けられるようにする</li>
+</ul></li>
+</ul></li>
+<li>フォールトアボイダンス
+<ul>
+<li>システム構成要素の信頼性を高めることでシステムが故障する確率を下げる</li>
+</ul></li>
+<li>フールプルーフ
+<ul>
+<li>不特定多数の人が操作しても、誤動作が起こりにくい設計にする</li>
+<li>メニュー画面上の使用権限のない機能は，実行できないようにするなど</li>
+<li>例
+<ul>
+<li>利用者の誤操作や誤入力を未然に防ぐことによって，システムの誤動作を防止できるようにする</li>
+</ul></li>
+</ul></li>
+<li>フォールトトレラント
+<ul>
+<li>例
+<ul>
+<li>UPSを設置することによって，停電時に手順どおりにシステムを停止できるようにする</li>
+</ul></li>
+</ul></li>
+<li>フォールトマスキング
+<ul>
+<li>障害発生時に外部に対して行うサービスに異常を一切生じないようにマスクする考え方</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="リソース監視ツール"></a><a href="#リソース監視ツール" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>リソース監視ツール</h2>
+<ul>
+<li>collectd
+<ul>
+<li>システムの各種情報を定期的に収集するデーモン</li>
+</ul></li>
+<li><a href="nagios">Nagios</a></li>
+<li>MRTG(Multi Router Traffic Grapher)</li>
+<li><a href="cacti">Cacti</a></li>
+</ul>
 <h2><a class="anchor" aria-hidden="true" id="other"></a><a href="#other" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other</h2>
 <ul>
-<li>mBaaS (mobile Backend as a Service)
+<li><p>mBaaS (mobile Backend as a Service)</p>
 <ul>
 <li>スマートフォンアプリでよく利用される汎用的な機能をクラウドから提供するサービス</li>
 <li>クラウド上に用意された機能を API で呼び出すだけで利用できるので、サーバー開発・運用不要でよりリッチなバックエンド機能をアプリに実装することができ、工数削減によるコストカット・スピードアップに貢献</li>
 <li><a href="firebase">Firebase</a></li>
 </ul></li>
+<li><p>共有ライブラリ</p>
+<ul>
+<li>複数のプログラムが共通して利用する汎用性の高いプログラムの部品の集まりのこと</li>
+<li>UNIX 系の OS
+<ul>
+<li><code>.so.(バージョン番号)</code> という拡張子のファイル</li>
+</ul></li>
+<li>Windows
+<ul>
+<li><code>.DLL</code> という拡張子のファイル</li>
+</ul></li>
+</ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#テクノロジー">テクノロジー</a><ul class="toc-headings"><li><a href="#コンピュータ基礎">コンピュータ基礎</a></li><li><a href="#ストレージ基礎">ストレージ基礎</a></li><li><a href="#データベース基礎">データベース基礎</a></li><li><a href="#ネットワーク基礎">ネットワーク基礎</a></li><li><a href="#プログラミング基礎">プログラミング基礎</a></li><li><a href="#os-基礎">OS 基礎</a></li></ul></li><li><a href="#エンジニアリング">エンジニアリング</a><ul class="toc-headings"><li><a href="#システム設計基礎">システム設計基礎</a></li><li><a href="#モデリング基礎">モデリング基礎</a></li><li><a href="#it-アーキテクチャ基礎">IT アーキテクチャ基礎</a></li><li><a href="#テスト-qa-基礎">テスト/QA 基礎</a></li><li><a href="#要件定義基礎">要件定義基礎</a></li><li><a href="#セキュリティ基礎">セキュリティ基礎</a></li><li><a href="#データサイエンス基礎">データサイエンス基礎</a></li></ul></li><li><a href="#マネジメント">マネジメント</a><ul class="toc-headings"><li><a href="#プロジェクトマネジメント">プロジェクトマネジメント</a></li><li><a href="#システム企画">システム企画</a></li></ul></li><li><a href="#ヒューマンスキル">ヒューマンスキル</a><ul class="toc-headings"><li><a href="#文章力">文章力</a></li><li><a href="#コミュニケーション">コミュニケーション</a></li><li><a href="#ヒアリング">ヒアリング</a></li><li><a href="#ドキュメント作成">ドキュメント作成</a></li><li><a href="#ロジカルシンキング">ロジカルシンキング</a></li></ul></li><li><a href="#インフラアーキテクチャ">インフラアーキテクチャ</a></li><li><a href="#other">Other</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<ul>
+<li>サービスメッシュ
+<ul>
+<li><a href="linkerd">Linkerd</a></li>
+<li><a href="istio">Istio</a></li>
+</ul></li>
+</ul>
+<ul>
+<li>プログラム
+<ul>
+<li>コンピュータが実行すべき命令の一つひとつが書かれた手順書</li>
+<li>入力装置から入力 =&gt; 補助記憶装置に格納 =&gt; 実行時には補助記憶装置からプログラムを主記憶装置に転送し、それを CPU が解釈</li>
+</ul></li>
+</ul>
+<ul>
+<li>パスワードマネージャー
+<ul>
+<li><a href="https://keeweb.info/">KeeWeb</a></li>
+</ul></li>
+</ul>
+<ul>
+<li><p><code>コーデック</code></p>
+<ul>
+<li>デジタルデータの圧縮の方式や、圧縮処理を行う装置</li>
+</ul></li>
+<li><p><code>RTP(Real-time Transport Protocol)</code></p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="改行コード"></a><a href="#改行コード" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>改行コード</h2>
+<hr>
+<ul>
+<li><p>CR(Carriage Return)</p>
+<ul>
+<li>行頭の戻る、折り返す</li>
+</ul></li>
+<li><p>LF(Line Feed)</p>
+<ul>
+<li>1 行送る</li>
+</ul></li>
+</ul>
+<table>
+<thead>
+<tr><th>OS</th><th>改行コード</th><th>改行コード(16 進数)</th><th>C 言語</th></tr>
+</thead>
+<tbody>
+<tr><td>UNIX(Linux)</td><td>LF</td><td>0A</td><td>\n</td></tr>
+<tr><td>DOS/Windows</td><td>CR+LF</td><td>0D 0A</td><td>\r\n</td></tr>
+<tr><td>TCP/IP アプリケーション</td><td>CR+LF</td><td>0D 0A</td><td>\r\n</td></tr>
+<tr><td>macOS</td><td>CR</td><td>0D</td><td>\r</td></tr>
+</tbody>
+</table>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#テクノロジー">テクノロジー</a><ul class="toc-headings"><li><a href="#コンピュータ基礎">コンピュータ基礎</a></li><li><a href="#ストレージ基礎">ストレージ基礎</a></li><li><a href="#データベース基礎">データベース基礎</a></li><li><a href="#ネットワーク基礎">ネットワーク基礎</a></li><li><a href="#プログラミング基礎">プログラミング基礎</a></li><li><a href="#os-基礎">OS 基礎</a></li></ul></li><li><a href="#エンジニアリング">エンジニアリング</a><ul class="toc-headings"><li><a href="#システム設計基礎">システム設計基礎</a></li><li><a href="#モデリング基礎">モデリング基礎</a></li><li><a href="#it-アーキテクチャ基礎">IT アーキテクチャ基礎</a></li><li><a href="#テスト-qa-基礎">テスト/QA 基礎</a></li><li><a href="#要件定義基礎">要件定義基礎</a></li><li><a href="#セキュリティ基礎">セキュリティ基礎</a></li><li><a href="#データサイエンス基礎">データサイエンス基礎</a></li></ul></li><li><a href="#マネジメント">マネジメント</a><ul class="toc-headings"><li><a href="#プロジェクトマネジメント">プロジェクトマネジメント</a></li><li><a href="#システム企画">システム企画</a></li></ul></li><li><a href="#ヒューマンスキル">ヒューマンスキル</a><ul class="toc-headings"><li><a href="#文章力">文章力</a></li><li><a href="#コミュニケーション">コミュニケーション</a></li><li><a href="#ヒアリング">ヒアリング</a></li><li><a href="#ドキュメント作成">ドキュメント作成</a></li><li><a href="#ロジカルシンキング">ロジカルシンキング</a></li></ul></li><li><a href="#インフラアーキテクチャ">インフラアーキテクチャ</a></li><li><a href="#ソース-ファイルから実行可能なファイルができるまで">ソース・ファイルから実行可能なファイルができるまで</a></li><li><a href="#システム障害">システム障害</a></li><li><a href="#リソース監視ツール">リソース監視ツール</a></li><li><a href="#other">Other</a></li><li><a href="#改行コード">改行コード</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

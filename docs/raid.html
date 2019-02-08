@@ -32,15 +32,37 @@
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="raid5"></a><a href="#raid5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RAID5</h2>
 <ul>
-<li>情報データとともにパリティビットも各ディスクに分散して書き込む方式</li>
+<li>情報データとともにパリティビットも各ディスクに分散して書き込む方式
+<ul>
+<li>保存すべきデータはこのパリティ内にも分散して記録される</li>
+</ul></li>
 <li>信頼性，アクセス性能が共に高まる</li>
 <li>I/O はストライプサイズに分割され、HDD への書き込みは同時に行われる</li>
 <li>パリティ
 <ul>
 <li>誤り訂正符号</li>
 </ul></li>
+<li>100 GB のディスクを 3 台使って RAID5 を実現している場合、利用できるディスクサイズは 200 GB になる
+<ul>
+<li>=&gt; 100 GB はパリティ情報の記録に使われる</li>
+<li>最低 3 台必要</li>
+</ul></li>
 </ul>
-<h2><a class="anchor" aria-hidden="true" id="raid1-0"></a><a href="#raid1-0" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RAID1 + 0</h2>
+<h2><a class="anchor" aria-hidden="true" id="raid6"></a><a href="#raid6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RAID6</h2>
+<hr>
+<ul>
+<li>RAID5 に加えてパリティ情報をもう 1 台分余分に記録し、、冗長性を高める
+<ul>
+<li>=&gt; 二重パリティ</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="raid0-1"></a><a href="#raid0-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RAID0+1</h2>
+<hr>
+<ul>
+<li>RAID0 でストライピングした構成を複数作り、それらをミラーリングする</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="raid1-0"></a><a href="#raid1-0" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RAID1+0</h2>
+<hr>
 <ul>
 <li>復旧動作
 <ol>
@@ -62,5 +84,5 @@
 <li><a href="http://hogem.hatenablog.com/entry/20120318/1332089149">RHEL系のmdadmのraid-check を調べてみた</a></li>
 <li><a href="http://qiita.com/ohhara_shiojiri/items/2515d1184603fc3826b4">CentOSにてハードウェアRAIDの障害発生HDD交換の作業メモ</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#raid0ストライピング">RAID0(ストライピング)</a></li><li><a href="#raid1ミラーリング">RAID1(ミラーリング)</a></li><li><a href="#raid2">RAID2</a></li><li><a href="#raid3">RAID3</a></li><li><a href="#raid4">RAID4</a></li><li><a href="#raid5">RAID5</a></li><li><a href="#raid1-0">RAID1 + 0</a></li><li><a href="#仮想-raid">仮想 RAID</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#raid0ストライピング">RAID0(ストライピング)</a></li><li><a href="#raid1ミラーリング">RAID1(ミラーリング)</a></li><li><a href="#raid2">RAID2</a></li><li><a href="#raid3">RAID3</a></li><li><a href="#raid4">RAID4</a></li><li><a href="#raid5">RAID5</a></li><li><a href="#raid6">RAID6</a></li><li><a href="#raid0-1">RAID0+1</a></li><li><a href="#raid1-0">RAID1+0</a></li><li><a href="#仮想-raid">仮想 RAID</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

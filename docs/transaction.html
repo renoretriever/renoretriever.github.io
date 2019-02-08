@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>トランザクション · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 複数のクエリを一貫性のある形でひとまとまりにしたもの"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="トランザクション · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 複数のクエリを一貫性のある形でひとまとまりにしたもの"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">トランザクション</h1></header><article><div><span><ul>
+<li>複数のクエリを一貫性のある形でひとまとまりにしたもの</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="atomicity原子性"></a><a href="#atomicity原子性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Atomicity(原子性)</h3>
+<ul>
+<li>処理が全て成功するかすべて失敗するかのどちらかを保証する仕組み</li>
+<li><code>COMMIT</code> を発行して処理を確定させるが、それ前で失敗したら <code>ROLLBACK</code> で戻される</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="consistency一貫性-整合性"></a><a href="#consistency一貫性-整合性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Consistency(一貫性/整合性)</h3>
+<ul>
+<li>あらかじめ設定された整合性を保つ
+<ul>
+<li>NOT NULL 制約とか</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="isolation独立性-分離性-隔離性"></a><a href="#isolation独立性-分離性-隔離性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Isolation(独立性 / 分離性、隔離性)</h3>
+<ul>
+<li>他の処理に影響を与えず、それぞれの処理が矛盾なく行えることを保証</li>
+<li>あるトランザクションがテーブルにレコードをを追加していたとしても、コミットされるまでは、ほかのトランザクションからはその新規に追加されたレコードは「見えない」状態にある</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="分離レベル"></a><a href="#分離レベル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>分離レベル</h4>
+<ul>
+<li><a href="ansi">ANSI</a> により定義</li>
+<li>分離姓は、トランザクションどうしがどれだけ干渉しあわないかという概念ですが、その実装においては完全に分離しているものだけでなく、いつくかの段階が存在</li>
+</ul>
+<ol>
+<li><p>非コミット読み取り(Read Uncommitted)</p>
+<ul>
+<li>トランザクションどうしがまったく独立してない分離レベル</li>
+<li>トランザクションは他のトランザクションが行った変更を、コミットされる前であっても、見ることが可能
+<ul>
+<li><code>ダーティリード</code></li>
+</ul></li>
+</ul></li>
+<li><p>コミット済み読み取り(Read Committed)</p>
+<ul>
+<li>ほとんどのデータベースのデフォルト</li>
+<li>他のトランザクションがコミットした変更だけを見ることが可能</li>
+<li>同じ SELECT 文を 2 回実行すると、その間に別のトランザクションがコミットを行った場合にその結果が見えてしまう(UPDATE の実行が見える)
+<ul>
+<li><code>ノンリピータブルリード</code></li>
+<li><code>ファジーリード</code></li>
+</ul></li>
+</ul></li>
+<li><p>再読み込み可能読み込み(Repeatable Read)</p>
+<ul>
+<li>トランザクション内で同じ SELECT を実行すると、常に同じ結果になることが保証されている分離レベル</li>
+<li><code>ノンリピータブルリード</code> は防ぐことが可能だが、あるトランザクションを読み込んだとき、選択できるデータが現れたり消えたりする現象( <code>ファントムリード</code> : INSERT されたデータが見える) が起きるとされる
+<ul>
+<li>InnoDB の REPEATABLE-READ では、ネクストキーロック(Next Key Lock) という仕組みがあるためファントムリードは起こらない</li>
+</ul></li>
+<li>InnoDB のデフォルトの分離レベル</li>
+</ul></li>
+</ol>
+<ol>
+<li>直列化可能(Serializable)
+<ul>
+<li>実際には並列で実行されたトランザクションが、時間的な重なりがない状態でコミットされた順序で実行すると、実際に実行されたものと同じ実行結果になるということが保証される分離レベル</li>
+<li>直列化可能</li>
+<li>InnoDB の SERIALIZABLE では、参照した行に対して自動的に共有ロック(LOCK IN SHARE MODE) がかけられる</li>
+<li>ロストアップデートを防ぐことが可能</li>
+</ul></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="durability永続性-耐久性-持続性"></a><a href="#durability永続性-耐久性-持続性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Durability(永続性/耐久性, 持続性)</h3>
+<ul>
+<li>一連のデータ操作を完了(COMMIT) し、完了通知をユーザーが受けた時点で、その操作が永続的となり結果が失われないことを示す</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="トランザクション設計で気をつけること"></a><a href="#トランザクション設計で気をつけること" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>トランザクション設計で気をつけること</h2>
+<ul>
+<li>ロングトランザクションの回避</li>
+<li>トランザクションの処理量を意識</li>
+<li><code>デッドロック</code> を防ぐ
+<ul>
+<li>アクセスするテーブルの順番を一致させる</li>
+<li>ORDER BY を使い、アクセスするレコード順序を一致させるように処理</li>
+<li>トランザクションを頻繁にコミット</li>
+<li>ロックの範囲を小さく(テーブル単位 =&gt; 行単位)</li>
+</ul></li>
+<li>オートコミット</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="others"></a><a href="#others" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Others</h2>
+<ul>
+<li><p>セキュリティ</p>
+<ul>
+<li>不要な接続、不要な権限、過剰な権限をみる</li>
+</ul></li>
+<li><p>バックアップ方式の選び方</p>
+<ul>
+<li>リカバリー要件を考える
+<ul>
+<li>RPO : どの時点の状態に復旧するのか</li>
+<li>RTO : 復旧までに許される時間はどれくらいか</li>
+</ul></li>
+<li>バックアップ方法
+<ul>
+<li>コールドバックアップ</li>
+<li>オンライン論理バックアップ
+<ul>
+<li>dump の取得</li>
+</ul></li>
+<li>オンライン物理バックアップ
+<ul>
+<li>ある時点でベースとなるバックアップを取得しておき、その時点以降の差分を記録しているトランザクションログと組み合わせて、障害発生時点までのリカバリーをする方法</li>
+<li>トランザクションログ必須</li>
+</ul></li>
+<li>リストア時間の検証</li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#トランザクション設計で気をつけること">トランザクション設計で気をつけること</a></li><li><a href="#others">Others</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

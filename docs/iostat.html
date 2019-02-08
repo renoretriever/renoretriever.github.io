@@ -1,4 +1,28 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>iostat · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## ストレージ"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="iostat · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## ストレージ"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">iostat</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="ストレージ"></a><a href="#ストレージ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストレージ</h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>iostat · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- CPU の利用状況とディスクの入出力に関する情報を継続的に監視できる"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="iostat · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- CPU の利用状況とディスクの入出力に関する情報を継続的に監視できる"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">iostat</h1></header><article><div><span><ul>
+<li><p>CPU の利用状況とディスクの入出力に関する情報を継続的に監視できる</p></li>
+<li><p>主にディスク I/O を調べるときに使う</p></li>
+<li><p>ブロックデバイスレベルであり、OS カーネルの内部の情報を取っているので、通常、ファイルキャッシュといった OS のファイルシステムレベルの動作は記録されない</p></li>
+<li><p>ビジー率をよく見る</p></li>
+<li><p><code>active</code></p>
+<ul>
+<li>OS から見て、ディスクに発行済みのものという意味</li>
+<li>キューが長くなるとレスポンスが悪化</li>
+</ul></li>
+<li><p><code>wait</code></p>
+<ul>
+<li>ディスクに発行されずに残っているものという意味</li>
+<li>キューが長くなるとかなり悪化</li>
+</ul></li>
+<li><p>デバイスが多い場合には負荷がやや高い</p>
+<ul>
+<li>1 〜 5 分程度で取得するのが良い</li>
+</ul></li>
+<li><p>1 つの I/O のレスポンスは数ミリ秒</p>
+<ul>
+<li>キャッシュヒットしない場合</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ストレージ"></a><a href="#ストレージ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストレージ</h2>
 <ul>
 <li>結果はブロックデバイスで出力</li>
 </ul>
@@ -43,5 +67,49 @@ dm-<span class="hljs-number">1</span>              <span class="hljs-number">0.0
 <tr><td>await</td><td>I/O 応答時間 <br> 要チェック項目</td></tr>
 </tbody>
 </table>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ストレージ">ストレージ</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h2><a class="anchor" aria-hidden="true" id="cpu-情報"></a><a href="#cpu-情報" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CPU 情報</h2>
+<hr>
+<table>
+<thead>
+<tr><th>item</th><th>contents</th></tr>
+</thead>
+<tbody>
+<tr><td>%user</td><td>ユーザプロセスによる CPU の使用率</td></tr>
+<tr><td>%nice</td><td>実行優先度を変更したユーザプロセスによる CPU の使用率</td></tr>
+<tr><td>%sys</td><td>システムプロセスによる CPU の使用率</td></tr>
+<tr><td>%iowait</td><td>I/O 終了待ち時間(I/O 進行中でその終了を待っている時間)</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="デバイス情報"></a><a href="#デバイス情報" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>デバイス情報</h2>
+<hr>
+<table>
+<thead>
+<tr><th>item</th><th>contents</th></tr>
+</thead>
+<tbody>
+<tr><td>tps</td><td>1 秒間の I/O リクエスト数(転送回数)</td></tr>
+<tr><td>Blk_read/s</td><td>1 秒間のディスクの読み込み量(ブロック/秒)</td></tr>
+<tr><td>Blk_wrtn/s</td><td>1秒間のディスクの書き込み量(ブロック/秒)</td></tr>
+<tr><td>Blk_read</td><td>ディスクの読み込み量(ブロック数)</td></tr>
+<tr><td>Blk_wrtn</td><td>ディスクの書き込み量(ブロック数)</td></tr>
+<tr><td>kB_read/s</td><td>1 秒間のディスクの読み込み量(KB/秒)<br>カーネル2.4＋有効</td></tr>
+<tr><td>kB_wrtn/s</td><td>1 秒間のディスクの書き込み量(ブロック/秒)<br>カーネル2.4＋有効</td></tr>
+<tr><td>kB_read</td><td>ディスクの読み込み量(KB単位)<br>カーネル2.4＋有効</td></tr>
+<tr><td>kB_wrtn</td><td>ディスクの書き込み量(KB単位)<br>カーネル2.4＋有効</td></tr>
+<tr><td>rrqm/s</td><td>1 秒間デバイスへマージされた読み込みリクエスト数</td></tr>
+<tr><td>wrqm/s</td><td>1 秒間デバイスへマージされた書き込みリクエスト数</td></tr>
+<tr><td>r/s</td><td>1 秒間の読み込みリクエスト数</td></tr>
+<tr><td>w/s</td><td>1 秒間の書き込みリクエスト数</td></tr>
+<tr><td>rsec/s</td><td>1 秒間の読み込みセクタ数(デバイスから)</td></tr>
+<tr><td>wsec/s</td><td>1 秒間の書き込みセクタ数(デバイスへ)</td></tr>
+<tr><td>rkB/s</td><td>1 秒間の読み込みキロバイト(KB)数(デバイスから)</td></tr>
+<tr><td>wkB/s</td><td>1 秒間の読み込みキロバイト(KB)数（デバイスへ)</td></tr>
+<tr><td>avgrq-sz</td><td>デバイスへの I/O リクエストの平均サイズ(セクタ)</td></tr>
+<tr><td>avgqu-sz</td><td>デバイスへの I/O リクエストのキュー(待ち行列)の平均サイズ</td></tr>
+<tr><td>await</td><td>デバイスへの I/O リクエストの平均待ち時間(ミリ秒)<br>キューにいる時間＋処理時間</td></tr>
+<tr><td>svctm</td><td>デバイスへのIOリクエストの平均処理時間(ミリ秒)</td></tr>
+<tr><td>%util</td><td>デバイスへのIOリクエスト期間CPUの使用率(デバイス関連部分)</td></tr>
+</tbody>
+</table>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ストレージ">ストレージ</a></li><li><a href="#cpu-情報">CPU 情報</a></li><li><a href="#デバイス情報">デバイス情報</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

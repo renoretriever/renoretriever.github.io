@@ -1,0 +1,468 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ディスク拡張 · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 参照リンク"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ディスク拡張 · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 参照リンク"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ディスク拡張</h1></header><article><div><span><ul>
+<li><p>参照リンク</p>
+<ul>
+<li><a href="http://blog.idcf.jp/entry/cloud/diskcapacity/">サーバーを起動したままディスク追加する</a></li>
+</ul></li>
+<li><p>Summary</p>
+<ul>
+<li>KVM 基盤上で、VM のディスク拡張作業を行うときの手順</li>
+<li>10 GB増設</li>
+<li>qcow2 にて実施</li>
+<li>拡張領域を作成</li>
+</ul></li>
+<li><p>事前準備</p>
+<ul>
+<li><p>サーバのシャットダウン</p></li>
+<li><p>イメージバックアップ</p></li>
+<li><p>ディスク容量</p>
+<pre><code class="hljs"> # df -h
+ Filesystem            Size  Used Avail Use% Mounted on
+ /dev/mapper/vg_clone-LogVol01
+                        <span class="hljs-number">23</span>G   <span class="hljs-number">13</span>G  <span class="hljs-number">8.6</span>G  <span class="hljs-number">60</span>% /
+ tmpfs                 <span class="hljs-number">499</span>M     <span class="hljs-number">0</span>  <span class="hljs-number">499</span>M   <span class="hljs-number">0</span>% /dev/shm
+ /dev/vda1             <span class="hljs-number">243</span>M   <span class="hljs-number">70</span>M  <span class="hljs-number">160</span>M  <span class="hljs-number">31</span>% /boot
+</code></pre></li>
+<li><p>物理ボリューム</p>
+<pre><code class="hljs"># pvdisplay 
+ --- Physical volume ---
+ PV <span class="hljs-keyword">Name</span>               /dev/vda2
+ VG <span class="hljs-keyword">Name</span>               vg_clone
+ PV <span class="hljs-built_in">Size</span>               <span class="hljs-number">29.75</span> GiB / not usable <span class="hljs-number">0</span>   
+ <span class="hljs-keyword">Allocatable</span>           yes 
+ PE <span class="hljs-built_in">Size</span>               <span class="hljs-number">4.00</span> MiB
+ Total PE              <span class="hljs-number">7617</span>
+ <span class="hljs-keyword">Free</span> PE               <span class="hljs-number">1280</span>
+ <span class="hljs-built_in">Allocated</span> PE          <span class="hljs-number">6337</span>
+ PV UUID               zIFpTx-fpir-kr5o-tAy-w0o-oYlT-kKsT6A
+
+ # pvscan 
+ PV /dev/vda2   VG vg_clone   lvm2 [<span class="hljs-number">29.75</span> GiB / <span class="hljs-number">5.00</span> GiB <span class="hljs-keyword">free</span>]
+ Total: <span class="hljs-number">1</span> [<span class="hljs-number">29.75</span> GiB] / <span class="hljs-keyword">in</span> <span class="hljs-keyword">use</span>: <span class="hljs-number">1</span> [<span class="hljs-number">29.75</span> GiB] / <span class="hljs-keyword">in</span> no VG: <span class="hljs-number">0</span> [<span class="hljs-number">0</span>   ]
+</code></pre></li>
+<li><p>ボリュームグループ</p>
+<pre><code class="hljs"><span class="hljs-comment"># vgdisplay </span>
+ --- Volume<span class="hljs-built_in"> group </span>---
+  VG Name               vg_clone
+ <span class="hljs-built_in"> System </span>ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence <span class="hljs-literal">No</span>  7
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                2
+  Open LV               2
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               29.75 GiB
+  PE Size               4.00 MiB
+  Total PE              7617
+  Alloc PE / Size       6337 / 24.75 GiB
+  Free  PE / Size       1280 / 5.00 GiB
+  VG UUID               B5FxL3-emIw-MGMb-spNv-aL3j-biWH-RypuUp
+ 
+<span class="hljs-comment"># vgscan </span>
+ Reading all physical volumes.  This may take a <span class="hljs-keyword">while</span><span class="hljs-built_in">..</span>.
+ Found volume<span class="hljs-built_in"> group </span><span class="hljs-string">"vg_clone"</span> using metadata<span class="hljs-built_in"> type </span>lvm2
+</code></pre></li>
+<li><p>論理ボリューム</p>
+<pre><code class="hljs"><span class="hljs-comment"># lvdisplay </span>
+<span class="hljs-bullet">  -</span><span class="hljs-bullet">--</span> <span class="hljs-string">Logical</span> <span class="hljs-string">volume</span> <span class="hljs-meta">---</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Path</span>                <span class="hljs-string">/dev/vg_clone/LogVol01</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Name</span>                <span class="hljs-string">LogVol01</span>
+  <span class="hljs-string">VG</span> <span class="hljs-string">Name</span>                <span class="hljs-string">vg_clone</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">UUID</span>                <span class="hljs-string">rqHjKi-nP7v-9wmW-wcXx-cl6n-eAlD-Gb2hdK</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Write</span> <span class="hljs-string">Access</span>        <span class="hljs-string">read/write</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Creation</span> <span class="hljs-string">host,</span> <span class="hljs-string">time</span> <span class="hljs-string">clone,</span> <span class="hljs-number">2014</span><span class="hljs-bullet">-05</span><span class="hljs-bullet">-28</span> <span class="hljs-number">23</span><span class="hljs-string">:46:01</span> <span class="hljs-string">+0900</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Status</span>              <span class="hljs-string">available</span>
+  <span class="hljs-comment"># open                 1</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Size</span>                <span class="hljs-number">22.75</span> <span class="hljs-string">GiB</span>
+  <span class="hljs-string">Current</span> <span class="hljs-string">LE</span>             <span class="hljs-number">5825</span>
+  <span class="hljs-string">Segments</span>               <span class="hljs-number">1</span>
+  <span class="hljs-string">Allocation</span>             <span class="hljs-string">inherit</span>
+  <span class="hljs-string">Read</span> <span class="hljs-string">ahead</span> <span class="hljs-string">sectors</span>     <span class="hljs-string">auto</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">currently</span> <span class="hljs-string">set</span> <span class="hljs-string">to</span>     <span class="hljs-number">256</span>
+  <span class="hljs-string">Block</span> <span class="hljs-string">device</span>           <span class="hljs-number">253</span><span class="hljs-string">:0</span>
+   
+<span class="hljs-bullet">  -</span><span class="hljs-bullet">--</span> <span class="hljs-string">Logical</span> <span class="hljs-string">volume</span> <span class="hljs-meta">---</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Path</span>                <span class="hljs-string">/dev/vg_clone/LogVol00</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Name</span>                <span class="hljs-string">LogVol00</span>
+  <span class="hljs-string">VG</span> <span class="hljs-string">Name</span>                <span class="hljs-string">vg_clone</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">UUID</span>                <span class="hljs-string">e9xU1n-89pG-y5eT-gjma-rHjW-B9ik-pYrSAn</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Write</span> <span class="hljs-string">Access</span>        <span class="hljs-string">read/write</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Creation</span> <span class="hljs-string">host,</span> <span class="hljs-string">time</span> <span class="hljs-string">clone,</span> <span class="hljs-number">2014</span><span class="hljs-bullet">-05</span><span class="hljs-bullet">-28</span> <span class="hljs-number">23</span><span class="hljs-string">:46:06</span> <span class="hljs-string">+0900</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Status</span>              <span class="hljs-string">available</span>
+  <span class="hljs-comment"># open                 1</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Size</span>                <span class="hljs-number">2.00</span> <span class="hljs-string">GiB</span>
+  <span class="hljs-string">Current</span> <span class="hljs-string">LE</span>             <span class="hljs-number">512</span>
+  <span class="hljs-string">Segments</span>               <span class="hljs-number">1</span>
+  <span class="hljs-string">Allocation</span>             <span class="hljs-string">inherit</span>
+  <span class="hljs-string">Read</span> <span class="hljs-string">ahead</span> <span class="hljs-string">sectors</span>     <span class="hljs-string">auto</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">currently</span> <span class="hljs-string">set</span> <span class="hljs-string">to</span>     <span class="hljs-number">256</span>
+  <span class="hljs-string">Block</span> <span class="hljs-string">device</span>           <span class="hljs-number">253</span><span class="hljs-string">:1</span>
+
+<span class="hljs-comment"># lvscan </span>
+  <span class="hljs-string">ACTIVE</span>            <span class="hljs-string">'/dev/vg_clone/LogVol01'</span> <span class="hljs-string">[22.75</span> <span class="hljs-string">GiB]</span> <span class="hljs-string">inherit</span>
+  <span class="hljs-string">ACTIVE</span>            <span class="hljs-string">'/dev/vg_clone/LogVol00'</span> <span class="hljs-string">[2.00</span> <span class="hljs-string">GiB]</span> <span class="hljs-string">inherit</span>
+</code></pre></li>
+<li><p>イメージ確認</p>
+<pre><code class="hljs"><span class="hljs-comment"># qemu-img info stg-01.qcow2 </span>
+<span class="hljs-attribute">image</span>: stg-01.qcow2
+<span class="hljs-attribute">file format</span>: qcow2
+<span class="hljs-attribute">virtual size</span>: 30G (32212254720 bytes)
+<span class="hljs-attribute">disk size</span>: 31G
+<span class="hljs-attribute">cluster_size</span>: 65536
+</code></pre></li>
+<li><p>イメージバックアップ</p>
+<pre><code class="hljs"># cp -a stg<span class="hljs-number">-01.</span>qcow2{,.$(<span class="hljs-keyword">date</span> +%Y%m%d)}
+</code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>ホスト作業</p>
+<ul>
+<li>拡張確認( 40 Gになっているこを確認)
+<ul>
+<li><p>qcow2 の場合</p>
+<pre><code class="hljs"><span class="hljs-meta"># qemu-img resize stg-01.qcow2 +10G</span>
+<span class="hljs-built_in">Image</span> resized.
+
+<span class="hljs-meta"># qemu-img info stg-01.qcow2 </span>
+<span class="hljs-built_in">image</span>: stg-<span class="hljs-number">01</span>.qcow2
+file <span class="hljs-built_in">format</span>: qcow2
+virtual <span class="hljs-built_in">size</span>: <span class="hljs-number">40</span>G (<span class="hljs-number">42949672960</span> bytes)
+disk <span class="hljs-built_in">size</span>: <span class="hljs-number">31</span>G
+cluster_size: <span class="hljs-number">65536</span>
+</code></pre></li>
+<li><p>raw の場合</p>
+<pre><code class="hljs"># ionice -c3 nice -n19 dd if=/dev/zero of=stg<span class="hljs-number">-01.</span>raw bs=<span class="hljs-number">1</span>G count=<span class="hljs-number">10</span> seek=<span class="hljs-number">30</span>
+<span class="hljs-number">10</span>+<span class="hljs-number">0</span> records in
+<span class="hljs-number">10</span>+<span class="hljs-number">0</span> records out
+<span class="hljs-number">10737418240</span> bytes (<span class="hljs-number">11</span> GB) copied, <span class="hljs-number">45.5551</span> s, <span class="hljs-number">236</span> MB/s
+</code></pre></li>
+<li><p>raw から qcow2へコンバート</p>
+<pre><code class="hljs"># <span class="hljs-selector-tag">qemu-img</span> <span class="hljs-selector-tag">convert</span> <span class="hljs-selector-tag">-f</span> <span class="hljs-selector-tag">raw</span> <span class="hljs-selector-tag">-O</span> <span class="hljs-selector-tag">qcow2</span> <span class="hljs-selector-tag">test</span><span class="hljs-selector-class">.img</span> <span class="hljs-selector-tag">test</span><span class="hljs-selector-class">.qcow2</span>
+</code></pre>
+<ul>
+<li><p>設定ファイルの編集</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> virsh edit <span class="hljs-built_in">test</span></span>
+</code></pre>
+<ul>
+<li>raw から qcow2へ修正する</li>
+<li>ディスクのパスを変える</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>VM 作業</p>
+<ul>
+<li><p>パーティションテーブル確認</p>
+<pre><code class="hljs"><span class="hljs-comment"># fdisk -l</span>
+Disk /dev/vda: 42.9 GB,<span class="hljs-number"> 42949672960 </span>bytes
+16 heads,<span class="hljs-number"> 63 </span>sectors/track,<span class="hljs-number"> 83220 </span>cylinders
+Units = cylinders of<span class="hljs-number"> 1008 </span>*<span class="hljs-number"> 512 </span>=<span class="hljs-number"> 516096 </span>bytes
+Sector size (logical/physical):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+I/O size (minimum/optimal):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+Disk identifier: 0x000d3c3d
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/vda1   *          <span class="hljs-number"> 3 </span>       <span class="hljs-number"> 510 </span>    <span class="hljs-number"> 256000 </span> <span class="hljs-number"> 83 </span> Linux
+Partition<span class="hljs-number"> 1 </span>does not end on cylinder boundary.
+/dev/vda2            <span class="hljs-number"> 510 </span>     <span class="hljs-number"> 62416 </span>  <span class="hljs-number"> 31200256 </span>  8e  Linux LVM
+Partition<span class="hljs-number"> 2 </span>does not end on cylinder boundary.
+
+Disk /dev/mapper/vg_clone-LogVol01: 24.4 GB,<span class="hljs-number"> 24431820800 </span>bytes
+255 heads,<span class="hljs-number"> 63 </span>sectors/track,<span class="hljs-number"> 2970 </span>cylinders
+Units = cylinders of<span class="hljs-number"> 16065 </span>*<span class="hljs-number"> 512 </span>=<span class="hljs-number"> 8225280 </span>bytes
+Sector size (logical/physical):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+I/O size (minimum/optimal):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+Disk identifier: 0x00000000
+
+Disk /dev/mapper/vg_clone-LogVol00:<span class="hljs-number"> 2147 </span>MB,<span class="hljs-number"> 2147483648 </span>bytes
+255 heads,<span class="hljs-number"> 63 </span>sectors/track,<span class="hljs-number"> 261 </span>cylinders
+Units = cylinders of<span class="hljs-number"> 16065 </span>*<span class="hljs-number"> 512 </span>=<span class="hljs-number"> 8225280 </span>bytes
+Sector size (logical/physical):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+I/O size (minimum/optimal):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+Disk identifier: 0x00000000
+</code></pre></li>
+</ul></li>
+<li><p>デバイス作成</p>
+<pre><code class="hljs"><span class="hljs-comment"># fdisk /dev/vda</span>
+
+WARNING: DOS-compatible mode is deprecated. It's strongly recommended to
+         switch off the mode (command 'c') and change display units to
+         sectors (command 'u').
+
+Command (m for help): p
+
+Disk /dev/vda: 42.9 GB,<span class="hljs-number"> 42949672960 </span>bytes
+16 heads,<span class="hljs-number"> 63 </span>sectors/track,<span class="hljs-number"> 83220 </span>cylinders
+Units = cylinders of<span class="hljs-number"> 1008 </span>*<span class="hljs-number"> 512 </span>=<span class="hljs-number"> 516096 </span>bytes
+Sector size (logical/physical):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+I/O size (minimum/optimal):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+Disk identifier: 0x000d3c3d
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/vda1   *          <span class="hljs-number"> 3 </span>       <span class="hljs-number"> 510 </span>    <span class="hljs-number"> 256000 </span> <span class="hljs-number"> 83 </span> Linux
+Partition<span class="hljs-number"> 1 </span>does not end on cylinder boundary.
+/dev/vda2            <span class="hljs-number"> 510 </span>     <span class="hljs-number"> 62416 </span>  <span class="hljs-number"> 31200256 </span>  8e  Linux LVM
+Partition<span class="hljs-number"> 2 </span>does not end on cylinder boundary.
+
+Command (m for help): n
+Command action
+   e   extended
+   p   primary partition (1-4)
+e
+Partition number (1-4): 3
+First cylinder (1-83220, default 1): 62417
+Last cylinder, +cylinders or +size{K,M,G} (62417-83220, default 83220): 
+Using default value 83220
+
+Command (m for help): p
+
+Disk /dev/vda: 42.9 GB,<span class="hljs-number"> 42949672960 </span>bytes
+16 heads,<span class="hljs-number"> 63 </span>sectors/track,<span class="hljs-number"> 83220 </span>cylinders
+Units = cylinders of<span class="hljs-number"> 1008 </span>*<span class="hljs-number"> 512 </span>=<span class="hljs-number"> 516096 </span>bytes
+Sector size (logical/physical):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+I/O size (minimum/optimal):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+Disk identifier: 0x000d3c3d
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/vda1   *          <span class="hljs-number"> 3 </span>       <span class="hljs-number"> 510 </span>    <span class="hljs-number"> 256000 </span> <span class="hljs-number"> 83 </span> Linux
+Partition<span class="hljs-number"> 1 </span>does not end on cylinder boundary.
+/dev/vda2            <span class="hljs-number"> 510 </span>     <span class="hljs-number"> 62416 </span>  <span class="hljs-number"> 31200256 </span>  8e  Linux LVM
+Partition<span class="hljs-number"> 2 </span>does not end on cylinder boundary.
+/dev/vda3          <span class="hljs-number"> 62417 </span>     <span class="hljs-number"> 83220 </span>  <span class="hljs-number"> 10485216 </span>  <span class="hljs-number"> 5 </span> Extended
+
+Command (m for help): n
+Command action
+   l   logical (5 or over)
+   p   primary partition (1-4)
+l
+First cylinder (62417-83220, default 62417): 5
+Value out of range.
+First cylinder (62417-83220, default 62417): 
+Using default value 62417
+Last cylinder, +cylinders or +size{K,M,G} (62417-83220, default 83220): 
+Using default value 83220
+
+Command (m for help): p
+
+Disk /dev/vda: 42.9 GB,<span class="hljs-number"> 42949672960 </span>bytes
+16 heads,<span class="hljs-number"> 63 </span>sectors/track,<span class="hljs-number"> 83220 </span>cylinders
+Units = cylinders of<span class="hljs-number"> 1008 </span>*<span class="hljs-number"> 512 </span>=<span class="hljs-number"> 516096 </span>bytes
+Sector size (logical/physical):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+I/O size (minimum/optimal):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+Disk identifier: 0x000d3c3d
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/vda1   *          <span class="hljs-number"> 3 </span>       <span class="hljs-number"> 510 </span>    <span class="hljs-number"> 256000 </span> <span class="hljs-number"> 83 </span> Linux
+Partition<span class="hljs-number"> 1 </span>does not end on cylinder boundary.
+/dev/vda2            <span class="hljs-number"> 510 </span>     <span class="hljs-number"> 62416 </span>  <span class="hljs-number"> 31200256 </span>  8e  Linux LVM
+Partition<span class="hljs-number"> 2 </span>does not end on cylinder boundary.
+/dev/vda3          <span class="hljs-number"> 62417 </span>     <span class="hljs-number"> 83220 </span>  <span class="hljs-number"> 10485216 </span>  <span class="hljs-number"> 5 </span> Extended
+/dev/vda5          <span class="hljs-number"> 62417 </span>     <span class="hljs-number"> 83220 </span>   10485184+ <span class="hljs-number"> 83 </span> Linux
+
+Command (m for help): t
+Partition number (1-5): 5
+Hex code (type L to list codes): 8e
+Changed system type of partition<span class="hljs-number"> 5 </span>to 8e (Linux LVM)
+
+Command (m for help): p
+
+Disk /dev/vda: 42.9 GB,<span class="hljs-number"> 42949672960 </span>bytes
+16 heads,<span class="hljs-number"> 63 </span>sectors/track,<span class="hljs-number"> 83220 </span>cylinders
+Units = cylinders of<span class="hljs-number"> 1008 </span>*<span class="hljs-number"> 512 </span>=<span class="hljs-number"> 516096 </span>bytes
+Sector size (logical/physical):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+I/O size (minimum/optimal):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+Disk identifier: 0x000d3c3d
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/vda1   *          <span class="hljs-number"> 3 </span>       <span class="hljs-number"> 510 </span>    <span class="hljs-number"> 256000 </span> <span class="hljs-number"> 83 </span> Linux
+Partition<span class="hljs-number"> 1 </span>does not end on cylinder boundary.
+/dev/vda2            <span class="hljs-number"> 510 </span>     <span class="hljs-number"> 62416 </span>  <span class="hljs-number"> 31200256 </span>  8e  Linux LVM
+Partition<span class="hljs-number"> 2 </span>does not end on cylinder boundary.
+/dev/vda3          <span class="hljs-number"> 62417 </span>     <span class="hljs-number"> 83220 </span>  <span class="hljs-number"> 10485216 </span>  <span class="hljs-number"> 5 </span> Extended
+/dev/vda5          <span class="hljs-number"> 62417 </span>     <span class="hljs-number"> 83220 </span>   10485184+  8e  Linux LVM
+
+Command (m for help): w
+The partition table has been altered!
+
+Calling ioctl( to re-read partition table.
+
+WARNING: Re-reading the partition table failed with error 16: Device or resource busy.
+The kernel still uses the old table. The new table will be used at
+the next reboot or after you run partprobe(8) or kpartx(8)
+Syncing disks.
+</code></pre></li>
+<li><p>再起動</p></li>
+<li><p>デバイス確認(再起動後)</p>
+<pre><code class="hljs"><span class="hljs-comment"># ll /dev/vda*</span>
+brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 0 </span>Feb<span class="hljs-number"> 24 </span><span class="hljs-number"> 2015 </span>/dev/vda
+brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 1 </span>Feb<span class="hljs-number"> 24 </span>12:35 /dev/vda1
+brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 2 </span>Feb<span class="hljs-number"> 24 </span><span class="hljs-number"> 2015 </span>/dev/vda2
+brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 3 </span>Feb<span class="hljs-number"> 24 </span><span class="hljs-number"> 2015 </span>/dev/vda3
+brw-rw----.<span class="hljs-number"> 1 </span>root disk 252,<span class="hljs-number"> 5 </span>Feb<span class="hljs-number"> 24 </span><span class="hljs-number"> 2015 </span>/dev/vda5
+</code></pre></li>
+<li><p>物理ボリュームの作成</p>
+<pre><code class="hljs"># pvcreate /dev/vda5 
+  Physical volume <span class="hljs-string">"/dev/vda5"</span> successfully created
+
+# pvdisplay 
+  --- Physical volume ---
+  PV <span class="hljs-keyword">Name</span>               /dev/vda2
+  VG <span class="hljs-keyword">Name</span>               vg_clone
+  PV <span class="hljs-built_in">Size</span>               <span class="hljs-number">29.75</span> GiB / not usable <span class="hljs-number">0</span>   
+  <span class="hljs-keyword">Allocatable</span>           yes 
+  PE <span class="hljs-built_in">Size</span>               <span class="hljs-number">4.00</span> MiB
+  Total PE              <span class="hljs-number">7617</span>
+  <span class="hljs-keyword">Free</span> PE               <span class="hljs-number">1280</span>
+  <span class="hljs-built_in">Allocated</span> PE          <span class="hljs-number">6337</span>
+  PV UUID               zIFpTx-fpir-kr5o-tAy-w0o-oYlT-kKsT6A
+   
+  <span class="hljs-string">"/dev/vda5"</span> is a new physical volume of <span class="hljs-string">"10.00 GiB"</span>
+  --- NEW Physical volume ---
+  PV <span class="hljs-keyword">Name</span>               /dev/vda5
+  VG <span class="hljs-keyword">Name</span>               
+  PV <span class="hljs-built_in">Size</span>               <span class="hljs-number">10.00</span> GiB
+  <span class="hljs-keyword">Allocatable</span>           NO
+  PE <span class="hljs-built_in">Size</span>               <span class="hljs-number">0</span>   
+  Total PE              <span class="hljs-number">0</span>
+  <span class="hljs-keyword">Free</span> PE               <span class="hljs-number">0</span>
+  <span class="hljs-built_in">Allocated</span> PE          <span class="hljs-number">0</span>
+  PV UUID               RHlc8J-U63O-LFAG-KrW-fDJs-GYRO-C5yiu3
+</code></pre></li>
+<li><p>ボリュームグループの拡張</p>
+<pre><code class="hljs"><span class="hljs-comment"># vgextend vg_clone /dev/vda5</span>
+  Volume<span class="hljs-built_in"> group </span><span class="hljs-string">"vg_clone"</span> successfully extended
+
+<span class="hljs-comment"># vgdisplay </span>
+  --- Volume<span class="hljs-built_in"> group </span>---
+  VG Name               vg_clone
+ <span class="hljs-built_in"> System </span>ID             
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence <span class="hljs-literal">No</span>  8
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                2
+  Open LV               2
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               39.75 GiB
+  PE Size               4.00 MiB
+  Total PE              10176
+  Alloc PE / Size       6337 / 24.75 GiB
+  Free  PE / Size       3839 / 15.00 GiB
+  VG UUID               B5FxL3-emIw-MGMb-spNv-aL3j-biWH-RypuUp
+   
+  ※ Free PE の増加を確認
+</code></pre></li>
+<li><p>論理ボリューム拡張</p>
+<pre><code class="hljs"><span class="hljs-comment"># lvextend /dev/vg_clone/LogVol01 /dev/vda5 </span>
+  <span class="hljs-string">Extending</span> <span class="hljs-string">logical</span> <span class="hljs-string">volume</span> <span class="hljs-string">LogVol01</span> <span class="hljs-string">to</span> <span class="hljs-number">32.75</span> <span class="hljs-string">GiB</span>
+  <span class="hljs-string">Logical</span> <span class="hljs-string">volume</span> <span class="hljs-string">LogVol01</span> <span class="hljs-string">successfully</span> <span class="hljs-string">resized</span>
+
+<span class="hljs-comment"># lvdisplay </span>
+<span class="hljs-bullet">  -</span><span class="hljs-bullet">--</span> <span class="hljs-string">Logical</span> <span class="hljs-string">volume</span> <span class="hljs-meta">---</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Path</span>                <span class="hljs-string">/dev/vg_clone/LogVol01</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Name</span>                <span class="hljs-string">LogVol01</span>
+  <span class="hljs-string">VG</span> <span class="hljs-string">Name</span>                <span class="hljs-string">vg_clone</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">UUID</span>                <span class="hljs-string">rqHjKi-nP7v-9wmW-wcXx-cl6n-eAlD-Gb2hdK</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Write</span> <span class="hljs-string">Access</span>        <span class="hljs-string">read/write</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Creation</span> <span class="hljs-string">host,</span> <span class="hljs-string">time</span> <span class="hljs-string">clone,</span> <span class="hljs-number">2014</span><span class="hljs-bullet">-05</span><span class="hljs-bullet">-28</span> <span class="hljs-number">23</span><span class="hljs-string">:46:01</span> <span class="hljs-string">+0900</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Status</span>              <span class="hljs-string">available</span>
+  <span class="hljs-comment"># open                 1</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Size</span>                <span class="hljs-number">32.75</span> <span class="hljs-string">GiB</span>
+  <span class="hljs-string">Current</span> <span class="hljs-string">LE</span>             <span class="hljs-number">8384</span>
+  <span class="hljs-string">Segments</span>               <span class="hljs-number">2</span>
+  <span class="hljs-string">Allocation</span>             <span class="hljs-string">inherit</span>
+  <span class="hljs-string">Read</span> <span class="hljs-string">ahead</span> <span class="hljs-string">sectors</span>     <span class="hljs-string">auto</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">currently</span> <span class="hljs-string">set</span> <span class="hljs-string">to</span>     <span class="hljs-number">256</span>
+  <span class="hljs-string">Block</span> <span class="hljs-string">device</span>           <span class="hljs-number">253</span><span class="hljs-string">:0</span>
+   
+<span class="hljs-bullet">  -</span><span class="hljs-bullet">--</span> <span class="hljs-string">Logical</span> <span class="hljs-string">volume</span> <span class="hljs-meta">---</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Path</span>                <span class="hljs-string">/dev/vg_clone/LogVol00</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Name</span>                <span class="hljs-string">LogVol00</span>
+  <span class="hljs-string">VG</span> <span class="hljs-string">Name</span>                <span class="hljs-string">vg_clone</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">UUID</span>                <span class="hljs-string">e9xU1n-89pG-y5eT-gjma-rHjW-B9ik-pYrSAn</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Write</span> <span class="hljs-string">Access</span>        <span class="hljs-string">read/write</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Creation</span> <span class="hljs-string">host,</span> <span class="hljs-string">time</span> <span class="hljs-string">clone,</span> <span class="hljs-number">2014</span><span class="hljs-bullet">-05</span><span class="hljs-bullet">-28</span> <span class="hljs-number">23</span><span class="hljs-string">:46:06</span> <span class="hljs-string">+0900</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Status</span>              <span class="hljs-string">available</span>
+  <span class="hljs-comment"># open                 1</span>
+  <span class="hljs-string">LV</span> <span class="hljs-string">Size</span>                <span class="hljs-number">2.00</span> <span class="hljs-string">GiB</span>
+  <span class="hljs-string">Current</span> <span class="hljs-string">LE</span>             <span class="hljs-number">512</span>
+  <span class="hljs-string">Segments</span>               <span class="hljs-number">1</span>
+  <span class="hljs-string">Allocation</span>             <span class="hljs-string">inherit</span>
+  <span class="hljs-string">Read</span> <span class="hljs-string">ahead</span> <span class="hljs-string">sectors</span>     <span class="hljs-string">auto</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">currently</span> <span class="hljs-string">set</span> <span class="hljs-string">to</span>     <span class="hljs-number">256</span>
+  <span class="hljs-string">Block</span> <span class="hljs-string">device</span>           <span class="hljs-number">253</span><span class="hljs-string">:1</span>
+
+<span class="hljs-comment"># vgdisplay </span>
+<span class="hljs-bullet">  -</span><span class="hljs-bullet">--</span> <span class="hljs-string">Volume</span> <span class="hljs-string">group</span> <span class="hljs-meta">---</span>
+  <span class="hljs-string">VG</span> <span class="hljs-string">Name</span>               <span class="hljs-string">vg_clone</span>
+  <span class="hljs-string">System</span> <span class="hljs-string">ID</span>             
+  <span class="hljs-string">Format</span>                <span class="hljs-string">lvm2</span>
+  <span class="hljs-string">Metadata</span> <span class="hljs-string">Areas</span>        <span class="hljs-number">2</span>
+  <span class="hljs-string">Metadata</span> <span class="hljs-string">Sequence</span> <span class="hljs-literal">No</span>  <span class="hljs-number">9</span>
+  <span class="hljs-string">VG</span> <span class="hljs-string">Access</span>             <span class="hljs-string">read/write</span>
+  <span class="hljs-string">VG</span> <span class="hljs-string">Status</span>             <span class="hljs-string">resizable</span>
+  <span class="hljs-string">MAX</span> <span class="hljs-string">LV</span>                <span class="hljs-number">0</span>
+  <span class="hljs-string">Cur</span> <span class="hljs-string">LV</span>                <span class="hljs-number">2</span>
+  <span class="hljs-string">Open</span> <span class="hljs-string">LV</span>               <span class="hljs-number">2</span>
+  <span class="hljs-string">Max</span> <span class="hljs-string">PV</span>                <span class="hljs-number">0</span>
+  <span class="hljs-string">Cur</span> <span class="hljs-string">PV</span>                <span class="hljs-number">2</span>
+  <span class="hljs-string">Act</span> <span class="hljs-string">PV</span>                <span class="hljs-number">2</span>
+  <span class="hljs-string">VG</span> <span class="hljs-string">Size</span>               <span class="hljs-number">39.75</span> <span class="hljs-string">GiB</span>
+  <span class="hljs-string">PE</span> <span class="hljs-string">Size</span>               <span class="hljs-number">4.00</span> <span class="hljs-string">MiB</span>
+  <span class="hljs-string">Total</span> <span class="hljs-string">PE</span>              <span class="hljs-number">10176</span>
+  <span class="hljs-string">Alloc</span> <span class="hljs-string">PE</span> <span class="hljs-string">/</span> <span class="hljs-string">Size</span>       <span class="hljs-number">8896</span> <span class="hljs-string">/</span> <span class="hljs-number">34.75</span> <span class="hljs-string">GiB</span>
+  <span class="hljs-string">Free</span>  <span class="hljs-string">PE</span> <span class="hljs-string">/</span> <span class="hljs-string">Size</span>       <span class="hljs-number">1280</span> <span class="hljs-string">/</span> <span class="hljs-number">5.00</span> <span class="hljs-string">GiB</span>
+  <span class="hljs-string">VG</span> <span class="hljs-string">UUID</span>               <span class="hljs-string">B5FxL3-emIw-MGMb-spNv-aL3j-biWH-RypuUp</span>
+
+
+ <span class="hljs-string">※</span> <span class="hljs-string">Alloc</span> <span class="hljs-string">が増えて、Free</span> <span class="hljs-string">PEが減少</span>
+</code></pre></li>
+<li><p>ファイルシステム拡張</p>
+<ul>
+<li><p>CentOS7 以降</p>
+<pre><code class="hljs"><span class="hljs-comment"># xfs_growfs /dev/centos/root</span>
+<span class="hljs-attribute">meta-data</span>=/dev/mapper/centos-root <span class="hljs-attribute">isize</span>=512    <span class="hljs-attribute">agcount</span>=4, <span class="hljs-attribute">agsize</span>=524032 blks
+         =                       <span class="hljs-attribute">sectsz</span>=512   <span class="hljs-attribute">attr</span>=2, <span class="hljs-attribute">projid32bit</span>=1
+         =                       <span class="hljs-attribute">crc</span>=1        <span class="hljs-attribute">finobt</span>=0 <span class="hljs-attribute">spinodes</span>=0
+data     =                       <span class="hljs-attribute">bsize</span>=4096   <span class="hljs-attribute">blocks</span>=2096128, <span class="hljs-attribute">imaxpct</span>=25
+         =                       <span class="hljs-attribute">sunit</span>=0      <span class="hljs-attribute">swidth</span>=0 blks
+naming   =version 2              <span class="hljs-attribute">bsize</span>=4096   <span class="hljs-attribute">ascii-ci</span>=0 <span class="hljs-attribute">ftype</span>=1
+log      =internal               <span class="hljs-attribute">bsize</span>=4096   <span class="hljs-attribute">blocks</span>=2560, <span class="hljs-attribute">version</span>=2
+         =                       <span class="hljs-attribute">sectsz</span>=512   <span class="hljs-attribute">sunit</span>=0 blks, <span class="hljs-attribute">lazy-count</span>=1
+realtime =none                   <span class="hljs-attribute">extsz</span>=4096   <span class="hljs-attribute">blocks</span>=0, <span class="hljs-attribute">rtextents</span>=0
+data blocks changed <span class="hljs-keyword">from</span> 2096128 <span class="hljs-keyword">to</span> 9959424
+</code></pre></li>
+<li><p>CentOS7 以前</p>
+<pre><code class="hljs"># resize2fs /dev/vg_clone/LogVol01 
+resize2fs <span class="hljs-number">1.41</span><span class="hljs-number">.12</span> (<span class="hljs-number">17</span>-May<span class="hljs-number">-2010</span>)
+Filesystem at /dev/vg_clone/LogVol01 is mounted on /; on-line resizing required
+old desc_blocks = <span class="hljs-number">2</span>, new_desc_blocks = <span class="hljs-number">3</span>
+Performing an on-line resize of /dev/vg_clone/LogVol01 to <span class="hljs-number">8585216</span> (<span class="hljs-number">4</span>k) blocks.
+The filesystem on /dev/vg_clone/LogVol01 is now <span class="hljs-number">8585216</span> blocks long.
+
+# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/mapper/vg_clone-LogVol01
+                       <span class="hljs-number">33</span>G   <span class="hljs-number">13</span>G   <span class="hljs-number">18</span>G  <span class="hljs-number">42</span>% /
+tmpfs                 <span class="hljs-number">499</span>M     <span class="hljs-number">0</span>  <span class="hljs-number">499</span>M   <span class="hljs-number">0</span>% /dev/shm
+/dev/vda1             <span class="hljs-number">243</span>M   <span class="hljs-number">70</span>M  <span class="hljs-number">160</span>M  <span class="hljs-number">31</span>% /boot
+</code></pre>
+<ul>
+<li><p>CentOS7 で resize2fs を実行すると下記エラーが出る</p>
+<pre><code class="hljs"><span class="hljs-string">resize2fs:</span> Bad magic number <span class="hljs-keyword">in</span> <span class="hljs-keyword">super</span>-block <span class="hljs-keyword">while</span> trying to open <span class="hljs-regexp">/dev/</span>centos/root
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>df -h で拡張の確認</p></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

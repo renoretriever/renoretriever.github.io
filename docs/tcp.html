@@ -10,13 +10,11 @@
 </ul></li>
 <li><p>重要な役割</p>
 <ul>
-<li>ポート番号によるデータ転送
-<ul>
-<li>ポート番号は 0 〜 65535</li>
-</ul></li>
+<li>ポート番号によるデータ転送</li>
 <li>コネクションの生成</li>
 <li>データの保証と再送制御</li>
-<li>フロー制御と輻輳制御</li>
+<li>フロー制御</li>
+<li>輻輳制御</li>
 </ul></li>
 <li><p>アプリケーションから渡されたデータをそのままの形で、正確に、確実に相手に届ける役割</p>
 <ul>
@@ -37,25 +35,266 @@
 <ul>
 <li>アプリケーションデータに TCP ヘッダーに付与して、TCP セグメントを作成</li>
 </ul></li>
+<li><p><code>ソケット</code></p>
+<ul>
+<li>TCP/IP プロトコルを動かすために必要となるインタフェース(API)</li>
+<li>アプリが使用している IP アドレスやポート番号を管理したり、パケットの送受信に必要なバッファ(キュー) の管理を行う</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="tcp-ヘッダ"></a><a href="#tcp-ヘッダ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TCP ヘッダ</h2>
+<hr>
+<pre><code class="hljs"><span class="hljs-section">0                 3 4          6 7                                           15 16                                                                           31(bit)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="hljs-section">|                                 始点ポート番号                               |                                終点ポート番号                                |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="hljs-section">|                                                                        シーケンス番号                                                                       |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="hljs-section">|                                                                         確認応答番号                                                                        |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="hljs-section">| データオフセット | 予約ビット | NS | CWR | ECE | ACK | PSH | RST | SYN | FIN |                               ウィンドウサイズ                               |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="hljs-section">|                                チェックサム                                  |                                 緊急ポインタ                                 |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="hljs-section">|                                                                  オプション                                                                  |  パディング  | 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+</code></pre>
+<ul>
+<li><p>シーケンス番号</p>
+<ul>
+<li>データの到着順序や信頼性を保証するために利用</li>
+<li>送信したデータの位置をバイト単位で表す</li>
+</ul></li>
+<li><p>確認応答番号</p>
+<ul>
+<li>TCP による通信の信頼性を提供するために利用</li>
+<li>受信したデータの最後尾のシーケンス番号に 1 を加えた値</li>
+</ul></li>
+<li><p>データオフセット、ヘッダ長</p>
+<ul>
+<li>TCP が運んでいるデータがどこから始まるかを意味
+<ul>
+<li>=&gt; ヘッダ長</li>
+</ul></li>
+</ul></li>
+<li><p>コントロールフラグ</p>
+<ul>
+<li>NS(Nonce Sum flag)
+<ul>
+<li>実験用に用意されているビット</li>
+</ul></li>
+<li>CWR(Congestion Window Reduced flag)
+<ul>
+<li>ふくそうウィンドウを小さくしたことを通知するために使われる</li>
+</ul></li>
+<li>ECE(ECn-Echo flag)
+<ul>
+<li>1
+<ul>
+<li>ネットワークの途中でふくそうが起きている</li>
+<li>ふくそうウィンドウを小さくして、データセグメントの送信量を減らす必要がある</li>
+</ul></li>
+</ul></li>
+<li>URG(URGent flag)
+<ul>
+<li>1
+<ul>
+<li>緊急に処理すべきデータが含まれている</li>
+</ul></li>
+</ul></li>
+<li>ACK(ACKnowledgement flag)
+<ul>
+<li>1
+<ul>
+<li>確認応答番号が有効</li>
+</ul></li>
+</ul></li>
+<li>PSH(PuSH flag)
+<ul>
+<li>1
+<ul>
+<li>できるだけ速やかにデータをアプリケーションに渡さなければならない</li>
+</ul></li>
+<li>0
+<ul>
+<li>しばらくの間、バッファにためておくことが可能</li>
+</ul></li>
+</ul></li>
+<li>RST(ReSeT flag)
+<ul>
+<li>1
+<ul>
+<li>コネクションが強制的に切断</li>
+</ul></li>
+</ul></li>
+<li>SYN(SYNchronize flag)
+<ul>
+<li>1
+<ul>
+<li>コネクションの確立要求を意味</li>
+<li>シーケンス番号の値をシーケンス番号の初期値にして通信が開始される</li>
+</ul></li>
+</ul></li>
+<li>FIN(FIN flag)
+<ul>
+<li>1
+<ul>
+<li>通信の最後のセグメントであることを意味</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
 <ul>
-<li>3 ウェイ・ハンドシェイク
+<li>ウィンドウサイズ
+<ul>
+<li>ACK を待たずに送信可能なデータサイズ</li>
+<li>ウィンドウ
+<ul>
+<li>ある程度のセグメント数であれば ACK を待たずに次の送信を行う</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>チェックサム
+<ul>
+<li>TCP ヘッダ、TCP データ、IP ヘッダの一部(IP アドレス、パケット長、プロトコル番号) が壊れていないことを保証</li>
+<li>計算方法
 <ol>
-<li>通信相手の OS に対して仮想経路(バーチャルサーキット) を開くように依頼 【SYN】</li>
+<li>始点 IP アドレス、終点 IP アドレス、TCP パケット長(IP パケット長から IP ヘッダ長を引いた値)、プロトコル番号からなる疑似ヘッダを作成</li>
+<li>チェックサムのフィールドに 0 を格納</li>
+<li>16 ビット単位で計算できるように、TCP データが奇数バイトの場合には TCP データの末尾に 1 バイト(値は 0) を追加する</li>
+<li>TCP ヘッダ、TCP データ、疑似ヘッダについて、16 ビット単位で 1 の補数和を求める</li>
+<li>求まった和の 1 の補数を TCP ヘッダのチェックサムのフィールドに格納する</li>
+</ol>
+<ul>
+<li>受信側ではチェックサムのフィールドを含む TCP ヘッダ、TCP データ、疑似ヘッダのすべてについて 1 の補数和を計算し、求まった値が 1 の補数でいう、すべてのビットが 1 のゼロ表現になったら正しいと判断</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>緊急ポインタ
+<ul>
+<li>緊急に処理しなけれなならないデータが格納されている場所</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="tcp-コネクション管理"></a><a href="#tcp-コネクション管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TCP コネクション管理</h2>
+<hr>
+<ul>
+<li><p>TCP コネクションの確立</p>
+<ul>
+<li><code>3 ウェイ・ハンドシェイク</code>
+<ol>
+<li>通信相手の OS に対して仮想経路(バーチャルサーキット) を開くように依頼 【SYN】
+<ul>
+<li>シーケンス番号のように離れたホスト同士で記憶する情報を一致させる作業</li>
+</ul></li>
 <li>問題なければ OK 返す 【SYN+ACK】</li>
 <li>クライアント側も OK を送り、ここで初めて通信用の仮想経路が開かれる 【ACK】</li>
 </ol></li>
+</ul></li>
+<li><p>TCP コネクションの切断</p>
+<ol>
+<li>A =&gt; B 切断要求(FIN/ACK)</li>
+<li>B =&gt; A 切断要求確認(ACK)</li>
+<li>B =&gt; A 切断要求(FIN/ACK)</li>
+<li>A =&gt; B 切断要求確認(ACK)</li>
+</ol></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="フロー制御ウィンドウフロー制御"></a><a href="#フロー制御ウィンドウフロー制御" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>フロー制御(ウィンドウフロー制御)</h2>
+<hr>
+<ul>
+<li><p>データを受信する側のコンピュータが、データ受信用に準備しているバッファの大きさを知らせ、送信側のホストは、通知されたサイズに合わせてデータを送信するような制御のこと</p></li>
+<li><p>スループットを向上させるために、一度に複数のデータセグメントを送信</p></li>
+<li><p>ウィンドウ制御</p>
+<ul>
+<li><code>どのくらいの複数の TCP セグメントを一度に送るか</code> を制御する仕組み</li>
+<li>TCP コネクションを確立する際に、お互いのウィンドウサイズも通知してるので、受信側で一度に受信できるデータサイズが分かっているので、一度に送信することが可能</li>
+<li><code>スライディングウィンドウ方式</code>
+<ul>
+<li>送信側が転送する全体のデータ上を、受信側のウィンドウサイズに合わせ、 MSS 分ずつずらしながら転送していくイメージ</li>
+</ul></li>
+<li>バイト単位</li>
+<li>TCP ヘッダのシーケンス番号を利用して、データの順番を制御している</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ふくそう輻輳-制御"></a><a href="#ふくそう輻輳-制御" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ふくそう(輻輳)制御</h2>
+<hr>
+<ul>
+<li><p>ネットワークの混雑を回避する仕組み</p>
+<ul>
+<li>ネットワークの混雑度を推測してデータセグメントの送信量を制御</li>
+<li>確認応答のタイムアウトが発生したら、ネットワークが混雑していると考えて送信側で送信データ量を好き雨なくし、タイムアウトが発生しなくなったら、ネットワークが空いていると考えて送信データ量を多くする</li>
+<li>送信側でふくそうウィンドウ(snd.cwnd) という値を定義し、タイムアウトが発生したら、ふくそうウィンドウを小さくする
+<ul>
+<li>=&gt; 確認応答が来る度にふくそうウィンドウを大きくしていく</li>
+</ul></li>
+</ul></li>
+<li><p>ふくそう制御アルゴリズム</p>
+<ul>
+<li>Tahoe</li>
+<li>Reno</li>
+<li>new Reno</li>
+<li>Compound TCP</li>
+<li>CUBIC TCP</li>
+<li><code>スロースタートアルゴリズム</code>
+<ol>
+<li>送信側は輻輳ウィンドウ を 1 に設定
+<ul>
+<li>受信側のウィンドウサイズ分をいきなり送信するのではなく、まずは 1 セグメントだけ送信する</li>
+</ul></li>
+<li>確認応答が返ってくるごとに、輻輳ウィンドウを 1 つずつ増やす</li>
+</ol></li>
+</ul></li>
 </ul>
 <ul>
-<li><p>ウィンドウ</p>
+<li>フロー制御とふくそう制御の違い
 <ul>
-<li>ある程度のセグメント数であれば ACK を待たずに次の送信を行う</li>
-<li>ACK を待たずに送信可能なデータサイズを <code>ウィンドウサイズ</code> と呼ぶ</li>
+<li>フロー制御
+<ul>
+<li>通信相手の受信キューがあるれないように、送信パケットを制御</li>
 </ul></li>
-<li><p>輻輳制御</p>
+<li>ふくそう制御
 <ul>
-<li>スロースタート</li>
+<li>通信相手地の経路上にあるルータやハブのキューがあふれないように、送信パケットを制御</li>
+</ul></li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h2><a class="anchor" aria-hidden="true" id="データ転送時の動作"></a><a href="#データ転送時の動作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>データ転送時の動作</h2>
+<ul>
+<li>再送制御
+<ul>
+<li>何らかの理由で消えた TCP セグメントを再送する仕組み</li>
+<li>TCP セグメントを送信すると <code>RTO(Retransmission Time Out)</code> 時間以内に、確認応答を受け取らなければならないという決まりがある
+<ul>
+<li>=&gt; RTO 時間を過ぎるとデータは失われたものとして再送処理される</li>
+<li><code>RTT(Round Trip Time)</code>
+<ul>
+<li>TCP セグメントに対する確認応答が帰ってくる時間のこと</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="others"></a><a href="#others" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Others</h2>
+<ul>
+<li><code>MSS(Maximum Segment Size)</code>
+<ul>
+<li>1 つの TCP セグメントで送信できる最大のデータサイズ</li>
+<li>最終的にリンク層を使ってデータが送信されるため、MSS はリンク層で送信できる最大サイズに依存</li>
+</ul></li>
+</ul>
+<ul>
+<li><code>TCB(Transmission Control Block)</code>
+<ul>
+<li>TCP モジュールの内部には、シーケンス番号や確認応答番号の値を記憶する必要があり、そのような情報を格納するデータベース</li>
+</ul></li>
+</ul>
+<ul>
+<li><code>TOE(TCP/IP Offload Engine)</code>
+<ul>
+<li>TCP のチェックサムなどの計算処理を NIC なｄのハードウェアで行う
+<ul>
+<li>=&gt; オフロード</li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#tcp-ヘッダ">TCP ヘッダ</a></li><li><a href="#tcp-コネクション管理">TCP コネクション管理</a></li><li><a href="#フロー制御ウィンドウフロー制御">フロー制御(ウィンドウフロー制御)</a></li><li><a href="#ふくそう輻輳-制御">ふくそう(輻輳)制御</a></li><li><a href="#データ転送時の動作">データ転送時の動作</a></li><li><a href="#others">Others</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
