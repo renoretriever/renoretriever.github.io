@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>GitLab Runner · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- GitLab のインスタンスとして Runner を登録"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="GitLab Runner · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- GitLab のインスタンスとして Runner を登録"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">GitLab Runner</h1></header><article><div><span><ul>
+<li><p>GitLab のインスタンスとして Runner を登録</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> sudo gitlab-runner register</span>
+</code></pre>
+<ul>
+<li><a href="https://docs.gitlab.com/runner/register/index.html">Registering Runners</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="etc-gitlab-runner-configtoml"></a><a href="#etc-gitlab-runner-configtoml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>/etc/gitlab-runner/config.toml</h2>
+<hr>
+<ul>
+<li><p>Docker 環境の /etc/hosts の設定を追加する</p>
+<pre><code class="hljs"><span class="hljs-attr">extra_hosts</span> = [<span class="hljs-string">"gitlab.example.com:10.0.12.30"</span>]
+</code></pre></li>
+<li><p><a href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html">設定ファイル</a></p></li>
+</ul>
+<ul>
+<li><p>サンプル</p>
+<pre><code class="hljs"><span class="hljs-attr">concurrent</span> = <span class="hljs-number">1</span>
+<span class="hljs-attr">check_interval</span> = <span class="hljs-number">0</span>
+
+[session_server]
+  <span class="hljs-attr">session_timeout</span> = <span class="hljs-number">1800</span>
+
+[[runners]]
+  <span class="hljs-attr">name</span> = <span class="hljs-string">"gl01"</span>
+  <span class="hljs-attr">url</span> = <span class="hljs-string">"http://renogitlab.example.com/"</span>
+  <span class="hljs-attr">token</span> = <span class="hljs-string">"TOKEN"</span>
+  <span class="hljs-attr">executor</span> = <span class="hljs-string">"docker"</span>
+  [runners.docker]
+    <span class="hljs-attr">tls_verify</span> = <span class="hljs-literal">false</span>
+    <span class="hljs-attr">image</span> = <span class="hljs-string">"alpine:latest"</span>
+    <span class="hljs-attr">privileged</span> = <span class="hljs-literal">false</span>
+    <span class="hljs-attr">disable_entrypoint_overwrite</span> = <span class="hljs-literal">false</span>
+    <span class="hljs-attr">oom_kill_disable</span> = <span class="hljs-literal">false</span>
+    <span class="hljs-attr">disable_cache</span> = <span class="hljs-literal">false</span>
+    <span class="hljs-attr">volumes</span> = [<span class="hljs-string">"/cache"</span>]
+    <span class="hljs-attr">shm_size</span> = <span class="hljs-number">0</span>
+    <span class="hljs-attr">extra_hosts</span> = [<span class="hljs-string">"renogitlab.example.com:10.0.12.30"</span>]
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="install"></a><a href="#install" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>INSTALL</h3>
+<ul>
+<li><p>下記URL参照</p>
+<ul>
+<li>docker の話
+<ul>
+<li><a href="https://github.com/sameersbn/docker-gitlab-ci-multi-runner">sameersbn/docker-gitlab-ci-multi-runner</a></li>
+</ul></li>
+<li>導入例
+<ul>
+<li><a href="http://blue1st.hateblo.jp/entry/2016/02/28/232719">GitLab CIをDockerで導入してみた</a></li>
+</ul></li>
+<li>.gitlab-ci.yml サンプル
+<ul>
+<li><a href="http://orih.io/2015/12/run-automated-deployment-by-git-push-with-ecs-deploy-script/">Git プッシュから Amazon ECS に自動デプロイする仕組みを構築する</a></li>
+<li>Docker から見たファイルパスであることに注意</li>
+</ul></li>
+<li>docker-compose 利用</li>
+<li>token は、<a href="http://gitlaburl/admin/runners">http://gitlaburl/admin/runners</a> を参照</li>
+</ul></li>
+<li><p>ハマったこと</p>
+<ul>
+<li>CI_SERVER_URL をlocalhost にしていたらNGだったので、/etc/hosts にgitlaburl 127.0.0.1 を記載して回避した</li>
+</ul></li>
+</ul>
+<ul>
+<li><a href="gitlab-ci.yml">.gitlab-ci.yml</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#etc-gitlab-runner-configtoml">/etc/gitlab-runner/config.toml</a><ul class="toc-headings"><li><a href="#install">INSTALL</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

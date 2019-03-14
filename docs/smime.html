@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>S/MIME · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- [PGP](pgp) とは異なり、CA によって証明書を発行し、公開鍵の正当性を検証するために、必ず CA が必要"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="S/MIME · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- [PGP](pgp) とは異なり、CA によって証明書を発行し、公開鍵の正当性を検証するために、必ず CA が必要"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">S/MIME</h1></header><article><div><span><ul>
+<li><p><a href="pgp">PGP</a> とは異なり、CA によって証明書を発行し、公開鍵の正当性を検証するために、必ず CA が必要</p></li>
+<li><p>共通鍵暗号と公開鍵暗号およびハッシュ関数を利用し、電子証明書によってメールの暗号化とデジタル署名の付与を実現</p></li>
+<li><p>画像、音声などのバイナリファイルを送信するための規格である MIME を拡張子たもの</p>
+<ul>
+<li>添付ファイルを含めて暗号可能</li>
+</ul></li>
+<li><p>X.509 使用</p></li>
+<li><p>暗号メールと署名メールがあり、暗号と署名の両方を同時に行なうことも可能</p></li>
+<li><p>PKCS(Public Key Cryptography Standard) に従って暗号化、ディジタル署名を行なうことで、電子メールの機密性と完全性を高めることができる</p></li>
+<li><p>暗号メールの手順</p>
+<ul>
+<li>メールの暗号化に使用する共通鍵を生成する</li>
+<li>生成した共通鍵を用いてメール本文を暗号化する</li>
+<li>受信者の公開鍵で生成した共通鍵を暗号化する</li>
+<li>メール本文と公開鍵で暗号化した共通鍵を併せて送信する</li>
+<li>受信者はまず自分の秘密鍵で共通鍵を復号する</li>
+<li>復号した共通鍵を使用してメール本文を復号する</li>
+</ul></li>
+<li><p>署名メールの手順</p>
+<ul>
+<li>送信者の公開鍵、秘密鍵を使用</li>
+<li>手順
+<ul>
+<li>メール本文のメッセージダイジェストを、ハッシュ関数を用いて生成</li>
+<li>送信者の秘密鍵を用いてメッセージダイジェストに対し署名を行なう</li>
+<li>メール本文、署名、送信者の電子証明書を併せて送信する</li>
+<li>受信者は電子証明書の発行元である CA を信頼した上で、電子証明書に含まれている送信者の公開鍵で署名からメッセージダイジェストを復号する</li>
+<li>メール本文からメッセージダイジェストを生成し、署名から得られたメッセージダイジェストと一致するか検証</li>
+</ul></li>
+</ul></li>
+<li><p>暗号メールと署名メールの比較</p>
+<ul>
+<li>暗号メール
+<ul>
+<li>暗号化(署名)
+<ul>
+<li>受信者の公開鍵(共通鍵経由)</li>
+</ul></li>
+<li>復号
+<ul>
+<li>受信者の秘密鍵(共通鍵経由)</li>
+</ul></li>
+</ul></li>
+<li>署名メール
+<ul>
+<li>暗号化(署名)
+<ul>
+<li>送信者の秘密鍵</li>
+</ul></li>
+<li>復号
+<ul>
+<li>送信者の公開鍵</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>機能</p>
+<ul>
+<li>認証
+<ul>
+<li>X.509 証明書を利用し、署名を行った人の認証を実子</li>
+</ul></li>
+<li>機密性
+<ul>
+<li>メールを暗号化することで、メールの盗聴や漏洩を防ぐ</li>
+</ul></li>
+<li>否認防止
+<ul>
+<li>送信者しか署名を行えないことから、メールを送信した事実を否認することを防止</li>
+</ul></li>
+<li>完全性
+<ul>
+<li>署名によりメール本文が、送信時と比較して改ざんされていないことを受信者が検証することができる</li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

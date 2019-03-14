@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>OAuth · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- OAuth は API 認可の技術"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="OAuth · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- OAuth は API 認可の技術"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">OAuth</h1></header><article><div><span><ul>
+<li>OAuth は API 認可の技術
+<ul>
+<li>OAuthはあくまでも認可の仕組みであり、認証には関係無い、というのが正式な立場</li>
+</ul></li>
+<li>OAuth を使う目的は、OAuth アクセストークンを取得して、ユーザやアプリのために API リクエストを行うこと</li>
+<li>SAML との違いは個人の情報の扱い方
+<ul>
+<li>SAML
+<ul>
+<li>個人に信頼されているので、認証が通ればアプリ側に情報を渡す</li>
+</ul></li>
+<li>OAuth
+<ul>
+<li>個人に対して情報をアプリに出してよいかの確認ポップアップ画面が表示される</li>
+</ul></li>
+</ul></li>
+<li>アクセストークンをいかにして取得するかが重要</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="oauth-10"></a><a href="#oauth-10" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OAuth 1.0</h2>
+<ul>
+<li><p>ユーザ名やパスワードを共有することなく、リソースオーナーに代わってサーバリソースアクセスすることを認可してもらうための規約</p></li>
+<li><p>spec</p>
+<ul>
+<li><a href="https://openid-foundation-japan.github.io/rfc5849.ja.html">The OAuth 1.0 Protocol</a></li>
+</ul></li>
+<li><p>特徴</p>
+<ul>
+<li>サーバサイドアプリ向け
+<ul>
+<li>そもそもサーバサイドの Web アプリケーションを想定した規約</li>
+<li>デスクトップやスマホ等の端末サイドアプリ向けに設計されていない</li>
+</ul></li>
+<li>シークレット秘密管理
+<ul>
+<li>シークレット情報が漏洩することなく秘密管理できることが必須要件</li>
+<li>シークレット情報
+<ul>
+<li>OAuth サーバが OAuth クライアントやリクエストを認証するための秘密の文字列</li>
+</ul></li>
+</ul></li>
+<li>署名 Signature
+<ul>
+<li>OAuth プロバイダへのリクエスト時、リクエストデータに署名を付ける</li>
+</ul></li>
+<li>Authorization Header
+<ul>
+<li>OAuth プロバイダへのリクエスト時、Authorization ヘッダの OAuth スキームを使用</li>
+</ul></li>
+<li>SSL/TLS 不要
+<ul>
+<li>転送路の暗号化が必須ではない
+<ul>
+<li>シークレット情報は秘密管理されておりクライアントしか知らない</li>
+<li>クライアントしか知り得ないシークレットキーによる署名を検証することで、なりすましや改ざんが見破れる</li>
+<li>データに timestamp と nonce を含めており、これをチェックすることで、リクエストのリプレイアタックが防げる</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>課題
+<ul>
+<li>サーバサイドのアプリ向けに策定されたプロトコルのために、次のようなアプリでは実装が難しい</li>
+</ul>
+<ol>
+<li>デスクトップやスマホ等の端末アプリ
+<ul>
+<li>OAuth 2.0 で対応</li>
+</ul></li>
+<li>端末(フロントエンド) + サーバ(バックエンド) 構成のアプリ
+<ul>
+<li>OpenID Connect で対応</li>
+</ul></li>
+</ol>
+<ul>
+<li>安全ではあるが署名の作業負荷がある
+<ul>
+<li>OAuth 2.0 で署名が不要に</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="oauth-20"></a><a href="#oauth-20" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OAuth 2.0</h2>
+<ul>
+<li><p>使用目的</p>
+<ul>
+<li>OAuth アクセストークンを取得して、ユーザもしくはアプリ自身のために、そのアクセストークンを使って API リクエストを実行すること</li>
+<li>アクセストークンを取得できれば、そこで認可されたリクエストは実行できる</li>
+<li>ユーザ名やパスワードを共有することなく、リソースオーナーに代わってサーバリソースアクセスすることを認可してもらうための規約</li>
+</ul></li>
+<li><p>OAuth 1.0 と OAuth 2.0 では互換性はない</p>
+<ul>
+<li>共存は可能</li>
+</ul></li>
+<li><p>spec</p>
+<ul>
+<li><a href="http://openid-foundation-japan.github.io/rfc6749.ja.html#anchor2">The OAuth 2.0 Authorization Framework</a></li>
+</ul></li>
+<li><p>特徴</p>
+<ul>
+<li>端末アプリに対応
+<ul>
+<li>端末サイドのアプリを考慮したフローが追加</li>
+<li>Client Type という仕様
+<ol>
+<li>Confidential
+<ul>
+<li>サーバサイド Web アプリ</li>
+<li>シークレット情報を安全に秘密にできる OAuth Client</li>
+<li>Authorization code Flow を使用</li>
+</ul></li>
+<li>Public
+<ul>
+<li>携帯サイドアプリ</li>
+<li>デスクトップやスマホネイティブアプリなどのように、シークレット情報を秘密にできない OAuth Client</li>
+<li>Implicit Flow を使用</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>SSL/TLS による暗号化が前提
+<ul>
+<li>その分規約がシンプルに</li>
+</ul></li>
+<li>署名が不要
+<ul>
+<li>SSL/TLS に依存</li>
+</ul></li>
+<li>シークレット情報の扱い
+<ul>
+<li>シークレット情報も HTTP message で普通に送受信する
+<ul>
+<li>ただし、Client Type が Confidential の OAuth Client に限る</li>
+<li>Public な OAuth Client はシークレット情報を秘密に出来ない</li>
+</ul></li>
+<li>シークレット情報
+<ul>
+<li>OAuth サーバが OAuth クライアントを認証するために発行する秘密の文字列
+<ul>
+<li>OAuth サーバと OAuth クライアントだけが知りうる情報であり、これが漏洩すると悪意のあるアプリから容易になりすましされるので注意</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Authorization Header
+<ul>
+<li><p>Token を Authorization Header の Bearer スキームに付与</p>
+<pre><code class="hljs"><span class="hljs-keyword">GET</span> <span class="hljs-string">/resource/1</span> HTTP/1.1
+<span class="hljs-attribute">Host</span>: example.com
+<span class="hljs-attribute">Authorization</span>: Bearer mF_9.B5f-4.1JqM
+</code></pre></li>
+</ul></li>
+<li>Access Token 寿命が短い
+<ul>
+<li>数分〜数日程度で期限切れとなる</li>
+<li>特に Implicit Grant Flow で取得した access token の寿命は数分程度に短くすべき
+<ul>
+<li>このために token をリフレッシュするためのフローが追加されている</li>
+</ul></li>
+</ul></li>
+<li>リソース操作は規約外
+<ul>
+<li>Access token を取得するまでを標準化したプロトコル</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="oauth-20-flow"></a><a href="#oauth-20-flow" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OAuth 2.0 Flow</h3>
+<ul>
+<li><a href="http://qiita.com/TakahikoKawasaki/items/200951e5b5929f840a1f">OAuth 2.0 全フローの図解と動画</a></li>
+</ul>
+<ol>
+<li>Authorization Code Flow
+<ul>
+<li>サーバサイドアプリ</li>
+<li><img src="authorization_code_flow.png" alt=""></li>
+</ul></li>
+<li>Implicit Flow
+<ul>
+<li>携帯サイドアプリ</li>
+<li><img src="implicit_Flow.png" alt=""></li>
+</ul></li>
+</ol>
+<ul>
+<li><p>登場人物</p>
+<ul>
+<li><img src="oauth_role.png" alt="">
+<ul>
+<li>リソースオーナー（Resource Owner）
+<ul>
+<li>API 認可を必要とするアプリのユーザ</li>
+</ul></li>
+<li>OAuth Client
+<ul>
+<li>API プロバイダーが提供する API にアクセスすることで何らかのサービスを提供する主体</li>
+<li>Authorization Code Flow ならサーバで動くアプリ</li>
+<li>Implicit Flow ならブラウザで動くアプリという認識</li>
+</ul></li>
+<li>Authorization Server と Resource Server
+<ul>
+<li>多くの場合、同じ事業者によって運営されており、かつ同一サーバー内に共存していることも多い</li>
+<li>Authorization Server
+<ul>
+<li>エンドユーザーの認証・トークンの発行などを担当</li>
+</ul></li>
+<li>Resource Server
+<ul>
+<li>Authorization Server が発行したトークンを受け入れて実際の API を提供するサーバー</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>課題</p>
+<ul>
+<li>Access Token 認証とか OAuth 認証という使い方の問題
+<ul>
+<li>Access Token とは、あくまでもユーザリソースへのアクセスを認可したもの</li>
+<li><font color='red'>Access Token ではユーザ本人かどうかを認証することはできない</font></li>
+</ul></li>
+<li>Implicit Flow のセキュリティリスク
+<ul>
+<li>token 差し替え攻撃の危険性</li>
+<li><a href="https://www.sakimura.org/2012/02/1487/">単なる OAuth 2.0 を認証に使うと、車が通れるほどのどでかいセキュリティー・ホールができる</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<hr>
+<ul>
+<li><a href="https://speakerdeck.com/garbagetown/oauth-2-dot-0-wokamikudaku">OAuth 2.0 をかみくだく</a></li>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/1208/27/news129.html">「OAuth」の基本動作を知る (1/2)</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#oauth-10">OAuth 1.0</a></li><li><a href="#oauth-20">OAuth 2.0</a><ul class="toc-headings"><li><a href="#oauth-20-flow">OAuth 2.0 Flow</a></li></ul></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

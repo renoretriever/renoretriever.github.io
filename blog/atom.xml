@@ -2,12 +2,46 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://renoretriever.github.io//blog</id>
     <title>Life is ... Blog</title>
-    <updated>2018-07-06T06:00:00Z</updated>
+    <updated>2019-02-08T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://renoretriever.github.io//blog"/>
     <subtitle>The best place to stay up-to-date with the latest Life is ... news and events.</subtitle>
     <logo>https://renoretriever.github.io//undefined</logo>
-    <rights>Copyright © 2018 renoretriever</rights>
+    <rights>Copyright © 2019 renoretriever</rights>
+    <entry>
+        <title type="html"><![CDATA[読了 : FACTFULNESS（ファクトフルネス）10の思い込みを乗り越え、データを基に世界を正しく見る習慣]]></title>
+        <id>https://renoretriever.github.io//blog/2019/02/08/reading-factfulness.html</id>
+        <link href="https://renoretriever.github.io//blog/2019/02/08/reading-factfulness.html">
+        </link>
+        <updated>2019-02-08T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://www.amazon.co.jp/dp/B07LG7TG5N/">FACTFULNESS（ファクトフルネス）10の思い込みを乗り越え、データを基に世界を正しく見る習慣</a> はここ数年見た中で一番おもしろかった！</p>
+<p><img src="https://images-fe.ssl-images-amazon.com/images/I/410QuKHYY3L.jpg" alt=""></p>
+]]></summary>
+        <author>
+            <name>renoretriever</name>
+            <uri>http://twitter.com/renoretriever</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[クレデンシャル情報がコンテンツ内に無いか確認]]></title>
+        <id>https://renoretriever.github.io//blog/2018/09/26/credential-info.html</id>
+        <link href="https://renoretriever.github.io//blog/2018/09/26/credential-info.html">
+        </link>
+        <updated>2018-09-26T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>GitHub や GitLab などを使っていてうっかりクレデンシャル情報を載せてしまうと即死なので、
+記載されてないかチェックしたい。
+今回は下記を使ってみた。</p>
+<ul>
+<li>git-secrets</li>
+<li>gittyleaks</li>
+<li>truffleHog</li>
+</ul>
+]]></summary>
+        <author>
+            <name>renoretriever</name>
+            <uri>http://twitter.com/renoretriever</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ディレクトリリスティング表示でアレっと思った話]]></title>
         <id>https://renoretriever.github.io//blog/2018/07/06/directory-listing.html</id>

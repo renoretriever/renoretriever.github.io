@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Git · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基本的な操作"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Git · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基本的な操作"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Git</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基本的な操作"></a><a href="#基本的な操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基本的な操作</h2>
+<hr>
+<ul>
+<li><p>リポジトリ初期化</p>
+<pre><code class="hljs">$ git init
+Initialized empty Git repository <span class="hljs-keyword">in</span> <span class="hljs-regexp">/Users/</span>reno<span class="hljs-regexp">/gittest/</span>.git/
+</code></pre>
+<ul>
+<li><code>.git</code> ディレクトリ
+<ul>
+<li>リポジトリデータの格納</li>
+</ul></li>
+</ul></li>
+<li><p>リポジトリの状態確認</p>
+<pre><code class="hljs">$ git status
+On branch master
+
+No commits yet
+
+nothing <span class="hljs-built_in">to</span> commit (<span class="hljs-built_in">create</span>/copy <span class="hljs-built_in">files</span> <span class="hljs-keyword">and</span> use <span class="hljs-string">"git add"</span> <span class="hljs-built_in">to</span> track)
+</code></pre></li>
+<li><p>ステージ領域へファイルを追加</p>
+<pre><code class="hljs">$ touch README<span class="hljs-selector-class">.md</span>
+$ git add README<span class="hljs-selector-class">.md</span>
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use <span class="hljs-string">"git rm --cached &lt;file&gt;..."</span> to unstage)
+
+    new file:   README<span class="hljs-selector-class">.md</span>
+
+</code></pre>
+<ul>
+<li>これで Git リポジトリの管理対象になる</li>
+<li><code>ステージ領域</code>
+<ul>
+<li>コミットする前の一時領域</li>
+</ul></li>
+</ul></li>
+<li><p>リポジトリの歴史を記録</p>
+<pre><code class="hljs">$ git <span class="hljs-keyword">commit</span> -m <span class="hljs-string">"First commit"</span>
+[<span class="hljs-keyword">master</span> (root-<span class="hljs-keyword">commit</span>) <span class="hljs-number">17</span>d59e4] <span class="hljs-keyword">First</span> <span class="hljs-keyword">commit</span>
+ <span class="hljs-number">1</span> <span class="hljs-keyword">file</span> <span class="hljs-keyword">changed</span>, <span class="hljs-number">0</span> insertions(+), <span class="hljs-number">0</span> deletions(-)
+ <span class="hljs-keyword">create</span> <span class="hljs-keyword">mode</span> <span class="hljs-number">100644</span> README.md
+</code></pre></li>
+<li><p>コミットログの確認</p>
+<ul>
+<li><p>リポジトリにコミットされたログ</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span></span>
+</code></pre></li>
+<li><p>ファイルの差分を表示</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> -p</span>
+</code></pre></li>
+</ul></li>
+<li><p>差分(ワークツリー、ステージ領域、最新コミット間) の表示</p>
+<ul>
+<li><p>ワークツリーとステージ領域の差分確認</p>
+<pre><code class="hljs">$ git diff
+diff --git a/README.md b/README.md
+index bca1092..aa921fd 100644
+<span class="hljs-comment">--- a/README.md</span>
+<span class="hljs-comment">+++ b/README.md</span>
+<span class="hljs-meta">@@ -1,2 +1,3 @@</span>
+ aaa
+ bbbb
+<span class="hljs-addition">+ccc</span>
+</code></pre></li>
+<li><p>ワークツリーと最新コミットの差分を確認</p>
+<pre><code class="hljs">$ git diff HEAD
+diff --git a/README.md b/README.md
+index bca1092..aa921fd 100644
+<span class="hljs-comment">--- a/README.md</span>
+<span class="hljs-comment">+++ b/README.md</span>
+<span class="hljs-meta">@@ -1,2 +1,3 @@</span>
+ aaa
+ bbbb
+<span class="hljs-addition">+ccc</span>
+</code></pre>
+<ul>
+<li><code>HEAD</code>
+<ul>
+<li>作業しているブランチの最新コミットを参照するポインタ</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ブランチ操作"></a><a href="#ブランチ操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ブランチ操作</h2>
+<hr>
+<ul>
+<li><p>ブランチを一覧表示</p>
+<pre><code class="hljs">$ git branch
+* <span class="hljs-keyword">master</span>
+<span class="hljs-title"></span></code></pre>
+<ul>
+<li><code>*</code> がついているのが作業しているブランチ</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="ブランチを作成して切り替える"></a><a href="#ブランチを作成して切り替える" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ブランチを作成して切り替える</h3>
+<ul>
+<li><p>feature-A ブランチに切り替えコミット</p>
+<pre><code class="hljs">$ git checkout -<span class="hljs-keyword">b </span>feature-A
+<span class="hljs-keyword">Switched </span>to a new <span class="hljs-keyword">branch </span><span class="hljs-string">'feature-A'</span>
+$ git <span class="hljs-keyword">branch
+</span>* feature-A
+  master
+</code></pre>
+<ul>
+<li>下記と同じ操作</li>
+</ul>
+<ol>
+<li><p>feature-A ブランチの作成</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git branch feature-A</span>
+</code></pre></li>
+<li><p>ブランチの切り替え</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git checkout feature-A</span>
+</code></pre></li>
+</ol></li>
+<li><p>master ブランチへ切り替え</p>
+<pre><code class="hljs">$ git checkout <span class="hljs-keyword">master</span>
+<span class="hljs-title">Switched</span> to branch '<span class="hljs-literal">master</span>'
+$ git branch
+feature-A
+* <span class="hljs-keyword">master</span>
+<span class="hljs-title"></span></code></pre></li>
+<li><p>一つ前のブランチの切り替える</p>
+<pre><code class="hljs"><span class="hljs-symbol">$</span> git checkout -
+Switched to branch <span class="hljs-string">'feature-A'</span>
+<span class="hljs-symbol">$</span> git branch
+<span class="hljs-comment">* feature-A</span>
+  master
+</code></pre></li>
+<li><p>ブランチをマージ</p>
+<ul>
+<li><p>マージ先の master に移動</p>
+<pre><code class="hljs">$ git checkout <span class="hljs-keyword">master</span>
+<span class="hljs-title">Switched</span> to branch '<span class="hljs-literal">master</span>'
+$ git branch
+  feature-A
+* <span class="hljs-keyword">master</span>
+<span class="hljs-title"></span></code></pre></li>
+<li><p>マージ処理</p>
+<pre><code class="hljs">$ git <span class="hljs-keyword">merge</span> <span class="hljs-comment">--no-ff feature-A</span>
+<span class="hljs-keyword">Merge</span> made <span class="hljs-keyword">by</span> the <span class="hljs-string">'recursive'</span> strategy.
+ README.md | <span class="hljs-number">1</span> +
+ <span class="hljs-number">1</span> <span class="hljs-keyword">file</span> <span class="hljs-keyword">changed</span>, <span class="hljs-number">1</span> insertion(+)
+</code></pre></li>
+</ul></li>
+<li><p>ブランチを視覚的に確認</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> --graph</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="コミットを変更する操作"></a><a href="#コミットを変更する操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コミットを変更する操作</h2>
+<hr>
+<ul>
+<li><p>あるときまで戻す</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git reset --hard e2850144db3a15d8690d77a9d5a43d3a50d110d5</span>
+</code></pre></li>
+<li><p>リモートに強制上書き</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git fetch origin</span>
+<span class="hljs-meta">$</span><span class="bash"> git reset --hard origin/master</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>git rm したファイルを元に戻す</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git reset HEAD &lt;targetfile&gt;</span>
+<span class="hljs-meta">$</span><span class="bash"> git checkout &lt;targetfile&gt;</span>
+</code></pre></li>
+<li><p>git add の取り消し</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git reset HEAD</span>
+</code></pre></li>
+<li><p>まだ git add していない変更を取り消す</p>
+<ul>
+<li><p>特定のファイルをHEADの状態に戻す</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git checkout HEAD &lt;FILE_NAME&gt;</span>
+</code></pre></li>
+<li><p>作業ツリーをHEADの状態に戻す</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git checkout HEAD .</span>
+</code></pre></li>
+</ul></li>
+<li><p>git add したが、まだコミットしていない変更を取り消す</p>
+<ul>
+<li><p>作業ツリーとインデックスの特定のファイルを元に戻す</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git checkout HEAD &lt;FILE_NAME&gt;</span>
+</code></pre></li>
+<li><p>作業ツリーとインデックスを元に戻す</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git checkout HEAD .</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="リモートリポジトリへ送信"></a><a href="#リモートリポジトリへ送信" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>リモートリポジトリへ送信</h2>
+<hr>
+<ul>
+<li><p>GitHub 側でリポジトリを作成</p></li>
+<li><p>リモートリポジトリを登録</p>
+<pre><code class="hljs">$ git remote add origin git@github<span class="hljs-selector-class">.com</span>:renoretriever/git-tutorial<span class="hljs-selector-class">.git</span>
+</code></pre></li>
+<li><p>リモートリポジトリへ送信</p>
+<pre><code class="hljs">$ git push -<span class="hljs-keyword">u</span> origin master
+Counting object<span class="hljs-variable">s:</span> <span class="hljs-number">11</span>, done.
+Delta compression using <span class="hljs-keyword">up</span> <span class="hljs-keyword">to</span> <span class="hljs-number">4</span> threads.
+Compressing object<span class="hljs-variable">s:</span> <span class="hljs-number">100</span>% (<span class="hljs-number">7</span>/<span class="hljs-number">7</span>), done.
+Writing object<span class="hljs-variable">s:</span> <span class="hljs-number">100</span>% (<span class="hljs-number">11</span>/<span class="hljs-number">11</span>), <span class="hljs-number">928</span> bytes | <span class="hljs-number">132.00</span> KiB/s, done.
+Total <span class="hljs-number">11</span> (delta <span class="hljs-number">0</span>), reused <span class="hljs-number">0</span> (delta <span class="hljs-number">0</span>)
+To github.<span class="hljs-keyword">com</span>:renoretriever/git-tutorial.git
+ * [<span class="hljs-keyword">new</span> branch]      master -&gt; master
+Branch <span class="hljs-string">'master'</span> <span class="hljs-keyword">set</span> <span class="hljs-keyword">up</span> <span class="hljs-keyword">to</span> track remote branch <span class="hljs-string">'master'</span> from <span class="hljs-string">'origin'</span>.
+</code></pre>
+<ul>
+<li><code>-u</code>
+<ul>
+<li>ローカルリポジトリの現在のブランチの upstream は origin リポジトリの master ブランチであることを設定</li>
+</ul></li>
+<li><code>origin</code>
+<ul>
+<li>リモートリポジトリ名</li>
+</ul></li>
+<li><code>master</code>
+<ul>
+<li>リモートリポジトリの master ブランチ</li>
+</ul></li>
+</ul></li>
+<li><p>master ブランチ以外の feature-D ブランチを作成して、そこに push</p>
+<pre><code class="hljs">$ git checkout -b <span class="hljs-built_in">feature</span>-D
+Switched to a <span class="hljs-built_in">new</span> branch '<span class="hljs-built_in">feature</span>-D'
+$ git <span class="hljs-built_in">push</span> -u <span class="hljs-built_in">origin</span> <span class="hljs-built_in">feature</span>-D
+Total <span class="hljs-number">0</span> (<span class="hljs-built_in">delta</span> <span class="hljs-number">0</span>), reused <span class="hljs-number">0</span> (<span class="hljs-built_in">delta</span> <span class="hljs-number">0</span>)
+remote:
+remote: Create a pull request <span class="hljs-keyword">for</span> '<span class="hljs-built_in">feature</span>-D' on GitHub by visiting:
+remote:      https://github.com/renoretriever/git-tutorial/pull/<span class="hljs-built_in">new</span>/<span class="hljs-built_in">feature</span>-D
+remote:
+To github.com:renoretriever/git-tutorial.git
+* [<span class="hljs-built_in">new</span> branch]      <span class="hljs-built_in">feature</span>-D -&gt; <span class="hljs-built_in">feature</span>-D
+Branch '<span class="hljs-built_in">feature</span>-D' set up to <span class="hljs-built_in">track</span> remote branch '<span class="hljs-built_in">feature</span>-D' from '<span class="hljs-built_in">origin</span>'.
+</code></pre>
+<ul>
+<li>ブラウザからブランチに feature-D があることを確認</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="リモートリポジトリの取得"></a><a href="#リモートリポジトリの取得" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>リモートリポジトリの取得</h2>
+<hr>
+<ul>
+<li><p>リモートリポジトリの取得</p>
+<pre><code class="hljs">$ git clone git<span class="hljs-meta">@github</span>.<span class="hljs-string">com:</span>renoretriever/git-tutorial.git
+Cloning into <span class="hljs-string">'git-tutorial'</span>...
+<span class="hljs-string">remote:</span> Enumerating <span class="hljs-string">objects:</span> <span class="hljs-number">11</span>, done.
+<span class="hljs-string">remote:</span> Counting <span class="hljs-string">objects:</span> <span class="hljs-number">100</span>% (<span class="hljs-number">11</span>/<span class="hljs-number">11</span>), done.
+<span class="hljs-string">remote:</span> Compressing <span class="hljs-string">objects:</span> <span class="hljs-number">100</span>% (<span class="hljs-number">7</span>/<span class="hljs-number">7</span>), done.
+<span class="hljs-string">remote:</span> Total <span class="hljs-number">11</span> (delta <span class="hljs-number">0</span>), reused <span class="hljs-number">11</span> (delta <span class="hljs-number">0</span>), pack-reused <span class="hljs-number">0</span>
+Receiving <span class="hljs-string">objects:</span> <span class="hljs-number">100</span>% (<span class="hljs-number">11</span>/<span class="hljs-number">11</span>), done.
+</code></pre>
+<ul>
+<li><p>現在のブランチ情報を確認</p>
+<pre><code class="hljs">$ git branch -a
+* <span class="hljs-keyword">master</span>
+  <span class="hljs-title">remotes</span>/origin/HEAD -&gt; origin/<span class="hljs-keyword">master</span>
+  <span class="hljs-title">remotes</span>/origin/feature-D
+  remotes/origin/<span class="hljs-keyword">master</span>
+<span class="hljs-title"></span></code></pre></li>
+</ul></li>
+<li><p>リモートの feature-D ブランチをチェックアウト</p>
+<pre><code class="hljs">$ git checkout -b <span class="hljs-built_in">feature</span>-D <span class="hljs-built_in">origin</span>/<span class="hljs-built_in">feature</span>-D
+Branch '<span class="hljs-built_in">feature</span>-D' set up to <span class="hljs-built_in">track</span> remote branch '<span class="hljs-built_in">feature</span>-D' from '<span class="hljs-built_in">origin</span>'.
+Switched to a <span class="hljs-built_in">new</span> branch '<span class="hljs-built_in">feature</span>-D'
+$ git branch -a
+* <span class="hljs-built_in">feature</span>-D
+  master
+  remotes/<span class="hljs-built_in">origin</span>/HEAD -&gt; <span class="hljs-built_in">origin</span>/master
+  remotes/<span class="hljs-built_in">origin</span>/<span class="hljs-built_in">feature</span>-D
+  remotes/<span class="hljs-built_in">origin</span>/master
+</code></pre>
+<ul>
+<li><code>origin/feature-D</code>
+<ul>
+<li>origin という名前のリモートリポジトリの feature-D ブランチをもとに手元のローカルリポジトリに feature-D ブランチを作成</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>最新のデータを取得</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git pull</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="サブモジュールの追加"></a><a href="#サブモジュールの追加" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>サブモジュールの追加</h2>
+<hr>
+<ul>
+<li>submodule-parent に submodule-child をサブモジュールとして追加してみる</li>
+<li>GitHub 上で上記 2 リポジトリの作成</li>
+</ul>
+<ul>
+<li><p>サブモジュールの追加</p>
+<pre><code class="hljs">$ git submodule add git@github<span class="hljs-selector-class">.com</span>:renoretriever/submodule-child<span class="hljs-selector-class">.git</span>
+</code></pre></li>
+<li><p>git add =&gt; commit =&gt; push するとサブモジュールに追加される</p>
+<ul>
+<li><p>ブラウザ上で <code>submodule-child @ 00e55f1</code> なのが表示される</p>
+<ul>
+<li><code>00e55f1</code> はコミット番号</li>
+</ul></li>
+<li><p>確認コマンド</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git submodule status</span>
+</code></pre></li>
+</ul></li>
+<li><p>submodule-child での更新を submodule-parent 側で更新</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git submodule foreach git pull</span>
+</code></pre></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基本的な操作">基本的な操作</a></li><li><a href="#ブランチ操作">ブランチ操作</a><ul class="toc-headings"><li><a href="#ブランチを作成して切り替える">ブランチを作成して切り替える</a></li></ul></li><li><a href="#コミットを変更する操作">コミットを変更する操作</a></li><li><a href="#リモートリポジトリへ送信">リモートリポジトリへ送信</a></li><li><a href="#リモートリポジトリの取得">リモートリポジトリの取得</a></li><li><a href="#サブモジュールの追加">サブモジュールの追加</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>HTTP(HyperText Transfer Protocol) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 1989 年 3 月に誕生"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="HTTP(HyperText Transfer Protocol) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 1989 年 3 月に誕生"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">HTTP(HyperText Transfer Protocol)</h1></header><article><div><span><ul>
+<li><p>1989 年 3 月に誕生</p></li>
+<li><p>CERN(欧州素粒子物理学研究所) のティム・バーナード・リーが考案</p></li>
+<li><p>特徴</p>
+<ul>
+<li>ステートレス
+<ul>
+<li>ステートフルを実現するために、<a href="cookie">Cookie</a> などが導入</li>
+</ul></li>
+</ul></li>
+<li><p>HTTP/1.1 と一部の HTTP/1.0 では</p></li>
+<li><p>通信量の節約技術</p>
+<ul>
+<li>持続的接続(Persistent Connections)
+<ul>
+<li>一定期間の間、TCP 接続を繋げ続ける</li>
+<li>HTTP/1.1 から標準</li>
+</ul></li>
+<li>パイプライン化(HTTP pipelining)
+<ul>
+<li>従来はリクエスト受信後にレスポンスを受信するのを待って次のリクエストを発行していたものを、レスポンスを待たずに次のリクエストを発行できる</li>
+</ul></li>
+</ul></li>
+<li><p>レスポンスの中身</p>
+<ul>
+<li>ステータス
+<ul>
+<li>結果の正常、エラーなどのステータスが入る</li>
+<li><a href="http-status-code">HTTP ステータスコード</a></li>
+</ul></li>
+<li>メッセージヘッダー
+<ul>
+<li>ブラウザに詳細な情報を伝える</li>
+</ul></li>
+<li>メッセージボディ
+<ul>
+<li>HTML など</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="メソッド"></a><a href="#メソッド" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>メソッド</h2>
+<ul>
+<li><p>GET</p>
+<ul>
+<li>リソースの取得</li>
+</ul></li>
+<li><p>POST</p>
+<ul>
+<li>エンティティボディ(メッセージボディ)の転送</li>
+<li>GET でも転送可能だけど POST を使う</li>
+</ul></li>
+<li><p>GET と POST の使い分け ※ RFC 2616 9 章および 15 章</p>
+<ul>
+<li>GET メソッドは参照(リソースの取得)のみに用いる</li>
+<li>GET メソッドは副作用が無いことが期待される
+<ul>
+<li>副作用
+<ul>
+<li>サーバ側でのデータの追加・更新・削除が起こる作用</li>
+</ul></li>
+</ul></li>
+<li>秘密情報の送信には POST メソッドを用いること
+<ul>
+<li><font color='red'>URL 上に指定されたパラメータが Referer 経由で外部に漏洩する</font></li>
+<li>URL 上に指定されたパラメータがアクセスログに残る</li>
+</ul></li>
+<li>送信するデータ総量が多い場合には、 POST メソッドを利用する
+<ul>
+<li>ブラウザやサーバが処理できる URL の長さには上限がある</li>
+</ul></li>
+</ul></li>
+<li><p>PUT</p>
+<ul>
+<li>ファイル転送</li>
+<li>HTTP/1.1 の PUT 自体には認証機能がないため一般的な Web サイトでは使われない</li>
+<li>REST を利用する時に使われる</li>
+</ul></li>
+<li><p>HEAD</p>
+<ul>
+<li>メッセージヘッダーの取得</li>
+<li>URI の有効性やリソースの更新時間を確かめる目的で利用</li>
+</ul></li>
+<li><p>DELETE</p>
+<ul>
+<li>ファイルの削除</li>
+<li>HTTP/1.1 の DELETE 自体には認証機能がないため一般的な Web サイトでは使われない</li>
+<li>REST を利用する時に使われる</li>
+</ul></li>
+<li><p>OPTIONS</p>
+<ul>
+<li>サポートしているメソッドの問い合わせ</li>
+<li>レスポンス -&gt; Allow: GET,HEAD,POST,OPTIONS,TRACE</li>
+</ul></li>
+<li><p>TRACE</p>
+<ul>
+<li>経路の調査
+<ul>
+<li>proxy - web などの経路</li>
+</ul></li>
+<li>Max-Fowards というヘッダーフィールドに数値を含めサーバを通過するごとにその数値を減らしていきます</li>
+<li>セキュリティ面から無効にするのがよろし</li>
+</ul></li>
+<li><p>CONNECT</p>
+<ul>
+<li>プロキシへのトンネリング要求</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="http-メッセージ"></a><a href="#http-メッセージ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HTTP メッセージ</h3>
+<ul>
+<li>メッセージヘッダ
+<ul>
+<li>サーバやクライアントが処理すべきリクエストやレスポンスの内容が属性など</li>
+<li>構造
+<ul>
+<li>リクエストライン(リクエスト) / ステータスライン(レスポンス)
+<ul>
+<li>リクエストライン
+<ul>
+<li>メソッド</li>
+<li>リクエスト URI</li>
+<li>HTTP バージョン</li>
+</ul></li>
+<li>ステータスライン
+<ul>
+<li>レスポンス結果</li>
+<li>ステータスコードと説明</li>
+<li>HTTP バージョン</li>
+</ul></li>
+</ul></li>
+<li>リクエストヘッダーフィールド / レスポンスヘッダーフィールド</li>
+<li>一般ヘッダーフィールド</li>
+<li>エンティティヘッダーフィールド</li>
+<li>その他</li>
+</ul></li>
+</ul></li>
+<li>CR+LF
+<ul>
+<li>改行</li>
+</ul></li>
+<li>メッセージボディ
+<ul>
+<li>転送されるデータ</li>
+<li>メッセージボディとエンティティボディ
+<ul>
+<li>メッセージ
+<ul>
+<li>HTTP 通信での基本単位で、オクテットシーケンスからなり、通信を介して転送</li>
+</ul></li>
+<li>エンティティ
+<ul>
+<li>リクエストやレスポンスのペイロードとして転送される情報</li>
+<li>エンティティフィールドとエンティティボディからなる</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="例"></a><a href="#例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>例</h2>
+<pre><code class="hljs"><span class="xml">$ curl http://www.google.co.jp/ -v -s -o /dev/null
+*   Trying 172.217.25.195...
+* TCP_NODELAY set
+* Connected to www.google.co.jp (172.217.25.195) port 80 (#0)
+&gt; GET / HTTP/1.1
+&gt; Host: www.google.co.jp
+&gt; User-Agent: curl/7.54.0
+&gt; Accept: */*
+&gt;
+<span class="hljs-tag">&lt; <span class="hljs-attr">HTTP</span>/<span class="hljs-attr">1.1</span> <span class="hljs-attr">200</span> <span class="hljs-attr">OK</span>
+&lt; <span class="hljs-attr">Date:</span> <span class="hljs-attr">Tue</span>, <span class="hljs-attr">25</span> <span class="hljs-attr">Dec</span> <span class="hljs-attr">2018</span> <span class="hljs-attr">01:23:55</span> <span class="hljs-attr">GMT</span>
+&lt; <span class="hljs-attr">Expires:</span> <span class="hljs-attr">-1</span>
+&lt; <span class="hljs-attr">Cache-Control:</span> <span class="hljs-attr">private</span>, <span class="hljs-attr">max-age</span>=<span class="hljs-string">0</span>
+&lt; <span class="hljs-attr">Content-Type:</span> <span class="hljs-attr">text</span>/<span class="hljs-attr">html</span>; <span class="hljs-attr">charset</span>=<span class="hljs-string">Shift_JIS</span>
+&lt; <span class="hljs-attr">P3P:</span> <span class="hljs-attr">CP</span>=<span class="hljs-string">"This is not a P3P policy! See g.co/p3phelp for more info."</span>
+&lt; <span class="hljs-attr">Server:</span> <span class="hljs-attr">gws</span>
+&lt; <span class="hljs-attr">X-XSS-Protection:</span> <span class="hljs-attr">1</span>; <span class="hljs-attr">mode</span>=<span class="hljs-string">block</span>
+&lt; <span class="hljs-attr">X-Frame-Options:</span> <span class="hljs-attr">SAMEORIGIN</span>
+&lt; <span class="hljs-attr">Set-Cookie:</span> <span class="hljs-attr">1P_JAR</span>=<span class="hljs-string">2018-12-25-01;</span> <span class="hljs-attr">expires</span>=<span class="hljs-string">Thu,</span> <span class="hljs-attr">24-Jan-2019</span> <span class="hljs-attr">01:23:55</span> <span class="hljs-attr">GMT</span>; <span class="hljs-attr">path</span>=<span class="hljs-string">/;</span> <span class="hljs-attr">domain</span>=<span class="hljs-string">.google.co.jp</span>
+&lt; <span class="hljs-attr">Set-Cookie:</span> <span class="hljs-attr">NID</span>=<span class="hljs-string">152</span>=<span class="hljs-string">S1QiYrH_O1yuPPbB9SbmEUoS4bghT4hl5pl1t_-ryoGtkM5nGa_i7RmcPgGfKron0cudNgkee5h5ycTJ8uY3ymfQsxBSJjYrO06kpH6ll8me1XbRQQ-L4MbPmcOVPbFVDbI04CV1F98KpgSwIuvj4msoDkWyFQydCDN-7REFWVI;</span> <span class="hljs-attr">expires</span>=<span class="hljs-string">Wed,</span> <span class="hljs-attr">26-Jun-2019</span> <span class="hljs-attr">01:23:55</span> <span class="hljs-attr">GMT</span>; <span class="hljs-attr">path</span>=<span class="hljs-string">/;</span> <span class="hljs-attr">domain</span>=<span class="hljs-string">.google.co.jp;</span> <span class="hljs-attr">HttpOnly</span>
+&lt; <span class="hljs-attr">Accept-Ranges:</span> <span class="hljs-attr">none</span>
+&lt; <span class="hljs-attr">Vary:</span> <span class="hljs-attr">Accept-Encoding</span>
+&lt; <span class="hljs-attr">Transfer-Encoding:</span> <span class="hljs-attr">chunked</span>
+&lt;
+{ [<span class="hljs-attr">664</span> <span class="hljs-attr">bytes</span> <span class="hljs-attr">data</span>]
+* <span class="hljs-attr">Connection</span> #<span class="hljs-attr">0</span> <span class="hljs-attr">to</span> <span class="hljs-attr">host</span> <span class="hljs-attr">www.google.co.jp</span> <span class="hljs-attr">left</span> <span class="hljs-attr">intact</span>
+</span></span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="http-メッセージ-1"></a><a href="#http-メッセージ-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HTTP メッセージ</h2>
+<ul>
+<li><p>Client =&gt; Server</p>
+<ul>
+<li>リクエストメッセージ</li>
+</ul></li>
+<li><p>Server =&gt; Client</p>
+<ul>
+<li>レスポンスメッセージ</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>構造</p>
+<ul>
+<li>メッセージヘッダー
+<ul>
+<li>ブラウザに詳細な情報を伝える</li>
+<li>User-Agent</li>
+<li>Cookie</li>
+</ul></li>
+<li>空行(CR+LF)</li>
+<li>メッセージボディ
+<ul>
+<li>ブラウザに入力した内容が入る</li>
+<li>転送されるべきデータ</li>
+</ul></li>
+</ul></li>
+<li><p>メッセージボディとエンティティボディの違い</p>
+<ul>
+<li>メッセージ
+<ul>
+<li>HTTP 通信での基本単位で、オクテットシーケンスからなり、通信を介して転送される</li>
+</ul></li>
+<li>エンティティ
+<ul>
+<li>リクエストやレスポンスのペイロード(付加物) として転送される情報で、エンティティヘッダーフィールドとエンティティボディからなる</li>
+</ul></li>
+<li>転送コーディングが施された場合にのみ、エンティティボディの内容が変化する</li>
+</ul></li>
+</ul>
+<h5><a class="anchor" aria-hidden="true" id="コンテンツネゴシエーション"></a><a href="#コンテンツネゴシエーション" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンテンツネゴシエーション</h5>
+<ul>
+<li><p>日本版のブラウザでアクセスすれば日本語で、英語版のブラウザでアクセスすれば英語版のようにそれぞれ違った web ページを表示する仕組み</p></li>
+<li><p><a href="https://developer.mozilla.org/ja/docs/Web/HTTP/Content_negotiation">コンテンツネゴシエーション</a></p></li>
+<li><p>Apache</p>
+<ul>
+<li><a href="http://httpd.apache.org/docs/2.2/content-negotiation.html#methods">Apache ネゴシエーションアルゴリズム</a></li>
+</ul></li>
+<li><p>コンテンツネゴシエーションに失敗した場合には 406 が返され、リクエストは失敗に終わる</p></li>
+<li><p><code>HTTP ヘッダーによる指定の方が文書内での meta 指定よりも優先度が高い</code></p>
+<ol>
+<li>HTTP における Content-Type ヘッダの charset パラメータ</li>
+<li>HTML 文書内の META 宣言および http-equiv 属性で設定された、Content-Type ヘッダの charset パラメータ</li>
+<li>HTML 文書内の各要素の charset 属性</li>
+</ol></li>
+<li><p>言語</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language">Accept-Language</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language">Content-Language</a></li>
+</ul></li>
+<li><p>文字コード</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset">Accept-Charset</a></li>
+</ul></li>
+<li><p>エンコーディング</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding">Accept-Encoding</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding">Content-Encoding</a></li>
+</ul></li>
+<li><p>MIME タイプ</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept">Accept</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type">Content-Type</a></li>
+</ul></li>
+</ul>
+<ul>
+<li>種類
+<ul>
+<li>サーバー駆動型ネゴシエーション
+<ul>
+<li>サーバ側でコンテンツネゴシエーションを行う方式</li>
+<li>ブラウザから送る情報を元に決定</li>
+</ul></li>
+<li>エージェント駆動型ネゴシエーション
+<ul>
+<li>クライアント側でコンテンツネゴシエーション</li>
+</ul></li>
+<li>トランスペアレントネゴシエーション
+<ul>
+<li>サーバ駆動型、エージェント駆動型を組み合わせたもの</li>
+<li>サーバーとクライアントで調整</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="https"></a><a href="#https" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HTTPS</h2>
+<ul>
+<li><p><a href="ssl_tls">SSL/TLS</a> 技術を利用し、HTTP の通信内容を暗号化する</p></li>
+<li><p>HTTPS では、HTTP は SSL/TLS と通信し、SSL/TLS が TCP と通信するようになる</p>
+<pre><code class="hljs">| アプリケーション(HTTP) |
+|        SSL/TLS         |
+|          TCP           |
+|         <span class="hljs-built_in"> IP </span>           |
+</code></pre></li>
+<li><p><a href="common-key-encryption">共通鍵暗号</a> と <a href="public-key-encryption">公開鍵暗号方式</a> の両方を使用するハイブリット暗号システム</p>
+<ol>
+<li>共通鍵暗号で利用する公開鍵暗号を使って安全に交換する</li>
+<li>その後の通信は安全な共通鍵暗号を使う</li>
+</ol></li>
+</ul>
+<ul>
+<li>通信の仕組み
+<ol>
+<li>C =&gt; S
+<ul>
+<li><code>Client Hello</code> メッセージを送信することで SSL/TLS 通信が開始</li>
+<li>クライアントがサポートする SSL/TLS のバージョンを指定し、暗号スイート(Cipher Suite) と呼ばれるリスト(使用する暗号化のアルゴリズムや鍵のサイズ) などが含まれる</li>
+</ul></li>
+<li>S =&gt; C
+<ul>
+<li>SSL/TLS 通信が可能な場合には、<code>Server Hello</code> メッセージで応答</li>
+<li>サーバーがクライアントに送付する暗号スイートの内容は、クライアントから受けた暗号スイートの内容から選ばれたもの</li>
+</ul></li>
+<li>S =&gt; C
+<ul>
+<li><code>Cerfiticate</code> メッセージを送信</li>
+<li>メッセージには公開鍵証明書が含まれている</li>
+</ul></li>
+<li>S =&gt; C
+<ul>
+<li><code>Server Hello Done</code> メッセージを送信することで最初の SSL/TLS ネゴシエーション部分が終わったことを通知</li>
+</ul></li>
+<li>C =&gt; S
+<ul>
+<li><code>Client Key Exchange</code> メッセージで応答</li>
+<li>メッセージには通信を暗号化するのに使う <code>プレマスタシークレット</code> と呼ばれる暗号化の種が含まれている</li>
+<li>このメッセージは公開鍵証明書から取り出した公開鍵で暗号化される</li>
+</ul></li>
+<li>C =&gt; S
+<ul>
+<li><code>Change Cipher Spec</code> メッセージを送信</li>
+<li>このメッセージ以降の通信は暗号鍵を使って通信を行うことを示す</li>
+</ul></li>
+<li>C =&gt; S
+<ul>
+<li><code>Finished</code> メッセージを送信</li>
+<li>ネゴシエーションが成功したかどうかは、サーバーがこのメッセージを正しく復号できたかどうかで決まる</li>
+</ul></li>
+<li>S =&gt; C
+<ul>
+<li>サーバーからも同様に <code>Change Cipher Spec</code> メッセージを送信</li>
+</ul></li>
+<li>S =&gt; C
+<ul>
+<li><code>Finished</code> メッセージを送信</li>
+</ul></li>
+<li>C =&gt; S
+<ul>
+<li>HTTP リクエストを送信</li>
+</ul></li>
+<li>S =&gt; C
+<ul>
+<li>HTTP レスポンスを送信</li>
+</ul></li>
+<li>C =&gt; S
+<ul>
+<li><code>close_notify</code> メッセージを送信して接続が close</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="other"></a><a href="#other" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other</h2>
+<ul>
+<li><p>コンテンツコーディング</p>
+<ul>
+<li>エンティティに適用するエンコーディングのことを指していて、エンティティの情報を保ったまま圧縮</li>
+<li>容量を小さくするための技法
+<ul>
+<li>gzip</li>
+<li>compress</li>
+<li>deflate(zlib)</li>
+<li>identity(エンコーディング無し)</li>
+</ul></li>
+</ul></li>
+<li><p>チャンク転送コーディング</p>
+<ul>
+<li>リクエストしたリソースのすべてのエンティティボディの転送が完了しないとブラウザなどでは表示されない。</li>
+<li>データをいくつかに分割する技術</li>
+<li>ストリーミングダウンロード/アップロードと呼</li>
+</ul></li>
+<li><p>MIME(Multipurpose Internet Mail Extensions)</p>
+<ul>
+<li>メールでテキストや画像、動画と言った複数の異なるデータを扱うための仕組み</li>
+<li>画像などのバイナリデータを ASCII 文字列にエンコードする方法や、データの種類を表す方法などを規定</li>
+<li><code>multipart/form-data</code>
+<ul>
+<li>Web フォームからのファイルアップロードに使用される</li>
+</ul></li>
+<li><code>multipart/byteranges</code>
+<ul>
+<li>ステータスコード 206(Partial Content) レスポンスメッセージが複数の範囲の内容を含む時に使用される</li>
+</ul></li>
+</ul></li>
+<li><p>レンジリクエスト</p>
+<ul>
+<li>レジューム機能を利用
+<ul>
+<li>以前ダウンロードを中断した箇所から、ダウンロードを再開できるもの</li>
+</ul></li>
+<li>レンジリクエストを指定し、範囲指定を行う</li>
+<li>5,000 〜 10,000 バイト
+<ul>
+<li><code>Range: bytes=5000-10000</code></li>
+</ul></li>
+<li>5,000 以降
+<ul>
+<li><code>Range: bytes=5000-</code></li>
+</ul></li>
+<li>最初から 3,000 バイトまでと、5,000 〜 7,000 までの複数の範囲
+<ul>
+<li><code>Range: bytes=-3000,5000-7000</code></li>
+</ul></li>
+<li>レスポンスは <code>206 Partial Contetn</code> が返される</li>
+<li>サーバ側がレンジリクエストに対応してない場合には、ステータスコード 200 OK というレスポンスメッセージで、完全なエンティティが返される</li>
+</ul></li>
+</ul>
+<ul>
+<li>認証方法(HTTP/1.1)
+<ul>
+<li><a href="basic-authentication">BASIC 認証</a></li>
+<li><a href="digest-authentication">ダイジェスト認証</a></li>
+<li><a href="client-authentication">SSL クライアント認証</a></li>
+<li><a href="form-based-authentication">フォームベース認証</a></li>
+</ul></li>
+</ul>
+<ul>
+<li><a href="webdav">WebDAV</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#メソッド">メソッド</a><ul class="toc-headings"><li><a href="#http-メッセージ">HTTP メッセージ</a></li></ul></li><li><a href="#例">例</a></li><li><a href="#http-メッセージ-1">HTTP メッセージ</a></li><li><a href="#https">HTTPS</a></li><li><a href="#other">Other</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

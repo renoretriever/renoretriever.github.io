@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>WordPress セキュリティ · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 攻撃手法"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="WordPress セキュリティ · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 攻撃手法"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">WordPress セキュリティ</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="攻撃手法"></a><a href="#攻撃手法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>攻撃手法</h2>
+<hr>
+<ul>
+<li><p>コメントスパム</p>
+<ul>
+<li>公開している内容と関係のない文字列がコメント欄に投稿され、ホームページへ大量に登録されてしまうこと</li>
+<li>1 ページへの登録件数が万単位になると、サーバ負荷が高まり、自身だけではなく同サーバを利用しているユーザのコンテンツの表示も遅延することがある</li>
+</ul></li>
+<li><p>管理画面の悪用</p>
+<ul>
+<li>WordPress の管理画面は wp-login.php というプログラムファイルを中心に構成</li>
+<li>悪意のある第三者は不正な文字列をサーバへ送信することでプログラムの脆弱性を利用し、管理画面へログイン</li>
+</ul></li>
+<li><p>プラグインの悪用</p>
+<ul>
+<li>悪意のある第三者は不正な文字列をプラグインとなるプログラムに対して送信することでプログラムの脆弱性を利用し、不正なアクセスを行う</li>
+</ul></li>
+<li><p>Pingback 機能の悪用</p>
+<ul>
+<li>WordPress には自身のホームページに対する言及を第三者のホームページ上で行われた場合、そのことを通知する、「Pingback」という仕組みがある</li>
+<li>この仕組みを悪用されたとしても、自身のホームページを書き換えられることはありませんが、知らないうちにどこかのサーバへの攻撃に加担してしまう可能性がある</li>
+</ul></li>
+<li><p>ブルートフォースアタック / 辞書攻撃</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="対策"></a><a href="#対策" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>対策</h2>
+<hr>
+<ul>
+<li><p>自動更新の確認</p>
+<ul>
+<li><a href="https://codex.wordpress.org/Configuring_Automatic_Background_Updates">Configuring Automatic Background Updates</a></li>
+</ul></li>
+<li><p>バージョン情報</p>
+<ul>
+<li><p>注意事項</p>
+<ul>
+<li>バージョンアップとかでファイルが上書きされる可能性ある</li>
+<li>?ver=X.X.X はバージョンアップ時にキャッシュされたファイルによる影響を防ぐ回避策</li>
+</ul></li>
+<li><p>wordpress/wp-includes/version.php</p>
+<pre><code class="hljs"><span class="hljs-meta"># grep <span class="hljs-string">"\$wp_version"</span> wordpress/wp-includes/version.php</span>
+* <span class="hljs-symbol">@global</span> <span class="hljs-built_in">string</span> $wp_version
+$wp_version = <span class="hljs-string">'4.9.5'</span><span class="hljs-comment">;</span>
+</code></pre></li>
+<li><p>HTML の meta タグ</p>
+<ul>
+<li><p>確認</p>
+<pre><code class="hljs">&lt;meta <span class="hljs-attribute">name</span>=<span class="hljs-string">"generator"</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">"WordPress 4.9.5"</span> /&gt;
+</code></pre></li>
+<li><p>削除</p>
+<ul>
+<li><p>wordpress/wp-content/themes/xxx/functions.php」の文末に下記追記 ※ xxx は、利用中のテーマ・テンプレート</p>
+<pre><code class="hljs"><span class="hljs-comment">remove_action('wp_head','wp_generator');</span>
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>CSS、JSのバージョン表記</p>
+<ul>
+<li><p>確認</p>
+<pre><code class="hljs">&lt;link <span class="hljs-attribute">rel</span>=<span class="hljs-string">'stylesheet'</span> <span class="hljs-attribute">id</span>=<span class="hljs-string">'twentyseventeen-style-css'</span>  <span class="hljs-attribute">href</span>=<span class="hljs-string">'https://example.com/wordpress/wp-content/themes/twentyseventeen/style.css?ver=4.9.5'</span> <span class="hljs-attribute">type</span>=<span class="hljs-string">'text/css'</span> <span class="hljs-attribute">media</span>=<span class="hljs-string">'all'</span> /&gt;
+</code></pre></li>
+<li><p>削除</p>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">vc_remove_wp_ver_css_js</span><span class="hljs-params">( $src )</span> </span>{
+    <span class="hljs-keyword">if</span> ( strpos( $src, <span class="hljs-string">'ver='</span> . get_bloginfo( <span class="hljs-string">'version'</span> ) ) )
+        $src = remove_query_arg( <span class="hljs-string">'ver'</span>, $src );
+    <span class="hljs-keyword">return</span> $src;
+}
+add_filter( <span class="hljs-string">'style_loader_src'</span>, <span class="hljs-string">'vc_remove_wp_ver_css_js'</span>, <span class="hljs-number">9999</span> );
+add_filter( <span class="hljs-string">'script_loader_src'</span>, <span class="hljs-string">'vc_remove_wp_ver_css_js'</span>, <span class="hljs-number">9999</span> );
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>ユーザー名の表記を変更にする</p>
+<ul>
+<li>「<a href="http://Web">http://Web</a>サイトアドレス/?author=1」と入力することにより、WebサイトアドレスにWebサイトにログインする際のユーザー名が表記されてしまう</li>
+<li>Web サイトの個別記事に表示されるユーザー名を任意のニックネームに変更するために「WordPress」が初期設定を変更してから、同様にWebサイトアドレスに表示されるユーザー名を任意のニックネームに変更するために、「WordPress」の「Edit Author Slug」というプラグインを導入</li>
+</ul></li>
+<li><p>セキュリティプラグインの導入</p>
+<ul>
+<li>SiteGuard WP Plugin</li>
+</ul></li>
+<li><p>アクセス制限</p>
+<ul>
+<li><p>ダッシュボード</p>
+<ul>
+<li>/wp-admin
+<ul>
+<li>ダッシュボードのフォルダ</li>
+</ul></li>
+<li>/wp-login.php
+<ul>
+<li><p>ダッシュボードログイン時にアクセスするファイル</p></li>
+<li><p>接続元制限 or basic 認証</p>
+<pre><code class="hljs"><span class="hljs-params">&lt;Files wp-login.php&gt;</span>
+AuthUserFile <span class="hljs-meta-keyword">/var/</span>www/.htpasswd
+AuthGroupFile <span class="hljs-meta-keyword">/dev/</span>null
+AuthName <span class="hljs-string">"Please enter your ID and password"</span>
+AuthType Basic
+require valid-user
+<span class="hljs-params">&lt;/Files&gt;</span>
+</code></pre>
+<pre><code class="hljs"><span class="hljs-section">&lt;FilesMatch "wp-login.php|wp-admin"&gt;</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">Order</span></span> deny, allow
+<span class="hljs-attribute"><span class="hljs-nomarkup">Deny</span></span> from <span class="hljs-literal">all</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">Allow</span></span> from xxx.xxx.xxx.xxx
+<span class="hljs-section">&lt;/FilesMatch&gt;</span> 
+</code></pre>
+<pre><code class="hljs">&lt;LocationMatch <span class="hljs-string">"wp-login.php|/top/wp-admin/(?!admin-ajax.php)"</span>&gt;
+    Require ip <span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.100</span>
+&lt;/LocationMatch&gt;
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>XML-RPC API アクセス制限</p>
+<ul>
+<li>/xmlrpc.php
+<ul>
+<li><p>スマートフォンアプリや外部システムから、リモートで記事の投稿や画像のアップロードを行う際に利用される「XML-RPC WordPress API」に対する制限</p>
+<pre><code class="hljs"><span class="hljs-section">&lt;LocationMatch "wp-comments-post.php|xmlrpc.php|wp-config.php"&gt;</span>
+    <span class="hljs-attribute">Require</span> <span class="hljs-literal">all</span> denied
+<span class="hljs-section">&lt;/LocationMatch&gt;</span>
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>REST API アクセス制限</p>
+<ul>
+<li>「REST API」に対する国外IPアドレスからの接続を制限</li>
+<li>/wp-json
+<ul>
+<li><p>REST APIアクセス時に含まれるURL</p>
+<pre><code class="hljs"><span class="hljs-comment"># BEGIN WordPress</span>
+<span class="hljs-section">&lt;IfModule mod_rewrite.c&gt;</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteEngine</span></span> <span class="hljs-literal">On</span>
+<span class="hljs-attribute">RewriteBase</span> /
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteCond</span></span> <span class="hljs-variable">%{REQUEST_FILENAME}</span> !-f
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteCond</span></span> <span class="hljs-variable">%{REQUEST_FILENAME}</span> !-d
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteCond</span></span> <span class="hljs-variable">%{REQUEST_URI}</span> !^/wp-json/
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteRule</span></span> . /index.php<span class="hljs-meta"> [L]</span>
+<span class="hljs-section">&lt;/IfModule&gt;</span>
+<span class="hljs-comment"># END WordPress</span>
+<span class="hljs-section">&lt;IfModule mod_rewrite.c&gt;</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteEngine</span></span> <span class="hljs-literal">On</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteCond</span></span> <span class="hljs-variable">%{QUERY_STRING}</span> rest_route=
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteRule</span></span> ^$ /?<span class="hljs-meta"> [R=404,L]</span>
+<span class="hljs-section">&lt;/IfModule&gt;</span>
+</code></pre></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>不使用のプラグインは削除</p></li>
+<li><p>テーブルのプレフィックスを wp_ から変更しておく</p></li>
+<li><p>認証用ユニークキーの設定</p>
+<ul>
+<li>wp-config.php ファイル内には「認証用ユニークキー」と呼ばれるものがある</li>
+<li>この認証キーはローカルに保存されるログイン情報の Cookie を暗号化してくれる役割がある</li>
+<li>自動インストールの場合は気付かないうちに自動生成されますが、手動インストールなどで空になっている場合は設定を行なう</li>
+<li>認証用ユニークキーは以下のサイトから生成が可能
+<ul>
+<li><a href="https://api.wordpress.org/secret-key/1.1/salt/">https://api.wordpress.org/secret-key/1.1/salt/</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>wp-config.php へのアクセスを遮断</p>
+<ul>
+<li><p>データベースへの接続情報が書かれた wp-config.php はセキュアである必要がある</p></li>
+<li><p>外部からアクセスされないよう拒否設定が必要</p>
+<pre><code class="hljs"><span class="hljs-section">&lt;files wp-config.php&gt;</span>
+    <span class="hljs-attribute"><span class="hljs-nomarkup">order</span></span> allow,deny
+    <span class="hljs-attribute"><span class="hljs-nomarkup">deny</span></span> from <span class="hljs-literal">all</span>
+<span class="hljs-section">&lt;/files&gt;</span>
+</code></pre></li>
+</ul></li>
+<li><p>XML-RPC へのアクセスを遮断</p>
+<ul>
+<li><p>XML 形式のデータを http でやり取りをする為の仕組みとして、XML-RPC がある</p></li>
+<li><p>便利な一方で DDoS 攻撃などに悪用される恐れがあるので、管理画面以外からの記事投稿をするリモート投稿が利用する必要がない場合は、アクセスを遮断しておいたほうが安全</p>
+<pre><code class="hljs"><span class="hljs-section">&lt;Files xmlrpc.php&gt;</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">Order</span></span> Deny,Allow
+<span class="hljs-attribute"><span class="hljs-nomarkup">Deny</span></span> from <span class="hljs-literal">all</span>
+<span class="hljs-section">&lt;/Files&gt;</span>
+</code></pre></li>
+</ul></li>
+<li><p>wp-comments-post.php へのアクセスを遮断</p>
+<ul>
+<li><p>コメントスパムによる書き込みを試行される恐れがある</p></li>
+<li><p>コメント機能を利用しないサイトの場合は、wp-comments-post.php へのアクセスを遮断しておく</p>
+<pre><code class="hljs"><span class="hljs-section">&lt;files wp-comments-post.php&gt;</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">order</span></span> allow,deny
+<span class="hljs-attribute"><span class="hljs-nomarkup">deny</span></span> from <span class="hljs-literal">all</span>
+<span class="hljs-section">&lt;/files&gt;</span>
+</code></pre></li>
+</ul></li>
+<li><p>wp-cron.phpの無効化</p>
+<ul>
+<li><p>予約投稿やスケジューリングに関するプラグインが利用していないサイトの場合、wp-cron.php へのファイルアクセスも無効化しておくと、より安心</p></li>
+<li><p>無効化するには wp-config.php 内に下記のコードを追記</p>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">define</span></span>(<span class="hljs-string">'DISABLE_WP_CRON'</span>, <span class="hljs-string">'true'</span>);
+</code></pre></li>
+</ul></li>
+<li><p>管理画面内での操作を制限</p>
+<ul>
+<li><p>万一不正に侵入された場合、下記を wp-config.php に追記しておくことで管理画面からの「テーマの編集」「プラグイン追加」「プラグイン編集」が行えないようにできる</p></li>
+<li><p>これにより管理画面からのPHP実行を防ぐことができる</p>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">define</span></span>(<span class="hljs-string">'DISALLOW_FILE_MODS'</span>,<span class="hljs-literal">true</span>);
+</code></pre></li>
+</ul></li>
+<li><p>Index ofを隠す</p></li>
+<li><p>uploads 配下でのphp実行制限</p>
+<ul>
+<li>/wp-content/uploads/ は WordPress の画像をアップロードする為に書き込み権限があり、その中で PHP 実行をされないよう、/wp-content/uploads/.htaccess として下記を書いておくようにする</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-section">&lt;Files *.php&gt;</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">deny</span></span> from <span class="hljs-literal">all</span>
+<span class="hljs-section">&lt;/Files&gt;</span>
+</code></pre>
+<pre><code class="hljs"><span class="hljs-section">&lt;LocationMatch "/top/wp-content/uploads/.*\.php$"&gt;</span>
+    <span class="hljs-attribute">Require</span> <span class="hljs-literal">all</span> denied
+<span class="hljs-section">&lt;/LocationMatch&gt;</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="セキュリティ診断"></a><a href="#セキュリティ診断" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>セキュリティ診断</h2>
+<hr>
+<ul>
+<li><a href="https://wpscans.com/">WPScan</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ログの取得"></a><a href="#ログの取得" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ログの取得</h2>
+<ul>
+<li>SiteGuard WP</li>
+<li>Activity Log</li>
+<li>Audit Log</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="自動バックアップ"></a><a href="#自動バックアップ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自動バックアップ</h2>
+<ul>
+<li>BackWPup</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="wordpress-の脆弱性情報まとめ"></a><a href="#wordpress-の脆弱性情報まとめ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>WordPress の脆弱性情報まとめ</h2>
+<ul>
+<li>WordPress Security Category Archive</li>
+<li>Wordfence</li>
+<li>Hacked, dangerous &amp; vulnerable WordPress plugins</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#攻撃手法">攻撃手法</a></li><li><a href="#対策">対策</a></li><li><a href="#セキュリティ診断">セキュリティ診断</a></li><li><a href="#ログの取得">ログの取得</a></li><li><a href="#自動バックアップ">自動バックアップ</a></li><li><a href="#wordpress-の脆弱性情報まとめ">WordPress の脆弱性情報まとめ</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

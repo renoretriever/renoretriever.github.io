@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>認証局(CA : Certification Authority) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- クライアントとサーバーが双方ともに信頼する第三者機関がその立場であり、公開鍵が本物であることを証明する機関"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="認証局(CA : Certification Authority) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- クライアントとサーバーが双方ともに信頼する第三者機関がその立場であり、公開鍵が本物であることを証明する機関"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">認証局(CA : Certification Authority)</h1></header><article><div><span><ul>
+<li><p>クライアントとサーバーが双方ともに信頼する第三者機関がその立場であり、公開鍵が本物であることを証明する機関</p></li>
+<li><p>利用</p>
+<ol>
+<li>サーバーの運営者が認証機関に公開鍵を提出</li>
+<li>認証機関はその提出された公開鍵にデジタル署名を施し、署名済の公開鍵を作る</li>
+<li>その署名済の公開鍵が公開鍵証明書(デジタル証明書)に収められる</li>
+</ol></li>
+</ul>
+<ul>
+<li>公開鍵に対し認証局の秘密鍵で署名を行うことによって、公開鍵と秘密鍵の所有者を結びつける公開鍵証明書を発行
+<ul>
+<li><a href="certification">証明書</a> 参照</li>
+</ul></li>
+<li>CRL を発行</li>
+<li>CPS(認証局運用規程) を公開</li>
+<li>発行したディジタル証明書を検証するための CA 自身のディジタル証明書を公開</li>
+<li>ディジタル証明書に署名するための CA 自身の秘密鍵を厳重に管理する</li>
+<li>CA の構造
+<ul>
+<li><img src="pki_ca_constitution.png" alt=""></li>
+<li>認証局はお互いを信頼していてい、信頼の連絡を構成
+<ul>
+<li><a href="pki">PKI</a> と呼ぶ</li>
+</ul></li>
+</ul></li>
+<li>運営
+<ul>
+<li>パブリック CA (商用 CA)
+<ul>
+<li>第三者機関として対外的な取引を行なう</li>
+</ul></li>
+<li>プライベート CA (自営 CA)
+<ul>
+<li>特定の組織内などの閉じた環境でのみ機能</li>
+</ul></li>
+<li>CP と CPS を作成する必要がある</li>
+<li>CP(Certificate Policy : 証明書ポリシ)
+<ul>
+<li>CA が証明書を発行する時のポリシーであり、X.509 v3 の拡張フィールドで規定</li>
+</ul></li>
+<li>CPS(Certification Practice Statement : 認証局運用規程)
+<ul>
+<li>CA などの信頼される第三者機関が、認証を利用する者に対して信頼性、安全性、経済性などを評価できるように、自組織のセキュリティポリシー、責任と義務、約款、外部との信頼関係などに関する詳細を規定した文書</li>
+</ul></li>
+</ul></li>
+<li>認証局の重要性
+<ul>
+<li>認証局のセキュリティがどうなっているかを利用者に提示する認証局運用規定(CPS) を規定します。</li>
+<li>公開鍵証明書の利用、目的に関する規則、範囲を証明書ポリシー(CP) として規定</li>
+<li>もし認証局の秘密鍵が漏洩した場合、不正に証明書が発行されてしまうことだけでなく、認証局も含めて PKI システム全ての証明書の再発行が必要になる
+<ul>
+<li>秘密鍵はハードウェアセキュリティモジュール(HSM) という専用のハードウェアに保管します</li>
+<li>外には取り外せない</li>
+<li>HSM を壊しても中の秘密鍵は読めない</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="認証局"></a><a href="#認証局" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>認証局</h2>
+<ul>
+<li><a href="https://www.digicert.co.jp/">デジサート</a></li>
+<li><a href="https://www.geotrust.co.jp/">ジオトラスト</a></li>
+</ul>
+<ul>
+<li><code>登録局(RA : Registration Authority)</code>
+<ul>
+<li>申請者が本人であるかを審査し、登録を行う機関</li>
+<li>CA と同じ組織であることが多い</li>
+<li>PKI を大規模で運用する際に、証明書発行の機能の一部を認証局から分散して請け負う
+<ul>
+<li>証明書の発行、失効などの資格審査</li>
+<li>ディジタル証明書利用者情報の登録</li>
+<li>証明書真正を受け取った際に、本人性の確認を行い、CA に対して証明書の発行や失効を要求します</li>
+<li>鍵の一括管理</li>
+<li>公開鍵を公開するためのディレクトリへの保管を実施</li>
+<li>証明書や鍵の配布</li>
+</ul></li>
+<li>CA がディジタル証明書の保持者と公開鍵の信頼性を保証するのに対し、RA はディジタル証明書保持者の身元を保証する</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#認証局">認証局</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

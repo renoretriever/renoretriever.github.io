@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>nmcli · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- ネットワーク関連の設定を行うことができるツール"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="nmcli · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- ネットワーク関連の設定を行うことができるツール"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">nmcli</h1></header><article><div><span><ul>
+<li><p>ネットワーク関連の設定を行うことができるツール</p></li>
+<li><p>Tips</p>
+<ul>
+<li>サブコマンドは前方一致で認識されればよいので、必ずしもフルスペルで入力する必要はない
+<ul>
+<li><code>address</code> は <code>a</code> のみで認識される</li>
+</ul></li>
+</ul></li>
+<li><p>ホスト名の確認と設定</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> nmcli general hostname</span>
+</code></pre></li>
+<li><p>デバイスの確認</p>
+<pre><code class="hljs"><span class="hljs-comment"># nmcli device</span>
+DEVICE <span class="hljs-built_in"> TYPE </span>     STATE    <span class="hljs-built_in"> CONNECTION
+</span>eth0   <span class="hljs-built_in"> ethernet </span> 接続済み  eth0
+lo      loopback  管理無し  --
+</code></pre></li>
+<li><p>デバイス情報の確認(eth0)</p>
+<pre><code class="hljs"><span class="hljs-comment"># nmcli device show eth0</span>
+<span class="hljs-attribute">GENERAL.DEVICE</span>:                         eth0
+<span class="hljs-attribute">GENERAL.TYPE</span>:                           ethernet
+<span class="hljs-attribute">GENERAL.HWADDR</span>:                         52:54:00:BF:A5:3C
+<span class="hljs-attribute">GENERAL.MTU</span>:                            1500
+<span class="hljs-attribute">GENERAL.STATE</span>:                          100 (接続済み)
+<span class="hljs-attribute">GENERAL.CONNECTION</span>:                     eth0
+<span class="hljs-attribute">GENERAL.CON-PATH</span>:                       /org/freedesktop/NetworkManager/ActiveConnection/2
+<span class="hljs-attribute">WIRED-PROPERTIES.CARRIER</span>:               オン
+<span class="hljs-attribute">IP4.ADDRESS[1]</span>:                         10.0.12.88/8
+<span class="hljs-attribute">IP4.GATEWAY</span>:                            10.0.0.1
+<span class="hljs-attribute">IP4.ROUTE[1]</span>:                           dst = 10.0.0.0/8, nh = 0.0.0.0, mt = 100
+<span class="hljs-attribute">IP4.ROUTE[2]</span>:                           dst = 0.0.0.0/0, nh = 10.0.0.1, mt = 100
+<span class="hljs-attribute">IP4.DNS[1]</span>:                             172.16.0.111
+<span class="hljs-attribute">IP4.DNS[2]</span>:                             172.16.0.112
+<span class="hljs-attribute">IP6.ADDRESS[1]</span>:                         fe80::2c07:4ead:a77f:9e03/64
+<span class="hljs-attribute">IP6.ADDRESS[2]</span>:                         fe80::b91e:63ec:3964:2840/64
+<span class="hljs-attribute">IP6.ADDRESS[3]</span>:                         fe80::d38c:4044:4f14:28e8/64
+<span class="hljs-attribute">IP6.GATEWAY</span>:                            --
+<span class="hljs-attribute">IP6.ROUTE[1]</span>:                           dst = ff00::/8, nh = ::, mt = 256, table=255
+<span class="hljs-attribute">IP6.ROUTE[2]</span>:                           dst = fe80::/64, nh = ::, mt = 256
+</code></pre></li>
+<li><p>接続の確認</p>
+<pre><code class="hljs"><span class="hljs-comment"># nmcli connection</span>
+NAME  UUID                                 <span class="hljs-built_in"> TYPE </span>     DEVICE
+eth0  e6a4b89d-8900-4274-934e-45e6d6cd79c0 <span class="hljs-built_in"> ethernet </span> eth0
+</code></pre></li>
+<li><p>接続の情報の出力</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> nmcli connection show eth0</span>
+</code></pre>
+<ul>
+<li><p>IPv4 のみ出力</p>
+<pre><code class="hljs"><span class="hljs-comment"># nmcli --fields ipv4 connection show eth0</span>
+<span class="hljs-attribute">ipv4.method</span>:                            manual
+<span class="hljs-attribute">ipv4.dns</span>:                               172.16.0.111,172.16.0.112
+<span class="hljs-attribute">ipv4.dns-search</span>:                        --
+<span class="hljs-attribute">ipv4.dns-options</span>:                       ""
+<span class="hljs-attribute">ipv4.dns-priority</span>:                      0
+<span class="hljs-attribute">ipv4.addresses</span>:                         10.0.12.88/8
+<span class="hljs-attribute">ipv4.gateway</span>:                           10.0.0.1
+<span class="hljs-attribute">ipv4.routes</span>:                            --
+<span class="hljs-attribute">ipv4.route-metric</span>:                      -1
+<span class="hljs-attribute">ipv4.route-table</span>:                       0 (unspec)
+<span class="hljs-attribute">ipv4.ignore-auto-routes</span>:                いいえ
+<span class="hljs-attribute">ipv4.ignore-auto-dns</span>:                   いいえ
+<span class="hljs-attribute">ipv4.dhcp-client-id</span>:                    --
+<span class="hljs-attribute">ipv4.dhcp-timeout</span>:                      0 (default)
+<span class="hljs-attribute">ipv4.dhcp-send-hostname</span>:                はい
+<span class="hljs-attribute">ipv4.dhcp-hostname</span>:                     --
+<span class="hljs-attribute">ipv4.dhcp-fqdn</span>:                         --
+<span class="hljs-attribute">ipv4.never-default</span>:                     いいえ
+<span class="hljs-attribute">ipv4.may-fail</span>:                          はい
+<span class="hljs-attribute">ipv4.dad-timeout</span>:                       -1 (default)
+</code></pre></li>
+</ul></li>
+<li><p>接続の追加</p>
+<pre><code class="hljs"># nmcli connection add type ethernet con-name eth1 ifname eth1
+接続 'eth1' (<span class="hljs-number">14</span>aa345d<span class="hljs-number">-4</span>f62<span class="hljs-number">-46e0</span><span class="hljs-number">-8</span>dd9<span class="hljs-number">-8</span>ec3634fc4aa) が正常に追加されました。
+</code></pre></li>
+<li><p>接続を手動変更にする</p>
+<ul>
+<li><p>ipaddress を 10.0.12.89 に設定(ipaddress/prefix gateway の形式で指定)</p>
+<pre><code class="hljs"># nmcli connection modify eth1 ipv4.method manual ipv4.addresses <span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.89</span>/<span class="hljs-number">24</span> ipv4.gateway <span class="hljs-number">10.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>
+</code></pre></li>
+<li><p>DNS を 172.16.0.111 と 172.16.0.112 に設定</p>
+<pre><code class="hljs"># <span class="hljs-selector-tag">nmcli</span> <span class="hljs-selector-tag">connection</span> <span class="hljs-selector-tag">modify</span> <span class="hljs-selector-tag">eth1</span> <span class="hljs-selector-tag">ipv4</span><span class="hljs-selector-class">.dns</span> "172<span class="hljs-selector-class">.16</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.111</span> 172<span class="hljs-selector-class">.16</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.112</span>"
+</code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>静的ルートの追加</p>
+<pre><code class="hljs"># nmcli connection modify eth1 ipv4.routes <span class="hljs-string">"192.168.111.0/24 192.168.108.1"</span>
+# cat /etc/sysconfig/network-scripts/route-eth1
+ADDRESS0=<span class="hljs-number">192.168</span><span class="hljs-number">.111</span><span class="hljs-number">.0</span>
+NETMASK0=<span class="hljs-number">255.255</span><span class="hljs-number">.255</span><span class="hljs-number">.0</span>
+GATEWAY0=<span class="hljs-number">192.168</span><span class="hljs-number">.108</span><span class="hljs-number">.1</span>
+</code></pre></li>
+<li><p>追加と削除</p>
+<ul>
+<li><p>DNS サーバの追加(+)</p>
+<pre><code class="hljs"># <span class="hljs-selector-tag">nmcli</span> <span class="hljs-selector-tag">connection</span> <span class="hljs-selector-tag">modify</span> <span class="hljs-selector-tag">eth1</span> +<span class="hljs-selector-tag">ipv4</span><span class="hljs-selector-class">.dns</span> "192<span class="hljs-selector-class">.168</span><span class="hljs-selector-class">.111</span><span class="hljs-selector-class">.2</span>"
+</code></pre></li>
+<li><p>DNS サーバの削除(-)</p>
+<ul>
+<li><p><code>指定するのは 0 からのインデックス</code></p></li>
+<li><p>3 番目を削除したいなら 2 を指定</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> nmcli connection modify eth1 -ipv4.dns 2</span>
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>接続の開始と切断</p>
+<ul>
+<li><p>開始</p>
+<pre><code class="hljs"><span class="hljs-comment"># nmcli connection up eth1</span>
+接続が正常にアクティベートされました (D-Bus アクティブパス: <span class="hljs-regexp">/org/freedesktop</span><span class="hljs-regexp">/NetworkManager/</span>ActiveConnection/<span class="hljs-number">3</span>)
+</code></pre></li>
+<li><p>切断</p>
+<ul>
+<li><p><code>通信が切れるので注意</code></p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> nmcli connection down eth1</span>
+</code></pre></li>
+</ul></li>
+<li><p>削除</p>
+<pre><code class="hljs"># nmcli connection delete eth1
+接続 'eth1' (<span class="hljs-number">14</span>aa345d<span class="hljs-number">-4</span>f62<span class="hljs-number">-46e0</span><span class="hljs-number">-8</span>dd9<span class="hljs-number">-8</span>ec3634fc4aa) が正常に削除されました。
+</code></pre></li>
+</ul></li>
+<li><p>ボンディングの設定(vagrant)</p>
+<ul>
+<li><p>インタフェースの追加</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> nmcli connection add <span class="hljs-built_in">type</span> ethernet con-name eth5 ifname eth5</span>
+<span class="hljs-meta">#</span><span class="bash"> nmcli connection add <span class="hljs-built_in">type</span> ethernet con-name eth6 ifname eth6</span>
+</code></pre></li>
+<li><p>ボンディングインタフェース追加</p>
+<pre><code class="hljs"># nmcli connection <span class="hljs-keyword">add </span>type <span class="hljs-keyword">bond </span>con-name <span class="hljs-keyword">bond0 </span>ifname <span class="hljs-keyword">bond0 </span>mode active-<span class="hljs-keyword">backup
+</span>接続 <span class="hljs-string">'bond0'</span> (adb9f988-c056-<span class="hljs-number">4</span>f3e-<span class="hljs-keyword">bc28-44d41205ef40) </span>が正常に追加されました。
+# nmcli c
+<span class="hljs-symbol">NAME</span>   UUID                                  TYPE      DEVICE
+<span class="hljs-keyword">bond0 </span> adb9f988-c056-<span class="hljs-number">4</span>f3e-<span class="hljs-keyword">bc28-44d41205ef40 </span> <span class="hljs-keyword">bond </span>     <span class="hljs-keyword">bond0
+</span><span class="hljs-symbol">eth5</span>   <span class="hljs-number">9</span>b637a5f-<span class="hljs-number">6328</span>-<span class="hljs-number">4</span>aca-<span class="hljs-keyword">bf3c-048131f142ca </span> ethernet  --
+<span class="hljs-symbol">eth6</span>   <span class="hljs-keyword">b3f08279-d1ab-4776-9320-d6380138693e </span> ethernet  --
+</code></pre></li>
+<li><p>ボンディングインタフェースの設定</p>
+<pre><code class="hljs"># nmcli connection modify bond0 ipv4.method manual ipv4.addresses <span class="hljs-number">10.211</span><span class="hljs-number">.55</span><span class="hljs-number">.28</span>/<span class="hljs-number">24</span> ipv4.gateway <span class="hljs-number">10.211</span><span class="hljs-number">.55</span><span class="hljs-number">.1</span>
+# nmcli connection modify bond0 ipv4.dns <span class="hljs-string">"10.211.55.1"</span> ipv4.dns-search <span class="hljs-string">""</span>
+</code></pre></li>
+<li><p>スレーブインタフェースの追加</p>
+<pre><code class="hljs"># nmcli connection add type bond-slave autoconnect no ifname eth5 master bond0
+接続 'bond-slave-eth5' (<span class="hljs-number">31e5</span>c121<span class="hljs-number">-260</span>c<span class="hljs-number">-40</span>f8-b4e0<span class="hljs-number">-0</span>de4ab48b684) が正常に追加されました。
+# nmcli connection add type bond-slave autoconnect no ifname eth6 master bond0
+接続 'bond-slave-eth6' (<span class="hljs-number">462755</span>f8<span class="hljs-number">-56</span>bb<span class="hljs-number">-4</span>c7e<span class="hljs-number">-8</span>b7d-d2771f437967) が正常に追加されました。
+# nmcli c
+NAME             UUID                                  TYPE      DEVICE
+bond0            adb9f988-c056<span class="hljs-number">-4</span>f3e-bc28<span class="hljs-number">-44</span>d41205ef40  bond      bond0
+bond-slave-eth5  <span class="hljs-number">31e5</span>c121<span class="hljs-number">-260</span>c<span class="hljs-number">-40</span>f8-b4e0<span class="hljs-number">-0</span>de4ab48b684  ethernet  --
+bond-slave-eth6  <span class="hljs-number">462755</span>f8<span class="hljs-number">-56</span>bb<span class="hljs-number">-4</span>c7e<span class="hljs-number">-8</span>b7d-d2771f437967  ethernet  --
+eth5             <span class="hljs-number">9</span>b637a5f<span class="hljs-number">-6328</span><span class="hljs-number">-4</span>aca-bf3c<span class="hljs-number">-048131</span>f142ca  ethernet  --
+eth6             b3f08279-d1ab<span class="hljs-number">-4776</span><span class="hljs-number">-9320</span>-d6380138693e  ethernet  --
+</code></pre>
+<ul>
+<li>スレーブインタフェースがいきなり起動するのを避けるために autoconnect は no にする</li>
+</ul></li>
+<li><p>eth5, eth6 の自動起動を無効にして、スレーブインタフェースの自動起動を有効にしてから network サービスを再起動する</p>
+<pre><code class="hljs"><span class="hljs-comment"># nmcli connection modify eth5 connection.autoconnect no</span>
+<span class="hljs-comment"># nmcli connection modify eth6 connection.autoconnect no</span>
+<span class="hljs-comment"># nmcli connection modify bond-slave-eth5 connection.autoconnect yes</span>
+<span class="hljs-comment"># nmcli connection modify bond-slave-eth6 connection.autoconnect yes</span>
+<span class="hljs-comment"># systemctl restart network</span>
+<span class="hljs-comment"># nmcli c</span>
+NAME             UUID                                 <span class="hljs-built_in"> TYPE </span>           DEVICE<span class="hljs-built_in">
+System </span>eth0      5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03  802-3-ethernet  eth0<span class="hljs-built_in">
+System </span>eth1      9c92fad9-6ecb-3e6c-eb4d-8a47c6f50c04  802-3-ethernet  eth1
+bond-slave-eth2  2022f5cd-924b-40cc-90e5-c45716c85b18  802-3-ethernet  eth2
+bond-slave-eth3  702ebfb4-4f56-4ff3-b3e2-28ae2c4e6fc4  802-3-ethernet  eth3
+bond0            e68909a1-8790-455f-9882-1bdd4a5dd476  bond            bond0<span class="hljs-built_in">
+System </span>eth2      3a73717e-65ab-93e8-b518-24f5af32dc0d  802-3-ethernet  --<span class="hljs-built_in">
+System </span>eth3      c5ca8081-6db2-4602-4b46-d771f4330a6d  802-3-ethernet  --
+</code></pre></li>
+<li><p>ボンディング状態確認</p>
+<pre><code class="hljs"><span class="hljs-comment"># ip addr show</span>
+<span class="hljs-number">1</span>: lo: <span class="hljs-variable">&lt;LOOPBACK,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">65536</span> qdisc noqueue <span class="hljs-keyword">state</span> UNKNOWN qlen <span class="hljs-number">1</span>
+    link/loopback <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> brd <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>
+    <span class="hljs-keyword">inet</span> <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>/<span class="hljs-number">8</span> scope host lo
+       valid_lft forever preferred_lft forever
+    <span class="hljs-keyword">inet6</span> ::<span class="hljs-number">1</span>/<span class="hljs-number">128</span> scope host
+       valid_lft forever preferred_lft forever
+<span class="hljs-number">2</span>: eth0: <span class="hljs-variable">&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">1500</span> qdisc pfifo_fast <span class="hljs-keyword">state</span> UP qlen <span class="hljs-number">1000</span>
+    link/ether <span class="hljs-number">52</span>:<span class="hljs-number">54</span>:<span class="hljs-number">00</span>:<span class="hljs-number">5</span>f:<span class="hljs-number">94</span>:<span class="hljs-number">78</span> brd ff:ff:ff:ff:ff:ff
+    <span class="hljs-keyword">inet</span> <span class="hljs-number">10.0</span>.<span class="hljs-number">2.15</span>/<span class="hljs-number">24</span> brd <span class="hljs-number">10.0</span>.<span class="hljs-number">2.255</span> scope <span class="hljs-keyword">global</span> dynamic eth0
+       valid_lft <span class="hljs-number">86341</span>sec preferred_lft <span class="hljs-number">86341</span>sec
+    <span class="hljs-keyword">inet6</span> fe80::<span class="hljs-number">5054</span>:ff:fe5f:<span class="hljs-number">9478</span>/<span class="hljs-number">64</span> scope link
+       valid_lft forever preferred_lft forever
+<span class="hljs-number">3</span>: eth1: <span class="hljs-variable">&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">1500</span> qdisc pfifo_fast <span class="hljs-keyword">state</span> UP qlen <span class="hljs-number">1000</span>
+    link/ether <span class="hljs-number">08</span>:<span class="hljs-number">00</span>:<span class="hljs-number">27</span>:<span class="hljs-number">7</span>f:<span class="hljs-number">50</span>:af brd ff:ff:ff:ff:ff:ff
+    <span class="hljs-keyword">inet</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">33.10</span>/<span class="hljs-number">24</span> brd <span class="hljs-number">192.168</span>.<span class="hljs-number">33.255</span> scope <span class="hljs-keyword">global</span> eth1
+       valid_lft forever preferred_lft forever
+    <span class="hljs-keyword">inet6</span> fe80::a00:<span class="hljs-number">27</span>ff:fe7f:<span class="hljs-number">50</span>af/<span class="hljs-number">64</span> scope link
+       valid_lft forever preferred_lft forever
+<span class="hljs-number">4</span>: eth2: <span class="hljs-variable">&lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">1500</span> qdisc pfifo_fast master bond0 <span class="hljs-keyword">state</span> UP qlen <span class="hljs-number">1000</span>
+    link/ether <span class="hljs-number">08</span>:<span class="hljs-number">00</span>:<span class="hljs-number">27</span>:<span class="hljs-number">95</span>:e0:<span class="hljs-number">4</span>b brd ff:ff:ff:ff:ff:ff
+<span class="hljs-number">5</span>: eth3: <span class="hljs-variable">&lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">1500</span> qdisc pfifo_fast master bond0 <span class="hljs-keyword">state</span> UP qlen <span class="hljs-number">1000</span>
+    link/ether <span class="hljs-number">08</span>:<span class="hljs-number">00</span>:<span class="hljs-number">27</span>:<span class="hljs-number">95</span>:e0:<span class="hljs-number">4</span>b brd ff:ff:ff:ff:ff:ff
+<span class="hljs-number">7</span>: bond0: <span class="hljs-variable">&lt;BROADCAST,MULTICAST,MASTER,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">1500</span> qdisc noqueue <span class="hljs-keyword">state</span> UP qlen <span class="hljs-number">1000</span>
+    link/ether <span class="hljs-number">08</span>:<span class="hljs-number">00</span>:<span class="hljs-number">27</span>:<span class="hljs-number">95</span>:e0:<span class="hljs-number">4</span>b brd ff:ff:ff:ff:ff:ff
+    <span class="hljs-keyword">inet</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">56.103</span>/<span class="hljs-number">24</span> brd <span class="hljs-number">192.168</span>.<span class="hljs-number">56.255</span> scope <span class="hljs-keyword">global</span> dynamic bond0
+       valid_lft <span class="hljs-number">1143</span>sec preferred_lft <span class="hljs-number">1143</span>sec
+    <span class="hljs-keyword">inet6</span> fe80::b2b5:<span class="hljs-number">1186</span>:<span class="hljs-number">1446</span>:df49/<span class="hljs-number">64</span> scope link
+       valid_lft forever preferred_lft forever
+</code></pre>
+<pre><code class="hljs"><span class="hljs-comment"># cat /proc/net/bonding/bond0</span><span class="hljs-built_in">
+Ethernet </span>Channel Bonding Driver: v3.7.1 (April 27, 2011)
+
+Bonding Mode: fault-tolerance (active-backup)
+Primary Slave: None
+Currently Active Slave: eth2
+MII Status: up
+MII Polling Interval (ms): 100
+Up Delay (ms): 0
+Down Delay (ms): 0
+
+Slave Interface: eth2
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 08:00:27:95:e0:4b
+Slave<span class="hljs-built_in"> queue </span>ID: 0
+
+Slave Interface: eth3
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 08:00:27:70:a2:f4
+Slave<span class="hljs-built_in"> queue </span>ID: 0
+</code></pre>
+<ul>
+<li><code>Currently Active Slave: eth2</code> なのでこの状態では eth2 が使用されている</li>
+</ul></li>
+<li><p>スレーブの切り替え</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> ifenslave -c bond0 eth3</span>
+</code></pre>
+<pre><code class="hljs"><span class="hljs-comment"># cat /proc/net/bonding/bond0</span><span class="hljs-built_in">
+Ethernet </span>Channel Bonding Driver: v3.7.1 (April 27, 2011)
+
+Bonding Mode: fault-tolerance (active-backup)
+Primary Slave: None
+Currently Active Slave: eth3
+MII Status: up
+MII Polling Interval (ms): 100
+Up Delay (ms): 0
+Down Delay (ms): 0
+
+Slave Interface: eth2
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 08:00:27:95:e0:4b
+Slave<span class="hljs-built_in"> queue </span>ID: 0
+
+Slave Interface: eth3
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 08:00:27:70:a2:f4
+Slave<span class="hljs-built_in"> queue </span>ID: 0
+</code></pre></li>
+</ul></li>
+<li><p>チーミングの設定(vagrant)</p>
+<ul>
+<li><p>インタフェースの追加</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> nmcli connection add <span class="hljs-built_in">type</span> team con-name team0 ifname team0</span>
+</code></pre></li>
+<li><p>設定 ※ GW などはスレーブの設定に合わせる</p>
+<pre><code class="hljs"># nmcli connection modify team0 ipv4.method manual ipv4.addresses <span class="hljs-number">192.168</span><span class="hljs-number">.33</span><span class="hljs-number">.30</span>/<span class="hljs-number">24</span>
+</code></pre></li>
+<li><p>スレーブインタフェースの追加</p>
+<pre><code class="hljs"># nmcli connection add type team-slave autoconnect no ifname eth2 master team0
+Connection 'team-slave-eth2' (fb25c355-d137<span class="hljs-number">-487</span>f-bc6d<span class="hljs-number">-97018</span>fb04778) successfully added.
+# nmcli connection add type team-slave autoconnect no ifname eth3 master team0
+Connection 'team-slave-eth3' (<span class="hljs-number">01</span>bf2b5c<span class="hljs-number">-0781</span><span class="hljs-number">-46e9</span><span class="hljs-number">-9</span>a93<span class="hljs-number">-4</span>ac40a788ab7) successfully added.
+# nmcli c
+NAME             UUID                                  TYPE            DEVICE
+System eth0      <span class="hljs-number">5</span>fb06bd0<span class="hljs-number">-0</span>bb0<span class="hljs-number">-7</span>ffb<span class="hljs-number">-45</span>f1-d6edd65f3e03  <span class="hljs-number">802</span><span class="hljs-number">-3</span>-ethernet  eth0
+System eth1      <span class="hljs-number">9</span>c92fad9<span class="hljs-number">-6</span>ecb<span class="hljs-number">-3e6</span>c-eb4d<span class="hljs-number">-8</span>a47c6f50c04  <span class="hljs-number">802</span><span class="hljs-number">-3</span>-ethernet  eth1
+System eth2      <span class="hljs-number">3</span>a73717e<span class="hljs-number">-65</span>ab<span class="hljs-number">-93e8</span>-b518<span class="hljs-number">-24</span>f5af32dc0d  <span class="hljs-number">802</span><span class="hljs-number">-3</span>-ethernet  eth2
+System eth3      c5ca8081<span class="hljs-number">-6</span>db2<span class="hljs-number">-4602</span><span class="hljs-number">-4</span>b46-d771f4330a6d  <span class="hljs-number">802</span><span class="hljs-number">-3</span>-ethernet  eth3
+team0            <span class="hljs-number">6</span>d7aca73<span class="hljs-number">-25</span>ce<span class="hljs-number">-405</span>a-ac7f-ff236d4c31d8  team            team0
+team-slave-eth2  fb25c355-d137<span class="hljs-number">-487</span>f-bc6d<span class="hljs-number">-97018</span>fb04778  <span class="hljs-number">802</span><span class="hljs-number">-3</span>-ethernet  --
+team-slave-eth3  <span class="hljs-number">01</span>bf2b5c<span class="hljs-number">-0781</span><span class="hljs-number">-46e9</span><span class="hljs-number">-9</span>a93<span class="hljs-number">-4</span>ac40a788ab7  <span class="hljs-number">802</span><span class="hljs-number">-3</span>-ethernet  --
+</code></pre></li>
+<li><p>eth2, eth3 の自動起動は無効、スレーブインタフェースの自動起動有効にして network サービスを再起動</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> nmcli connection modify <span class="hljs-string">"System eth2"</span> connection.autoconnect no</span>
+<span class="hljs-meta">#</span><span class="bash"> nmcli connection modify <span class="hljs-string">"System eth3"</span> connection.autoconnect no</span>
+<span class="hljs-meta">#</span><span class="bash"> nmcli connection modify team-slave-eth2 connection.autoconnect yes</span>
+<span class="hljs-meta">#</span><span class="bash"> nmcli connection modify team-slave-eth3 connection.autoconnect yes</span>
+<span class="hljs-meta">#</span><span class="bash"> systemctl restart network</span>
+</code></pre></li>
+<li><p>確認</p>
+<pre><code class="hljs"><span class="hljs-comment"># teamdctl team0 state</span>
+<span class="hljs-attr">setup:</span>
+<span class="hljs-attr">  runner:</span> <span class="hljs-string">roundrobin</span>
+<span class="hljs-attr">ports:</span>
+  <span class="hljs-string">eth2</span>
+    <span class="hljs-string">link</span> <span class="hljs-attr">watches:</span>
+      <span class="hljs-string">link</span> <span class="hljs-attr">summary:</span> <span class="hljs-string">up</span>
+      <span class="hljs-string">instance[link_watch_0]:</span>
+<span class="hljs-attr">        name:</span> <span class="hljs-string">ethtool</span>
+<span class="hljs-attr">        link:</span> <span class="hljs-string">up</span>
+        <span class="hljs-string">down</span> <span class="hljs-attr">count:</span> <span class="hljs-number">0</span>
+  <span class="hljs-string">eth3</span>
+    <span class="hljs-string">link</span> <span class="hljs-attr">watches:</span>
+      <span class="hljs-string">link</span> <span class="hljs-attr">summary:</span> <span class="hljs-string">up</span>
+      <span class="hljs-string">instance[link_watch_0]:</span>
+<span class="hljs-attr">        name:</span> <span class="hljs-string">ethtool</span>
+<span class="hljs-attr">        link:</span> <span class="hljs-string">up</span>
+        <span class="hljs-string">down</span> <span class="hljs-attr">count:</span> <span class="hljs-number">0</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li>ブリッジの設定
+<ul>
+<li><p>ブリッジ化するインタフェースは eth2(192.168.33.15)</p></li>
+<li><p>インタフェースの追加</p>
+<pre><code class="hljs"># nmcli connection add type bridge ifname br0
+Connection 'bridge-br0' (e31885a0<span class="hljs-number">-993</span>d<span class="hljs-number">-4</span>d4e<span class="hljs-number">-8797</span><span class="hljs-number">-23</span>a01fc14e3f) successfully added.
+# nmcli connection modify bridge-br0 ipv4.method manual ipv4.addresses <span class="hljs-number">192.168</span><span class="hljs-number">.33</span><span class="hljs-number">.15</span>
+</code></pre></li>
+<li><p>ブリッジスレーブインタフェースの追加</p>
+<pre><code class="hljs"># nmcli connection <span class="hljs-keyword">add </span>type <span class="hljs-keyword">bridge-slave </span>ifname eth2 master <span class="hljs-keyword">bridge-br0
+</span><span class="hljs-symbol">Connection</span> <span class="hljs-string">'bridge-slave-eth2'</span> (ad315f7d-<span class="hljs-number">66</span>a7-<span class="hljs-number">4</span>c53-<span class="hljs-number">806</span>b-<span class="hljs-number">304</span>ce29e2b39) successfully <span class="hljs-keyword">added.
+</span></code></pre></li>
+<li><p>ブリッジ化したインタフェースから設定を削除</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> nmcli connection modify <span class="hljs-string">"System eth2"</span> ipv4.addresses <span class="hljs-string">""</span> ipv4.dns <span class="hljs-string">""</span> ipv4.method <span class="hljs-built_in">disable</span></span>
+</code></pre></li>
+<li><p>再起動</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> systemctl restart NetworkManager</span>
+</code></pre></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

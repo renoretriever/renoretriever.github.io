@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>冗長化 · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 障害が発生しても予備の機器でシステムの機能を継続できるようにすることを指す"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="冗長化 · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 障害が発生しても予備の機器でシステムの機能を継続できるようにすることを指す"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">冗長化</h1></header><article><div><span><ul>
+<li>障害が発生しても予備の機器でシステムの機能を継続できるようにすることを指す
+<ol>
+<li>冗長化を想定する</li>
+<li>予備の機材を準備する</li>
+<li>運用体制の整備</li>
+</ol></li>
+</ul>
+<ul>
+<li>仕組み
+<ul>
+<li>負荷分散</li>
+<li>死活監視</li>
+<li>マスターの決定</li>
+<li>フェイルオーバー</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="サーバ内冗長化"></a><a href="#サーバ内冗長化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>サーバ内冗長化</h2>
+<ul>
+<li><p>電源、デバイス等の冗長化</p>
+<ul>
+<li>UPS の設置</li>
+</ul></li>
+<li><p>ネットワークインタフェースの冗長化</p>
+<ul>
+<li><a href="bonding">Bonding</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ストレージの冗長化"></a><a href="#ストレージの冗長化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストレージの冗長化</h2>
+<ul>
+<li><a href="raid">RADI</a></li>
+<li>パスの冗長化
+<ul>
+<li><a href="dm-multipath">DM-Multipath 機能</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="web-サーバの冗長化"></a><a href="#web-サーバの冗長化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Web サーバの冗長化</h2>
+<ul>
+<li><p>負荷分散(ロードバランス)</p>
+<ul>
+<li>複数台のサーバに処理を分散させてサイト全体のスケーラビリティを向上させる手法</li>
+</ul></li>
+<li><p>DNS ラウンドロビン</p>
+<ul>
+<li>DNS を利用して 1 つのサービスに複数台のサーバを分散させる手法</li>
+<li>問題点
+<ul>
+<li>サーバの数だけグローバル IP が必要</li>
+<li>均等に分散されるとは限らない(キャッシュ機能)</li>
+<li>サーバがダウンしても気づかない</li>
+</ul></li>
+</ul></li>
+<li><p><a href="load-balancer">ロードバランサー</a></p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ap-サーバの冗長化"></a><a href="#ap-サーバの冗長化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>AP サーバの冗長化</h2>
+<ul>
+<li>Web サーバの冗長化と同じ</li>
+<li>セッション情報の冗長化</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="db-サーバの冗長化"></a><a href="#db-サーバの冗長化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DB サーバの冗長化</h2>
+<ul>
+<li>アクティブ / スタンバイ</li>
+<li>ハートビート
+<ul>
+<li>互いの状態確認</li>
+</ul></li>
+<li>スプリットブレイン
+<ul>
+<li>ハートビートから状態を認識できなくなるとフェイルオーバーすべきかどうかわからなくなる</li>
+</ul></li>
+<li>アクティブ / アクティブ</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ネットワーク機器の冗長化"></a><a href="#ネットワーク機器の冗長化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ネットワーク機器の冗長化</h2>
+<ul>
+<li><p>L2 スイッチの冗長化</p>
+<ul>
+<li>カスケード
+<ul>
+<li>スイッチ間をクロスケーブルなどでつなげばスイッチをまたいで通信を行うことができる</li>
+</ul></li>
+<li>L2 トランク</li>
+<li>リンクアグリゲーション
+<ul>
+<li>コンピュータとスイッチングハブの間、または 2 台のスイッチングハブの間を接続する複数の物理回線を論理的に 1 本の回線に束ねる技術</li>
+</ul></li>
+</ul></li>
+<li><p>L3 スイッチの冗長化</p></li>
+<li><p><a href="stp">スパニングツリープロトコル(STP)</a></p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="サイトの冗長化"></a><a href="#サイトの冗長化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>サイトの冗長化</h2>
+<ul>
+<li>DR</li>
+<li>GSLB</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="other"></a><a href="#other" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>other</h2>
+<ul>
+<li><p>コールドスタンバイ</p>
+<ul>
+<li>現用機が故障したら、予備機を手動で接続する</li>
+<li>注意点としては、現用機と予備機の設定は同じにしておく必要があるということ</li>
+</ul></li>
+<li><p>ホットスタンバイ</p>
+<ul>
+<li>両方の機器を常に稼動させておき、常に同じ状態に保っておく運用形態</li>
+</ul></li>
+<li><p>フェイルオーバー</p>
+<ul>
+<li>現用機に障害が発生した際に、自動的に処理を予備機に引き継ぐこと</li>
+<li>VIP の割り当てを行い、その VIP を切り替えることでフェイルオーバーを実現</li>
+</ul></li>
+<li><p>ヘルスチェック</p>
+<ul>
+<li>ICMP 監視
+<ul>
+<li>WEB サービスがダウンしたかどうかはチェックできない</li>
+</ul></li>
+<li>ポート監視
+<ul>
+<li>過負荷状態で応答ができなくなっていたり、エラーを返していることは検知できない</li>
+</ul></li>
+<li>サービス監視
+<ul>
+<li>HTTP リクエストなどの発行</li>
+<li>場合によっては、サーバに負荷をかけることになる。</li>
+</ul></li>
+</ul></li>
+<li><p>IP アドレスの引き継ぎ</p>
+<ul>
+<li>MAC アドレスをもとに通信を行っているため、キャッシュを削除するために他のサーバのARPテーブルを更新する必要がある
+<ul>
+<li>gratuitous ARP(GARP)</li>
+<li>私の IP アドレスと MAC アドレスはこれです、と他のサーバへ通知するためのもの</li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#サーバ内冗長化">サーバ内冗長化</a></li><li><a href="#ストレージの冗長化">ストレージの冗長化</a></li><li><a href="#web-サーバの冗長化">Web サーバの冗長化</a></li><li><a href="#ap-サーバの冗長化">AP サーバの冗長化</a></li><li><a href="#db-サーバの冗長化">DB サーバの冗長化</a></li><li><a href="#ネットワーク機器の冗長化">ネットワーク機器の冗長化</a></li><li><a href="#サイトの冗長化">サイトの冗長化</a></li><li><a href="#other">other</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

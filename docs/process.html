@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>プロセス · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 動作中のプログラムのこと"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="プロセス · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 動作中のプログラムのこと"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">プロセス</h1></header><article><div><span><ul>
+<li><p>動作中のプログラムのこと</p></li>
+<li><p>タスクとも呼ぶ</p></li>
+<li><p>プロセスが起動する前にプライベートなメモリ空間が確保される</p></li>
+<li><p><a href="thread">スレッドとは</a></p></li>
+<li><p><a href="ps">ps コマンド</a></p></li>
+<li><p>プロセス ID</p>
+<ul>
+<li>システムで動作している全プロセスに対して重複しないように振られている通し番号</li>
+<li>一意に特定可能</li>
+</ul></li>
+<li><p>メリット</p>
+<ul>
+<li>個々の処理の独立性が高い</li>
+</ul></li>
+<li><p>デメリット</p>
+<ul>
+<li>生成時の CPU 負荷が高い</li>
+<li>コンテキストスイッチ負荷がある</li>
+</ul></li>
+</ul>
+<ul>
+<li><code>コンテキストスイッチ</code>
+<ul>
+<li>プロセスを切り替えること</li>
+<li>その時点での CPU 内部の状態(レジスタ値など) を保存して、別のプログラムを実行していたときの CPU の状態に戻す</li>
+<li>論理アドレスと物理アドレスの変換</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="状態遷移"></a><a href="#状態遷移" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>状態遷移</h2>
+<hr>
+<ul>
+<li><p>生成</p>
+<ul>
+<li>プロセスの生成</li>
+</ul></li>
+<li><p>実行可能状態(runable)</p>
+<ul>
+<li>実行キューに入る</li>
+<li>順番待ち</li>
+</ul></li>
+<li><p>実行状態(running)</p>
+<ul>
+<li>アプリの処理を実施</li>
+<li>一定量の処理を行うと別のプロセスに CPU を明け渡すため、実行可能状態になる</li>
+</ul></li>
+<li><p>待ち状態(sleeping)</p>
+<ul>
+<li>ディスクアクセスなど、I/O 待ちが発生する処理を実行した場合にはこちらのステータスになる</li>
+</ul></li>
+<li><p>終了</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="os-のプロセス制御"></a><a href="#os-のプロセス制御" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OS のプロセス制御</h2>
+<hr>
+<ul>
+<li>OS がプロセスから CPU 使用権を返してもらう方法
+<ul>
+<li>システムコール</li>
+<li><a href="interrupts-signal">ハードウェア割り込み</a></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="cpu-使用権の変更"></a><a href="#cpu-使用権の変更" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CPU 使用権の変更</h3>
+<ul>
+<li><p>イベント駆動(イベントドリブン)</p>
+<ul>
+<li>キーボードやマウス、NIC などの周辺機器への入出力が発生したときに CPU の処理を切り替える方法</li>
+</ul></li>
+<li><p><code>プリエンプティブ方式</code></p>
+<ul>
+<li>特定のプロセスの実行時間が長くなった場合に、強制的に処理を中断して別のプロセスに切り替える</li>
+<li>特定のプロセスがプロセッサなどを独占することは少なくなるが、プロセスのコンテキストスイッチが比較的頻繁に発生するため、オーバーヘッドは大きくなる</li>
+<li><code>プリエンプション</code>
+<ul>
+<li>実行状態にあるタスクが OS の制御により CPU の使用権を奪われ、<code>実行可能状態</code> に移されること</li>
+<li>以下の状態を満たした時に起こる
+<ul>
+<li>実行状態のタスクより優先度の高いタスクが実行可能状態になる</li>
+<li>実行状態のタスクに割り当てられた CPU 使用時間が終了</li>
+</ul></li>
+</ul></li>
+<li>UNIX ではプロセスの最大実行時間を 0.1 秒程度に設定
+<ul>
+<li>最大実行時間のことを <code>タイムクォンタム</code> と呼ぶ</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>ノンプリエンプティブ方式
+<ul>
+<li>実行プロセスの切替をプログラム自身に任せる方式で、プログラムが自発的に CPU を開放した時間でほかタスクを実行</li>
+<li>OS が CPU を管理しないので、1 つのプログラムを実行中は、ほかのプログラムの実行は制限される</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#状態遷移">状態遷移</a></li><li><a href="#os-のプロセス制御">OS のプロセス制御</a><ul class="toc-headings"><li><a href="#cpu-使用権の変更">CPU 使用権の変更</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

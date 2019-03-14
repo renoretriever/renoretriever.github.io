@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ER 図(Entity-Relationship Diagram : 実態関連図)&lt;Paste&gt; · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- what"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ER 図(Entity-Relationship Diagram : 実態関連図)&lt;Paste&gt; · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- what"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ER 図(Entity-Relationship Diagram : 実態関連図)&lt;Paste&gt;</h1></header><article><div><span><ul>
+<li><p>what</p>
+<ul>
+<li>データ中心のアプローチにおいてデータモデルを記述するための図法</li>
+<li>概念データモデル
+<ul>
+<li>データの全体像を明らかにし、それぞれのデータの関係を示す</li>
+</ul></li>
+<li>論理データモデル
+<ul>
+<li>物理データモデルを記述するために使用される場合もある</li>
+</ul></li>
+</ul></li>
+<li><p>エンティティ(= テーブル)</p>
+<ul>
+<li>対象事物を概念としてモデル化したもの</li>
+<li>いくつかの属性をもつ</li>
+<li>エンティティの制約
+<ul>
+<li>データ制約</li>
+</ul></li>
+<li>インスタンス
+<ul>
+<li>実現値</li>
+<li>インスタンスを抽象化した概念がエンティティ</li>
+<li>エンティティは集合であり、インスタンスはその要素</li>
+</ul></li>
+</ul></li>
+<li><p>リレーションシップ</p>
+<ul>
+<li>業務ルール(業務遂行上の運用ルール)によって発生するエンティティ間の結びつき</li>
+</ul></li>
+<li><p>スーパタイプ/サブタイプ</p></li>
+<li><p>ER 図での表現</p></li>
+<li><p>多重度</p>
+<ul>
+<li>エンティティタイプとリレーションシップの間にあるインスタンスの対応関係</li>
+<li>カーディナリティということもある</li>
+</ul></li>
+<li><p>オプショナリティ</p>
+<ul>
+<li>多重度に 0 を含むか否かを区別して表記するもの</li>
+<li>相手のインスタンスに対して、絶対に存在する場合には&quot;●&quot;</li>
+<li>相手のインスタンスに対して、存在しないことがある場合には&quot;○&quot;</li>
+</ul></li>
+<li><p>連関エンティティ</p>
+<ul>
+<li>多対多の関連は、そのまま論理データモデルに変換していくと非正規系になる</li>
+<li>多対多を排除するために、そのリレーション間にエンティティを一つもうけることで 1 対多の関連に変換することができる</li>
+<li>新たに設けられたこのエンティティのことを連関エンティティという</li>
+<li>情報処理教科書データベーススペシャリスト 2017 年版より引用
+<ul>
+<li><img src="http://wiki.renoretriever.net/images/db_entity.png" alt="連関エンティティ"></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>強エンティティと弱エンティティ
+<ul>
+<li>強エンティティ
+<ul>
+<li>そのインスタンスが、他のエンティティのインスタンスに関係なく存在可能なエンティティのこと</li>
+</ul></li>
+<li>弱エンティティ
+<ul>
+<li>そのインスタンスが、他のエンティティのインスタンスが存在するときだけ、存在可能はエンティティのこと</li>
+</ul></li>
+<li>売上エンティティと売上明細エンティティ</li>
+<li>請求エンティティと請求明細エンティティ</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

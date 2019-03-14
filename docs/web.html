@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Web · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- URL エンコーディング(% エンコーディング)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Web · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- URL エンコーディング(% エンコーディング)"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Web</h1></header><article><div><span><ul>
+<li><p>URL エンコーディング(% エンコーディング)</p>
+<ul>
+<li>URL に使えない文字を扱えるようにするためのエスケープ処理</li>
+</ul></li>
+<li><p>URI(Uniform Resource Identifires)</p>
+<ul>
+<li>リソースの識別</li>
+<li>URL(Uniform Resource Locator)
+<ul>
+<li>リソースの場所を示す</li>
+<li><a href="http://user:pass@www.example.jp:80/dir/index.htm?uid=1#ch1">http://user:pass@www.example.jp:80/dir/index.htm?uid=1#ch1</a>
+<ul>
+<li>http:
+<ul>
+<li>スキーム名</li>
+<li>data:, javascript: などなど</li>
+</ul></li>
+<li>user:pass
+<ul>
+<li>資格情報</li>
+<li>オプション扱い</li>
+</ul></li>
+<li><a href="http://www.example.jp">www.example.jp</a>
+<ul>
+<li>サーバ名</li>
+<li>ドメイン名 or IP アドレス(v4, v6)</li>
+</ul></li>
+<li>:80
+<ul>
+<li>サーバのポート</li>
+</ul></li>
+<li>dir/index.htm
+<ul>
+<li>階層的なファイルパス</li>
+</ul></li>
+<li>uid=1
+<ul>
+<li>クエリ文字列</li>
+</ul></li>
+<li>#ch1
+<ul>
+<li>フラグメント識別子</li>
+<li>リソース内のサブリソース</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>URN(Uniform Resource Name)
+<ul>
+<li>リソースの名前を示す</li>
+<li>例
+<ul>
+<li>ISBN を利用した URN</li>
+<li>urn:isbn:1111111111</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="web-サーバ"></a><a href="#web-サーバ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Web サーバ</h2>
+<h3><a class="anchor" aria-hidden="true" id="クライアント-pc-から-web-サーバまでの"></a><a href="#クライアント-pc-から-web-サーバまでの" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>クライアント PC から Web サーバまでの</h3>
+<ul>
+<li>構成
+<ul>
+<li>Web ブラウザ =&gt; Web サーバ(<a href="apache">Apache HTTP Server</a>) =&gt; AP サーバ =&gt; DB サーバ</li>
+</ul></li>
+</ul>
+<ol>
+<li>Web ブラウザにて URL を入力し検索実行。<a href="http">HTTP</a> リクエストを実行。</li>
+<li>DNS にて名前解決を行い目的のグローバル IP アドレスを取得し、Web サーバに対して HTTP リクエストを送信</li>
+<li>Web サーバの httpd がリクエストを受け取り、ディスクから読み込むか、AP サーバに問い合わせするか判断</li>
+<li>接続元にリクエストを返す</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="キャッシュ"></a><a href="#キャッシュ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>キャッシュ</h2>
+<ul>
+<li><p>プロキシサーバーやクライアントのローカルディスクに保存されたリソースのコピーのこと</p></li>
+<li><p>メリット</p>
+<ul>
+<li>サーバーとの通信量の削減</li>
+<li>ネットワークに近いところから取得できる</li>
+</ul></li>
+<li><p>クライアントサイドキャッシュ</p>
+<ul>
+<li>ブラウザやプロキシーサーバがキャッシュ</li>
+<li><code>&lt;meta&gt;</code> タグを使ってコンテンツ単位でキャッシュを指定できる</li>
+</ul></li>
+<li><p>キャッシュヘッダー</p>
+<ul>
+<li>HTTP/1.0
+<ul>
+<li>Expires や Pragma といったヘッダーでキャッシュデータを制御</li>
+</ul></li>
+<li>HTTP/1.1
+<ul>
+<li>Cache-Control ヘッダ</li>
+</ul></li>
+<li>通常は <a href="cache-control">Cache-Control</a> のみで OK だけど、ブラウザやプロキシサーバによっては HTTP/1.1 に対応してない場合があるため、Expires/Pragma も併用する</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="http-キャッシュ"></a><a href="#http-キャッシュ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HTTP キャッシュ</h3>
+<ul>
+<li><p>HTTP キャッシュ</p>
+<ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/HTTP/Caching">https://developer.mozilla.org/ja/docs/Web/HTTP/Caching</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=ja">https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=ja</a></li>
+</ul></li>
+<li><p><a href="https://developer.mozilla.org/ja/docs/Web/HTTP/Conditional_requests">HTTP 条件付きリクエスト</a></p></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Pragma">Pragma</a></p></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expires">Expires</a></p></li>
+<li><p>ETag</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag">ETag</a></li>
+<li>強い ETag 値と弱い ETag 値
+<ul>
+<li>強い
+<ul>
+<li>エンティティがわずかに違っても必ず値は変化</li>
+</ul></li>
+<li>弱い
+<ul>
+<li>リソースが同じものであることということしか示さない</li>
+<li>意味上異なったリソースとして差異がある場合にのみ ETag 値が変化する</li>
+<li>先頭に「W/」 が付く</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>キャッシュヘッダー
+<ul>
+<li><a href="https://tech.jstream.jp/blog/cache/cache-control_browser_request/">ブラウザによるキャッシュ指示(リクエスト)</a></li>
+<li><a href="https://tech.jstream.jp/blog/cache/cache-control_proxy_request/">CDNサーバによるキャッシュ指示(リクエスト)</a></li>
+<li><a href="https://tech.jstream.jp/blog/cache/cache-control_origin_response/">オリジンからのキャッシュ指示(レスポンス)</a></li>
+<li><a href="https://tech.jstream.jp/blog/cache/cache-control_proxy_response/">CDNサーバによるキャッシュ指示(レスポンス)</a></li>
+</ul></li>
+</ul>
+<ul>
+<li>リバースプロキシの役割
+<ul>
+<li>ロードバランス</li>
+<li>コンテンツキャッシュ</li>
+<li>HTTPS 通信の終端化</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="web-パフォーマンス計測ツール"></a><a href="#web-パフォーマンス計測ツール" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Web パフォーマンス計測ツール</h2>
+<h3><a class="anchor" aria-hidden="true" id="lighthouse"></a><a href="#lighthouse" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Lighthouse</h3>
+<ul>
+<li><p>Web パフォーマンスツール</p></li>
+<li><p>Chrome 拡張機能</p></li>
+<li><p><a href="https://developers.google.com/web/tools/lighthouse/?hl=ja">Lighthouse によるウェブアプリの監査</a></p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="google-pagespeed-insights"></a><a href="#google-pagespeed-insights" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Google PageSpeed Insights</h3>
+<ul>
+<li><a href="https://developers.google.com/speed/pagespeed/insights/">https://developers.google.com/speed/pagespeed/insights/</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="web-page-test"></a><a href="#web-page-test" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>WEB PAGE TEST</h3>
+<ul>
+<li><a href="https://www.webpagetest.org/">https://www.webpagetest.org/</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="gtmetrix"></a><a href="#gtmetrix" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GTmetrix</h3>
+<ul>
+<li><a href="https://gtmetrix.com/">https://gtmetrix.com/</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="web-アプリケーション"></a><a href="#web-アプリケーション" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Web アプリケーション</h2>
+<hr>
+<ul>
+<li>Web の機能を使って提供されるプログラムのこと</li>
+<li>リクエストに応じて動的にコンテンツを生成し、クライアントに返す</li>
+<li><a href="cgi">CGI(Common Gateway Interface)</a></li>
+</ul>
+<ul>
+<li>文書記述言語 SGML(Standard Generalized Markup Language)
+<ul>
+<li><a href="html">HTML</a></li>
+<li><a href="xml">XML</a></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>更新情報を配信する RSS / Atom</p>
+<ul>
+<li>ニュースやブログの記事などの更新情報を配信するための文書フォーマット</li>
+<li><a href="rss">RSS</a></li>
+<li><a href="atom">Atom</a></li>
+</ul></li>
+<li><p>ベストプラクティス</p>
+<ul>
+<li>The Twelve-Factor App</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="デバイストラッキング"></a><a href="#デバイストラッキング" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>デバイストラッキング</h2>
+<hr>
+<ul>
+<li><a href="cookie">Cookie</a></li>
+<li>IP アドレス
+<ul>
+<li>NAT</li>
+<li>XHR</li>
+<li>WebRTC</li>
+</ul></li>
+<li>HSTS Super Cookie
+<ul>
+<li><a href="hsts">HSTS</a> を利用した手法</li>
+</ul></li>
+<li>TCP Timestamp</li>
+<li>SSL Session Ticket</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="other"></a><a href="#other" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other</h2>
+<ul>
+<li>バーチャルホスト
+<ul>
+<li>物理的にはサーバーが 1 台でも、仮想的に複数台あるかのように扱うことができる</li>
+<li>同じグローバル IP アドレスでもホスト名やドメイン名、HOST ヘッダーフィールドで指定したホスト名で区別できる</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#web-サーバ">Web サーバ</a><ul class="toc-headings"><li><a href="#クライアント-pc-から-web-サーバまでの">クライアント PC から Web サーバまでの</a></li></ul></li><li><a href="#キャッシュ">キャッシュ</a><ul class="toc-headings"><li><a href="#http-キャッシュ">HTTP キャッシュ</a></li></ul></li><li><a href="#web-パフォーマンス計測ツール">Web パフォーマンス計測ツール</a><ul class="toc-headings"><li><a href="#lighthouse">Lighthouse</a></li><li><a href="#google-pagespeed-insights">Google PageSpeed Insights</a></li><li><a href="#web-page-test">WEB PAGE TEST</a></li><li><a href="#gtmetrix">GTmetrix</a></li></ul></li><li><a href="#web-アプリケーション">Web アプリケーション</a></li><li><a href="#デバイストラッキング">デバイストラッキング</a></li><li><a href="#other">Other</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>IPsec(IP Security Protocol) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基礎"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="IPsec(IP Security Protocol) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基礎"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">IPsec(IP Security Protocol)</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基礎"></a><a href="#基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基礎</h2>
+<hr>
+<ul>
+<li><p>IP パケットのセキュリティを確保するためのプロトコル</p></li>
+<li><p>IP パケットを暗号化することで、盗聴ならびに通信路での改ざんが無いことを保証</p></li>
+<li><p>特徴</p>
+<ul>
+<li>パケットをインターネット層でカプセル化し、暗号化する</li>
+<li>上位層のアプリケーションに依存せずに暗号化通信が可能</li>
+<li>VPN ゲートウェイ製品などを用いた拠点間通信による IPSec VPN では、ユーザは暗号化通信を行っていることを意識する必要がない</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="暗号化モード"></a><a href="#暗号化モード" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>暗号化モード</h2>
+<hr>
+<ul>
+<li><p><code>トランスポートモード</code></p>
+<ul>
+<li>IPSec に対応したホスト同士が End-to-End で通信を行う場合に使用することを前提</li>
+<li>IP パケットのペイロード(データ部分) 及び TCP ヘッダ(トランスポート層ヘッダ) のみを暗号化し、IP アドレスなどの IP ヘッダは暗号化せずに送信
+<img src="ipsec_transportmode.png" alt=""></li>
+</ul></li>
+<li><p><code>トンネルモード</code></p>
+<ul>
+<li>IP ヘッダとデータ部分をまとめてカプセル化して暗号化するとともに、新たな IP ヘッダを付加(カプセル化) して送信</li>
+<li>VPN 装置でカプセル化・復号が行われるので装置間でのみ暗号化通信が行われる
+<img src="ipsec_tunnelingmode.png" alt=""></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>機能</p>
+<ol>
+<li>アクセス制御機能
+<ul>
+<li>パケットフィルタリング方式の FW と同様に、発信元アドレス、あて先アドレス、あて先ポート番号、プロトコル種別などによって、 IPsec を使用するか否か、使用する機能(暗号化、メッセージ認証など) を制御することができる</li>
+</ul></li>
+<li>メッセージ認証機能
+<ul>
+<li>MAC によって通信データの改ざん有無を確認し、完全性を保証する機能</li>
+</ul></li>
+<li>送信元の認証機能
+<ul>
+<li>MAC を用いてデータ送信元の正当性を確認する機能</li>
+</ul></li>
+<li>通信データの重複検知機能
+<ul>
+<li>通信データの盗聴によるリプレイアタックを防ぐことができる</li>
+</ul></li>
+<li>通信データ(ペイロード、ヘッダ情報) の暗号化機能
+<ul>
+<li>ESP プロトコルの場合のみ使用可能</li>
+</ul></li>
+</ol></li>
+<li><p>構成するプロトコルや機能の概要</p>
+<ul>
+<li>SPD(Security Policy Database)
+<ul>
+<li>あらかじめパケットの処理に関するルール(セレクタ) を SPD に登録しておけば次のような制御が可能になる
+<ul>
+<li>パケットを破棄</li>
+<li>IPsec の機能を適用せずに通過させる</li>
+<li>IPsec の機能を適用して処理</li>
+</ul></li>
+<li>セレクタではパケットの送信元、あて先アドレス、宛先ポート番号、プロトコル種別等によって次のような設定を行なう
+<ul>
+<li>IPsec の適用有無</li>
+<li>使用するプロトコル(AH, ESP)</li>
+<li>使用する転送モード(トランスポートモード、トンネルモード)</li>
+<li>暗号アルゴリズム</li>
+<li>メッセージ認証のアルゴリズム</li>
+</ul></li>
+</ul></li>
+<li>SA(Security Association)
+<ul>
+<li>論理的なコネクション(トンネル)
+<ul>
+<li>制御用に用いる <code>ISAKMP SA</code> と 実際の通信データを送るために用いる <code>IPsec SA</code> がある
+<ul>
+<li>ISAKMP(Internet Security Association and Key Management Protocol)</li>
+</ul></li>
+</ul></li>
+<li>通信時
+<ul>
+<li>最初のフェーズで ISAKMP SA が作られる
+<ul>
+<li>IPsec ゲートウェイ間で一つ(上り下り兼用) 作られる</li>
+</ul></li>
+<li>次のフェーズで IPsec SA が作られる
+<ul>
+<li>通信を行なう各ホスト間のおいて、通信の方向や使用するプロトコル(AH, ESP) 毎に別々の SA が作られる</li>
+<li>IPsec SA を識別するための情報として、あて先 IP アドレス、プロトコル種別(AH, ESP)、SPI(Security Parameter Index) が使用される</li>
+</ul></li>
+</ul></li>
+<li>暗号化アルゴリズムや暗号化鍵のライフタイムが設定される管理テーブルで、期間を過ぎると新しいデータに更新される</li>
+</ul></li>
+<li>AH(Authentication Header)
+<ul>
+<li><font color='red'>データそのものの暗号化は行わず、データを認証するためのプロトコル</font></li>
+<li>送信元の認証、改ざんされていないことを保証</li>
+<li>暗号化通信が主目的であれば AH を使用する必要はない</li>
+<li>パケット構成
+<img src="ipsec_ah_packet.png" alt=""></li>
+<li>パケットレイアウト構成
+<img src="ipsec_ah_packet_layout.png" alt="">
+<ul>
+<li>MAC を用いて IP ヘッダも含めたパケット全体の ICV(Integrity Check Value : 完全性をチェックするための値) を生成し、AH ヘッダの認証データにセットする</li>
+<li>ICV の生成に用いる MAC の種類は選択可能</li>
+</ul></li>
+<li>AH ではパケット全体の ICV を使用するため、完全性チェックの精度を高めることが可能だが、その反面、NAT を使用している場合には経路上で IP アドレスが変更されてしまうため、完全生チェックが正常に行えなくなってしまうという問題がある</li>
+</ul></li>
+<li>ESP(Encapsulating Security Payload : 暗号化ペイロード)
+<ul>
+<li>通信データの認証(メッセージ認証) と、暗号化の両方の機能を提供するプロトコル</li>
+<li>パケット構成
+<img src="ipsec_esp_packet.png" alt="">
+<ul>
+<li>ペイロードの後に、ESP トレーラ情報と ICV を付加</li>
+</ul></li>
+<li>パケットレイアウト構成
+<img src="ipsec_esp_packet_layout.png" alt="">
+<ul>
+<li>AH と異なり、経路情報に使用する IP アドレスについては計算の対象としていない</li>
+<li>NAT の影響は受けないが、NAPT については正常に行いない</li>
+</ul></li>
+</ul></li>
+<li><a href="ike">IKE(Internet Key Exchange : 鍵交換)</a></li>
+<li>リモートアクセスにおける留意点及び対策
+<ul>
+<li>端末機器の不正使用への対策
+<ul>
+<li>SA の作成時に端末機器を認証(デバイス認証) するだけでなく、端末の使用者も認証(ユーザ認証) する必要がある
+<ul>
+<li>XAUTH
+<ul>
+<li>ISAKMP SA の作成フェーズでデバイス認証が行われた後、ユーザ ID とパスワードによってユーザ認証を行なう
+<ul>
+<li>チャレンジレスポンス方式やワンタイムパスワード方式</li>
+</ul></li>
+<li>XAUTH のユーザ認証は暗号化された ISAKMP SA を使用して行われるため、盗聴によって認証情報が盗まれる心配はない</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>IP アドレスなどの動的な割り当て
+<ul>
+<li>ISAKMP Configuration Method</li>
+</ul></li>
+<li>NAT, NAPT を使用する際の留意点
+<img src="ipsec_nat_napt_problem.png" alt="">
+<ul>
+<li>NAPT では下記図のように IPsec パケットに新たな UDP ヘッダを追加することによって対応している製品が多い
+<img src="ipsec_napt_upd_encapsulation.png" alt=""></li>
+<li>UDP encapsulation</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>Re-Keying</p>
+<ul>
+<li>暗号化アルゴリズムや暗号化鍵のライフタイムが設定される管理テーブルで、機関を過ぎると新しいデータに更新される</li>
+<li>ESP や AH で使用される共通鍵は定期的に更新される</li>
+</ul></li>
+<li><p>拠点間接続によるインターネット IPSec VPN
+<img src="ipsec_vpn_image.png" alt=""></p></li>
+</ul>
+<ul>
+<li><a href="http://qiita.com/coga2000/items/fcdf3936437d716c1e8e">IPSec-VPN クラウド間(GCP⇔AWS)通信</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基礎">基礎</a></li><li><a href="#暗号化モード">暗号化モード</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

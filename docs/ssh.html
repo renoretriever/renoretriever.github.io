@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SSH(Secure Shell) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- ネットワークを経由したサーバとの通信を安全に利用するためのプロトコル"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="SSH(Secure Shell) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- ネットワークを経由したサーバとの通信を安全に利用するためのプロトコル"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">SSH(Secure Shell)</h1></header><article><div><span><ul>
+<li><p>ネットワークを経由したサーバとの通信を安全に利用するためのプロトコル</p></li>
+<li><p>公開鍵暗号で共通鍵を暗号化して鍵交換を行い、通信データは共通鍵暗号を用いて高速に処理できる</p></li>
+<li><p>特徴</p>
+<ul>
+<li>セッション毎に異なる暗号鍵を生成して使用</li>
+</ul></li>
+<li><p><code>ホスト認証(サーバ認証)</code></p>
+<ul>
+<li>接続しようとしているサーバが正しいものであることを利用者が検証する作業</li>
+<li>初回
+<ol>
+<li>接続するとサーバからホスト公開鍵を受信
+<ul>
+<li><p>初回接続時に限っては、接続先サーバのホスト鍵を持っていないので、接続先ホストが登録されていない旨のメッセージが出力される</p>
+<pre><code class="hljs">$ ssh inittest
+The authenticity <span class="hljs-keyword">of</span> host <span class="hljs-comment">'[127.0.0.1]:2222 ([127.0.0.1]:2222)' can't be established.</span>
+ECDSA <span class="hljs-keyword">key</span> fingerprint <span class="hljs-keyword">is</span> SHA256:<span class="hljs-number">4</span>zEtjbEZu0bl7/f9VViFO4keryXlJpNMzANpmrGeBWQ.
+Are you sure you want <span class="hljs-keyword">to</span> <span class="hljs-keyword">continue</span> connecting (yes/no)? yes
+Last login: Tue Apr <span class="hljs-number">24</span> <span class="hljs-number">07</span>:<span class="hljs-number">33</span>:<span class="hljs-number">52</span> <span class="hljs-number">2018</span> <span class="hljs-keyword">from</span> <span class="hljs-number">10.0</span><span class="hljs-number">.2</span><span class="hljs-number">.2</span>
+</code></pre>
+<ul>
+<li>ホスト鍵はホスト公開鍵とホスト秘密鍵に分かれており、クライアント上には通常 <code>known_hosts</code> と呼ばれるファイルがあり、ここには特定の IPアドレス (とホスト名) をもつサーバのホスト公開鍵が登録されている</li>
+<li>ホスト秘密鍵はサーバマシン内のディスクに格納されており、ネットワーク上に持ち出されることはない
+<ul>
+<li>/etc/ssh ディレクトリ以下に秘密鍵が作成される</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>受信したホスト公開鍵を確認し、保存</li>
+<li>次回接続時には、受信したホスト公開鍵と保存したホスト公開鍵を比較して、正しい接続先かどうかの確認を行う</li>
+</ol></li>
+<li>ホスト認証が終わると、ユーザ認証が行われる
+<ul>
+<li>パスワード認証</li>
+<li>公開鍵認証</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>ポートフォワーディング機能</p>
+<ul>
+<li><p>暗号化機能を備えていないアプリケーションの通信を SSH が間に入って中継することで、暗号化を行う機能</p></li>
+<li><p>ssh -L 個人 PC のポート番号:接続先ホスト:接続先ポート番号 中継ホスト</p></li>
+<li><p>172.17.0.4 への HTTP 接続を 10.0.12.10 を経由して自身の環境と接続するポートフォワード設定</p>
+<pre><code class="hljs">$ sudo ssh -L <span class="hljs-number">1080</span>:<span class="hljs-number">172.17</span><span class="hljs-meta">.0</span><span class="hljs-meta">.4</span>:<span class="hljs-number">80</span> -l admin <span class="hljs-number">10.0</span><span class="hljs-meta">.12</span><span class="hljs-meta">.10</span>
+</code></pre>
+<ul>
+<li><a href="http://localhost:1080/">http://localhost:1080/</a> にアクセスすると、172.17.0.4:80 へアクセスすることになる</li>
+</ul></li>
+</ul></li>
+<li><p>X 転送</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> sudo ssh -L 1022:192.168.10.10:22 -l admin 192.168.10.5 </span>
+<span class="hljs-meta">$</span><span class="bash"> ssh -X admin@localhost -p 1022</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo XAUTHORITY=~/.Xauthority virt-manager</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>公開鍵鍵認証</p>
+<ul>
+<li><a href="ssh-keygen">ssh-keygen</a></li>
+</ul></li>
+<li><p>ファイルを標準出力し、それを別サーバのファイルへ書き込む</p>
+<pre><code class="hljs">$ cat testfile | ssh <span class="hljs-number">192.168</span><span class="hljs-number">.122</span><span class="hljs-number">.10</span> 'cat &gt; /tmp/testfile'
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="etc-ssh-sshd-config"></a><a href="#etc-ssh-sshd-config" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>/etc/ssh/sshd_config</h2>
+<ul>
+<li><p>test ユーザのみパスワード認証を許可</p>
+<pre><code class="hljs">Match<span class="hljs-built_in"> User </span>test
+    PasswordAuthentication <span class="hljs-literal">yes</span>
+</code></pre></li>
+<li><p>MaxStartups</p>
+<ul>
+<li>認証が完了していない SSH 接続の同時接続許容数の最大値</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ssh-config"></a><a href="#ssh-config" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>~/.ssh/config</h2>
+<ul>
+<li><p>サンプル</p>
+<pre><code class="hljs">Host alias
+    HostName<span class="hljs-built_in"> ip address
+</span>   <span class="hljs-built_in"> User </span>username
+    IdentityFile ~/.ssh/id_rsa
+    ServerAliveInterval 60
+</code></pre></li>
+<li><p>接続を早くする ※ 暗号アルゴリズムは弱い</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> ssh -c arcfour </span>
+</code></pre></li>
+<li><p>オプション</p>
+<table>
+<thead>
+<tr><th>オプション</th><th>用途</th></tr>
+</thead>
+<tbody>
+<tr><td>StrictHostKeyChecking</td><td>初めての接続や、対象サーバのフィンガープリントが変更になった場合、メッセージが出力される<br>このメッセージに回答しないと先に進めないが、-o StrictHostKeyChecking=no を追加すると聞かれること無く処理を進めることができる</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ssh-セキュリティ"></a><a href="#ssh-セキュリティ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SSH セキュリティ</h2>
+<h3><a class="anchor" aria-hidden="true" id="etc-ssh-sshd-config-1"></a><a href="#etc-ssh-sshd-config-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>/etc/ssh/sshd_config</h3>
+<ul>
+<li><p>Port</p>
+<ul>
+<li>待ち受けポートを変更する</li>
+<li>22 =&gt; 2022 とか</li>
+</ul></li>
+<li><p>Protocol</p>
+<ul>
+<li>バージョン 1 には脆弱性が見つかっているので、バージョン 2 のみを利用する</li>
+</ul></li>
+<li><p>PermitRootLogin</p>
+<ul>
+<li>root ユーザのログイン許可設定</li>
+<li>yes
+<ul>
+<li>許可</li>
+</ul></li>
+<li>no
+<ul>
+<li>拒否</li>
+</ul></li>
+<li>without-password
+<ul>
+<li>パスワードを使用したログイン拒否</li>
+</ul></li>
+<li>forced-commands-only
+<ul>
+<li>直接ログインを拒否するが、root 権限を使うコマンドのアクセスは許可</li>
+<li>scp コマンド</li>
+</ul></li>
+</ul></li>
+<li><p>PermitEmptyPasswords</p>
+<ul>
+<li><p>空パスワードは許可しない</p>
+<pre><code class="hljs"><span class="hljs-attribute">PermitEmptyPasswords</span> <span class="hljs-literal">no</span>
+</code></pre></li>
+</ul></li>
+<li><p>PasswordAuthentication</p>
+<ul>
+<li><p>公開鍵認証を設定しているのならパスワード認証は不要のはず</p>
+<pre><code class="hljs"><span class="hljs-attribute">PasswordAuthentication</span> <span class="hljs-literal">no</span>
+</code></pre></li>
+</ul></li>
+<li><p>MaxAuthTries</p>
+<ul>
+<li><p>指定された回数内にログインできなければ、接続が強制的に切断される</p></li>
+<li><p>3 を設定(2 回 NG になると接続を遮断する)</p>
+<pre><code class="hljs">MaxAuthTries <span class="hljs-number">3</span>
+</code></pre></li>
+</ul></li>
+<li><p>LoginGraceTime</p>
+<ul>
+<li><p>ここで指定された時間内にログインが出来なければ、接続が強制的に遮断</p></li>
+<li><p>30 秒に変更</p>
+<pre><code class="hljs">LoginGraceTime <span class="hljs-number">30</span>
+</code></pre></li>
+</ul></li>
+<li><p>AllowUsers / DenyUsers</p>
+<ul>
+<li><p>SSH を利用するユーザが限定的な場合は、 AllowUsers に許可するユーザだけを設定する</p>
+<ul>
+<li><font color='red'>ミスると接続できなくなるので注意</font></li>
+</ul></li>
+<li><p>test01, test02 だけ接続を許可</p>
+<pre><code class="hljs"><span class="hljs-attribute">AllowUsers</span> test01 test02
+</code></pre></li>
+<li><p>test01 であり 192.168.10.10 からの接続のみ許可</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">AllowUsers</span> <span class="hljs-selector-tag">test01</span>@<span class="hljs-keyword">192</span>.<span class="hljs-keyword">168</span>.<span class="hljs-keyword">10</span>.<span class="hljs-keyword">10</span>
+</code></pre></li>
+<li><p>192.168.10.10 からの接続のみ許可</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">AllowUsers</span> *@<span class="hljs-keyword">192</span>.<span class="hljs-keyword">168</span>.<span class="hljs-keyword">10</span>.<span class="hljs-keyword">10</span>
+</code></pre></li>
+</ul></li>
+<li><p>とある SFTP ユーザだけパスワード認証を許可する &amp; 通常は鍵認証しか通してないけど、とあるユーザはパスワード認証したい</p>
+<pre><code class="hljs"><span class="hljs-comment"># vim /etc/ssh/sshd_config</span>
+Subsystem       sftp    internal-sftp
+Match<span class="hljs-built_in"> User </span>sftpusername
+    ChrootDirectory /home/%u
+    PasswordAuthentication <span class="hljs-literal">yes</span>
+</code></pre>
+<ul>
+<li>ChrootDirectory の所有者は root にし、root 以外の書き込みが出来ないようにしないといけない
+<ul>
+<li>/home/sftpusername 配下には作れず、/home/sftpusername/a 配下などには作成できる</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="tcp-wrapper"></a><a href="#tcp-wrapper" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TCP Wrapper</h3>
+<ul>
+<li><p>TCP Wrapper でホスト単位のアクセス制御が可能</p></li>
+<li><p>/etc/hosts.deny</p>
+<ul>
+<li><p>全拒否</p>
+<pre><code class="hljs"><span class="hljs-keyword">ALL</span>: <span class="hljs-keyword">ALL</span>
+</code></pre></li>
+</ul></li>
+<li><p>/etc/hosts.allow</p>
+<ul>
+<li><p>192.168.11.2 ならびに *.example.com からの接続を許可</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">sshd</span>: 192<span class="hljs-selector-class">.168</span><span class="hljs-selector-class">.11</span><span class="hljs-selector-class">.2</span> *<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.com</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ファイル転送"></a><a href="#ファイル転送" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ファイル転送</h2>
+<hr>
+<ul>
+<li><a href="scp">SCP</a></li>
+<li><a href="sftp">SFTP</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#etc-ssh-sshd-config">/etc/ssh/sshd_config</a></li><li><a href="#ssh-config">~/.ssh/config</a></li><li><a href="#ssh-セキュリティ">SSH セキュリティ</a><ul class="toc-headings"><li><a href="#etc-ssh-sshd-config-1">/etc/ssh/sshd_config</a></li><li><a href="#tcp-wrapper">TCP Wrapper</a></li></ul></li><li><a href="#ファイル転送">ファイル転送</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>プログラミング · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基礎"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="プログラミング · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基礎"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">プログラミング</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基礎"></a><a href="#基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基礎</h2>
+<hr>
+<ul>
+<li><p>ライブラリー</p>
+<ul>
+<li>複数のオブジェクトファイルをまとめて収録したファイル</li>
+<li>リンカーにライブラリを指定すると、その中から必要なオブジェクトだけを抽出し、それを他のオブジェクトと結合して EXE ファイルを生成してくれる</li>
+<li><code>標準ライブラリ関数</code>
+<ul>
+<li>どのプログラムでも使える標準的な処理がライブラリとして提供されている</li>
+<li>例
+<ul>
+<li>stdio.h
+<ul>
+<li>fopen 関数</li>
+<li>fgetc 関数</li>
+</ul></li>
+<li>string.h
+<ul>
+<li>strcpy 関数</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><code>DLL(Dynamic Link Library)</code>
+<ul>
+<li>プログラムの実行時に結合されるもの</li>
+<li>メリット</li>
+</ul></li>
+<li>スタティックリンクライブラリ
+<ul>
+<li>オブジェクトファイルの実体を格納し、EXE ファイルに直接結合してしまう形式のライブラリ</li>
+</ul></li>
+</ul></li>
+<li><p>インタブリタ</p>
+<ul>
+<li>実行時にソースコードの内容を 1 行ずつ解釈して処理</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>手続型プログラミング</p>
+<ul>
+<li>手続きを処理する順番に並べて命令文を記述するプログラム言語</li>
+<li>最も一般的な方式で、&quot;C&quot;，&quot;COBOL&quot;，&quot;PASCAL&quot;などのプログラム言語は手続き型に分類</li>
+</ul></li>
+<li><p>論理型プログラミング</p>
+<ul>
+<li>論理式の証明過程をプログラムで自動化するためのプログラム言語</li>
+<li>代表的なものに Prolog</li>
+<li>プログラムに&quot;事実&quot;と&quot;規則&quot;を記述することで、言語の処理系がもつ導出原理によって&quot;質問&quot;に適合する事実を導き出すことが可能</li>
+</ul></li>
+<li><p>関数型プログラミング</p>
+<ul>
+<li>関数の定義によってプログラムを構成するプログラム言語</li>
+<li>命令を逐一実行するのではなく式を入れ子構造にし、式を計算結果を置き換えていくことで実行していく方式で、代表的なものに&quot;Lisp&quot;がある</li>
+</ul></li>
+<li><p>エキスパートシステム</p>
+<ul>
+<li>大量の既知情報を処理することで、専門家の判断をエミュレートする人工知能システム</li>
+</ul></li>
+</ul>
+<ul>
+<li>単一値の置換
+<ul>
+<li><p>単一の変数を置換する場合は、文字列の後ろに % と置換したい値を並べて記述</p>
+<table>
+<thead>
+<tr><th>value</th><th>description</th></tr>
+</thead>
+<tbody>
+<tr><td>%s</td><td>文字列として置換</td></tr>
+<tr><td>%d</td><td>整数値として置換</td></tr>
+<tr><td>%f</td><td>浮動小数点として置換</td></tr>
+<tr><td>%x</td><td>16 進整数として置換</td></tr>
+</tbody>
+</table>
+</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ソース-ファイルから実行可能なファイルができるまで"></a><a href="#ソース-ファイルから実行可能なファイルができるまで" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ソース・ファイルから実行可能なファイルができるまで</h2>
+<hr>
+<ol>
+<li>ソースファイルの作成
+<ul>
+<li>ソースコード
+<ul>
+<li>何らかのプログラミング言語で記述したプログラムのこと</li>
+<li>ソースファイル
+<ul>
+<li>ソースコードをファイルとして保存したもの</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><code>コンパイル</code> により <code>オブジェクトファイル(機械語)</code> を作成
+<ul>
+<li><code>ネイティブ・コード(機械語)</code>
+<ul>
+<li>CPU が解釈・実行できる形式のプログラム</li>
+<li>コンパイルを実行することで得られる</li>
+</ul></li>
+<li>コンパイラ
+<ul>
+<li><p>C 言語などの高水準言語で記述されたソースコードをネイティブ・コードに翻訳する機能を持ったプログラム</p></li>
+<li><p>CPU の種類が異なれば、ネイティブコードの種類も異なる</p></li>
+<li><p>ネイティブコードの生成</p>
+<ul>
+<li>ソースコードの字句解析 =&gt; 構文解析 =&gt; 意味解析 =&gt; ネイティブコード生成</li>
+</ul></li>
+<li><p>例</p>
+<ul>
+<li><code>C コンパイラ</code>
+<ul>
+<li>C 言語で記述されたソースコードをネイティブコードに翻訳するコンパイラ</li>
+</ul></li>
+</ul></li>
+<li><p>実行例 : Borland C++ コンパイラ(bcc32.exe)</p>
+<pre><code class="hljs">bcc<span class="hljs-number">32</span> -W -<span class="hljs-keyword">c</span> Sample<span class="hljs-number">1</span>.<span class="hljs-keyword">c</span>
+</code></pre>
+<ul>
+<li><p>実行後は <code>Sample1.obj</code> が生成される</p></li>
+<li><p>実行可能な EXE ファイルを得るためには <code>リンク</code> という動作が必要</p>
+<pre><code class="hljs">ilink32 -Tpe -c -x -aa c0w32<span class="hljs-selector-class">.obj</span> Sample1<span class="hljs-selector-class">.obj</span>, Sample1<span class="hljs-selector-class">.exe</span>,,import32<span class="hljs-selector-class">.lib</span> cw32lib
+</code></pre>
+<ul>
+<li><code>-Tpe -c -x -aa</code>
+<ul>
+<li>Windows 用の EXE ファイルを生成することを指定</li>
+</ul></li>
+<li><code>c0w32.obj</code>
+<ul>
+<li>スタートアップ</li>
+<li>すべてのプログラムの先頭に結合する共通的な処理が記述されたオブジェクト・ファイル</li>
+<li>Borland C++ によって提供されているプログラム</li>
+</ul></li>
+<li><code>import32.lib cw32lib</code>
+<ul>
+<li>ライブラリファイル</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><code>リンク</code> により実行ファイル(機械語)を作成
+<ul>
+<li>リンク
+<ul>
+<li>複数のオブジェクトファイル(中間言語)を結合して 1 つの OS 上で起動可能な実行可能形式のファイルを作成</li>
+<li>リンカはオブジェクトコード中から呼び出されるコードが収録された他のオブジェクトファイルやライブラリファイルなどを連結あるいは参照し、実行時に適切に呼び出せるよう繋ぎこむ</li>
+<li>静的リンク
+<ul>
+<li>リンカがコード中から参照されるライブラリ関数などすべての機械語プログラムを一つのファイルに格納し、単体で実行可能なファイルを生成</li>
+</ul></li>
+<li>動的リンク
+<ul>
+<li>外部プログラムの連結は実行時に行われるため、リンカは実行ファイルにローダなど外部コードを呼び出す仕組みを組み込む</li>
+</ul></li>
+<li>リンカー
+<ul>
+<li>リンクを実行するツール</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+<ul>
+<li>ビルド
+<ul>
+<li>コンパイル =&gt; リンクを続けて行う意味</li>
+</ul></li>
+</ul>
+<ul>
+<li><a href="https://postd.cc/50-data-structure-and-algorithms-interview-questions-for-programmers/">プログラマの採用面接で聞かれる、データ構造とアルゴリズムに関する50以上の質問</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基礎">基礎</a></li><li><a href="#ソース-ファイルから実行可能なファイルができるまで">ソース・ファイルから実行可能なファイルができるまで</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

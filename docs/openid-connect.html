@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>OpenID Connect · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- spec"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="OpenID Connect · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- spec"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">OpenID Connect</h1></header><article><div><span><ul>
+<li>spec
+<ul>
+<li><a href="https://openid-foundation-japan.github.io/openid-connect-core-1_0.ja.html">OpenID Connect Core 1.0 incorporating errata set 1</a></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>特徴</p>
+<ul>
+<li><code>認証</code> と <code>認可</code> の両方をサポートしたプロトコル</li>
+<li>OpenID Connect は OAuth のフローをそのままに、クライアント（Relying Party）が信頼できるように、認証サーバー（OpenID Provider）が安全な方式（JWT）で認証結果（ID Token）を提供するプロトコル</li>
+<li>OAuth 2.0 を拡張する形で規程
+<ul>
+<li>OAuth で発行される Access Token に加えて、エンドユーザ本人証明書として <code>ID token</code> も発行される
+<ul>
+<li>ID 連携
+<ul>
+<li>エンドユーザの ID 連携をサポート</li>
+<li>これを実現する ID token を追加
+<ul>
+<li>ID token は IdP で管理するエンドユーザの ID を保持</li>
+<li>ID token を介して IdP の ID が RP と共有されることから、エンドユーザの認証が可能となる</li>
+<li>ID token
+<ul>
+<li>エンドユーザは誰であるか(ID), どの IdP が どの RP に対し、いつ発行したものかが分かるトークン</li>
+<li>さらに、これらの情報が改ざんされていないことを検証できる署名が付与されている</li>
+<li><a href="jwt">JWT(JSON Web Token)</a> という技術を採用</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>OAuth 2.0 ベースにしており OAuth 2.0 の特徴をおおよそ継承する
+<ul>
+<li>SSL/TLS 必須</li>
+<li>署名は必須ではない</li>
+<li>Access token は Authorization ヘッダの Bearer スキームに入れてリクエストする</li>
+<li>Access token の寿命は結構短い</li>
+</ul></li>
+</ul></li>
+<li>Hybrid Flow 追加
+<ul>
+<li>フロントエンド + バックエンド構成アプリを考慮した Hybrid Flow</li>
+</ul></li>
+</ul></li>
+<li><p>登場人物</p>
+<table>
+<thead>
+<tr><th>name</th><th>description</th></tr>
+</thead>
+<tbody>
+<tr><td>OpenID Provider(OP)</td><td>ユーザーの認証を行う機能を有するサーバー<br>また、ユーザーの認証時に Relying Party から要求された ID 情報を供給することができる REST エンドポイントを有するサーバー</td></tr>
+<tr><td>Relying Party(RP)</td><td>OP に ID Token と ID 情報を要求するサーバー<br>SSO 対象のアプリケーションを指す</td></tr>
+<tr><td>ID Token</td><td>認証と認可の情報を含む JWT(JSON Web Token) 形式のトークン</td></tr>
+<tr><td>Access Token</td><td>UserInfo エンドポイントにアクセスするためのトークン</td></tr>
+<tr><td>UserInfo</td><td>Access Token を提示するクライアントに対して、 ID 情報を提供する</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ul>
+<li>OpenID Connect プロトコルはおおまかに言って以下のステップに従う
+<ol>
+<li><p>RP (Client) が OP に認可リクエストを送る</p></li>
+<li><p>ユーザは OP にサインインし、認可をされる</p></li>
+<li><p>OP は ID Token および (通常は) Access Token を返す</p></li>
+<li><p>RP は Access Token を添えて UserInfo Endpoint にリクエストを送る</p></li>
+<li><p>UserInfo Endpoint は ユーザに基づく ID 情報を返却する</p>
+<pre><code class="hljs">+--------+                                   +--------+
+|<span class="hljs-string">        </span>|<span class="hljs-string">                                   </span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">---------(1) AuthN Request--------&gt;</span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">                                   </span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">  +--------+                       </span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">  </span>|<span class="hljs-string">        </span>|<span class="hljs-string">                       </span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">  </span>|<span class="hljs-string">  End-  </span>|<span class="hljs-string">&lt;--(2) AuthN &amp; AuthZ--&gt;</span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">  </span>|<span class="hljs-string">  User  </span>|<span class="hljs-string">                       </span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">   RP   </span>|<span class="hljs-string">  </span>|<span class="hljs-string">        </span>|<span class="hljs-string">                       </span>|<span class="hljs-string">   OP   </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">  +--------+                       </span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">                                   </span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">&lt;--------(3) AuthN Response--------</span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">                                   </span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">---------(4) UserInfo Request-----&gt;</span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">                                   </span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">&lt;--------(5) UserInfo Response-----</span>|<span class="hljs-string">        </span>|
+|<span class="hljs-string">        </span>|<span class="hljs-string">                                   </span>|<span class="hljs-string">        </span>|
++--------+                                   +--------+
+</code></pre></li>
+</ol></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="通信フロー"></a><a href="#通信フロー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通信フロー</h2>
+<p>下記フローが定義されており、これらを RP が指定できる仕組みになっている</p>
+<ol>
+<li>Authorization Code Flow</li>
+<li>Implicit Flow</li>
+<li>Hybrid Flow</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="authorization-code-flow"></a><a href="#authorization-code-flow" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Authorization Code Flow</h3>
+<ul>
+<li><p>OP がエンドユーザー経由で RP に発行した認可コードをキーに ID Token や Access Token を取得する方式</p></li>
+<li><p>フロー図</p>
+<ul>
+<li><img src="openid_connect_authorization_code_flow.png" alt=""></li>
+</ul></li>
+<li><p>ID Token のやり取りを OP と RP が直接通信で行うため、互いに疎通できる環境下でのみ使用可</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="implicit-flow"></a><a href="#implicit-flow" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implicit Flow</h3>
+<ul>
+<li><p>前述の Authorization Code Flow で使用していた Token Endpoint を使用せず、ID Token と Access Token は Authorization エンドポイントから返却</p></li>
+<li><p>フロー図</p>
+<ul>
+<li><img src="openid_connect_implicit_flow.png" alt=""></li>
+</ul></li>
+<li><p>ID Token の受け渡しは Web ブラウザを介して行うため、OP と RP の間に直接通信できない環境でも採用することが可</p></li>
+<li><p>図中に示す通り、ID Token の受け渡しは URL フラグメントによる受け渡しとなるため、RP はフラグメント部分をパースした後、情報の検証を行うエンドポイントに対して、POST でのデータ送信を行うようなスクリプトを配備する必要がある</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="hybrid-flow"></a><a href="#hybrid-flow" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hybrid Flow</h3>
+<h2><a class="anchor" aria-hidden="true" id="id-情報の提供"></a><a href="#id-情報の提供" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ID 情報の提供</h2>
+<ol>
+<li>ID Token から ID 情報を取得
+<ul>
+<li><p>OP から RP に ID Token を返却する際、この ID Token に含める方法</p></li>
+<li><p>どういった属性を含めるかの権限要求は認可リクエスト時に行うことができ、下記のように指定</p>
+<pre><code class="hljs">HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">302</span> Found
+Location: https:<span class="hljs-regexp">//op</span>.example.domain/authorize?
+response_type=code
+&amp;scope=openid%20profile%20email <span class="hljs-comment"># 属性の要求箇所</span>
+&amp;client_id=XXXXXX
+&amp;<span class="hljs-keyword">state</span>=abcdefg123
+&amp;redirect_uri=https%3A%2F%2Frp.example.domain%2Fcallback
+</code></pre>
+<ul>
+<li>URL クエリストリングの scope パラメータを用いて、 ID 情報の部分集合(クレーム)を指定</li>
+<li>OpenID Connect の仕様では、クレームを要求する際に、下記の scope パラメータが定義
+<ul>
+<li>profile
+<ul>
+<li>姓、名、ニックネーム、生年月日、ロケールなどの情報を含む</li>
+</ul></li>
+<li>email</li>
+<li>address</li>
+<li>phone</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>UserInfo エンドポイントで提供する方法
+<ul>
+<li><p>Authorization Code Flow では「7.」で要求し、「8.」で受け取る</p></li>
+<li><p>Implicit Flow では「5.」で要求し、「6.」で受け取る</p></li>
+<li><p>RP が Access Token を用いて、UserInfo エンドポイントに対して、 ID 情報を要求する方法</p></li>
+<li><p>UserInfo エンドポイントは OAuth 2.0 でいうところの「Resource Server」に当たる</p>
+<ul>
+<li><a href="http://tools.ietf.org/html/rfc6749#section-7">http://tools.ietf.org/html/rfc6749#section-7</a></li>
+</ul></li>
+<li><p>RP は下記のようなリクエストを UserInfo エンドポイントに送り、応答として JSON 形式の ID 情報を取得することができる</p>
+<pre><code class="hljs">GET <span class="hljs-regexp">/userinfo HTTP/</span><span class="hljs-number">1.1</span>
+<span class="hljs-string">Host:</span> server.example.domain
+<span class="hljs-string">Authorization:</span> Bearer SlAV32hkKG
+ 
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+Content-<span class="hljs-string">Type:</span> application/json
+ 
+{
+  <span class="hljs-string">"sub"</span>: <span class="hljs-string">"1234567"</span>,
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"OGIS TARO"</span>,
+  <span class="hljs-string">"given_name"</span>: <span class="hljs-string">"TARO"</span>,
+  <span class="hljs-string">"family_name"</span>: <span class="hljs-string">"OGIS"</span>,
+  <span class="hljs-string">"preferred_username"</span>: <span class="hljs-string">"t.ogis"</span>,
+  <span class="hljs-string">"email"</span>: <span class="hljs-string">"t.ogis@example.domain"</span>
+}
+</code></pre></li>
+</ul></li>
+</ol>
+<ul>
+<li><a href="https://www.openid.or.jp/">OpenID Japan</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="zatsu"></a><a href="#zatsu" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>zatsu</h2>
+<ul>
+<li>OpenID Connect
+<ul>
+<li>2014年</li>
+<li>JSON 形式</li>
+<li>OAuth 2.0 をベースに、認証やセッション管理なども実現</li>
+<li>OpenID からの脱却</li>
+<li>OAuth を使いながら安全に身元確認をできるようにしている</li>
+<li>OpenID トークン</li>
+<li>クレームの扱い
+<ul>
+<li>外部クレームの提供</li>
+<li>クレームの暗号化</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>OpenID Authentication</p>
+<ul>
+<li>OpenID Provider が行う認証</li>
+</ul></li>
+<li><p>OpenID</p>
+<ul>
+<li>いま来ている人の身元を認証</li>
+<li>OP(OpenID Provider) - RP(Relying Party)間で認証結果と属性情報(クレーム)の受け渡しができること</li>
+<li>認証結果のやり取り
+<ul>
+<li>ID トークン
+<ul>
+<li>下記値を含むデータをエンコードして署名を付けたもの
+<ul>
+<li>発行元の OP 識別子</li>
+<li>発行先の RP 識別子(client_id)</li>
+<li>ユーザの識別子</li>
+<li>発行日時</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>OAuth 2.0 のフローでやり取りされるアクセストークン(Access Token)や認可コード(Authorization Code)とともに、認証結果を表す ID トークンを受け渡すことで ID 連携を可能にしている</li>
+<li>クレーム提供のために UserInfo エンドポイントではユーザの新規登録に必要なメールアドレス、氏名などの基本的なクレーム一覧が定義</li>
+</ul></li>
+<li><p>SSO リクエストはサービスプロバイダーの WEB サイトかまたは SSO ベンダーの WEB サイトから開始できる</p>
+<ul>
+<li>SAML はどちらの方法もサポートする</li>
+<li>OpenID はサービスプロバイダーの WEB サイトにアクセスする必要がある</li>
+</ul></li>
+<li><p>ユーザープロビジョニングの問題もある。OpenID では、特定のアプリケーションの全てのユーザーが、 自分の OpenID 資格情報をそのアプリケーションに対して登録しなければならない。数百人、さらには数 千人のユーザー向けに OpenID を有効にしなければならない場合、多大な手間が掛かってしまう。SAML は X.509 証明書に対応しており、全てのユーザーに対して直ちに有効にできるので、はるかに簡単</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="openid"></a><a href="#openid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OpenID</h2>
+<ul>
+<li><p>2006 年に発明</p></li>
+<li><p>コンシューマが単一のログイン情報を複数の WEB サイトで使えるようにすることを目的に設計</p></li>
+<li><p>web サイト同士は必ずしも信頼関係にある必要はなし</p>
+<ul>
+<li>SaaS、ユーザディレクトリ、SSO アプリケーション間で安全な通信を確立する必要は必ずしも必要なし</li>
+</ul></li>
+<li><p>標準化されなかった（独自方法が乱立）</p></li>
+<li><p>2011 年 OpenID サポート打ち切り</p></li>
+<li><p>認証</p>
+<ul>
+<li>1 回のログインで多くのサービスへアクセスしたい
+<ul>
+<li>この問題を解決するためにプラッド・フィッツパトリック氏が 2005 年に OpenID を発明</li>
+<li>Web で人気を博したのは SAML(2002 年) だ</li>
+<li>SAML 2.0 ではセキュリティに重点が置かれ、高い安全性が保証されたアプリケーションで利用できるように鳴った</li>
+</ul></li>
+<li>従業員などがアプリなどにアクセスするための ID を 1 つで管理したい</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#通信フロー">通信フロー</a><ul class="toc-headings"><li><a href="#authorization-code-flow">Authorization Code Flow</a></li><li><a href="#implicit-flow">Implicit Flow</a></li><li><a href="#hybrid-flow">Hybrid Flow</a></li></ul></li><li><a href="#id-情報の提供">ID 情報の提供</a></li><li><a href="#zatsu">zatsu</a></li><li><a href="#openid">OpenID</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>データベース · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基礎"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="データベース · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基礎"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">データベース</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基礎"></a><a href="#基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基礎</h2>
+<hr>
+<ul>
+<li><p>データベースとは</p>
+<ul>
+<li>ある目的をもってまとめられたデータの集まりのこと</li>
+<li>例
+<ul>
+<li>図書館</li>
+<li>アドレス帳</li>
+</ul></li>
+</ul></li>
+<li><p>基本機能</p>
+<ul>
+<li>データの検索と更新(登録、修正、削除)</li>
+<li>同時実行制御</li>
+<li>耐障害性
+<ul>
+<li>データの冗長化</li>
+<li>バックアップ</li>
+</ul></li>
+<li>セキュリティ</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="データモデル"></a><a href="#データモデル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>データモデル</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="概念データモデル"></a><a href="#概念データモデル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>概念データモデル</h3>
+<ul>
+<li>データの内容や概念をまとめた抽象的なモデル</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="論理データモデル"></a><a href="#論理データモデル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>論理データモデル</h3>
+<ul>
+<li>データベースで実際に実装可能なモデル</li>
+<li>種類
+<ul>
+<li>階層型データベース
+<ul>
+<li>データをヒエラルキー構造で管理するデータベース</li>
+<li>例
+<ul>
+<li>組織図、樹形図</li>
+</ul></li>
+</ul></li>
+<li>ネットワークモデル
+<ul>
+<li>階層型では表現できない、子が複数の親を保つ場合ンドの網状で表現するデータモデル</li>
+</ul></li>
+<li>リレーショナルデータベース(関係モデル)
+<ul>
+<li><a href="rdb">RDB(Relational Database : リレーショナルデータベース)</a></li>
+</ul></li>
+<li>オブジェクト指向データベース
+<ul>
+<li><code>オブジェクト</code> という形式でデータを管理</li>
+</ul></li>
+<li>XML データベース
+<ul>
+<li><a href="xml">XML</a> という形式でデータを管理</li>
+</ul></li>
+<li>NoSQL データベース
+<ul>
+<li><a href="nosql">NoSQL</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="物理データモデル"></a><a href="#物理データモデル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>物理データモデル</h3>
+<ul>
+<li>データを DBMS で物理的に配置するモデル</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="設計"></a><a href="#設計" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>設計</h2>
+<hr>
+<ul>
+<li><p>概念設計(モデリング)</p>
+<ul>
+<li>=&gt; 概念データモデルができあがる</li>
+</ul></li>
+<li><p>論理設計</p>
+<ul>
+<li>データベースとユーザやデータベース以外のシステムを結びつけるための設計</li>
+<li>=&gt; 論理データモデルができあがる</li>
+</ul></li>
+<li><p>物理設計</p>
+<ul>
+<li>データベースと <a href="dbms">DBMS</a> やハードウェアを結びつけるための設計</li>
+<li>=&gt; 物理データモデルができあがる</li>
+</ul></li>
+<li><p><code>3 層スキーマアーキテクチャ</code></p>
+<ul>
+<li>ANSI で標準化された <code>ANSI/X3/SPARC</code></li>
+</ul>
+<ol>
+<li>外部スキーマ
+<ul>
+<li>データベースに関係ないプログラムやユーザが使用するデータベースの記述</li>
+<li><a href="database-view">ビュー</a></li>
+</ul></li>
+<li>概念スキーマ
+<ul>
+<li>エンティティやテーブル、テーブル間の関連などの記述</li>
+<li>内部スキーマと外部スキーマの間に位置</li>
+</ul></li>
+<li>内部スキーマ
+<ul>
+<li>DBMS で使用するデータベースを物理的にどのように配置するかなど、具体的に実装するための記述</li>
+<li><a href="database-index">インデックス</a></li>
+</ul></li>
+</ol></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="dbmsdata-base-management-system-データベース管理システム"></a><a href="#dbmsdata-base-management-system-データベース管理システム" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DBMS(Data Base Management System : データベース管理システム)</h2>
+<ul>
+<li><a href="dbms">DBMS</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="コスト"></a><a href="#コスト" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コスト</h2>
+<ul>
+<li><p>ライセンス</p>
+<ul>
+<li>プロセッサライセンス
+<ul>
+<li>CPU 性能に応じて価格が決まるライセンス体系</li>
+</ul></li>
+<li>ユーザライセンス
+<ul>
+<li>DBMS を利用するユーザに応じて価格が決まる体系</li>
+</ul></li>
+</ul></li>
+<li><p>サブスクリプション</p>
+<ul>
+<li>期限を決めた有期の使用許可</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="冗長化"></a><a href="#冗長化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>冗長化</h2>
+<h3><a class="anchor" aria-hidden="true" id="クラスタリング"></a><a href="#クラスタリング" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>クラスタリング</h3>
+<ul>
+<li><p>Active-Active</p>
+<ul>
+<li>クラスタを構成するコンポーネントが同時に稼働</li>
+<li>Oracle
+<ul>
+<li>RAC(Real Application Clusters)</li>
+</ul></li>
+<li>DB2
+<ul>
+<li>pureScale</li>
+</ul></li>
+<li>メリット
+<ul>
+<li>ダウンタイムが短い</li>
+</ul></li>
+</ul></li>
+<li><p>Active-Standby</p>
+<ul>
+<li>クラスタを構成するコンポーネントのうち、同時に稼働するのは Active のみで、残りは待機(Standby) している</li>
+<li>ホットスタンバイ
+<ul>
+<li>普段から待機系を起動</li>
+</ul></li>
+<li>コールドスタンバイ
+<ul>
+<li>待機系のデータベースは通常は起動せず、現用系がダウンしたら待機系を起動する</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="レプリケーション"></a><a href="#レプリケーション" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>レプリケーション</h3>
+<ul>
+<li>データベースとストレージを複数用意し耐障害性を高める</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ストレージ共有"></a><a href="#ストレージ共有" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストレージ共有</h2>
+<ul>
+<li><p>シェアードディスク型</p>
+<ul>
+<li>複数のサーバが 1 つのディスクを使用する</li>
+</ul></li>
+<li><p>シェアードナッシング</p>
+<ul>
+<li>ネットワーク以外のリソースをすべて分離するやり方</li>
+<li>スケールで性能向上</li>
+<li>シャーディング</li>
+<li>MySQL Cluster</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="アーキテクチャパターン"></a><a href="#アーキテクチャパターン" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>アーキテクチャパターン</h2>
+<ul>
+<li>スタンドアロン</li>
+<li>クラスタリング
+<ul>
+<li>シェアードナッシング</li>
+<li>シェアードディスク
+<ul>
+<li>Active-Active</li>
+<li>Active-Standby
+<ul>
+<li>ホットスタンバイ</li>
+<li>コールドスタンバイ</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>レプリケーション
+<ul>
+<li>マスター-スレーブ</li>
+<li>マルチマスタ</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="階層"></a><a href="#階層" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>階層</h2>
+<ul>
+<li>インスタンス(プロセス)
+<ul>
+<li>データベース 1
+<ul>
+<li>スキーマ a
+<ul>
+<li>テーブル A</li>
+<li>テーブル B</li>
+<li>テーブル C</li>
+</ul></li>
+</ul></li>
+<li>データベース 2
+<ul>
+<li>スキーマ b
+<ul>
+<li>テーブル D</li>
+<li>テーブル E</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="トランザクション"></a><a href="#トランザクション" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>トランザクション</h2>
+<ul>
+<li><a href="transaction">トランザクション</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="可用性向上のためのデータベース構成"></a><a href="#可用性向上のためのデータベース構成" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>可用性向上のためのデータベース構成</h2>
+<ul>
+<li><p>共有ディスクによるアクティブ - スタンバイ構成</p>
+<ul>
+<li>マスターで障害が発生した場合には、スレーブで共有ディスクをマウントし、スレーブを可動させる</li>
+<li>クラスタソフト
+<ul>
+<li>Lifekeeper</li>
+<li>Pacemaker</li>
+</ul></li>
+</ul></li>
+<li><p>非共有ディスクによるアクティブ - スタンバイ構成</p>
+<ul>
+<li>データベースサーバを複数作成し、レプリケーション構成をとる</li>
+<li>機能
+<ul>
+<li>Oracle Data Guard</li>
+<li>PostgreSQL のストリーミングレプリケーション</li>
+</ul></li>
+<li>同期 / 非同期</li>
+</ul></li>
+<li><p>非共有ディスクによるアクティブ / アクティブ</p>
+<ul>
+<li>複数台のデータベースサーバがそれぞれデータを保持していて、アプリケーションはどのサーバからもデータベースへの更新・参照が可能な構成</li>
+<li>マルチマスターレプリケーション</li>
+<li>Bi-Directional Replication</li>
+<li>難</li>
+</ul></li>
+<li><p>共有ディスクによるアクティブ - アクティブ構成</p>
+<ul>
+<li>一つの共有ディスクに対し、複数のデータベースサーバからアクセスする方式</li>
+<li>機能
+<ul>
+<li>Oracle Real Application Clusters(RAC)</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="sql-パフォーマンスチューニング"></a><a href="#sql-パフォーマンスチューニング" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SQL パフォーマンスチューニング</h2>
+<ol>
+<li>ログの解析
+<ul>
+<li>スロークエリ</li>
+</ul></li>
+<li>クエリー実行計画の確認</li>
+<li>リソース情報の確認</li>
+<li>パラメータの確認</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="インデックスの使い方"></a><a href="#インデックスの使い方" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>インデックスの使い方</h2>
+<ul>
+<li>カーディナリティ(Cardinality)
+<ul>
+<li>インデックス内のユニークな値の多さを表した指数</li>
+<li>カーディナリティが
+<ul>
+<li>高い
+<ul>
+<li>AUTO_INCREMENT</li>
+<li>住所</li>
+<li>更新日時</li>
+</ul></li>
+<li>低い
+<ul>
+<li>フラグ</li>
+<li>カテゴリ</li>
+<li>都道府県</li>
+</ul></li>
+</ul></li>
+<li>ANALYZE TABLE または myisamchk -a を実行することによって更新される</li>
+<li>カーディナリティーが高いほど、MySQL が結合を実行するときにこのインデックスを使用する可能性は高くなる
+<ul>
+<li>結合の絞り込み結果の低いカラムにインデックスを貼ってもあんまり意味ない</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>インデックス作成方針</p>
+<ul>
+<li>サイズの大きなテーブルだけ作る</li>
+<li>主キー制約や一意制約の付与されている列には不要</li>
+<li>カーディナリティの高い列に作る</li>
+</ul></li>
+<li><p>注意</p>
+<ul>
+<li>インデックス更新のオーバーヘッドにより、更新処理の性能劣化させる</li>
+<li>意図したものと違うインデックスが使われてしまう可能性がある</li>
+</ul></li>
+<li><p>ハッシュインデックス</p></li>
+<li><p>B-Tree インデックス</p></li>
+<li><p><a href="sql">インデックス作成</a></p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="パーティションの使い方"></a><a href="#パーティションの使い方" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>パーティションの使い方</h2>
+<h2><a class="anchor" aria-hidden="true" id="データ分析とデータベース"></a><a href="#データ分析とデータベース" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>データ分析とデータベース</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="データウェアハウスとデータマイニング"></a><a href="#データウェアハウスとデータマイニング" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>データウェアハウスとデータマイニング</h3>
+<ul>
+<li><p><code>BI(Business Intelligence)</code></p>
+<ul>
+<li>企業などの組織に関するデータを収集・蓄積・分析・報告することにより、経営上の意思決定を効率的に行うための方法</li>
+</ul></li>
+<li><p><code>OLTP(Online Transaction Processing)</code></p>
+<ul>
+<li>トランザクションを中心とした処理</li>
+</ul></li>
+<li><p><code>OLAP(Online Analytical Processing)</code></p>
+<ul>
+<li>スライシング，ダイシング，ドリルダウンなどのインタラクティブな操作によって多次元分析を行い，意思決定を支援
+<ul>
+<li>ドリルダウン
+<ul>
+<li>データ分析の結果いったんある情報を得た後、更にデータの階層構造に従って掘り下げて一定の事項に対して詳細な情報を得るための分析を行うこと</li>
+</ul></li>
+</ul></li>
+<li>RDB からデータを抽出し、別のデータベースに移行
+<ul>
+<li>多次元データとして再構築し、様々な次元で分析しやすいようにする</li>
+<li><code>データウェアハウス</code>
+<ul>
+<li>上記のデータの集まり</li>
+<li>基幹業務のデータベースとは別に作成され，更新処理をしない集計データの分析を主目的</li>
+<li>「意思決定のため、目的別に編成され統合された時系列で、削除や更新を行わないデータの集合体」</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>データマイニング</p>
+<ul>
+<li>データウェアハウスに蓄積されている大量の生データから、統計学的手法、数学的手法を用いて今まで知られていなかったデータの規則や因果関係を見つけ出す手法</li>
+</ul></li>
+<li><p>データマート</p>
+<ul>
+<li>個人別データ，部門別データ，サマリデータなど，分析の目的別に切り出され，カスタマイズされたデータを分析</li>
+</ul></li>
+</ul>
+<ul>
+<li><p><code>データクレンジング</code></p>
+<ul>
+<li>信頼性の低いデータを見つけて修正や削除を行って適切な正しいデータの集まりにすること</li>
+<li>データクレンジングの作業で、データ形式の統一、欠損値の補完、単位の統一、異常値の処理などの処理をされたデータによってデータウェアハウスは構築</li>
+</ul></li>
+<li><p>ロールアップ</p>
+<ul>
+<li>データを詳細に分析した後、いったん表示されている詳細事項を隠して、上位の情報だけから大きな傾向を把握しようとすることで、前記ドリルダウンの反対の操作となる</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="ai-活用"></a><a href="#ai-活用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>AI 活用</h3>
+<ul>
+<li><a href="ai">AI</a></li>
+<li></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基礎">基礎</a></li><li><a href="#データモデル">データモデル</a><ul class="toc-headings"><li><a href="#概念データモデル">概念データモデル</a></li><li><a href="#論理データモデル">論理データモデル</a></li><li><a href="#物理データモデル">物理データモデル</a></li></ul></li><li><a href="#設計">設計</a></li><li><a href="#dbmsdata-base-management-system-データベース管理システム">DBMS(Data Base Management System : データベース管理システム)</a></li><li><a href="#コスト">コスト</a></li><li><a href="#冗長化">冗長化</a><ul class="toc-headings"><li><a href="#クラスタリング">クラスタリング</a></li><li><a href="#レプリケーション">レプリケーション</a></li></ul></li><li><a href="#ストレージ共有">ストレージ共有</a></li><li><a href="#アーキテクチャパターン">アーキテクチャパターン</a></li><li><a href="#階層">階層</a></li><li><a href="#トランザクション">トランザクション</a></li><li><a href="#可用性向上のためのデータベース構成">可用性向上のためのデータベース構成</a></li><li><a href="#sql-パフォーマンスチューニング">SQL パフォーマンスチューニング</a></li><li><a href="#インデックスの使い方">インデックスの使い方</a></li><li><a href="#パーティションの使い方">パーティションの使い方</a></li><li><a href="#データ分析とデータベース">データ分析とデータベース</a><ul class="toc-headings"><li><a href="#データウェアハウスとデータマイニング">データウェアハウスとデータマイニング</a></li><li><a href="#ai-活用">AI 活用</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

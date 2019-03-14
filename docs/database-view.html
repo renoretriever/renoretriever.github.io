@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ビュー · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 実表から動的に生成される導出表の一種で、定義されたビューに対する操作には一定の制限はあるものの、あたかも実表が存在するかのようにアクセスすることが可能"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ビュー · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 実表から動的に生成される導出表の一種で、定義されたビューに対する操作には一定の制限はあるものの、あたかも実表が存在するかのようにアクセスすることが可能"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ビュー</h1></header><article><div><span><ul>
+<li><p>実表から動的に生成される導出表の一種で、定義されたビューに対する操作には一定の制限はあるものの、あたかも実表が存在するかのようにアクセスすることが可能</p></li>
+<li><p>複数の実表上のデータをまとめて扱いやすくしたり、実表上のデータの一部を隠蔽して保護したりするために利用される</p></li>
+<li><p>ビューとテーブルの違いとは</p>
+<ul>
+<li>=&gt; 実際のテーブルを保存しているか否か</li>
+</ul></li>
+<li><p>ビューからデータを取り出そうとするときに、ビューは内部的に SELECT 文を実行して一時的に仮想のテーブルを作る</p></li>
+<li><p>メリット</p>
+<ul>
+<li>データは保存せず、データを取り出す SELECT 文を保存するため、記憶装置の容量を節約できること</li>
+<li>頻繁に使う SELECT 文を毎回書かなくても、ビューとして保存しておくことで使いまわしがきく</li>
+</ul></li>
+<li><p>構文</p>
+<ul>
+<li><p>作成</p>
+<pre><code class="hljs"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> ビュー名(&lt;ビューの列名<span class="hljs-number">1</span>&gt;, &lt;ビューの列名<span class="hljs-number">2</span>&gt;, ....)
+<span class="hljs-keyword">AS</span>
+&lt;<span class="hljs-keyword">SELECT</span> 文&gt;
+</code></pre>
+<ul>
+<li>SELECT 文の列とビューの列は並び順で一致</li>
+</ul></li>
+<li><p>削除</p>
+<pre><code class="hljs">DROP VIEW ビュー名(<span class="hljs-tag">&lt;<span class="hljs-name">ビューの列名1</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">ビューの列名2</span>&gt;</span>, ....)
+</code></pre></li>
+</ul></li>
+<li><p>ビューに対する検索</p>
+<ol>
+<li>最初にビューに定義された SELECT 文が実行され</li>
+<li>その結果に対して、ビューを FROM 句に指定した SELECT 文が実行される</li>
+</ol></li>
+<li><p>制限事項</p>
+<ol>
+<li>ビュー定義で ORDER BY 句は使えない
+<ul>
+<li>テーブルと同様、ビューについても「行には順序がない」と定められている</li>
+<li>使える DBMS もあるが一般的ではない</li>
+</ul></li>
+<li>ビューに対する更新
+<ul>
+<li>標準 SQL では、「ビュー定義の SELECT 文において、いくつかの条件を満たしている場合、ビューに対する更新が可能」</li>
+<li>条件
+<ol>
+<li>SELECT 句に DISTINCT が含まれていない</li>
+<li>FROM 句に含まれるテーブルが 1 つだけである</li>
+<li>GROUP BY 句を使用していない</li>
+<li>HAVING 句を使用していない</li>
+</ol></li>
+</ul></li>
+</ol></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

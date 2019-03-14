@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>RDBM(Relational Database) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基礎"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="RDBM(Relational Database) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基礎"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">RDBM(Relational Database)</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基礎"></a><a href="#基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基礎</h2>
+<hr>
+<ul>
+<li><p><code>二次元表</code> の形式でデータを管理するデータベース</p></li>
+<li><p>リレーションとタプル(行、組) で表現</p></li>
+<li><p><code>関係型データベース</code></p></li>
+<li><p><a href="sql">SQL</a> を利用することで手軽にデータ操作が可能になった</p></li>
+<li><p><code>3 値論理</code></p>
+<ul>
+<li>true</li>
+<li>false</li>
+<li>NULL
+<ol>
+<li>不明・未知(Unknown)
+<ul>
+<li>値は存在するが、どのような値かは分からない</li>
+</ul></li>
+<li>非存在・適用不能(Inapplicable)
+<ul>
+<li>値が存在しないので、そのことを示す</li>
+</ul></li>
+</ol>
+<ul>
+<li>注意点
+<ul>
+<li>NULL は値ではない</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="テーブル設計"></a><a href="#テーブル設計" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>テーブル設計</h2>
+<ul>
+<li>テーブル
+<ul>
+<li>共通的な要素の集合</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="正規化"></a><a href="#正規化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>正規化</h2>
+<hr>
+<ul>
+<li><p>データの冗長性をなくしたり、混在している等価な表現をある統一形式に整形したりすることによって、同じ形式でデータを扱えるようにすること</p></li>
+<li><p><code>更新時異状</code></p>
+<ul>
+<li>正規化を行っていない時に起こるタプルの更新時の異状</li>
+</ul>
+<ol>
+<li>タプル挿入時異状</li>
+<li>タプル更新(修正)時異状</li>
+<li>タプル削除時異状</li>
+</ol></li>
+<li><p>一般的に正規化を行わないデータベース</p>
+<ol>
+<li>データの更新を行わないもの
+<ul>
+<li>データウェアハウス</li>
+</ul></li>
+<li>データの履歴を残すもの</li>
+<li>高速化が特別に必要なもの</li>
+</ol></li>
+</ul>
+<ul>
+<li><p><code>関係従属性</code></p>
+<ul>
+<li>ある属性 X の値が決まれば、別の属性 Y の値が一意に決まるといった性質</li>
+<li>X -&gt; Y
+<ul>
+<li>X
+<ul>
+<li>決定項</li>
+</ul></li>
+<li>Y
+<ul>
+<li>従属項</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><code>情報無損失分解</code></p>
+<ul>
+<li>正規化を行う時に、ただ更新時異状を避けるために適当に分解すると、もともとあった情報が失われる可能性がある
+<ul>
+<li>関係を分解するときには、その関係を結合することで元の関係を復元できる必要がある</li>
+</ul></li>
+<li>分解した関係を自然結合した時に元に戻せる分解の仕方のこと</li>
+</ul></li>
+<li><p><code>メタデータ</code></p>
+<ul>
+<li>あるデータが持つ、データ自信に関する抽象度の高いデータ</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="第一正規形1-nf"></a><a href="#第一正規形1-nf" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>第一正規形(1 NF)</h3>
+<ul>
+<li>テーブルのセルに複合的な値を含んではいけない</li>
+<li>属性を単位土</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="er-図entity-relationship-diagram-実態関連図"></a><a href="#er-図entity-relationship-diagram-実態関連図" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ER 図(Entity-Relationship Diagram : 実態関連図)</h2>
+<ul>
+<li><a href="er">ER 図</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ボトルネック"></a><a href="#ボトルネック" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ボトルネック</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="ディスク-i-o-対応"></a><a href="#ディスク-i-o-対応" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ディスク I/O 対応</h3>
+<ul>
+<li>より高速なディスクを使う
+<ul>
+<li>rpm が高いものを利用する</li>
+<li>インタフェース規格(SATA/SAS) をどうするか
+<ul>
+<li><a href="hdd">HDD</a> 参照</li>
+</ul></li>
+<li><a href="ssd">SSD</a> を利用する</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>ディスクの本数を増やす</p>
+<ul>
+<li>複数のディスクに同時に書き込みや読み込みをすることでスループットが向上</li>
+</ul></li>
+<li><p>読み取るデータ量を減らす</p></li>
+<li><p>読み込みリクエスト数を減らす</p>
+<ul>
+<li>バッファキャッシュを利用してディスク I/O を減らす</li>
+<li>必要なデータのみ I/O 要求を出す</li>
+</ul></li>
+<li><p>分析と対策</p>
+<ul>
+<li>AWR レポート</li>
+<li><a href="iostat">iostat</a></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="cpu-対応"></a><a href="#cpu-対応" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CPU 対応</h3>
+<ul>
+<li><a href="cpu">CPU</a></li>
+<li>よりクロック周波数の高い CPU に交換する</li>
+<li>CPU を増設する
+<ul>
+<li>コア数を増やす</li>
+</ul></li>
+<li>読み取るデータを減らす</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="ネットワーク対応"></a><a href="#ネットワーク対応" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ネットワーク対応</h3>
+<ul>
+<li>帯域を拡張する</li>
+<li>NIC をよりレイテンシの小さいものに交換する</li>
+<li>ネットワーク上のラウンドトリップ数を減らす</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="共有リソースの競合一貫性-整合性を保持するロック競合-対応"></a><a href="#共有リソースの競合一貫性-整合性を保持するロック競合-対応" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>共有リソースの競合(一貫性/整合性を保持するロック競合)対応</h3>
+<ul>
+<li>テーブルロック =&gt; 行ロック</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基礎">基礎</a></li><li><a href="#テーブル設計">テーブル設計</a></li><li><a href="#正規化">正規化</a><ul class="toc-headings"><li><a href="#第一正規形1-nf">第一正規形(1 NF)</a></li></ul></li><li><a href="#er-図entity-relationship-diagram-実態関連図">ER 図(Entity-Relationship Diagram : 実態関連図)</a></li><li><a href="#ボトルネック">ボトルネック</a><ul class="toc-headings"><li><a href="#ディスク-i-o-対応">ディスク I/O 対応</a></li><li><a href="#cpu-対応">CPU 対応</a></li><li><a href="#ネットワーク対応">ネットワーク対応</a></li><li><a href="#共有リソースの競合一貫性-整合性を保持するロック競合-対応">共有リソースの競合(一貫性/整合性を保持するロック競合)対応</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

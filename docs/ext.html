@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ext(extended file system) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- Linux 向けに作成された最初のファイルシステム"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ext(extended file system) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- Linux 向けに作成された最初のファイルシステム"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ext(extended file system)</h1></header><article><div><span><ul>
+<li>Linux 向けに作成された最初のファイルシステム</li>
+<li>ext2, ext3, ext4 ファイルシステムでは、万が一ファイルシステムの全ブロックを一般ユーザが使い切った場合でも root による作業を可能にするため root ユーザ専用の領域が確保されている
+<ul>
+<li>=&gt; デフォルトでは全ブロックの 5 %</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ext2"></a><a href="#ext2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ext2</h2>
+<hr>
+<ul>
+<li>ext を拡張したファイルシステム</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ext3"></a><a href="#ext3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ext3</h2>
+<hr>
+<ul>
+<li>ext2 にジャーナリング機能を加えたファイルシステム</li>
+<li>ジャーナリング機能
+<ul>
+<li>注意
+<ul>
+<li>Oracle と違い、トランザクション終了時にバッファの情報をディスクに書き出すわけではないので、バッファにある最新データがロストすることがある</li>
+<li>ベストエフォート</li>
+</ul></li>
+</ul>
+<ol>
+<li>ユーザプロセスがファイルの更新をリクエスト</li>
+<li>ジャーナルにおいて I/O トランザクションが開始</li>
+<li>2
+<ol>
+<li>メタデータがジャーナルにコピーされる</li>
+<li>実データおよびメタデータがメモリ上で更新される</li>
+</ol></li>
+<li>トランザクションを終了し、ユーザプロセスに返答する</li>
+<li>Kjournald (5 秒間隔) によるジャーナルの書き出しの前に、bdflush によってキャッシュ上のデータがディスクに書き出される</li>
+<li>データの書き込み後に、ジャーナルを書き出す(コミット)</li>
+<li>2
+<ol>
+<li>コミットの後、データがディスクに書き出されており、不要になっているジャーナルを開放する(チェックポイント)</li>
+<li>メタデータが非同期に書き出される</li>
+</ol></li>
+</ol></li>
+</ul>
+<ul>
+<li>ロールバック
+<ul>
+<li>ジャーナルを読んで実データの情報を過去に戻すこと</li>
+</ul></li>
+<li>ロールフォワード
+<ul>
+<li>ジャーナルを読んで実データの情報を先に進めること</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ext4"></a><a href="#ext4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ext4</h2>
+<hr>
+<ul>
+<li>ext3 を機能拡張したファイルシステム</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="シ-ャーナリンク-機能"></a><a href="#シ-ャーナリンク-機能" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ジャーナリング機能</h2>
+<hr>
+<ul>
+<li><p>ファイルシステムに対する書き換え処理のコマンドをファイルシステムに逐一記録する機能</p></li>
+<li><p>コンピュータが急停止し、ファイルのデータがファイルシステムに書き込み途中である場合、処理されていないコマンドを対処する</p>
+<ul>
+<li>ファイルの書き込み途中の場合、書き込み終わっていないデータが無くて書き込みを終われないので、途中までディスクに保存されているファイルの管理情報を消し、書き込み途中のファイルが作られなかった状態にする</li>
+</ul></li>
+<li><p>モード</p>
+<ul>
+<li>journal
+<ul>
+<li>メインファイルシステムより前に、すべてのデータがジャーナルに記録される</li>
+</ul></li>
+<li>ordered
+<ul>
+<li>メタデータがジャーナルに記録される前に、すべてのデータがメインファイルシステムに直接書き出される(デフォルト)</li>
+</ul></li>
+<li>writeback
+<ul>
+<li>メタデータがジャーナルに記録された後で、データがメインファイルシステムに書き込まれる</li>
+<li>ファイルシステムの完全性が保証されるが、クラッシュ後のリカバリでファイルの内容が以前の内容に戻ることもある</li>
+</ul></li>
+</ul></li>
+<li><p>sdc1(3 つ目のインターフェースの 1 つ目のパーティション) に ext3 形式のファイルシステムを作成</p></li>
+</ul>
+<pre><code class="hljs"><span class="hljs-comment"># mkfs -t ext3 -c /dev/sdc1</span>
+mke2fs 1.39 (29-May-2006) Filesystem <span class="hljs-attribute">label</span>=opt
+(ハードディスクのラベル)
+ OS type: Linux
+ Block <span class="hljs-attribute">size</span>=4096 (<span class="hljs-attribute">log</span>=2)
+ Fragment <span class="hljs-attribute">size</span>=4096 (<span class="hljs-attribute">log</span>=2)
+ 70400 inodes, 140568 blocks
+ 7028 blocks (5.00%) reserved <span class="hljs-keyword">for</span> the super<span class="hljs-built_in"> user
+</span> First data <span class="hljs-attribute">block</span>=0
+ Maximum filesystem <span class="hljs-attribute">blocks</span>=146800640
+ 5 block groups
+ 32768 blocks per group, 32768 fragments per<span class="hljs-built_in"> group
+</span> 14080 inodes per<span class="hljs-built_in"> group
+</span> Superblock backups stored on blocks:
+         32768, 98304
+ Checking <span class="hljs-keyword">for</span> bad blocks (read-only test): done
+ Writing inode tables: done
+ Creating journal (4096 blocks): done
+ Writing superblocks <span class="hljs-keyword">and</span> filesystem<span class="hljs-built_in"> accounting </span>information: done
+ This filesystem will be automatically checked every 22 mounts <span class="hljs-keyword">or</span>
+ 180 days, whichever comes first.  Use tune2fs -c <span class="hljs-keyword">or</span> -i <span class="hljs-keyword">to</span> override.
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ext2">ext2</a></li><li><a href="#ext3">ext3</a></li><li><a href="#ext4">ext4</a></li><li><a href="#シ-ャーナリンク-機能">ジャーナリング機能</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

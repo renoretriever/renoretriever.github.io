@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ファイアウォール · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基礎"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ファイアウォール · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基礎"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ファイアウォール</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基礎"></a><a href="#基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基礎</h2>
+<hr>
+<ul>
+<li>インターネットと接続する出入り口に設置する最初のセキュリティ対策</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="機能"></a><a href="#機能" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>機能</h2>
+<hr>
+<ul>
+<li><p>隘路(あいろ, CHOKE POINT)</p>
+<ul>
+<li>インターネットとの接点を 1 箇所にし、集中して防御</li>
+</ul></li>
+<li><p>スクリーン(ルータ)</p>
+<ul>
+<li>インターネット(外部)と社内 LAN をカーテンで仕切るように分離</li>
+</ul></li>
+<li><p>検閲(パケットフィルタリング)</p>
+<ul>
+<li>通行の許可、遮断を制御</li>
+<li>予め許可された通信だけを通すように</li>
+</ul></li>
+<li><p>隠蔽(NAT, 不要な応答をしない設定)</p></li>
+<li><p>記録(ログ)</p>
+<ul>
+<li>入出力の通信を記録し、不審なアクセスの発生や兆候を証跡として残します</li>
+</ul></li>
+<li><p>代理(プロキシ)</p></li>
+<li><p>アドレス変換機能</p>
+<ul>
+<li><a href="nat">NAT</a></li>
+<li>NAPT(IP マスカレード)</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="種類"></a><a href="#種類" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>種類</h2>
+<hr>
+<ul>
+<li><p>パケットフィルタリング・ルータ</p>
+<ul>
+<li><code>送信元 IP アドレス、送信元ポート番号</code> 、 <code>あて先 IP アドレス、あて先ポート番号</code> を元にアクセス制御リストを作成し制御判断</li>
+</ul></li>
+<li><p>サーキットレベル・ゲートウェイ(3, 4, 5 層)</p>
+<ul>
+<li>プロトコルを解釈せずにクライアントとサーバ間で回線(サーキット)を生成するゲートウェイで、現在はほとんど使用されていない</li>
+<li>SOCKS</li>
+</ul></li>
+<li><p>アプリケーションレベル・ゲートウェイ(3 〜 7 層)</p>
+<ul>
+<li>全てのパケットを一度ゲートウェイが受け取り、すべての段階で通信内容がルールにそっているか確認し、同じ内容のパケットを作成して自ら送信元にして宛先を送り出します。</li>
+<li>欠点
+<ul>
+<li>いったん全ての階層で処理を行なうことから処理時間がかかり通信のオーバーヘッドが大きくなる</li>
+</ul></li>
+</ul></li>
+<li><p><code>ステートフルインスペクション型ファイアウォール</code></p>
+<ul>
+<li>通信の状態情報を収集し、そこから次に来るパケットを予測し、矛盾がないかを確認してアクセス制御を行います</li>
+<li>常に動的にアクセス制御リストを作成・更新</li>
+<li><code>IP スプーフィング</code> などの偽装した通信を遮断
+<ul>
+<li>サーバなどで利用する IP アドレスを偽造して、他のサーバなどになりすますこと</li>
+<li>DoS 攻撃や DNS キャッシュポイズニング攻撃などと合わせて、攻撃者の身元を隠すために利用</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>パーソナル・ファイアウォール(一般的な分類)</p>
+<ul>
+<li>主に個人 PC に導入</li>
+</ul></li>
+<li><p><a href="waf">WAF(Web アプリケーションファイアウォール)</a></p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="構成"></a><a href="#構成" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>構成</h2>
+<hr>
+<ul>
+<li>DMZ
+<ul>
+<li>ファイアウォールに守られつつも、社内からも社外からも安全にアクセスできる緩衝地帯</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="限界"></a><a href="#限界" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>限界</h2>
+<hr>
+<ul>
+<li>正常な通信と区別できない場合
+<ul>
+<li>ウィルスやワーム</li>
+<li>セキュリティホールを利用した攻撃</li>
+<li>DoS 攻撃</li>
+<li>暗号化された通信</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基礎">基礎</a></li><li><a href="#機能">機能</a></li><li><a href="#種類">種類</a></li><li><a href="#構成">構成</a></li><li><a href="#限界">限界</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

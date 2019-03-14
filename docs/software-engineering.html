@@ -1,0 +1,605 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ソフトウェアエンジニアリング · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 制御フロー図"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ソフトウェアエンジニアリング · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 制御フロー図"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ソフトウェアエンジニアリング</h1></header><article><div><span><ul>
+<li>制御フロー図
+<ul>
+<li>状態遷移図は，DFDに&quot;コントロール変換とコントロールフロー&quot;を付加したものであり，制御系システムに特有な処理を表現する手段として有効</li>
+</ul></li>
+</ul>
+<ul>
+<li>モジュール強度
+<ul>
+<li>モジュール内部の関連性の強さを表し、暗合的強度から機能的強度までの 7 種類</li>
+<li>モジュール強度が高いほど独立したソフトウェア部品として再利用や拡張がしやすくなる</li>
+<li>暗合的強度(低)
+<ul>
+<li>関係のない機能をまとめたモジュール</li>
+</ul></li>
+<li>論理的強度
+<ul>
+<li>関連する複数の機能をまとめたモジュール</li>
+</ul></li>
+<li>時間的強度
+<ul>
+<li>プログラムの開始時など、ある特定の時期に実行する機能をまとめたモジュール</li>
+</ul></li>
+<li>手順的強度
+<ul>
+<li>関連ある逐次的な機能をまとめたモジュール</li>
+</ul></li>
+<li>連絡的強度
+<ul>
+<li>関連ある逐次的な機能で要素が連絡し合うものをまとめたモジュール</li>
+</ul></li>
+<li>情報的強度
+<ul>
+<li>同じデータ構造や資源を扱う機能を一つにまとめたモジュール</li>
+</ul></li>
+<li>機能的強度(高)
+<ul>
+<li>一つの機能を実現するためだけのモジュール</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>ソフトウェアの品質
+<ul>
+<li>機能性
+<ul>
+<li>目的に必要な機能がどれくらい備わっているか</li>
+</ul></li>
+<li>信頼性
+<ul>
+<li>故障せずに正しく動作し続けられるか</li>
+</ul></li>
+<li>使用性
+<ul>
+<li>わかりやすく、使いやすいか</li>
+</ul></li>
+<li>効率性
+<ul>
+<li>目的達成のためにどれくらいの資源を必要とするか</li>
+</ul></li>
+<li>保守性
+<ul>
+<li>維持管理にどれくらいの手間がかかるか</li>
+</ul></li>
+<li>移植性
+<ul>
+<li>別環境で動作させるためにどれくらいの手間がかかるか</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>コラボレーション図</p>
+<ul>
+<li>オブジェクトの振る舞いをオブジェクト間の接続関係に注目して表現した図</li>
+</ul></li>
+<li><p>ステートチャート図</p>
+<ul>
+<li>状態遷移図を基本にして、オブジェクト内に存在する状態や、その状態の移り変わりを表現する図</li>
+</ul></li>
+<li><p>ユースケース図</p>
+<ul>
+<li>外部環境に対するシステムの振る舞いを表現する図</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ソフトウェア開発の概要"></a><a href="#ソフトウェア開発の概要" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ソフトウェア開発の概要</h2>
+<ul>
+<li><p>ソフトウェアエンジニアリング</p>
+<ul>
+<li>プログラム開発を工学としてとらえ、合理的な様々な方法論と開発手法を用いながら、早く、安く、正確に、誰でもプログラムを作成できることを目指す学問</li>
+</ul></li>
+<li><p>構造化プログラミング</p>
+<ul>
+<li>プログラムの制御構造(処理の流れ)を簡素化して明確にする、と考える方法論</li>
+<li>プログラムの処理の流れは、逐次、分岐、反復の 3 つの組み合わせで表現できる、という構造化定理に則り、プログラムの実行順を強制的に変更する goto 文を使わずにプログラミングするスタイル</li>
+</ul></li>
+<li><p>システムの設計図作成手順</p>
+<ul>
+<li>分析
+<ul>
+<li>システム開発を依頼した顧客がシステムに求める機能や性能を、これから開発するシステムの要件として矛盾なく整理することを意味する</li>
+<li>顧客自身から要望を聞き出したり、現在の業務の流れを調べたりして得られた情報を解析し、顧客のニーズに合致したシステムの姿を明らかにする</li>
+</ul></li>
+<li>設計
+<ul>
+<li>分析によって明らかになったシステムの要件を、どのような形でプログラムにしていくか、を決定することを意味する</li>
+</ul></li>
+<li>構造化分析と構造化設計
+<ul>
+<li>すべてのシステムは、それより小さな要素の組み合わせで構成され、その要素も、またさらに小さい要素の組み合わせで構成される、と考える
+<ul>
+<li><img src="kouzouka.png" alt="kouzouka"></li>
+<li>車の設計例
+<ul>
+<li>必要なネジの数やサイズを決めようとしても、それは極めて難しいこと</li>
+<li>車の構成要素をボディ、シャーシ、エンジン、... と分け、エンジンの構成要素を本体、吸排気、... と分け、さらに個別の設計を進めれば最後には自ずと必要なネジの数やサイズが明らかになる</li>
+<li>逆に、単純なものから複雑なものを作成する場合もある</li>
+</ul></li>
+</ul></li>
+<li>DFD という図がよく使われる
+<ul>
+<li>構造化分析では、「現物理モデル→現論理モデル→新論理モデル→新物理モデル」の順でシステムをモデル化
+<ul>
+<li>現物理モデル
+<ul>
+<li>現行業務の流れを具体的にありのままを表現した業務フロー</li>
+</ul></li>
+<li>現論理モデル
+<ul>
+<li>現物理モデルから物理的な仕組みを取り除き、データと処理を中心としたDFD</li>
+</ul></li>
+<li>新論理モデル
+<ul>
+<li>現論理モデルに、新機能要件を加えたDFD</li>
+</ul></li>
+<li>新物理モデル
+<ul>
+<li>新論理モデルに物理的要件を加え、業務遂行のフローを記述したモデル</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>オブジェクト指向による分析と設計
+<ul>
+<li>UML</li>
+<li>一般に、オブジェクト指向は現実世界のものをオブジェクトとしてプログラムに反映するため、その構造が現実世界に近くなるという特徴がある</li>
+<li>複数の観点でプロセスを表現するために，目的に応じたモデル図法を使用し，オブジェクトモデリングのために標準化された記述ルールで表現する</li>
+<li>オブジェクトの独立性が高いため、プログラムの部品化、再利用、分散化に適していると言われる</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="開発プロセス"></a><a href="#開発プロセス" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>開発プロセス</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="要件定義"></a><a href="#要件定義" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>要件定義</h3>
+<ul>
+<li>顧客が求めている機能や性能を引き出し、システムが備えるべき要件として定義することを意味</li>
+<li>Web アプリケーションであればサーバやネットワークなどの構成も考える
+<ul>
+<li>利用者のデータフロー</li>
+</ul></li>
+<li>セキュリティの観点
+<ul>
+<li>認証</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="設計"></a><a href="#設計" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>設計</h3>
+<ul>
+<li>要件定義で出てきた項目が実現可能かどうかを確認し、システムの目線で資料を作成</li>
+<li>フレームワークの選定</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="開発-実装"></a><a href="#開発-実装" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>開発・実装</h3>
+<ul>
+<li>コーディング</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="テスト"></a><a href="#テスト" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>テスト</h3>
+<ul>
+<li><a href="test">テスト</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="運用-保守"></a><a href="#運用-保守" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>運用・保守</h3>
+<ul>
+<li>ウォータフォール型
+<ul>
+<li><img src="waterfall.png" alt="waterfall"></li>
+<li>各工程は基本的に後戻りしない</li>
+<li>プロセス
+<ul>
+<li><h2><a class="anchor" aria-hidden="true" id="要件定義-1"></a><a href="#要件定義-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>要件定義</h2>
+</li>
+<li>外部設計
+<ul>
+<li>定義された要件に沿って、システムが持つべき機能を定める</li>
+</ul></li>
+<li>内部設計
+<ul>
+<li>外部設計で定義した機能の具体的な実現方法を定める</li>
+</ul></li>
+<li>製造
+<ul>
+<li>内部設計に沿ってプログラムを製造</li>
+</ul></li>
+<li>テスト
+<ul>
+<li>製造したプログラムが設計通りに動作するかを確認し、不具合があれば修正</li>
+</ul></li>
+<li>運用
+<ul>
+<li>完成したシステムを稼働させ、必要に応じて不具合の修正や簡易な機能の追加を行う</li>
+</ul></li>
+</ul></li>
+<li>問題点
+<ul>
+<li>不具合が最後の工程であるテストを行うまで見つからない場合が多い</li>
+<li>テストで見つかった不具合の原因が分析や設計にある場合、最初までさかのぼって修正しなければならず、それに関連するそれまでの作業が無駄になる</li>
+<li>どこかの工程が遅れると、その後の全行程の進行に影響が及ぶ</li>
+</ul></li>
+</ul></li>
+<li>スパイラル型
+<ul>
+<li>分析、開発と検証、次の計画、次の目標設定のフェーズを設けそれらを繰り返すことによって各工程が正しいかどうかを確認しながら、まるで渦のように開発工程を進めていく</li>
+<li>各工程でプロトタイピングのタイミングが用意されている
+<ul>
+<li>プロトタイピングにより、分析や設計での不具合の混入を防ぐことができれば、ウォータフォール型のように最後にどんでん返しが起こる危険性を更に減らすことが可能</li>
+</ul></li>
+</ul></li>
+<li>アジャイル型
+<ul>
+<li>XP(Extream Programming)
+<ul>
+<li>代表的なアジャイル型の開発手法</li>
+<li>テストドリブン</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ソフトウェア開発の基礎知識"></a><a href="#ソフトウェア開発の基礎知識" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ソフトウェア開発の基礎知識</h2>
+<ul>
+<li><p>DTCP-IP(DTCP over IP)</p>
+<ul>
+<li>著作権保護されたディジタルコンテンツを伝送するための暗号化技術である DTCP(Digital Transmission Content Protection) を、主に AV 機器を含む家庭内 LAN などの IP ネットワークで使用できるようにした規格</li>
+<li>DTLA が発行する証明書を用いて相互認証を行い、コンテンツ保護が行えることが確認したときのみ録画・再生が可能となる仕組みになっている</li>
+<li>現在、デジタル放送の家庭内 LAN 共有機能を持つビデオレコーダーやパソコンのすべてで、DTCP-IPが利用</li>
+</ul></li>
+<li><p>CPRM(Content Protection for Recordable Media)</p>
+<ul>
+<li>BS デジタル放送や地上デジタル放送に採用され，コピーワンスの番組を録画するときに使われる方式</li>
+</ul></li>
+<li><p>CSS(Content Scramble System)</p>
+<ul>
+<li>DVD に採用され，映像コンテンツを暗号化して，複製できないエリアにその暗号化鍵を記録する方式</li>
+</ul></li>
+<li><p>HDCP(High-bandwidth Digital Content Protection)</p>
+<ul>
+<li>HDMI 端子が搭載されたディジタル AV 機器に採用され，HDMI 端子から表示機器にディジタル信号を送るときに受信する経路を暗号化する方式</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>用字と用語を統一する</p>
+<ul>
+<li>JIS とかの規格を確認する</li>
+</ul></li>
+<li><p>作成する文書と記述項目</p>
+<ul>
+<li>要件定義書</li>
+<li>外部設計書</li>
+<li>内部設計書</li>
+<li><img src="project_doc.png" alt="project_doc"></li>
+</ul></li>
+</ul>
+<ul>
+<li>チャート記法
+<ul>
+<li><a href="uml">UML</a></li>
+<li><a href="dfd">DFD</a></li>
+<li><a href="statusflow">状態遷移図</a></li>
+<li>フローチャート
+<ul>
+<li><img src="flowchart.png" alt="flowchart"></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="要求定義と要件定義"></a><a href="#要求定義と要件定義" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>要求定義と要件定義</h2>
+<ul>
+<li><p>上流工程</p>
+<ul>
+<li>要求定義から内部設計</li>
+</ul></li>
+<li><p>下流工程</p>
+<ul>
+<li>製造から受け入れテスト</li>
+</ul></li>
+<li><p>要求定義</p>
+<ul>
+<li>顧客が自分のやりたいこと、顧客の「要求」を見定める工程</li>
+<li>顧客目線</li>
+<li>要求定義書
+<ul>
+<li>どのような業務があり、そこにはどのような問題が存在し、どのように解決したいのか、あるいは解決できずにいるのか、そのような要求を引き出し、整理して文書化したもの</li>
+</ul></li>
+</ul></li>
+<li><p>要件定義</p>
+<ul>
+<li>先に出てきた要求定義を基に、顧客が専門家であるシステム開発会社の協力を得たりしながらシステム化すべき項目、つまりシステムの「要件」を整理する工程</li>
+<li>システム目線</li>
+<li>重複、不足、矛盾が存在してはならない</li>
+<li>要件定義書作成の流れ
+<ol>
+<li>要求定義書の記述内容をしっかりと把握する</li>
+<li>要求定義書の内容をシステム化することを想定し、重複する機能があれば除去、不足する機能があれば追加する
+<ul>
+<li>要求定義書に「利用者の情報を検索する」という機能要求があった場合、どこかに「利用者情報を入力、編集、削除する」という機能要件があるはず。もしなければ追加する</li>
+</ul></li>
+<li>システム化した際の、機能間の矛盾を確認し、課題がある場合は解決する
+<ul>
+<li>「利用者は自由に使える」と書いてあるのに、別の記述では「利用者は先にログインしなければならない」と書かれているようなケース</li>
+</ul></li>
+<li>どの機能までをシステム化するか、というシステム化の範囲を決定する</li>
+<li>要件定義書としてまとめる</li>
+</ol></li>
+<li>要件定義書の記述項目とポイント
+<ul>
+<li><img src="youkenteigi.png" alt="youkenteigi"></li>
+<li>役割分担・責任は明確にする</li>
+<li>可能な限り定量的に書く</li>
+<li>実現しないと決まったこと、も明記する
+<ul>
+<li>「しないこと」なのか「まだ決まっていないことなのか」をはっきりさせる</li>
+</ul></li>
+<li>文体や表記は統一する</li>
+<li>番号
+<img src="hansuu.png" alt="hansuu"></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>機能要求
+<ul>
+<li>顧客の業務に必要な手順を実現するための機能</li>
+<li>例
+<ul>
+<li>顧客の氏名を登録する</li>
+<li>顧客の氏名から住所を検索する</li>
+</ul></li>
+</ul></li>
+<li>非機能要求
+<ul>
+<li>システムに求められる処理機能でも、顧客の業務に必要な手順でもないが、システムが兼ね備えるべき条件</li>
+<li>例
+<ul>
+<li>顧客の氏名から住所を検索する処理は 0.5 秒以内で完了する</li>
+<li>システムが故障した場合でも 1 時間以内にサービスを再開する</li>
+</ul></li>
+<li>参考
+<ul>
+<li><a href="https://www.ipa.go.jp/sec/softwareengineering/reports/20100416.html">非機能要求の見える化と確認の手段を実現する「非機能要求グレード」の公開</a></li>
+</ul></li>
+<li><img src="hikinou.png" alt="hikinou"></li>
+</ul></li>
+</ul>
+<ul>
+<li>システム提案書
+<ul>
+<li>システム開発会社が顧客に対して、システム開発の全体像を説明するための文書</li>
+<li>RFP(Request for Proposal : 提案依頼書)
+<ul>
+<li>要件定義を公開してシステム提案書を公募すること</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="外部設計"></a><a href="#外部設計" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>外部設計</h2>
+<ul>
+<li><p>システムが持つべき機能や性能、あるいは構成など、システムを外部から見た時のシステムの振る舞いや構成を定義する工程を意味する</p></li>
+<li><p>プログラムの書き方などは考えず、システムが持つべき機能を定義</p></li>
+<li><p>外部設計書の作成手順
+<img src="gaibusekkei.png" alt="gaibusekkei"></p>
+<ul>
+<li>業務フローの作成
+<ul>
+<li>システム化しない部分も含めて、やや広い範囲を対象とする</li>
+<li>DFD 図を使いことが多い</li>
+</ul></li>
+<li>サブシステムへの分割
+<ul>
+<li>サブシステムへの分割は業務フローを基にして、業務上の作業単位やシステム開発などを考慮しながら行う</li>
+</ul></li>
+<li>画面レイアウトや帳票レイアウトの作成
+<ul>
+<li>画面レイアウト
+<ul>
+<li>ディスプレイに表示する画面の構成</li>
+<li>画面上の部品(ボタンやテキスト表示エリアなど)の配置に加えて、入力値のタイプや表示条件、初期値などを含む入出力項目、画面の遷移順を示す画面遷移図、画面遷移や情報更新のきっかけ(イベント) が発生するタイミングなども、漏れなく記述する必要がある</li>
+</ul></li>
+<li>帳票レイアウト
+<ul>
+<li>プリントアウトする用紙の構成を定義したもの</li>
+<li>固定化されたものなので、帳票のデザイン、各項目の表示内容、表示桁数、表示するデータのタイプ、その項目は必須か任意か、などを記述すれば十分</li>
+</ul></li>
+</ul></li>
+<li>コード設計
+<ul>
+<li>書き表し方が複数あったり、入力者によって表記にばらつきが生じたりするおそれのある情報は「コード化」するとうまく取り扱えるようになる</li>
+<li>コード化
+<ul>
+<li>ある内容に対して、番号や英数記号で作った特定のコードを割り当てることを意味する</li>
+<li>利用者の性別、都道府県名、商品名などは、コード化の対象となることがよくある</li>
+</ul></li>
+</ul></li>
+<li>論理データ設計
+<ul>
+<li>プログラムが保持するデータやデータ間の関連、データベースの構造を定義するために行う作業</li>
+<li><a href="er">ER 図</a></li>
+<li>CRUD 図
+<ul>
+<li>ある操作を実行したとき、 ER 図にあらわれるエンティティに対して、どのようなアクセスが行われるかを表形式で表したもの</li>
+<li>Create : 生成</li>
+<li>Refer : 参照</li>
+<li>Update : 更新</li>
+<li>Delete : 削除</li>
+</ul></li>
+</ul></li>
+<li>システムインタフェース設計
+<ul>
+<li>外部システムに渡すデータや受け取るデータの仕様を定義</li>
+<li>ファイル仕様
+<ul>
+<li>文字コード、改行コード、フィールド構成、値のタイプ、空データの可否、最大レコード数などを記述</li>
+</ul></li>
+<li>データ変換仕様
+<ul>
+<li>使用するネットワーク媒体の種類、トランスポートプロトコル、アプリケーションプロトコル、またファイルの仕様に準じて交換するデータの形式</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>外部設計書に含める項目</p>
+<ul>
+<li>目的・方針</li>
+<li>概要</li>
+<li>機能</li>
+<li>ユーザインタフェース</li>
+<li>システム構成</li>
+<li>ソフトウェア構成</li>
+<li>ハードウェア構成</li>
+<li>ネットワーク構成</li>
+<li>システムインタフェース
+<img src="gaibusekkei_and_kobetsu.png" alt="gaibusekkei_and_kobetsu"></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="内部設計"></a><a href="#内部設計" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>内部設計</h2>
+<ul>
+<li><p>目的</p>
+<ul>
+<li>システムが外部設計書の内容を確実に満たすため、また品質の安定したプログラムを製造するための設計書</li>
+</ul></li>
+<li><p>構造化設計</p>
+<ul>
+<li>ある機能はそれより小さな機能の集まりで作られる、と考えるアプローチ</li>
+</ul></li>
+<li><p>内部設計書の作成手順</p>
+<ol>
+<li>画面の詳細設計
+<ul>
+<li>外部設計書を作成する際に使用した画面レイアウトや画面遷移図をもとに、必要な項目や説明を追加して、プログラムが製造できるレベルまで詳細化</li>
+</ul></li>
+<li>帳票の詳細設計
+<ul>
+<li>外部設計書を作成する際に使用した帳票レイアウトに、出力のタイミング、出力プリンタ、出力頻度、出力項目の説明、帳票定義のための専用ツールを使う場合はその定義データなどを追加し、テストや運用マニュアルを作成できるレベルまで詳細化</li>
+</ul></li>
+<li>外部インタフェースの詳細設計
+<ul>
+<li>データの送信者と受信者、使用媒体、データの形式、1 回に送信する最大件数、インタフェースを使用する周期など、プログラムを製造するレベルまで必要な情報を追加して記述</li>
+</ul></li>
+<li>ビジネスルールの詳細設計
+<img src="bussiness_rule.png" alt="bussiness_rule"></li>
+<li>リクエスト処理の詳細設計
+<ul>
+<li>サーバプログラムの起動方式(CGI, Java など) や URL に含めるパラメータの数、機能、形式、省略時の動作などが必要になる
+<ul>
+<li>本来は外部設計で決定すべき内容ですが、ビジネスルールが決まらないと必要性が明確にならないパラメータも多いのでここで決める</li>
+</ul></li>
+</ul></li>
+<li>メッセージの詳細設計
+<ul>
+<li>メッセージの種類をエラー、情報提供、警告、ログなどに分類</li>
+</ul></li>
+<li>物理データ設計
+<ul>
+<li>データベースのテーブル名、フィールドの型や桁数、主キーや外部キー、インデックスを使う場合はインデックス名、関連するテーブルがあればその名称などを定義</li>
+</ul></li>
+<li>内部設計書としてまとめる</li>
+<li>レビュー</li>
+</ol></li>
+<li><p>内部設計書の記述項目と記述例
+<img src="naibusekkei_ex.png" alt="naibusekkei_ex"></p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="製造"></a><a href="#製造" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>製造</h2>
+<ul>
+<li><p>作業手順</p>
+<ul>
+<li>プログラミング</li>
+<li>ソースコードレビュー
+<ol>
+<li>規約に沿って書いてあるかどうか
+<ul>
+<li>コーディング規約</li>
+</ul></li>
+<li>正しいロジックで書いてあるかどうか
+<ul>
+<li>内部設計書で記述した機能やデータの形式が、プログラム上で正しく実現できているかどうかを確認</li>
+</ul></li>
+</ol></li>
+<li>単体テスト</li>
+</ul></li>
+<li><p>コーディング規約</p>
+<ul>
+<li>ルール
+<ul>
+<li>プログラムの冒頭につけるコメントの記述ルール</li>
+<li>変数名の付け方や宣言方法に関するルール</li>
+<li>プログラムロジックの記述ルール</li>
+<li>変数の型のルール</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="テスト-1"></a><a href="#テスト-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>テスト</h2>
+<h2><a class="anchor" aria-hidden="true" id="受け入れテスト"></a><a href="#受け入れテスト" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>受け入れテスト</h2>
+<h2><a class="anchor" aria-hidden="true" id="プロジェクトマネジメント"></a><a href="#プロジェクトマネジメント" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>プロジェクトマネジメント</h2>
+<h2><a class="anchor" aria-hidden="true" id="品質管理"></a><a href="#品質管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>品質管理</h2>
+<h2><a class="anchor" aria-hidden="true" id="セキュリティ"></a><a href="#セキュリティ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>セキュリティ</h2>
+<h2><a class="anchor" aria-hidden="true" id="プロジェクト完了報告"></a><a href="#プロジェクト完了報告" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>プロジェクト完了報告</h2>
+<ul>
+<li><p>スパイラルモデル</p>
+<ul>
+<li>開発の初期段階でシステムを複数の独立性の高いサブシステムに分割し、そのサブシステムごとに設計～テストまでのサイクルを繰り返しながらシステムを構築していく開発モデル</li>
+</ul></li>
+<li><p>RAD(Rapid Application Development)</p>
+<ul>
+<li>プログラムやソースコードを書かなくても、GUI 部品(ボタンやメニュー)を配置していくだけで操作画面の外観を完成させることができる開発ツールの一種</li>
+<li>素早いソフトウェアの構築が可能な開発モデル</li>
+</ul></li>
+<li><p>ウォータフォールモデル</p>
+<ul>
+<li>開発プロジェクトを時系列に、「要求定義」「外部設計（概要設計）」「内部設計（詳細設計）」「開発（プログラミング）」「テスト」「運用」などの作業工程（局面、フェーズ）に分割して行う開発モデル</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>進化的モデル(エボリューションモデル)</p>
+<ul>
+<li>要求が確定した部分から開発に着手し、要件定義～テストを繰り返しながら機能を追加していく開発モデル</li>
+<li>開発するシステムの完成形が未定でも適用</li>
+</ul></li>
+<li><p>段階的モデル(インクリメンタルモデル)</p>
+<ul>
+<li>初めにシステム全体の要件定義を行い要求された機能を幾つかのサブシステムに分割した後、コアとなる部分を優先的に完成させ、以降は設計～テストを繰り返して追加機能を順次リリースしていく開発モデル</li>
+</ul></li>
+</ul>
+<ul>
+<li>プロトタイピングモデル
+<ul>
+<li>システム開発プロセスの早い段階でシステムの試作品をつくり、ユーザにそのイメージを理解させ、承認を得ながら開発を進めていく開発モデル</li>
+</ul></li>
+</ul>
+<ul>
+<li>リバースエンジニアリング
+<ul>
+<li>既存ソフトウェアの動作やそのソースプログラムを解析するなどして、製品の仕組み、構造・構成技術等を調査し、そこから製造方法や動作原理、設計図、ソースコードなどの情報を得る手法</li>
+<li>自社製品の保守及びセキュリティ強化などの目的で実施されるほか、他社製品の技術仕様を明らかにする目的でも行われる</li>
+</ul></li>
+</ul>
+<ul>
+<li>デュアルライセンス
+<ul>
+<li>ひとつのソフトウェアを 2 種類以上の異なるライセンスの元で配布する形態のこと</li>
+<li>市場販売されているソフトウェアパッケージの中でも、特に業務に使用されるような比較的高額な製品では、「パーソナル版」と「プロフェッショナル版」，「スタンダード版」と「アカデミック版」のように、使用できる機能や使途の制限などの分類によって２つ以上の複数のライセンスが設定されていることがある</li>
+<li><font color='red'>ソフトウェアがデュアルライセンスで配布されている場合、その利用者はその目的に応じて複数のライセンスの中から一つを選択しソフトウェアを利用することができる</font></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="システム開発のアプローチ"></a><a href="#システム開発のアプローチ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>システム開発のアプローチ</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="プロセス中心アプローチ"></a><a href="#プロセス中心アプローチ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>プロセス中心アプローチ</h3>
+<ul>
+<li>POA(Process Oriented Approach)</li>
+<li>ソフトウェアの機能(プロセス) を中心としたアプローチ</li>
+<li>機能を一つのプロセスとして考え、そのプロセスを段階的に詳細化していき最終的には最小機能の単位であるモジュールに分割</li>
+<li>図法
+<ul>
+<li><a href="dfd">DFD</a></li>
+<li><a href="statusflow">状態遷移図</a></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="データ中心アプローチ"></a><a href="#データ中心アプローチ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>データ中心アプローチ</h3>
+<ul>
+<li>DOA(Data Oriented Approach)</li>
+<li>業務で扱うデータに着目したアプローチ</li>
+<li>図法
+<ul>
+<li><a href="er">ER 図</a></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="オブジェクト指向アプローチ"></a><a href="#オブジェクト指向アプローチ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>オブジェクト指向アプローチ</h3>
+<ul>
+<li>OOA(Object Oriented Approach)</li>
+<li>図法
+<ul>
+<li><a href="uml">UML</a></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ソフトウェア開発の概要">ソフトウェア開発の概要</a></li><li><a href="#開発プロセス">開発プロセス</a><ul class="toc-headings"><li><a href="#要件定義">要件定義</a></li><li><a href="#設計">設計</a></li><li><a href="#開発-実装">開発・実装</a></li><li><a href="#テスト">テスト</a></li><li><a href="#運用-保守">運用・保守</a></li></ul></li><li><a href="#要件定義-1">要件定義</a></li><li><a href="#ソフトウェア開発の基礎知識">ソフトウェア開発の基礎知識</a></li><li><a href="#要求定義と要件定義">要求定義と要件定義</a></li><li><a href="#外部設計">外部設計</a></li><li><a href="#内部設計">内部設計</a></li><li><a href="#製造">製造</a></li><li><a href="#テスト-1">テスト</a></li><li><a href="#受け入れテスト">受け入れテスト</a></li><li><a href="#プロジェクトマネジメント">プロジェクトマネジメント</a></li><li><a href="#品質管理">品質管理</a></li><li><a href="#セキュリティ">セキュリティ</a></li><li><a href="#プロジェクト完了報告">プロジェクト完了報告</a></li><li><a href="#システム開発のアプローチ">システム開発のアプローチ</a><ul class="toc-headings"><li><a href="#プロセス中心アプローチ">プロセス中心アプローチ</a></li><li><a href="#データ中心アプローチ">データ中心アプローチ</a></li><li><a href="#オブジェクト指向アプローチ">オブジェクト指向アプローチ</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>正規表現 · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- PCRE(Perl Compatible Regular Expressions)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="正規表現 · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- PCRE(Perl Compatible Regular Expressions)"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">正規表現</h1></header><article><div><span><ul>
+<li>PCRE(Perl Compatible Regular Expressions)
+<ul>
+<li>Perl 互換の正規表現</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="メタ文字"></a><a href="#メタ文字" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>メタ文字</h2>
+<table>
+<thead>
+<tr><th>メタ文字</th><th>意味</th></tr>
+</thead>
+<tbody>
+<tr><td>\</td><td>直後の文字をエスケープ</td></tr>
+<tr><td>^</td><td>先頭マッチ</td></tr>
+<tr><td>$</td><td>末尾にマッチ</td></tr>
+<tr><td>.</td><td>改行を除くすべての文字にマッチ</td></tr>
+<tr><td>[</td><td>文字クラス定義の開始</td></tr>
+<tr><td>]</td><td>文字クラス定義の終了</td></tr>
+<tr><td>`</td><td>`</td><td>選択</td></tr>
+<tr><td>(</td><td>サブパターンの開始</td></tr>
+<tr><td>)</td><td>サブパターンの終了</td></tr>
+<tr><td>?</td><td>0 または 1 回の繰り返し</td></tr>
+<tr><td>*</td><td>0 回以上の繰り返し</td></tr>
+<tr><td>+</td><td>1 回以上の繰り返し</td></tr>
+<tr><td>{</td><td>量指定子の開始</td></tr>
+<tr><td>}</td><td>量指定子の終了</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="非表示文字"></a><a href="#非表示文字" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>非表示文字</h2>
+<table>
+<thead>
+<tr><th>表記</th><th>意味</th></tr>
+</thead>
+<tbody>
+<tr><td>\t</td><td>タブ文字</td></tr>
+<tr><td>\n</td><td>改行文字</td></tr>
+<tr><td>\r</td><td>復帰文字</td></tr>
+<tr><td>\d</td><td>10 進数の数字</td></tr>
+<tr><td>\D</td><td>10 進数の数字以外</td></tr>
+<tr><td>\s</td><td>空白類(タブ、改行、復帰) 文字</td></tr>
+<tr><td>\S</td><td>空白文字以外</td></tr>
+<tr><td>\w</td><td>英数字と _</td></tr>
+<tr><td>\W</td><td>英数字と _ 以外</td></tr>
+<tr><td>\xhh</td><td>16 進コードで hh の文字</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="アンカ"></a><a href="#アンカ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>アンカ</h2>
+<ul>
+<li>文字列中の位置を指定する場合に使用</li>
+</ul>
+<table>
+<thead>
+<tr><th>メタ文字</th><th>意味</th></tr>
+</thead>
+<tbody>
+<tr><td>^</td><td>先頭</td></tr>
+<tr><td>$</td><td>末尾</td></tr>
+<tr><td>\b</td><td>単語境界</td></tr>
+<tr><td>\B</td><td>非単語協会</td></tr>
+</tbody>
+</table>
+<ul>
+<li>単語境界
+<ul>
+<li>単語を構成する文字とそうでない文字との境目</li>
+<li>Hello World! の単語境界
+<ul>
+<li>先頭と H の間</li>
+<li>o と空白の間</li>
+<li>空白と W の間</li>
+<li>d と ! の間</li>
+<li><code>\bWorld\b</code> とした場合は World にマッチ</li>
+<li><code>\BWorld\B</code> とした場合は TheWorldcup のように前後を単語で囲まれた文字列にマッチ</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="文字クラス"></a><a href="#文字クラス" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>文字クラス</h2>
+<table>
+<thead>
+<tr><th>文字クラス</th><th>内容</th></tr>
+</thead>
+<tbody>
+<tr><td>[a-z]</td><td>英小文字のいずれか 1 文字にマッチ</td></tr>
+<tr><td>[A-Z]</td><td>英大文字のいずれか 1 文字にマッチ</td></tr>
+<tr><td>[0-9]</td><td>数字 1 文字にマッチ</td></tr>
+<tr><td>[a-zA-Z0-9]</td><td>英数字のいずれか 1 文字にマッチ</td></tr>
+<tr><td>[^a-zA-Z]</td><td>英字以外にマッチ</td></tr>
+<tr><td>[^0-9]</td><td>数字以外にマッチ</td></tr>
+</tbody>
+</table>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#メタ文字">メタ文字</a></li><li><a href="#非表示文字">非表示文字</a></li><li><a href="#アンカ">アンカ</a></li><li><a href="#文字クラス">文字クラス</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

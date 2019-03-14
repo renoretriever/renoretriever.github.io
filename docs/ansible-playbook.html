@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Ansible Playbook · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- hoge ユーザに切り替えてコマンドを実行"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Ansible Playbook · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- hoge ユーザに切り替えてコマンドを実行"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Ansible Playbook</h1></header><article><div><span><ul>
+<li><p>hoge ユーザに切り替えてコマンドを実行</p>
+<pre><code class="hljs">- name : <span class="hljs-keyword">Shell</span><span class="bash"> Run
+</span>  become_user: hoge
+  <span class="hljs-keyword">shell</span><span class="bash">: /home/hoge/<span class="hljs-built_in">test</span>
+</span></code></pre></li>
+</ul>
+<ul>
+<li><p>Python のバージョンを指定</p>
+<pre><code class="hljs">$ ansible-playbook site<span class="hljs-selector-class">.yml</span> -<span class="hljs-selector-tag">i</span> inventory/local  -e <span class="hljs-string">'ansible_python_interpreter=/usr/bin/python3'</span>
+</code></pre></li>
+<li><p>ドライランを実行し、差分の表示</p>
+<pre><code class="hljs">$ ansible-playbook -i development site.yml --check --diff
+(snip)
+
+TASK [nginx : replace index.html] <span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>*
+--- before: /usr/share/nginx/html/index.html
++++ after: /home/vagrant/.ansible/tmp/ansible-local-7407p32HBV/tmpxcbLcs/index.html.j2
+@@ -1 +1 @@
+-hello, development ansible
++hello, development ansible !!
+
+changed: [localhost]
+
+TASK [nginx : nginx start] <span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-emphasis">***</span>
+ok: [localhost]
+
+PLAY RECAP <span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-emphasis">***</span>*
+localhost                  : ok=5    changed=1    unreachable=0    failed=0
+</code></pre></li>
+<li><p>playbook と言われるものに、構築情報の定義を予めしておき、構築時にはこの playbook ファイルを指定して、構築を一連の処理に従って実行</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="実行"></a><a href="#実行" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>実行</h2>
+<hr>
+<ul>
+<li><p>例</p>
+<pre><code class="hljs">$ ansible-playbook -<span class="hljs-selector-tag">i</span> development site<span class="hljs-selector-class">.yml</span>
+</code></pre></li>
+<li><p>例 : 変数の定義</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> ansible-playbook site.yml --extra-vars <span class="hljs-string">"access_key=<span class="hljs-variable">$AWS_ACCESS_KEY_ID</span> secret_key=<span class="hljs-variable">$AWS_SECRET_ACCESS_KEY</span>"</span></span>
+</code></pre></li>
+<li><p>site.yml</p>
+<ul>
+<li>どのサーバに、どのような処理をするのかを記載したもの</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-meta">---</span>
+<span class="hljs-attr">- hosts:</span> <span class="hljs-string">webservers</span>
+<span class="hljs-attr">  become:</span> <span class="hljs-literal">yes</span>
+<span class="hljs-attr">  connection:</span> <span class="hljs-string">local</span>
+<span class="hljs-attr">  roles:</span>
+<span class="hljs-bullet">    -</span> <span class="hljs-string">common</span>
+<span class="hljs-bullet">    -</span> <span class="hljs-string">nginx</span>
+</code></pre>
+<ol>
+<li>hosts: webservers
+<ul>
+<li>webservers のホストグループに対して処理を実行</li>
+</ul></li>
+<li>become: yes
+<ul>
+<li>root ユーザにて処理を実行</li>
+</ul></li>
+<li>connection: local
+<ul>
+<li>local 接続を意味</li>
+</ul></li>
+<li>roles:
+<ul>
+<li>common , nginx に記載されている処理を実行</li>
+</ul></li>
+</ol></li>
+</ul>
+<ul>
+<li><p>development</p>
+<ul>
+<li>実行対象の定義</li>
+<li>インベントリファイル</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-string">[development-webservers]</span>
+localhost
+
+<span class="hljs-string">[webservers:children]</span>
+development-webservers
+</code></pre>
+<ul>
+<li>localhost は webservers グループと development-webservers グループに属している</li>
+</ul></li>
+<li><p>role</p>
+<ul>
+<li>実行内容の定義</li>
+<li>各項目の <code>tasks</code> ディレクトリ配下に設定ファイルがある</li>
+</ul></li>
+<li><p>group_vars</p>
+<ul>
+<li>環境によって設定値を変更する
+<ul>
+<li><p>設定値</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">cat</span> group_vars/development-webservers.yml
+<span class="hljs-keyword">en</span><span class="hljs-variable">v:</span> <span class="hljs-string">"development"</span>
+</code></pre></li>
+<li><p>埋め込み側</p>
+<pre><code class="hljs">$ cat roles/nginx/templates/index<span class="hljs-selector-class">.html</span><span class="hljs-selector-class">.j2</span>
+hello, {{ env }} ansible
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>main.yml にて他の設定ファイルを読み込ませる</p>
+<pre><code class="hljs css languages- yml"><span class="hljs-string">$</span> <span class="hljs-string">cat</span> <span class="hljs-string">main.yml</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">- include:</span> <span class="hljs-string">inc.yml</span>
+</code></pre></li>
+</ul>
+<ul>
+<li>特定タスクの実行
+<ul>
+<li>指定したタクスからはじめたい
+<ul>
+<li><p><code>--start-at &lt;タスク名&gt;</code></p>
+<pre><code class="hljs css languages- bash">$ ansible-playbook -i prd site.yml --start-at=<span class="hljs-string">'install package'</span>
+</code></pre>
+<ul>
+<li>start-at 以降はタスクが実行されるので、実行しない場合には <code>--step</code> を利用する</li>
+</ul></li>
+</ul></li>
+<li>指定したタクスのみ実行したい
+<ul>
+<li><p>playbookの中で <code>tags</code> を指定し、実行時にタグ名で指定</p></li>
+<li><p><code>--tags=&lt;タグ名&gt;</code></p></li>
+<li><p>playbook</p>
+<pre><code class="hljs css languages- yml"><span class="hljs-attr">- name:</span> <span class="hljs-string">set</span> <span class="hljs-string">PS1</span> <span class="hljs-string">at</span> <span class="hljs-string">/etc/bashrc</span>
+<span class="hljs-attr">  lineinfile:</span>
+    <span class="hljs-string">dest=/etc/bashrc</span>
+    <span class="hljs-string">backup=true</span>
+    <span class="hljs-string">state=present</span>
+    <span class="hljs-string">line={{</span> <span class="hljs-string">item</span> <span class="hljs-string">}}</span>
+<span class="hljs-attr">  with_items:</span>
+<span class="hljs-bullet">    -</span> <span class="hljs-string">'PS1="\[\e[37m\e[44m\[[\u@\h \W \d \t]\[\e[0m\]\n\\$ "'</span>
+<span class="hljs-attr">  tags:</span> <span class="hljs-string">change_ps1</span>
+</code></pre></li>
+<li><p>実行</p>
+<pre><code class="hljs">$ ansible-playbook site<span class="hljs-selector-class">.yml</span> -<span class="hljs-selector-tag">i</span> inventory/prd --tags=change_ps1
+</code></pre></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="error"></a><a href="#error" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Error</h2>
+<hr>
+<ul>
+<li><code>{&quot;msg&quot;: &quot;The task includes an option with an undefined variable. The error was: 'dict object' has no attribute 'vpc'\n\nThe error appears to have been in (snip) }</code>
+<ul>
+<li>dry-run 時には register の値がないので、それを参照する時にエラーになる</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#実行">実行</a></li><li><a href="#error">Error</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

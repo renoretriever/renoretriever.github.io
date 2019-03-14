@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>brew · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- [Homebrew](http://brew.sh/)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="brew · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- [Homebrew](http://brew.sh/)"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">brew</h1></header><article><div><span><ul>
+<li><a href="http://brew.sh/">Homebrew</a>
+<ul>
+<li><p>Mac 用のパッケージマネージャー</p></li>
+<li><p>インストール</p>
+<pre><code class="hljs">/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/<span class="hljs-keyword">install</span>/<span class="hljs-keyword">master</span>/<span class="hljs-keyword">install</span>)<span class="hljs-string">"
+</span></code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li><p><a href="https://caskroom.github.io/">Homebrew Cask</a></p>
+<ul>
+<li><p>Homebrew でアプリ(GUI)も管理</p></li>
+<li><p>インストール</p>
+<pre><code class="hljs"><span class="hljs-keyword">brew </span>tap caskroom/cask
+</code></pre></li>
+</ul></li>
+<li><p>Brewfile 利用して一括インストール</p>
+<ul>
+<li><p><a href="https://gitlab.com/snippets/1714988">Brewfile</a></p></li>
+<li><p>インストール</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">brew </span><span class="hljs-keyword">bundle
+</span></code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>潜在的な問題を見つけてくれる</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> brew doctor</span>
+</code></pre></li>
+<li><p>キャッシュ削除</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> brew cleanup -s</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="linux-環境"></a><a href="#linux-環境" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linux 環境</h2>
+<hr>
+<ul>
+<li><p><a href="https://docs.brew.sh/Linuxbrew">https://docs.brew.sh/Linuxbrew</a></p></li>
+<li><p>env</p>
+<pre><code class="hljs"># cat /etc/redhat-<span class="hljs-keyword">release</span> <span class="hljs-comment">; uname  -a
+</span>CentOS Linux <span class="hljs-keyword">release</span> <span class="hljs-number">7.6</span>.<span class="hljs-number">1810</span> (Core)
+Linux test<span class="hljs-number">01</span> <span class="hljs-number">3.10</span>.<span class="hljs-number">0</span><span class="hljs-number">-957.5</span>.<span class="hljs-number">1</span>.el<span class="hljs-number">7</span>.<span class="hljs-keyword">x</span><span class="hljs-number">86</span>_<span class="hljs-number">64</span> <span class="hljs-symbol">#1</span> SMP Fri Feb <span class="hljs-number">1</span> <span class="hljs-number">14</span>:<span class="hljs-number">54</span>:<span class="hljs-number">57</span> UTC <span class="hljs-number">2019</span> <span class="hljs-keyword">x</span><span class="hljs-number">86</span>_<span class="hljs-number">64</span> <span class="hljs-keyword">x</span><span class="hljs-number">86</span>_<span class="hljs-number">64</span> <span class="hljs-keyword">x</span><span class="hljs-number">86</span>_<span class="hljs-number">64</span> GNU/Linux
+</code></pre></li>
+<li><p>install ※ 結構時間かかる</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)</span>"</span></span>
+</code></pre></li>
+<li><p>config</p>
+<pre><code class="hljs"><span class="hljs-keyword">test </span>-d ~/.linuxbrew &amp;&amp; eval $(~/.linuxbrew/bin/brew shellenv)
+<span class="hljs-keyword">test </span>-d /home/linuxbrew/.linuxbrew &amp;&amp; eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+<span class="hljs-keyword">test </span>-r ~/.bash_profile &amp;&amp; echo "eval \$($(brew --prefix)/bin/brew shellenv)" &gt;&gt;~/.bash_profile
+echo "eval \$($(brew --prefix)/bin/brew shellenv)" &gt;&gt;~/.profile
+</code></pre></li>
+<li><p>wget をインストールしてみる ※ 結構時間かかる</p>
+<ul>
+<li><p>既存に無いことを確認</p>
+<pre><code class="hljs"><span class="hljs-variable">$ </span>which wget
+/usr/bin/<span class="hljs-symbol">which:</span> no wget <span class="hljs-keyword">in</span> (<span class="hljs-regexp">/usr/local</span><span class="hljs-regexp">/sbin:/usr</span><span class="hljs-regexp">/local/bin</span><span class="hljs-symbol">:/usr/sbin</span><span class="hljs-symbol">:/usr/bin</span><span class="hljs-symbol">:/root/bin</span>)
+</code></pre></li>
+<li><p>install</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>wget
+</code></pre></li>
+<li><p>check</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">which</span> wget</span>
+~/.linuxbrew/bin/wget
+</code></pre></li>
+<li><p>execute</p>
+<pre><code class="hljs"><span class="hljs-variable">$ </span>wget <span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/www.yahoo.co.jp/</span>
+</code></pre>
+<ul>
+<li><p>check</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">ll
+</span>合計 <span class="hljs-number">20</span>
+-rw-rw-r--. <span class="hljs-number">1</span> <span class="hljs-keyword">brew </span><span class="hljs-keyword">brew </span><span class="hljs-number">18526</span>  <span class="hljs-number">2</span>月 <span class="hljs-number">15</span> <span class="hljs-number">13</span>:<span class="hljs-number">07</span> index.html
+</code></pre></li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#linux-環境">Linux 環境</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

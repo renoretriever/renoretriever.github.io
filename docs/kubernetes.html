@@ -1,0 +1,774 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>kubernetes · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 自動デプロイ、スケーリング、アプリ・コンテナの運用自動化のために設計されたオープンソースのプラットフォーム"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="kubernetes · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 自動デプロイ、スケーリング、アプリ・コンテナの運用自動化のために設計されたオープンソースのプラットフォーム"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">kubernetes</h1></header><article><div><span><ul>
+<li><p>自動デプロイ、スケーリング、アプリ・コンテナの運用自動化のために設計されたオープンソースのプラットフォーム</p></li>
+<li><p><a href="https://kubernetes.io/">kubernetes</a></p></li>
+<li><p>基本概念</p>
+<ul>
+<li>Node
+<ul>
+<li>Docker デーモンが動作するホストのこと</li>
+<li>Master
+<ul>
+<li>クラスタ制御用のプログラムが動作するホスト</li>
+<li>kubernetes 操作の API の受付を行う</li>
+</ul></li>
+<li>Minion
+<ul>
+<li>制御される側のホスト</li>
+<li>実際にコンテナを動作する(ワーカーノード)</li>
+</ul></li>
+</ul></li>
+<li>Pod
+<ul>
+<li>Docker コンテナの集合体</li>
+<li>関連コンテナの集合体</li>
+<li>1 コンテナ 1 プロセスの原則を維持しつつ、kubernetes 管理下でセットでの配置を実現する</li>
+<li>Pod は同一ノードに配置</li>
+</ul></li>
+<li>Service
+<ul>
+<li>通信のエンドポイント</li>
+<li>Servive と Pod の紐付けは Label で行なう</li>
+</ul></li>
+<li>Replication Controller
+<ul>
+<li>Pod のデプロイメントを管理</li>
+<li>Pod の多重度を定義し、継続的に監視、調整
+<ul>
+<li>多重度
+<ul>
+<li>「Web アプリケーション A のアプリケーション用 Pod は 3 並列であるべき」など、構成上の要素数を意味</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Label
+<ul>
+<li>オブジェクトに付与できる属性</li>
+</ul></li>
+</ul></li>
+<li><p>構成要素</p>
+<ul>
+<li>Docker</li>
+<li><a href="etcd">etcd</a></li>
+<li>kubelet</li>
+<li>kube-proxy</li>
+<li>kube-apiserver</li>
+<li>kube-controller-manager</li>
+<li>kube-scheduler</li>
+<li>アドオン
+<ul>
+<li>DNS
+<ul>
+<li>SkyDNS + kubesky</li>
+</ul></li>
+<li>UI
+<ul>
+<li>kube-ui</li>
+</ul></li>
+<li>監視
+<ul>
+<li>Heapster, Grafana, InfluxDB</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>ネットワーク構成の概要</p>
+<ul>
+<li>サービスのエンドポイントあての通信を iptables の NAT テーブルに作成する KUBE-* チェインを使って kube-proxy プロセスに集め、kube-proxy プロセスがサービスの定義に従って各ポッドに通信を分散</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="サンプル動作"></a><a href="#サンプル動作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>サンプル動作</h2>
+<h3><a class="anchor" aria-hidden="true" id="環境"></a><a href="#環境" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>環境</h3>
+<ul>
+<li>master
+<ul>
+<li>10.0.12.50</li>
+</ul></li>
+<li>node
+<ul>
+<li>10.0.12.51</li>
+<li>10.0.12.52</li>
+</ul></li>
+<li>kube-proxy による master - node01 - node02 間の仮想ネットワーク
+<ul>
+<li>10.254.0.0/16</li>
+<li>kube-proxy による仮想ネットワークは、各コンテナで稼動しているサービスに対して一意な IP アドレスを割り当てるためのもの</li>
+<li>このネットワークには kube-proxy が稼動しているホストからのみアクセスが可能となる</li>
+</ul></li>
+<li>flannel による node01 - node02 間の仮想ネットワーク
+<ul>
+<li>172.17.0.0/16</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="全台共通"></a><a href="#全台共通" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>全台共通</h3>
+<ul>
+<li><p>/etc/hosts の修正</p>
+<pre><code class="hljs"># cp -a /etc/hosts{,.$(date +%Y%m%d)}
+# ll /etc/hosts{,.$(date +%Y%m%d)}
+<span class="hljs-deletion">-rw-r--r--. 1 root root 158  6月  7  2013 /etc/hosts</span>
+<span class="hljs-deletion">-rw-r--r--. 1 root root 158  6月  7  2013 /etc/hosts.20181127</span>
+# diff -u /etc/hosts{.$(date +%Y%m%d),}
+<span class="hljs-comment">--- /etc/hosts.20181127 2013-06-07 23:31:32.000000000 +0900</span>
+<span class="hljs-comment">+++ /etc/hosts  2018-11-27 09:47:07.883317484 +0900</span>
+<span class="hljs-meta">@@ -1,2 +1,5 @@</span>
+ 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+ ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+<span class="hljs-addition">+10.0.12.50 master</span>
+<span class="hljs-addition">+10.0.12.51 node01</span>
+<span class="hljs-addition">+10.0.12.52 node02</span>
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="master"></a><a href="#master" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>master</h3>
+<ul>
+<li><p>install</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum install etcd kubernetes flannel</span>
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="etcd"></a><a href="#etcd" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>etcd</h4>
+<ul>
+<li><p>アクセス制限の修正</p>
+<pre><code class="hljs"><span class="hljs-meta"># diff -u /etc/etcd/etcd.conf{.$(date +%Y%m%d),}</span>
+--- <span class="hljs-meta-keyword">/etc/</span>etcd/etcd.conf<span class="hljs-number">.20181127</span>        <span class="hljs-number">2018</span><span class="hljs-number">-07</span><span class="hljs-number">-17</span> <span class="hljs-number">03</span>:<span class="hljs-number">01</span>:<span class="hljs-number">18.000000000</span> +<span class="hljs-number">0900</span>
++++ <span class="hljs-meta-keyword">/etc/</span>etcd/etcd.conf <span class="hljs-number">2018</span><span class="hljs-number">-11</span><span class="hljs-number">-27</span> <span class="hljs-number">12</span>:<span class="hljs-number">40</span>:<span class="hljs-number">28.799899953</span> +<span class="hljs-number">0900</span>
+@@ <span class="hljs-number">-3</span>,<span class="hljs-number">7</span> +<span class="hljs-number">3</span>,<span class="hljs-number">7</span> @@
+ ETCD_DATA_DIR=<span class="hljs-string">"/var/lib/etcd/default.etcd"</span>
+ <span class="hljs-meta">#ETCD_WAL_DIR=<span class="hljs-string">""</span></span>
+ <span class="hljs-meta">#ETCD_LISTEN_PEER_URLS=<span class="hljs-string">"http://localhost:2380"</span></span>
+-ETCD_LISTEN_CLIENT_URLS=<span class="hljs-string">"http://localhost:2379"</span>
++ETCD_LISTEN_CLIENT_URLS=<span class="hljs-string">"http://10.0.12.50:2379,http://localhost:2379"</span>
+ <span class="hljs-meta">#ETCD_MAX_SNAPSHOTS=<span class="hljs-string">"5"</span></span>
+ <span class="hljs-meta">#ETCD_MAX_WALS=<span class="hljs-string">"5"</span></span>
+ ETCD_NAME=<span class="hljs-string">"default"</span>
+</code></pre></li>
+<li><p>起動</p>
+<pre><code class="hljs"><span class="hljs-comment"># systemctl start etcd</span>
+<span class="hljs-comment"># ps auxfww | grep [e]tcd</span>
+etcd      9709  1.0  4.1 10717748 20668 ?      Ssl  11月27  13<span class="hljs-function">:01</span> <span class="hljs-string">/usr/bin/etcd</span> <span class="hljs-params">--name=default</span> <span class="hljs-params">--data-dir=/var/lib/etcd/default</span>.etcd <span class="hljs-params">--listen-client-urls=http</span>:<span class="hljs-string">//10.0.12.50</span><span class="hljs-function">:2379</span>,http:<span class="hljs-string">//localhost</span><span class="hljs-function">:2379</span>
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="flannel"></a><a href="#flannel" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>flannel</h4>
+<ul>
+<li><p>flannel が使用する仮想ネットワークの IP アドレスを指定</p>
+<pre><code class="hljs"># etcdctl mk /<span class="hljs-keyword">atomic</span>.io/network/config '{<span class="hljs-string">"Network"</span>:<span class="hljs-string">"172.17.0.0/16"</span>}'
+{<span class="hljs-string">"Network"</span>:<span class="hljs-string">"172.17.0.0/16"</span>}
+</code></pre>
+<ul>
+<li>この設定キーは <code>/etc/sysconfig/flanneld</code> ファイル内の <code>FLANNEL_ETCD_PREFIX</code> というパラメータで変更可能</li>
+</ul></li>
+<li><p>起動</p>
+<pre><code class="hljs"><span class="hljs-comment"># systemctl start flanneld</span>
+<span class="hljs-comment"># ps auxfww | grep [f]lanneld</span>
+root     12563  0.2  6.0 311912 30000 ?        Ssl  09:39   0:00 /usr/bin/flanneld <span class="hljs-attribute">-etcd-endpoints</span>=http://127.0.0.1:2379 <span class="hljs-attribute">-etcd-prefix</span>=/atomic.io/network
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="kubernetes"></a><a href="#kubernetes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>kubernetes</h4>
+<ul>
+<li>マスターサーバー側で変更が必要もの
+<ul>
+<li>apiserver</li>
+<li>config</li>
+<li>controller-manager</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>API 認証用の鍵生成</p>
+<pre><code class="hljs"># openssl genrsa -out /etc/kubernetes/serviceaccount.<span class="hljs-type">key</span> <span class="hljs-number">2048</span>
+</code></pre></li>
+<li><p><code>/etc/kubernetes/apiserver</code> 編集</p>
+<pre><code class="hljs"># cp -a /etc/kubernetes/apiserver{,.$(date +%Y%m%d)}
+# ll /etc/kubernetes/apiserver{,.$(date +%Y%m%d)}
+<span class="hljs-deletion">-rw-r--r--. 1 root root 767  7月  4  2017 /etc/kubernetes/apiserver</span>
+<span class="hljs-deletion">-rw-r--r--. 1 root root 767  7月  4  2017 /etc/kubernetes/apiserver.20181128</span>
+# diff -u /etc/kubernetes/apiserver{.$(date +%Y%m%d),}
+<span class="hljs-comment">--- /etc/kubernetes/apiserver.20181128  2017-07-04 00:33:24.000000000 +0900</span>
+<span class="hljs-comment">+++ /etc/kubernetes/apiserver   2018-11-28 09:57:09.128503347 +0900</span>
+<span class="hljs-meta">@@ -5,7 +5,7 @@</span>
+ #
+
+ # The address on the local server to listen to.
+<span class="hljs-deletion">-KUBE_API_ADDRESS="--insecure-bind-address=127.0.0.1"</span>
+<span class="hljs-addition">+KUBE_API_ADDRESS="--insecure-bind-address=10.0.12.50"</span>
+
+ # The port on the local server to listen on.
+ # KUBE_API_PORT="--port=8080"
+<span class="hljs-meta">@@ -23,4 +23,4 @@</span>
+ KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota"
+
+ # Add your own!
+<span class="hljs-deletion">-KUBE_API_ARGS=""</span>
+<span class="hljs-addition">+KUBE_API_ARGS="--service_account_key_file=/etc/kubernetes/serviceaccount.key"</span>
+</code></pre></li>
+<li><p><code>/etc/kubernetes/controller-manager</code> 編集</p>
+<pre><code class="hljs"># cp -a /etc/kubernetes/controller-manager{,.$(<span class="hljs-keyword">date</span> +%Y%m%d)}
+# ll /etc/kubernetes/controller-manager{,.$(<span class="hljs-keyword">date</span> +%Y%m%d)}
+-rw-r--r--. <span class="hljs-number">1</span> root root <span class="hljs-number">189</span>  <span class="hljs-number">7</span>月  <span class="hljs-number">4</span>  <span class="hljs-number">2017</span> /etc/kubernetes/controller-manager
+-rw-r--r--. <span class="hljs-number">1</span> root root <span class="hljs-number">189</span>  <span class="hljs-number">7</span>月  <span class="hljs-number">4</span>  <span class="hljs-number">2017</span> /etc/kubernetes/controller-manager<span class="hljs-number">.20181128</span>
+# diff -u /etc/kubernetes/controller-manager{.$(<span class="hljs-keyword">date</span> +%Y%m%d),}
+--- /etc/kubernetes/controller-manager<span class="hljs-number">.20181128</span> <span class="hljs-number">2017</span><span class="hljs-number">-07</span><span class="hljs-number">-04</span> <span class="hljs-number">00</span>:<span class="hljs-number">33</span>:<span class="hljs-number">24.000000000</span> +<span class="hljs-number">0900</span>
++++ /etc/kubernetes/controller-manager  <span class="hljs-number">2018</span><span class="hljs-number">-11</span><span class="hljs-number">-28</span> <span class="hljs-number">09</span>:<span class="hljs-number">58</span>:<span class="hljs-number">54.874452967</span> +<span class="hljs-number">0900</span>
+@@ <span class="hljs-number">-4</span>,<span class="hljs-number">4</span> +<span class="hljs-number">4</span>,<span class="hljs-number">4</span> @@
+ # defaults from config and apiserver should be adequate
+
+ # Add your own!
+-KUBE_CONTROLLER_MANAGER_ARGS=<span class="hljs-string">""</span>
++KUBE_CONTROLLER_MANAGER_ARGS=<span class="hljs-string">"--service_account_private_key_file=/etc/kubernetes/serviceaccount.key"</span>
+</code></pre></li>
+<li><p><code>/etc/kubernetes/config</code> 編集</p>
+<pre><code class="hljs"># cp -a /etc/kubernetes/config{,.$(<span class="hljs-keyword">date</span> +%Y%m%d)}
+# ll /etc/kubernetes/config{,.$(<span class="hljs-keyword">date</span> +%Y%m%d)}
+-rw-r--r--. <span class="hljs-number">1</span> root root <span class="hljs-number">655</span>  <span class="hljs-number">7</span>月  <span class="hljs-number">4</span>  <span class="hljs-number">2017</span> /etc/kubernetes/config
+-rw-r--r--. <span class="hljs-number">1</span> root root <span class="hljs-number">655</span>  <span class="hljs-number">7</span>月  <span class="hljs-number">4</span>  <span class="hljs-number">2017</span> /etc/kubernetes/config<span class="hljs-number">.20181128</span>
+# diff -u /etc/kubernetes/config{.$(<span class="hljs-keyword">date</span> +%Y%m%d),}
+--- /etc/kubernetes/config<span class="hljs-number">.20181128</span>     <span class="hljs-number">2017</span><span class="hljs-number">-07</span><span class="hljs-number">-04</span> <span class="hljs-number">00</span>:<span class="hljs-number">33</span>:<span class="hljs-number">24.000000000</span> +<span class="hljs-number">0900</span>
++++ /etc/kubernetes/config      <span class="hljs-number">2018</span><span class="hljs-number">-11</span><span class="hljs-number">-28</span> <span class="hljs-number">10</span>:<span class="hljs-number">01</span>:<span class="hljs-number">10.759388228</span> +<span class="hljs-number">0900</span>
+@@ <span class="hljs-number">-19</span>,<span class="hljs-number">4</span> +<span class="hljs-number">19</span>,<span class="hljs-number">4</span> @@
+ KUBE_ALLOW_PRIV=<span class="hljs-string">"--allow-privileged=false"</span>
+
+ # How the controller-manager, scheduler, and proxy find the apiserver
+-KUBE_MASTER=<span class="hljs-string">"--master=http://127.0.0.1:8080"</span>
++KUBE_MASTER=<span class="hljs-string">"--master=http://master:8080"</span>
+</code></pre></li>
+<li><p>コンポーネント起動</p>
+<pre><code class="hljs"><span class="hljs-comment"># systemctl start kube-apiserver</span>
+<span class="hljs-comment"># ps auxfww | grep [k]ube-apiserver</span>
+kube     12678  1.3 14.2 142048 70984 ?        Ssl  10:01   0:09 /usr/bin/kube-apiserver <span class="hljs-attribute">--logtostderr</span>=<span class="hljs-literal">true</span> <span class="hljs-attribute">--v</span>=0 <span class="hljs-attribute">--etcd-servers</span>=http://127.0.0.1:2379 <span class="hljs-attribute">--insecure-bind-address</span>=10.0.12.50 <span class="hljs-attribute">--allow-privileged</span>=<span class="hljs-literal">false</span> <span class="hljs-attribute">--service-cluster-ip-range</span>=10.254.0.0/16 <span class="hljs-attribute">--admission-control</span>=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota <span class="hljs-attribute">--service_account_key_file</span>=/etc/kubernetes/serviceaccount.key
+
+<span class="hljs-comment"># systemctl start kube-controller-manager</span>
+<span class="hljs-comment"># ps auxfww | grep [k]ube-controller-manager</span>
+kube     12691  2.2  6.7 301160 33596 ?        Ssl  10:01   0:16 /usr/bin/kube-controller-manager <span class="hljs-attribute">--logtostderr</span>=<span class="hljs-literal">true</span> <span class="hljs-attribute">--v</span>=0 <span class="hljs-attribute">--master</span>=http://master:8080 <span class="hljs-attribute">--service_account_private_key_file</span>=/etc/kubernetes/serviceaccount.key
+
+<span class="hljs-comment"># systemctl start kube-scheduler</span>
+<span class="hljs-comment"># ps auxfww | grep [k]ube-scheduler</span>
+kube     12704  0.2  4.6 362208 23372 ?        Ssl  10:01   0:01 /usr/bin/kube-scheduler <span class="hljs-attribute">--logtostderr</span>=<span class="hljs-literal">true</span> <span class="hljs-attribute">--v</span>=0 <span class="hljs-attribute">--master</span>=http://master:8080
+
+<span class="hljs-comment"># systemctl start kube-proxy</span>
+<span class="hljs-comment"># ps auxfww | grep [k]ube-proxy</span>
+root     12718  2.2  7.6 366692 37968 ?        Ssl  10:02   0:16 /usr/bin/kube-proxy <span class="hljs-attribute">--logtostderr</span>=<span class="hljs-literal">true</span> <span class="hljs-attribute">--v</span>=0 <span class="hljs-attribute">--master</span>=http://master:8080
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="kubectl"></a><a href="#kubectl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>kubectl</h4>
+<ul>
+<li><a href="kubectl">kubectl</a></li>
+<li><code>~/.kube.config</code> を事前に作成する</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ssl-tls-証明書の設定-自己証明"></a><a href="#ssl-tls-証明書の設定-自己証明" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SSL/TLS 証明書の設定 ※ 自己証明</h4>
+<ul>
+<li><p><a href="https://kubernetes.io/docs/concepts/cluster-administration/certificates/">Certificates</a></p></li>
+<li><p>作業ディレクトリ作成</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> mkdir -p /etc/kubernetes/ca</span>
+<span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">cd</span> /etc/kubernetes/ca</span>
+</code></pre></li>
+<li><p>自己認証局証明書を作成</p>
+<pre><code class="hljs"># openssl genrsa -out ca.<span class="hljs-type">key</span> <span class="hljs-number">2048</span>
+# openssl req -x509 -new -nodes -<span class="hljs-type">key</span> ca.<span class="hljs-type">key</span> -subj <span class="hljs-string">"/CN=10.0.12.50"</span> -days <span class="hljs-number">10000</span> -out ca.crt
+</code></pre></li>
+<li><p>サーバの秘密鍵作成</p>
+<pre><code class="hljs">openssl genrsa -out server.<span class="hljs-type">key</span> <span class="hljs-number">2048</span>
+</code></pre></li>
+<li><p>証明書を作成するための設定ファイル(csr.conf) の作成</p>
+<pre><code class="hljs"><span class="hljs-comment"># cat csr.conf</span>
+[ req ]
+default_bits = 2048
+prompt = no
+default_md = sha256
+req_extensions = req_ext
+distinguished_name = dn
+
+[ dn ]
+C = JP
+ST = Tokyo
+L = Shinjuku
+O = test
+OU = test
+CN = master
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = kubernetes
+DNS.2 = kubernetes.default
+DNS.3 = kubernetes.default.svc
+DNS.4 = kubernetes.default.svc.cluster
+DNS.5 = kubernetes.default.svc.cluster.local
+IP.1 = 10.0.12.50
+IP.2 = 10.254.0.1
+
+[ v3_ext ]
+authorityKeyIdentifier=keyid,issuer:always
+basicConstraints=CA:FALSE
+keyUsage=keyEncipherment,dataEncipherment
+extendedKeyUsage=serverAuth,clientAuth
+subjectAltName=@alt_names
+</code></pre>
+<ul>
+<li><p>IP.2 には下記で確認できる IP アドレスを指定する</p>
+<pre><code class="hljs"># kubectl get svc
+NAME         CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   <span class="hljs-number">10.254</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>   &lt;none&gt;        <span class="hljs-number">443</span>/TCP   <span class="hljs-number">27</span>m
+</code></pre></li>
+</ul></li>
+<li><p>CSR の作成</p>
+<pre><code class="hljs"># <span class="hljs-selector-tag">openssl</span> <span class="hljs-selector-tag">req</span> <span class="hljs-selector-tag">-new</span> <span class="hljs-selector-tag">-key</span> <span class="hljs-selector-tag">server</span><span class="hljs-selector-class">.key</span> <span class="hljs-selector-tag">-out</span> <span class="hljs-selector-tag">server</span><span class="hljs-selector-class">.csr</span> <span class="hljs-selector-tag">-config</span> <span class="hljs-selector-tag">csr</span><span class="hljs-selector-class">.conf</span>
+</code></pre></li>
+<li><p>サーバ証明書の作成</p>
+<pre><code class="hljs"># openssl x509 -req -<span class="hljs-keyword">in</span> server.csr -<span class="hljs-keyword">CA</span> <span class="hljs-keyword">ca</span>.crt -CAkey <span class="hljs-keyword">ca</span>.key -CAcreateserial -<span class="hljs-keyword">out</span> server.crt -days 10000 -extensions v3_ext -extfile csr.<span class="hljs-keyword">conf</span>
+Signature ok
+subject=/C=JP/<span class="hljs-keyword">ST</span>=Tokyo/<span class="hljs-keyword">L</span>=Shinjuku/O=<span class="hljs-keyword">test</span>/<span class="hljs-keyword">OU</span>=<span class="hljs-keyword">test</span>/CN=master
+Getting <span class="hljs-keyword">CA</span> Private Key
+</code></pre></li>
+<li><p><code>/etc/kubernetes/apiserver</code> の編集</p>
+<pre><code class="hljs"># diff -u /etc/kubernetes/apiserver{.$(date +%Y%m%d),}
+<span class="hljs-comment">--- /etc/kubernetes/apiserver.20181128  2017-07-04 00:33:24.000000000 +0900</span>
+<span class="hljs-comment">+++ /etc/kubernetes/apiserver   2018-11-28 10:33:57.407191466 +0900</span>
+<span class="hljs-meta">@@ -5,7 +5,7 @@</span>
+ #
+
+ # The address on the local server to listen to.
+<span class="hljs-deletion">-KUBE_API_ADDRESS="--insecure-bind-address=127.0.0.1"</span>
+<span class="hljs-addition">+KUBE_API_ADDRESS="--insecure-bind-address=10.0.12.50"</span>
+
+ # The port on the local server to listen on.
+ # KUBE_API_PORT="--port=8080"
+<span class="hljs-meta">@@ -23,4 +23,7 @@</span>
+ KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota"
+
+ # Add your own!
+<span class="hljs-deletion">-KUBE_API_ARGS=""</span>
+<span class="hljs-addition">+KUBE_API_ARGS="--client-ca-file=/etc/kubernetes/ca/ca.crt \</span>
+<span class="hljs-addition">+--tls-cert-file=/etc/kubernetes/ca/server.crt \</span>
+<span class="hljs-addition">+--tls-private-key-file=/etc/kubernetes/ca/server.key \</span>
+<span class="hljs-addition">+--service-account-key-file=/etc/kubernetes/serviceaccount.key"</span>
+</code></pre>
+<ul>
+<li>サービスの restart</li>
+</ul></li>
+<li><p><code>/etc/kubernetes/controller-manager</code> の編集</p>
+<pre><code class="hljs"># diff -u /etc/kubernetes/controller-manager{.$(date +%Y%m%d),}
+<span class="hljs-comment">--- /etc/kubernetes/controller-manager.20181128 2017-07-04 00:33:24.000000000 +0900</span>
+<span class="hljs-comment">+++ /etc/kubernetes/controller-manager  2018-11-28 10:35:27.246190785 +0900</span>
+<span class="hljs-meta">@@ -4,4 +4,4 @@</span>
+ # defaults from config and apiserver should be adequate
+
+ # Add your own!
+<span class="hljs-deletion">-KUBE_CONTROLLER_MANAGER_ARGS=""</span>
+<span class="hljs-addition">+KUBE_CONTROLLER_MANAGER_ARGS="--service-account-private-key-file=/etc/kubernetes/serviceaccount.key --root-ca-file=/etc/kubernetes/ca/ca.crt --cluster-signing-cert-file=/etc/kubernetes/ca/ca.crt"</span>
+</code></pre>
+<ul>
+<li>サービスの restart</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="その他"></a><a href="#その他" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>その他</h4>
+<ul>
+<li><p>各 node の flannel がマスターの etcd を参照できるように接続制限を解除</p>
+<pre><code class="hljs"># firewall-cmd --add-rich-rule=<span class="hljs-string">"rule family="</span>ipv4<span class="hljs-string">" source address="</span><span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.51</span><span class="hljs-string">" port protocol="</span>tcp<span class="hljs-string">" port="</span><span class="hljs-number">2379</span><span class="hljs-string">" accept"</span>
+# firewall-cmd --permanent --add-rich-rule=<span class="hljs-string">"rule family="</span>ipv4<span class="hljs-string">" source address="</span><span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.51</span><span class="hljs-string">" port protocol="</span>tcp<span class="hljs-string">" port="</span><span class="hljs-number">2379</span><span class="hljs-string">" accept"</span>
+
+# firewall-cmd --add-rich-rule=<span class="hljs-string">"rule family="</span>ipv4<span class="hljs-string">" source address="</span><span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.52</span><span class="hljs-string">" port protocol="</span>tcp<span class="hljs-string">" port="</span><span class="hljs-number">2379</span><span class="hljs-string">" accept"</span>
+# firewall-cmd --permanent --add-rich-rule=<span class="hljs-string">"rule family="</span>ipv4<span class="hljs-string">" source address="</span><span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.52</span><span class="hljs-string">" port protocol="</span>tcp<span class="hljs-string">" port="</span><span class="hljs-number">2379</span><span class="hljs-string">" accept"</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>各 node の k8s がマスターの apiserver を参照できるように接続制限を解除</p>
+<pre><code class="hljs"># firewall-cmd --add-rich-rule=<span class="hljs-string">"rule family="</span>ipv4<span class="hljs-string">" source address="</span><span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.51</span><span class="hljs-string">" port protocol="</span>tcp<span class="hljs-string">" port="</span><span class="hljs-number">8080</span><span class="hljs-string">" accept"</span>
+# firewall-cmd --permanent --add-rich-rule=<span class="hljs-string">"rule family="</span>ipv4<span class="hljs-string">" source address="</span><span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.51</span><span class="hljs-string">" port protocol="</span>tcp<span class="hljs-string">" port="</span><span class="hljs-number">8080</span><span class="hljs-string">" accept"</span>
+
+# firewall-cmd --permanent --add-rich-rule=<span class="hljs-string">"rule family="</span>ipv4<span class="hljs-string">" source address="</span><span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.52</span><span class="hljs-string">" port protocol="</span>tcp<span class="hljs-string">" port="</span><span class="hljs-number">8080</span><span class="hljs-string">" accept"</span>
+# firewall-cmd --add-rich-rule=<span class="hljs-string">"rule family="</span>ipv4<span class="hljs-string">" source address="</span><span class="hljs-number">10.0</span><span class="hljs-number">.12</span><span class="hljs-number">.52</span><span class="hljs-string">" port protocol="</span>tcp<span class="hljs-string">" port="</span><span class="hljs-number">8080</span><span class="hljs-string">" accept"</span>
+</code></pre></li>
+<li><p>設定一覧</p>
+<pre><code class="hljs"><span class="hljs-comment"># firewall-cmd --list-all</span>
+public (active)
+  target:<span class="hljs-built_in"> default
+</span>  icmp-block-inversion: <span class="hljs-literal">no</span>
+  interfaces: eth0
+  sources:
+  services: ssh dhcpv6-client
+  ports:
+  protocols:
+  masquerade: <span class="hljs-literal">no</span>
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+        rule <span class="hljs-attribute">family</span>=<span class="hljs-string">"ipv4"</span> source <span class="hljs-attribute">address</span>=<span class="hljs-string">"10.0.12.51"</span><span class="hljs-built_in"> port </span><span class="hljs-attribute">port</span>=<span class="hljs-string">"2379"</span> <span class="hljs-attribute">protocol</span>=<span class="hljs-string">"tcp"</span> accept
+        rule <span class="hljs-attribute">family</span>=<span class="hljs-string">"ipv4"</span> source <span class="hljs-attribute">address</span>=<span class="hljs-string">"10.0.12.52"</span><span class="hljs-built_in"> port </span><span class="hljs-attribute">port</span>=<span class="hljs-string">"2379"</span> <span class="hljs-attribute">protocol</span>=<span class="hljs-string">"tcp"</span> accept
+        rule <span class="hljs-attribute">family</span>=<span class="hljs-string">"ipv4"</span> source <span class="hljs-attribute">address</span>=<span class="hljs-string">"10.0.12.51"</span><span class="hljs-built_in"> port </span><span class="hljs-attribute">port</span>=<span class="hljs-string">"8080"</span> <span class="hljs-attribute">protocol</span>=<span class="hljs-string">"tcp"</span> accept
+        rule <span class="hljs-attribute">family</span>=<span class="hljs-string">"ipv4"</span> source <span class="hljs-attribute">address</span>=<span class="hljs-string">"10.0.12.52"</span><span class="hljs-built_in"> port </span><span class="hljs-attribute">port</span>=<span class="hljs-string">"8080"</span> <span class="hljs-attribute">protocol</span>=<span class="hljs-string">"tcp"</span> accept
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="node"></a><a href="#node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>node</h3>
+<ul>
+<li><p>パッケージインストール(etcd は不要)</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum install docker kubernetes flannel</span>
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="flannel-1"></a><a href="#flannel-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>flannel</h4>
+<ul>
+<li><p>マスターサーバー上の etcd を参照するよう変更</p>
+<pre><code class="hljs"><span class="hljs-comment"># cp -a /etc/sysconfig/flanneld{,.$(date +%Y%m%d)}</span>
+<span class="hljs-comment"># ll /etc/sysconfig/flanneld{,.$(date +%Y%m%d)}</span>
+-rw-r<span class="hljs-params">--r--</span>. 1 root root 360  7月 17 02<span class="hljs-function">:16</span> <span class="hljs-string">/etc/sysconfig/flanneld</span>
+-rw-r<span class="hljs-params">--r--</span>. 1 root root 360  7月 17 02<span class="hljs-function">:16</span> <span class="hljs-string">/etc/sysconfig/flanneld.20181128</span>
+<span class="hljs-comment"># diff -u /etc/sysconfig/flanneld{.$(date +%Y%m%d),}</span>
+<span class="hljs-params">---</span> <span class="hljs-string">/etc/sysconfig/flanneld.20181128</span>    2018-07-17 02<span class="hljs-function">:16</span><span class="hljs-function">:55.000000000</span> +0900
++++ <span class="hljs-string">/etc/sysconfig/flanneld</span>     2018-11-28 10<span class="hljs-function">:51</span><span class="hljs-function">:21.130326904</span> +0900
+@@ -1,7 +1,7 @@
+<span class="hljs-comment"># Flanneld configuration options</span>
+
+<span class="hljs-comment"># etcd url location.  Point this to the server where etcd runs</span>
+-FLANNEL_ETCD_ENDPOINTS=<span class="hljs-string">"http://127.0.0.1:2379"</span>
++FLANNEL_ETCD_ENDPOINTS=<span class="hljs-string">"http://master:2379"</span>
+
+<span class="hljs-comment"># etcd config key.  This is the configuration key that flannel queries</span>
+<span class="hljs-comment"># For address range assignment</span>
+</code></pre></li>
+<li><p>事前に master 側の firewalld の制限を解除しておくこと</p></li>
+<li><p>起動</p>
+<pre><code class="hljs"><span class="hljs-comment"># systemctl start flanneld</span>
+<span class="hljs-comment"># ps auxfww | grep [f]lanneld</span>
+root      9192  0.2  5.9 238180 29836 ?        Ssl  11:00   0:00 /usr/bin/flanneld <span class="hljs-attribute">-etcd-endpoints</span>=http://master:2379 <span class="hljs-attribute">-etcd-prefix</span>=/atomic.io/network
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="docker"></a><a href="#docker" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Docker</h4>
+<ul>
+<li><p>起動</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> systemctl start docker</span>
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="kubernetes-1"></a><a href="#kubernetes-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>kubernetes</h4>
+<ul>
+<li><p><code>/etc/kubernetes/config</code> の編集</p>
+<pre><code class="hljs"># cp -a /etc/kubernetes/config{,.$(<span class="hljs-keyword">date</span> +%Y%m%d)}
+# ll /etc/kubernetes/config{,.$(<span class="hljs-keyword">date</span> +%Y%m%d)}
+-rw-r--r--. <span class="hljs-number">1</span> root root <span class="hljs-number">655</span>  <span class="hljs-number">7</span>月  <span class="hljs-number">4</span>  <span class="hljs-number">2017</span> /etc/kubernetes/config
+-rw-r--r--. <span class="hljs-number">1</span> root root <span class="hljs-number">655</span>  <span class="hljs-number">7</span>月  <span class="hljs-number">4</span>  <span class="hljs-number">2017</span> /etc/kubernetes/config<span class="hljs-number">.20181128</span>
+# diff -u /etc/kubernetes/config{.$(<span class="hljs-keyword">date</span> +%Y%m%d),}
+--- /etc/kubernetes/config<span class="hljs-number">.20181128</span>     <span class="hljs-number">2017</span><span class="hljs-number">-07</span><span class="hljs-number">-04</span> <span class="hljs-number">00</span>:<span class="hljs-number">33</span>:<span class="hljs-number">24.000000000</span> +<span class="hljs-number">0900</span>
++++ /etc/kubernetes/config      <span class="hljs-number">2018</span><span class="hljs-number">-11</span><span class="hljs-number">-28</span> <span class="hljs-number">11</span>:<span class="hljs-number">12</span>:<span class="hljs-number">30.105350589</span> +<span class="hljs-number">0900</span>
+@@ <span class="hljs-number">-19</span>,<span class="hljs-number">4</span> +<span class="hljs-number">19</span>,<span class="hljs-number">4</span> @@
+ KUBE_ALLOW_PRIV=<span class="hljs-string">"--allow-privileged=false"</span>
+
+ # How the controller-manager, scheduler, and proxy find the apiserver
+-KUBE_MASTER=<span class="hljs-string">"--master=http://127.0.0.1:8080"</span>
++KUBE_MASTER=<span class="hljs-string">"--master=http://master:8080"</span>
+</code></pre></li>
+<li><p><code>/etc/kubernetes/kubelet</code> の編集</p>
+<pre><code class="hljs"># cp -a /etc/kubernetes/kubelet{,.$(<span class="hljs-keyword">date</span> +%Y%m%d)}
+# ll /etc/kubernetes/kubelet{,.$(<span class="hljs-keyword">date</span> +%Y%m%d)}
+-rw-r--r--. <span class="hljs-number">1</span> root root <span class="hljs-number">615</span>  <span class="hljs-number">7</span>月  <span class="hljs-number">4</span>  <span class="hljs-number">2017</span> /etc/kubernetes/kubelet
+-rw-r--r--. <span class="hljs-number">1</span> root root <span class="hljs-number">615</span>  <span class="hljs-number">7</span>月  <span class="hljs-number">4</span>  <span class="hljs-number">2017</span> /etc/kubernetes/kubelet<span class="hljs-number">.20181128</span>
+# diff -u /etc/kubernetes/kubelet{.$(<span class="hljs-keyword">date</span> +%Y%m%d),}
+--- /etc/kubernetes/kubelet<span class="hljs-number">.20181128</span>    <span class="hljs-number">2017</span><span class="hljs-number">-07</span><span class="hljs-number">-04</span> <span class="hljs-number">00</span>:<span class="hljs-number">33</span>:<span class="hljs-number">24.000000000</span> +<span class="hljs-number">0900</span>
++++ /etc/kubernetes/kubelet     <span class="hljs-number">2018</span><span class="hljs-number">-11</span><span class="hljs-number">-28</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">34.510186297</span> +<span class="hljs-number">0900</span>
+@@ <span class="hljs-number">-2</span>,<span class="hljs-number">16</span> +<span class="hljs-number">2</span>,<span class="hljs-number">16</span> @@
+ # kubernetes kubelet (minion) config
+
+ # The address <span class="hljs-keyword">for</span> the info server to serve on (set to <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span> or <span class="hljs-string">""</span> <span class="hljs-keyword">for</span> all interfaces)
+-KUBELET_ADDRESS=<span class="hljs-string">"--address=127.0.0.1"</span>
++KUBELET_ADDRESS=<span class="hljs-string">"--address=10.0.12.51"</span>
+
+ # The port <span class="hljs-keyword">for</span> the info server to serve on
+ # KUBELET_PORT=<span class="hljs-string">"--port=10250"</span>
+
+ # You may leave this blank to use the actual hostname
+-KUBELET_HOSTNAME=<span class="hljs-string">"--hostname-override=127.0.0.1"</span>
++KUBELET_HOSTNAME=<span class="hljs-string">"--hostname-override="</span>
+
+ # location of the api-server
+-KUBELET_API_SERVER=<span class="hljs-string">"--api-servers=http://127.0.0.1:8080"</span>
++KUBELET_API_SERVER=<span class="hljs-string">"--api-servers=http://master:8080"</span>
+
+ # pod infrastructure <span class="hljs-keyword">container</span>
+ KUBELET_POD_INFRA_CONTAINER=<span class="hljs-string">"--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"</span>
+</code></pre></li>
+<li><p>サービス起動</p>
+<pre><code class="hljs"><span class="hljs-comment"># systemctl start kube-proxy</span>
+<span class="hljs-comment"># ps auxfww | grep [k]ube-proxy</span>
+root      9451  6.0  6.8 360096 34036 ?        Ssl  11:20   0:00 /usr/bin/kube-proxy <span class="hljs-attribute">--logtostderr</span>=<span class="hljs-literal">true</span> <span class="hljs-attribute">--v</span>=0 <span class="hljs-attribute">--master</span>=http://master:8080
+
+<span class="hljs-comment"># systemctl start kubelet</span>
+<span class="hljs-comment"># ps auxfww | grep [k]ubelet</span>
+root      9520  6.2  9.6 584976 48320 ?        Ssl  11:20   0:01 /usr/bin/kubelet <span class="hljs-attribute">--logtostderr</span>=<span class="hljs-literal">true</span> <span class="hljs-attribute">--v</span>=0 <span class="hljs-attribute">--api-servers</span>=http://master:8080 <span class="hljs-attribute">--address</span>=10.0.12.52 --hostname-override= <span class="hljs-attribute">--allow-privileged</span>=<span class="hljs-literal">false</span> <span class="hljs-attribute">--pod-infra-container-image</span>=registry.access.redhat.com/rhel7/pod-infrastructure:latest
+</code></pre></li>
+<li><p>master 側で node が正常に可動しているかの確認</p>
+<pre><code class="hljs"># kubectl get nodes
+<span class="hljs-keyword">NAME</span>      <span class="hljs-keyword">STATUS</span>    AGE
+node01    Ready     9s
+node02    Ready     m
+</code></pre>
+<ul>
+<li><code>Ready</code> なら ok</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="kubernete-クラスタ上でのコンテナ管理-master-側"></a><a href="#kubernete-クラスタ上でのコンテナ管理-master-側" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kubernete クラスタ上でのコンテナ管理 master 側</h3>
+<ul>
+<li><p>Pod の作成</p>
+<ul>
+<li><p>kubectl コマンドで Pod を作成するには、作成する Pod の情報を記述した YAML 形式ファイルを用意</p></li>
+<li><p>作成</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> kubectl create -f pod.yaml</span>
+</code></pre></li>
+</ul></li>
+<li><p>例 : httpd というイメージからコンテナを作成し、そのコンテナの 80 番ポートに外部からアクセスできるようにする</p>
+<ul>
+<li><p>設定ファイル</p>
+<pre><code class="hljs"><span class="hljs-attribute">apiVersion</span>: v1
+<span class="hljs-attribute">kind</span>: Pod
+<span class="hljs-attribute">metadata</span>:
+  <span class="hljs-attribute">name</span>: httpd
+  <span class="hljs-attribute">labels</span>:
+    <span class="hljs-attribute">app</span>: httpd
+<span class="hljs-attribute">spec</span>:
+  <span class="hljs-attribute">containers</span>:
+  - <span class="hljs-attribute">name</span>: httpd
+    <span class="hljs-attribute">image</span>: httpd
+    <span class="hljs-attribute">ports</span>:
+    - <span class="hljs-attribute">containerPort</span>: <span class="hljs-number">80</span>
+</code></pre></li>
+<li><p>作成</p>
+<pre><code class="hljs"><span class="hljs-comment"># kubectl create -f pod-httpd.yaml</span>
+<span class="hljs-attribute">pod</span> <span class="hljs-string">"httpd"</span> created
+</code></pre></li>
+<li><p>Pod 稼働状況の確認</p>
+<pre><code class="hljs"># kubectl get pods
+NAME      READY     STATUS              RESTARTS   AGE
+httpd     <span class="hljs-number">0</span>/<span class="hljs-number">1</span>       ContainerCreating   <span class="hljs-number">0</span>          <span class="hljs-number">3</span>m
+</code></pre></li>
+<li><p>稼働中の Pod の詳細状況確認</p>
+<pre><code class="hljs">$ kubectl <span class="hljs-builtin-name">get</span> pod ＜Pod名＞
+</code></pre>
+<ul>
+<li>-o
+<ul>
+<li>yaml を指定すると YAML 形式で各種情報が出力される</li>
+</ul></li>
+</ul></li>
+<li><p>詳細確認</p>
+<pre><code class="hljs"><span class="hljs-comment"># kubectl describe pod httpd</span>
+<span class="hljs-attr">Name:</span>       <span class="hljs-string">httpd</span>
+<span class="hljs-attr">Namespace:</span>  <span class="hljs-string">default</span>
+<span class="hljs-attr">Node:</span>       <span class="hljs-string">node02/10.0.12.52</span>
+<span class="hljs-string">Start</span> <span class="hljs-attr">Time:</span> <span class="hljs-string">Wed,</span> <span class="hljs-number">28</span> <span class="hljs-string">Nov</span> <span class="hljs-number">2018</span> <span class="hljs-number">12</span><span class="hljs-string">:36:53</span> <span class="hljs-string">+0900</span>
+<span class="hljs-attr">Labels:</span>     <span class="hljs-string">app=httpd</span>
+<span class="hljs-attr">Status:</span>     <span class="hljs-string">Running</span>
+<span class="hljs-attr">IP:</span>     <span class="hljs-number">172.17</span><span class="hljs-number">.68</span><span class="hljs-number">.2</span>
+<span class="hljs-attr">Controllers:</span>    <span class="hljs-string">&lt;none&gt;</span>
+<span class="hljs-attr">Containers:</span>
+<span class="hljs-attr">  httpd:</span>
+    <span class="hljs-string">Container</span> <span class="hljs-attr">ID:</span>   <span class="hljs-attr">docker://22f6ebcaa78b6b04cc0ed022e34c4831fe49653922d1376e3b442c6654130045</span>
+<span class="hljs-attr">    Image:</span>      <span class="hljs-string">httpd</span>
+    <span class="hljs-string">Image</span> <span class="hljs-attr">ID:</span>       <span class="hljs-attr">docker-pullable://docker.io/httpd@sha256:9753aabc6b0b8cd0a39733ec13b7aad59e51069ce96d63c6617746272752738e</span>
+<span class="hljs-attr">    Port:</span>       <span class="hljs-number">80</span><span class="hljs-string">/TCP</span>
+<span class="hljs-attr">    State:</span>      <span class="hljs-string">Running</span>
+<span class="hljs-attr">      Started:</span>      <span class="hljs-string">Wed,</span> <span class="hljs-number">28</span> <span class="hljs-string">Nov</span> <span class="hljs-number">2018</span> <span class="hljs-number">12</span><span class="hljs-string">:37:35</span> <span class="hljs-string">+0900</span>
+<span class="hljs-attr">    Ready:</span>      <span class="hljs-literal">True</span>
+    <span class="hljs-string">Restart</span> <span class="hljs-attr">Count:</span>  <span class="hljs-number">0</span>
+    <span class="hljs-string">Volume</span> <span class="hljs-attr">Mounts:</span>
+      <span class="hljs-string">/var/run/secrets/kubernetes.io/serviceaccount</span> <span class="hljs-string">from</span> <span class="hljs-string">default-token-r5w0h</span> <span class="hljs-string">(ro)</span>
+    <span class="hljs-string">Environment</span> <span class="hljs-attr">Variables:</span>  <span class="hljs-string">&lt;none&gt;</span>
+<span class="hljs-attr">Conditions:</span>
+  <span class="hljs-string">Type</span>      <span class="hljs-string">Status</span>
+  <span class="hljs-string">Initialized</span>   <span class="hljs-literal">True</span>
+  <span class="hljs-string">Ready</span>     <span class="hljs-literal">True</span>
+  <span class="hljs-string">PodScheduled</span>  <span class="hljs-literal">True</span>
+<span class="hljs-attr">Volumes:</span>
+<span class="hljs-attr">  default-token-r5w0h:</span>
+<span class="hljs-attr">    Type:</span>   <span class="hljs-string">Secret</span> <span class="hljs-string">(a</span> <span class="hljs-string">volume</span> <span class="hljs-string">populated</span> <span class="hljs-string">by</span> <span class="hljs-string">a</span> <span class="hljs-string">Secret)</span>
+<span class="hljs-attr">    SecretName:</span> <span class="hljs-string">default-token-r5w0h</span>
+<span class="hljs-string">QoS</span> <span class="hljs-attr">Class:</span>  <span class="hljs-string">BestEffort</span>
+<span class="hljs-attr">Tolerations:</span>    <span class="hljs-string">&lt;none&gt;</span>
+<span class="hljs-attr">Events:</span>
+  <span class="hljs-string">FirstSeen</span> <span class="hljs-string">LastSeen</span>    <span class="hljs-string">Count</span>   <span class="hljs-string">From</span>            <span class="hljs-string">SubObjectPath</span>       <span class="hljs-string">Type</span>        <span class="hljs-string">Reason</span>          <span class="hljs-string">Message</span>
+<span class="hljs-bullet">  -</span><span class="hljs-bullet">--------</span> <span class="hljs-bullet">--------</span>    <span class="hljs-bullet">-----</span>   <span class="hljs-bullet">----</span>            <span class="hljs-bullet">-------------</span>       <span class="hljs-bullet">--------</span>    <span class="hljs-bullet">------</span>          <span class="hljs-bullet">-------</span>
+  <span class="hljs-number">5</span><span class="hljs-string">m</span>        <span class="hljs-number">5</span><span class="hljs-string">m</span>      <span class="hljs-number">1</span>   <span class="hljs-string">{default-scheduler</span> <span class="hljs-string">}</span>                <span class="hljs-string">Normal</span>      <span class="hljs-string">Scheduled</span>       <span class="hljs-string">Successfully</span> <span class="hljs-string">assigned</span> <span class="hljs-string">httpd</span> <span class="hljs-string">to</span> <span class="hljs-string">node02</span>
+  <span class="hljs-number">5</span><span class="hljs-string">m</span>        <span class="hljs-number">5</span><span class="hljs-string">m</span>      <span class="hljs-number">1</span>   <span class="hljs-string">{kubelet</span> <span class="hljs-string">node02}</span>    <span class="hljs-string">spec.containers{httpd}</span>  <span class="hljs-string">Normal</span>      <span class="hljs-string">Pulling</span>         <span class="hljs-string">pulling</span> <span class="hljs-string">image</span> <span class="hljs-string">"httpd"</span>
+  <span class="hljs-number">5</span><span class="hljs-string">m</span>        <span class="hljs-number">4</span><span class="hljs-string">m</span>      <span class="hljs-number">2</span>   <span class="hljs-string">{kubelet</span> <span class="hljs-string">node02}</span>                <span class="hljs-string">Warning</span>     <span class="hljs-string">MissingClusterDNS</span>   <span class="hljs-string">kubelet</span> <span class="hljs-string">does</span> <span class="hljs-string">not</span> <span class="hljs-string">have</span> <span class="hljs-string">ClusterDNS</span> <span class="hljs-string">IP</span> <span class="hljs-string">configured</span> <span class="hljs-string">and</span> <span class="hljs-string">cannot</span> <span class="hljs-string">create</span> <span class="hljs-string">Pod</span> <span class="hljs-string">using</span> <span class="hljs-string">"ClusterFirst"</span> <span class="hljs-string">policy.</span> <span class="hljs-string">Falling</span> <span class="hljs-string">back</span> <span class="hljs-string">to</span> <span class="hljs-string">DNSDefault</span> <span class="hljs-string">policy.</span>
+  <span class="hljs-number">4</span><span class="hljs-string">m</span>        <span class="hljs-number">4</span><span class="hljs-string">m</span>      <span class="hljs-number">1</span>   <span class="hljs-string">{kubelet</span> <span class="hljs-string">node02}</span>    <span class="hljs-string">spec.containers{httpd}</span>  <span class="hljs-string">Normal</span>      <span class="hljs-string">Pulled</span>          <span class="hljs-string">Successfully</span> <span class="hljs-string">pulled</span> <span class="hljs-string">image</span> <span class="hljs-string">"httpd"</span>
+  <span class="hljs-number">4</span><span class="hljs-string">m</span>        <span class="hljs-number">4</span><span class="hljs-string">m</span>      <span class="hljs-number">1</span>   <span class="hljs-string">{kubelet</span> <span class="hljs-string">node02}</span>    <span class="hljs-string">spec.containers{httpd}</span>  <span class="hljs-string">Normal</span>      <span class="hljs-string">Created</span>         <span class="hljs-string">Created</span> <span class="hljs-string">container</span> <span class="hljs-string">with</span> <span class="hljs-string">docker</span> <span class="hljs-string">id</span> <span class="hljs-number">22</span><span class="hljs-string">f6ebcaa78b;</span> <span class="hljs-attr">Security:[seccomp=unconfined]</span>
+  <span class="hljs-number">4</span><span class="hljs-string">m</span>        <span class="hljs-number">4</span><span class="hljs-string">m</span>      <span class="hljs-number">1</span>   <span class="hljs-string">{kubelet</span> <span class="hljs-string">node02}</span>    <span class="hljs-string">spec.containers{httpd}</span>  <span class="hljs-string">Normal</span>      <span class="hljs-string">Started</span>         <span class="hljs-string">Started</span> <span class="hljs-string">container</span> <span class="hljs-string">with</span> <span class="hljs-string">docker</span> <span class="hljs-string">id</span> <span class="hljs-number">22</span><span class="hljs-string">f6ebcaa78b</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<p>[root@master ~]# kubectl get pod httpd -o yaml
+apiVersion: v1
+kind: Pod
+metadata:
+creationTimestamp: 2018-11-28T03:36:53Z
+labels:
+app: httpd
+name: httpd
+namespace: default
+resourceVersion: &quot;10576&quot;
+selfLink: /api/v1/namespaces/default/pods/httpd
+uid: d9450b99-f2be-11e8-8d4d-525400a503a2
+spec:
+containers:</p>
+<ul>
+<li>image: httpd
+imagePullPolicy: Always
+name: httpd
+ports:
+<ul>
+<li>containerPort: 80
+protocol: TCP
+resources: {}
+terminationMessagePath: /dev/termination-log
+volumeMounts:</li>
+<li>mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+name: default-token-r5w0h
+readOnly: true
+dnsPolicy: ClusterFirst
+nodeName: node02
+restartPolicy: Always
+securityContext: {}
+serviceAccount: default
+serviceAccountName: default
+terminationGracePeriodSeconds: 30
+volumes:</li>
+</ul></li>
+<li>name: default-token-r5w0h
+secret:
+defaultMode: 420
+secretName: default-token-r5w0h
+status:
+conditions:</li>
+<li>lastProbeTime: null
+lastTransitionTime: 2018-11-28T03:36:53Z
+status: &quot;True&quot;
+type: Initialized</li>
+<li>lastProbeTime: null
+lastTransitionTime: 2018-11-28T03:37:36Z
+status: &quot;True&quot;
+type: Ready</li>
+<li>lastProbeTime: null
+lastTransitionTime: 2018-11-28T03:36:53Z
+status: &quot;True&quot;
+type: PodScheduled
+containerStatuses:</li>
+<li>containerID: <a href="docker://22f6ebcaa78b6b04cc0ed022e34c4831fe49653922d1376e3b442c6654130045">docker://22f6ebcaa78b6b04cc0ed022e34c4831fe49653922d1376e3b442c6654130045</a>
+image: httpd
+imageID: <a href="docker-pullable://docker.io/httpd@sha256:9753aabc6b0b8cd0a39733ec13b7aad59e51069ce96d63c6617746272752738e">docker-pullable://docker.io/httpd@sha256:9753aabc6b0b8cd0a39733ec13b7aad59e51069ce96d63c6617746272752738e</a>
+lastState: {}
+name: httpd
+ready: true
+restartCount: 0
+state:
+running:
+startedAt: 2018-11-28T03:37:35Z
+hostIP: 10.0.12.52
+phase: Running
+podIP: 172.17.68.2
+startTime: 2018-11-28T03:36:53Z</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="永続化ストレージの利用"></a><a href="#永続化ストレージの利用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>永続化ストレージの利用</h3>
+<pre><code class="hljs"><span class="hljs-comment"># cat pod-mysql.yaml</span>
+<span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span>
+<span class="hljs-attr">kind:</span> <span class="hljs-string">Pod</span>
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> <span class="hljs-string">mysql</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> <span class="hljs-string">mysql</span>
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  volumes:</span>
+<span class="hljs-attr">  - name:</span> <span class="hljs-string">mysql-storage</span>
+<span class="hljs-attr">    hostPath:</span>
+<span class="hljs-attr">      path:</span> <span class="hljs-string">/var/kube-test/mysql-db</span>
+<span class="hljs-attr">  containers:</span>
+<span class="hljs-attr">  - name:</span> <span class="hljs-string">mysql</span>
+<span class="hljs-attr">    image:</span> <span class="hljs-string">mysql</span>
+<span class="hljs-attr">    volumeMounts:</span>
+<span class="hljs-attr">    - name:</span> <span class="hljs-string">mysql-storage</span>
+<span class="hljs-attr">      mountPath:</span> <span class="hljs-string">/var/lib/mysql</span>
+<span class="hljs-attr">    ports:</span>
+<span class="hljs-attr">    - containerPort:</span> <span class="hljs-number">3306</span>
+<span class="hljs-attr">    env:</span>
+<span class="hljs-attr">    - name:</span> <span class="hljs-string">MYSQL_ROOT_PASSWORD</span>
+<span class="hljs-attr">      value:</span> <span class="hljs-string">mysql</span>
+</code></pre>
+<ul>
+<li>ローカルファイルシステムを永続ストレージとして指定した場合、Pod が実行されるノードが変わるとストレージ上の内容も変わってしまう点に注意</li>
+<li>実行されるノードが変わっても同じデータを参照したい場合は NFS や iSCSI などを利用するか、もしくはクラウドストレージを利用する</li>
+</ul>
+<ul>
+<li><p>Podに特定のIPアドレスを割り当てる</p>
+<ul>
+<li><p>Service</p>
+<ul>
+<li><p>指定した Pod に特定の IP アドレスを割り当てるため仕組み</p></li>
+<li><p>設定ファイル</p>
+<pre><code class="hljs"><span class="hljs-comment"># cat service-mysql.yaml</span>
+apiVersion: v1
+kind:<span class="hljs-built_in"> Service
+</span>metadata:
+  name: mysql-master
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+</code></pre>
+<ul>
+<li>Service に対して登録する Pod はラベルを使って指定</li>
+<li>selector 項目でラベルを指定することで、そのラベルに対応する Pod が Services として登録される
+<ul>
+<li>今回は <code>app: mysql</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Service 作成</p>
+<pre><code class="hljs"><span class="hljs-comment"># kubectl create -f service-mysql.yaml</span><span class="hljs-built_in">
+service </span><span class="hljs-string">"mysql-master"</span> created
+</code></pre></li>
+</ul></li>
+<li><p>作成されたサービス一覧の表示</p>
+<pre><code class="hljs"># kubectl get services
+NAME           CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+kubernetes     <span class="hljs-number">10.254</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>      &lt;none&gt;        <span class="hljs-number">443</span>/TCP    <span class="hljs-number">4</span>h
+mysql-master   <span class="hljs-number">10.254</span><span class="hljs-number">.124</span><span class="hljs-number">.84</span>   &lt;none&gt;        <span class="hljs-number">3306</span>/TCP   <span class="hljs-number">2</span>m
+</code></pre></li>
+</ul>
+<h1><a class="anchor" aria-hidden="true" id="kubectl-create-f-pod-mysqlyaml"></a><a href="#kubectl-create-f-pod-mysqlyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>kubectl create -f pod-mysql.yaml</h1>
+<p>pod &quot;mysql&quot; created
+[root@master pod]# kubectl get pods
+NAME      READY     STATUS              RESTARTS   AGE
+mysql     0/1       ContainerCreating   0          4s
+[root@master pod]#</p>
+<p>MySQL は SELinux を無効にして成功した</p>
+<h2><a class="anchor" aria-hidden="true" id="reference"></a><a href="#reference" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reference</h2>
+<hr>
+<p>firewall-cmd --add-port=10250/tcp --zone=public --parmanent</p>
+<h1><a class="anchor" aria-hidden="true" id="firewall-cmd-add-port-10255-tcp-zone-public-parmanent"></a><a href="#firewall-cmd-add-port-10255-tcp-zone-public-parmanent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>firewall-cmd --add-port=10255/tcp --zone=public --parmanent</h1>
+<h1><a class="anchor" aria-hidden="true" id="firewall-cmd-add-port-30000-32767-tcp-zone-public-parmanent"></a><a href="#firewall-cmd-add-port-30000-32767-tcp-zone-public-parmanent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>firewall-cmd --add-port=30000-32767/tcp --zone=public --parmanent</h1>
+<p>Error syncing pod, skipping: failed to &quot;StartContainer&quot; for &quot;POD&quot; with ErrImagePull: &quot;image pull failed for registry.access.redhat.com/rhel7/pod-infrastructure:latest, this may be because there are no credentials on this request.  details: (open /etc/docker/certs.d/registry.access.redhat.com/redhat-ca.crt: no such file or directory)&quot;</p>
+<p>node 側で実行してあげる</p>
+<h1><a class="anchor" aria-hidden="true" id="curl-o-http-mirrorcentosorg-centos-7-os-x86-64-packages-python-rhsm-certificates-11910-1el7-4x86-64rpm"></a><a href="#curl-o-http-mirrorcentosorg-centos-7-os-x86-64-packages-python-rhsm-certificates-11910-1el7-4x86-64rpm" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>curl -O <a href="http://mirror.centos.org/centos/7/os/x86_64/Packages/python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm">http://mirror.centos.org/centos/7/os/x86_64/Packages/python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm</a></h1>
+<p>% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+Dload  Upload   Total   Spent    Left  Speed
+100 42188  100 42188    0     0  36487      0  0:00:01  0:00:01 --:--:--</p>
+<p>rpm2cpio python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm | cpio -iv --to-stdout ./etc/rhsm/ca/redhat-uep.pem | tee /etc/rhsm/ca/redhat-uep.pem</p>
+<p>node の fiwewalld は stop した</p>
+<h1><a class="anchor" aria-hidden="true" id="kubectl-get-service-o-wide"></a><a href="#kubectl-get-service-o-wide" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>kubectl get service -o wide</h1>
+<p>NAME           CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE       SELECTOR
+kubernetes     10.254.0.1       <none>        443/TCP    6h        <none>
+mysql-master   10.254.135.198   <none>        3306/TCP   1h        app=mysql</p>
+<p>[root@master ~]# kubectl describe service mysql
+Name:                   mysql-master
+Namespace:              default
+Labels:                 <none>
+Selector:               app=mysql
+Type:                   ClusterIP
+IP:                     10.254.135.198
+Port:                   <unset> 3306/TCP
+Endpoints:              172.17.46.2:3306
+Session Affinity:       None
+No events.</p>
+<ul>
+<li><a href="https://srcco.de/posts/kubernetes-failure-stories.html">KUBERNETES FAILURE STORIES</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="セキュリティ"></a><a href="#セキュリティ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>セキュリティ</h2>
+<hr>
+<ul>
+<li><a href="https://www.cncf.io/blog/2019/01/14/9-kubernetes-security-best-practices-everyone-must-follow/">9 Kubernetes Security Best Practices Everyone Must Follow</a></li>
+<li><a href="https://qiita.com/oke-py/items/e11e6db3efe815cd9368">Kubernetes向けペネトレーションテストツール kube-hunter の紹介</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#サンプル動作">サンプル動作</a><ul class="toc-headings"><li><a href="#環境">環境</a></li><li><a href="#全台共通">全台共通</a></li><li><a href="#master">master</a></li><li><a href="#node">node</a></li><li><a href="#kubernete-クラスタ上でのコンテナ管理-master-側">Kubernete クラスタ上でのコンテナ管理 master 側</a></li><li><a href="#永続化ストレージの利用">永続化ストレージの利用</a></li></ul></li><li><a href="#reference">Reference</a></li><li><a href="#セキュリティ">セキュリティ</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

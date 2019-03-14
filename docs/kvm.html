@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>KVM(Kernel-based Virtual Machine) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基礎"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="KVM(Kernel-based Virtual Machine) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基礎"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">KVM(Kernel-based Virtual Machine)</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基礎"></a><a href="#基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基礎</h2>
+<ul>
+<li><p>完全仮想化技術のひとつ</p>
+<ul>
+<li>1 つの物理サーバのハードウェア全般を抽象化し、そのうえで OS を動作させる</li>
+<li>OS は自分が仮想環境上にあることを認識しない</li>
+</ul></li>
+<li><p>仮想化ソフトの一分機能しか持っていないため、<a href="qemu">QEMU</a> というソフトウェアと併用</p>
+<ul>
+<li>KVM を利用して QEMU 上で動作するゲスト OS のプログラムを直接物理 CPU で可動できるようになるため、ゲスト OS の実行が高速化される
+<ul>
+<li>QEMU のデメリットを解消</li>
+</ul></li>
+</ul></li>
+<li><p>注意</p>
+<ul>
+<li>仮想化支援機構をもつ CPU でしか利用不可</li>
+<li>例
+<ul>
+<li>Intel VT-x</li>
+<li>AMD-V</li>
+</ul></li>
+</ul></li>
+<li><p><code>virtio</code></p>
+<ul>
+<li>仮想環境向けデバイスドライバ</li>
+<li>仮想化ソフトによるデバイスエミュレーション処理をバイパスして、ホスト OS のドライバに接続する機能を提供
+<ul>
+<li>=&gt; エミュレーション処理が省略されて処理が高速</li>
+</ul></li>
+<li>ブロック入出力用ドライバ
+<ul>
+<li><code>virtio-blk</code></li>
+</ul></li>
+<li>ネットワークドライバ
+<ul>
+<li><code>virtio-net</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>virt-manager 実行すると文字化けする</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> yum install <span class="hljs-string">"vlgothic-p-fonts"</span></span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="構築"></a><a href="#構築" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>構築</h2>
+<ul>
+<li>カーネルパラメータ net.ipv4.ip_forward を 1 に設定</li>
+</ul>
+<ul>
+<li><a href="kvm-rename-vm-name">仮想マシンの名前を変更する方法</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="utility"></a><a href="#utility" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Utility</h2>
+<ul>
+<li><a href="virt-install">virt-install</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="qemu-guest-agent-qemu-ga"></a><a href="#qemu-guest-agent-qemu-ga" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>QEMU guest agent (qemu-ga)</h2>
+<ul>
+<li><p>ホスト上からゲスト OS の情報を取得</p></li>
+<li><p>プロセス</p>
+<pre><code class="hljs">root     <span class="hljs-number">12108</span>  <span class="hljs-number">0.0</span>  <span class="hljs-number">0.1</span>  <span class="hljs-number">25044</span>   <span class="hljs-number">892</span> ?        Ss   <span class="hljs-number">11</span>月<span class="hljs-number">07</span>   <span class="hljs-number">0</span>:<span class="hljs-number">00</span> /usr/bin/qemu-ga --method=virtio-serial --path=/dev/virtio-ports/org.qemu.guest_agent<span class="hljs-number">.0</span> --blacklist=guest-<span class="hljs-keyword">file</span>-<span class="hljs-keyword">open</span>,guest-<span class="hljs-keyword">file</span>-<span class="hljs-keyword">close</span>,guest-<span class="hljs-keyword">file</span>-<span class="hljs-keyword">read</span>,guest-<span class="hljs-keyword">file</span>-write,guest-<span class="hljs-keyword">file</span>-<span class="hljs-keyword">seek</span>,guest-<span class="hljs-keyword">file</span>-<span class="hljs-keyword">flush</span>,guest-<span class="hljs-keyword">exec</span>,guest-<span class="hljs-keyword">exec</span>-status -F/etc/qemu-ga/fsfreeze-hook
+</code></pre></li>
+<li><p>IP アドレスの取得</p>
+<pre><code class="hljs">$ virsh qemu-agent-command your-domain-<span class="hljs-built_in">name</span> '{<span class="hljs-string">"execute"</span>:<span class="hljs-string">"guest-network-get-interfaces"</span>}'
+</code></pre></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基礎">基礎</a></li><li><a href="#構築">構築</a></li><li><a href="#utility">Utility</a></li><li><a href="#qemu-guest-agent-qemu-ga">QEMU guest agent (qemu-ga)</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

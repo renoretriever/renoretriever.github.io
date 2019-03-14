@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>chown · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 所有者変更"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="chown · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 所有者変更"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">chown</h1></header><article><div><span><ul>
+<li>所有者変更</li>
+<li><code>--no-dereference</code>
+<ul>
+<li><p>current</p>
+<pre><code class="hljs">-rw-r--r--  <span class="hljs-number"> 1 </span>apache apache   <span class="hljs-number"> 0 </span>Dec <span class="hljs-number"> 4 </span>09:57 test01
+-rw-r--r--  <span class="hljs-number"> 1 </span>root   root     <span class="hljs-number"> 0 </span>Dec <span class="hljs-number"> 4 </span>09:57 test02
+drwxrwxrwt.<span class="hljs-number"> 18 </span>root   root  <span class="hljs-number"> 4096 </span>Dec <span class="hljs-number"> 4 </span>09:57 ..
+lrwxrwxrwx  <span class="hljs-number"> 1 </span>root   root     <span class="hljs-number"> 6 </span>Dec <span class="hljs-number"> 4 </span>09:58 test03 -&gt; test01
+drwxr-xr-x  <span class="hljs-number"> 2 </span>root   root  <span class="hljs-number"> 4096 </span>Dec <span class="hljs-number"> 4 </span>09:58 .
+</code></pre></li>
+<li><p>何も考えずに、test03 を chown してみるとシンボリックリンク先が nginx に変更され、test03 の所有者は変更されてない</p>
+<pre><code class="hljs"><span class="hljs-comment"># chown nginx: test03</span>
+<span class="hljs-comment"># ls -lart</span>
+total 8
+-rw-r--r--  <span class="hljs-number"> 1 </span>nginx nginx   <span class="hljs-number"> 0 </span>Dec <span class="hljs-number"> 4 </span>09:57 test01
+-rw-r--r--  <span class="hljs-number"> 1 </span>root  root    <span class="hljs-number"> 0 </span>Dec <span class="hljs-number"> 4 </span>09:57 test02
+lrwxrwxrwx  <span class="hljs-number"> 1 </span>root  root    <span class="hljs-number"> 6 </span>Dec <span class="hljs-number"> 4 </span>09:58 test03 -&gt; test01
+drwxr-xr-x  <span class="hljs-number"> 2 </span>root  root <span class="hljs-number"> 4096 </span>Dec <span class="hljs-number"> 4 </span>09:58 .
+drwxrwxrwt.<span class="hljs-number"> 18 </span>root  root <span class="hljs-number"> 4096 </span>Dec <span class="hljs-number"> 4 </span>09:58 ..
+</code></pre></li>
+<li><p>オプション --no-dereference 付けてみると test03 のみ所有者が nginx になる</p>
+<pre><code class="hljs"><span class="hljs-comment"># chown --no-dereference nginx: test03</span>
+<span class="hljs-comment"># ls -lart</span>
+total 8
+-rw-r--r--  <span class="hljs-number"> 1 </span>apache apache   <span class="hljs-number"> 0 </span>Dec <span class="hljs-number"> 4 </span>09:57 test01
+-rw-r--r--  <span class="hljs-number"> 1 </span>root   root     <span class="hljs-number"> 0 </span>Dec <span class="hljs-number"> 4 </span>09:57 test02
+lrwxrwxrwx  <span class="hljs-number"> 1 </span>nginx  nginx    <span class="hljs-number"> 6 </span>Dec <span class="hljs-number"> 4 </span>09:58 test03 -&gt; test01
+drwxr-xr-x  <span class="hljs-number"> 2 </span>root   root  <span class="hljs-number"> 4096 </span>Dec <span class="hljs-number"> 4 </span>09:58 .
+drwxrwxrwt.<span class="hljs-number"> 18 </span>root   root  <span class="hljs-number"> 4096 </span>Dec <span class="hljs-number"> 4 </span>09:58 ..
+</code></pre></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

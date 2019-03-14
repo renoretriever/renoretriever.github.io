@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Mac · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- SSH 接続を許可する"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Mac · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- SSH 接続を許可する"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Mac</h1></header><article><div><span><ul>
+<li><p>SSH 接続を許可する</p>
+<ol>
+<li>システム環境変数</li>
+<li>共有</li>
+<li>リモートログインにチェックを入れる</li>
+</ol></li>
+<li><p>Google 2 段階認証設定(new pc 以降の場合)</p>
+<ul>
+<li>一度ショートメールにてキーを送ってログインを成功させる</li>
+<li>認証アプリの変更を押下して、再度発行</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="コマンド"></a><a href="#コマンド" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コマンド</h2>
+<hr>
+<ul>
+<li><p>バージョン確認</p>
+<pre><code class="hljs">$ sw_vers
+<span class="hljs-symbol">ProductName:</span>    Mac OS <span class="hljs-built_in">X</span>
+<span class="hljs-symbol">ProductVersion:</span> <span class="hljs-number">10.13</span><span class="hljs-number">.6</span>
+<span class="hljs-symbol">BuildVersion:</span>   <span class="hljs-number">17</span>G4015
+</code></pre></li>
+<li><p>システム情報の確認(実行時間長いし、出力結果が多い)</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> system_profiler</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ショートカット"></a><a href="#ショートカット" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ショートカット</h2>
+<ul>
+<li>画面のロック
+<ul>
+<li>control + command + q</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="finder"></a><a href="#finder" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Finder</h2>
+<ul>
+<li><p>ファイルのフルパスを取得したい</p>
+<ol>
+<li>ファイルを右クリック</li>
+<li>メニューを表示した状態で option キー押下</li>
+<li>パス名をコピーという項目を選択</li>
+</ol></li>
+<li><p>隠しファイルの表示</p>
+<ul>
+<li>Command + shift + .(ドット)</li>
+</ul></li>
+<li><p>検索バーの表示</p>
+<ul>
+<li>Command + Shift + G</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="macos-high-sierra"></a><a href="#macos-high-sierra" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>macOS High Sierra</h2>
+<ul>
+<li><p>tmux</p>
+<ul>
+<li><p>reattach-to-user-namespace unsupported new os のエラー</p>
+<pre><code class="hljs">brew<span class="hljs-built_in"> upgrade </span>reattach-to-user-namespace
+</code></pre></li>
+</ul></li>
+<li><p>ホスト名の変更 for CLI</p>
+<ul>
+<li><p>既存の設定を確認</p>
+<ul>
+<li><p>コンピュータ名</p>
+<pre><code class="hljs">$ scutil --<span class="hljs-builtin-name">get</span> ComputerName
+</code></pre></li>
+<li><p>ローカルホスト名</p>
+<pre><code class="hljs">$ scutil --<span class="hljs-builtin-name">get</span> LocalHostName
+</code></pre></li>
+</ul></li>
+<li><p>各種名前を test に変更</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> sudo scutil --<span class="hljs-built_in">set</span> ComputerName <span class="hljs-built_in">test</span></span>
+<span class="hljs-meta">$</span><span class="bash"> sudo scutil --<span class="hljs-built_in">set</span> LocalHostName <span class="hljs-built_in">test</span></span>
+</code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li>ファイルシステム暗号化
+<ul>
+<li><a href="https://support.apple.com/ja-jp/HT204837">FileVault を使って Mac の起動ディスクを暗号化する</a></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>画面キャプチャ</p>
+<ul>
+<li>Command + Shift + 3</li>
+<li>クリップボードに直接コピー
+<ul>
+<li>Control + Command + Shift + 3</li>
+</ul></li>
+</ul></li>
+<li><p>ファイルサーバ(samba)への接続が遅い場合</p>
+<ul>
+<li><p>カーネルパラメータ変更</p>
+<pre><code class="hljs">$ sudo sysctl -w net<span class="hljs-selector-class">.inet</span><span class="hljs-selector-class">.tcp</span><span class="hljs-selector-class">.delayed_ack</span>=<span class="hljs-number">0</span>
+net<span class="hljs-selector-class">.inet</span><span class="hljs-selector-class">.tcp</span><span class="hljs-selector-class">.delayed_ack</span>: <span class="hljs-number">3</span> -&gt; <span class="hljs-number">0</span>
+</code></pre></li>
+<li><p>恒久反映</p>
+<pre><code class="hljs">$ sudo vim /etc/sysctl<span class="hljs-selector-class">.conf</span>
+net<span class="hljs-selector-class">.inet</span><span class="hljs-selector-class">.tcp</span><span class="hljs-selector-class">.delayed_ack</span>=<span class="hljs-number">0</span>
+</code></pre>
+<ul>
+<li><p>新規作成の場合には下記を実施</p>
+<pre><code class="hljs">sudo touch /etc/sysctl<span class="hljs-selector-class">.conf</span>
+sudo chown root:wheel /etc/sysctl<span class="hljs-selector-class">.conf</span>
+sudo chmod <span class="hljs-number">0644</span> /etc/sysctl<span class="hljs-selector-class">.conf</span>
+</code></pre></li>
+<li><p>注意点としては、<code>=の前後にはスペースは含めない</code></p></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>El Capitan の SIP による制限解除</p>
+<ul>
+<li><p>リカバリモードになる</p>
+<ul>
+<li>再起動中に、Command + Rを押下</li>
+</ul></li>
+<li><p>上部タブから、ユーティリティを選択し、ターミナル起動。下記実行</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> csrutil <span class="hljs-built_in">disable</span></span>
+<span class="hljs-meta">$</span><span class="bash"> reboot</span>
+</code></pre></li>
+</ul></li>
+<li><p>環境</p>
+<ul>
+<li>Ritcy</li>
+<li>peco</li>
+<li>prezto</li>
+<li>neovim
+<ul>
+<li>クリップボードにコピーができず、一旦保留</li>
+</ul></li>
+</ul></li>
+<li><p>バックスラッシュ</p>
+<ul>
+<li>option + ¥</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="セットアップ"></a><a href="#セットアップ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>セットアップ</h2>
+<ul>
+<li><p>Homebrew</p>
+<ul>
+<li><a href="brew">brew</a></li>
+</ul></li>
+<li><p>dotfiles</p>
+<ul>
+<li>.tmux.conf - .vimrc - config.fish</li>
+</ul></li>
+<li><p>SSH 関連</p>
+<ul>
+<li>~/.ssh/config</li>
+<li>秘密鍵</li>
+</ul></li>
+<li><p>Google ime に変更</p>
+<ol>
+<li>Google ime ダウンロード</li>
+<li>キーボード</li>
+<li>入力ソースにて Google のソースを追加</li>
+</ol></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="システム環境変数"></a><a href="#システム環境変数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>システム環境変数</h3>
+<ul>
+<li>副ボタン
+<ul>
+<li>トラックパッド -&gt; 副ボタンのクリックを右下隅をクリックに変更</li>
+</ul></li>
+<li>アプリ内切り替え変更
+<ul>
+<li>ショートカット</li>
+<li><img src="opt_tab.png" alt="opt_tab"></li>
+<li>Option + tab</li>
+</ul></li>
+<li>space 設定で、アプリの利用度に応じて並び替えしないようにする
+<ul>
+<li>Mission Control -&gt; 最新の使用状況に基いて操作スペースを自動的に並び替えるのチェックを外す</li>
+</ul></li>
+<li>Dock 自動的に消す
+<ul>
+<li>Dock -&gt; Dock を自動的に表示/非表示にチェック</li>
+</ul></li>
+<li>暗号化 ON
+<ul>
+<li>セキュリティとプライバシー -&gt; FireVault をオンに</li>
+</ul></li>
+<li>輝度を自動調整させない
+<ul>
+<li>ディスプレイ
+<ul>
+<li>内蔵 Retina ディスプレイ -&gt; 輝度を自動調整のチェックを外す</li>
+</ul></li>
+<li>キーボード
+<ul>
+<li>キーボード -&gt; 環境光が暗い場合にキーボードの輝度を調整</li>
+</ul></li>
+</ul></li>
+<li>キー速度(キーボード)
+<ul>
+<li>キーのリピートを速いに</li>
+<li>リピート入力認識までの時間を短いに</li>
+</ul></li>
+<li>日付(日付と時刻)
+<ul>
+<li>秒を表示</li>
+<li>24 時間表示にする</li>
+<li>日付を表示</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="application"></a><a href="#application" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Application</h4>
+<ul>
+<li><p>google-chrome</p></li>
+<li><p>google-japanese-ime</p></li>
+<li><p>iterm2</p></li>
+<li><p>Franz</p>
+<ul>
+<li>slack とか chatwork とかを一括管理</li>
+</ul></li>
+<li><p>slack</p></li>
+<li><p>Libre office</p></li>
+<li><p>VirtualBox</p></li>
+<li><p>vagrant</p></li>
+<li><p>tmux</p></li>
+<li><p>swaks</p></li>
+<li><p>fish</p></li>
+<li><p>jq</p></li>
+<li><p>tcptraceroute</p></li>
+<li><p>mtr</p></li>
+<li><p>peco</p></li>
+<li><p>tree</p></li>
+<li><p>ibpcap                nkf             python              wget
+gnutls              libpng              nmap                rbenv-gemset            wine
+go              libtasn1            node                readline            wxmac
+goenv               libtiff             nspr                reattach-to-user-namespace  zsh</p></li>
+<li><p>保護フィルム</p>
+<ul>
+<li>UNIQ MacGuard マグネット式プライバシーフィルム MacbookPro/Air 13インチ用 MBG13PF</li>
+</ul></li>
+<li><p>Windows エミュレータ</p>
+<ul>
+<li><a href="https://matome.naver.jp/odai/2140238022377155001">EasyWine</a></li>
+<li><a href="https://www.xquartz.org/">XQuartz</a></li>
+</ul></li>
+<li><p>Xtrafinder</p></li>
+<li><p>Xcode</p></li>
+<li><p>ウイルスソフト</p>
+<ul>
+<li><a href="eset">ESET</a></li>
+</ul></li>
+<li><p>Thunderbird</p></li>
+<li><p>Apache Directory Studio</p></li>
+<li><p>Image Optium</p></li>
+<li><p>Gyazo</p></li>
+<li><p><a href="https://github.com/fikovnik/ShiftIt">Shiftlt</a></p></li>
+<li><p>VLC</p></li>
+<li><p>Alfred powerpack</p>
+<ul>
+<li><p>購入</p>
+<ul>
+<li><a href="https://www.alfredapp.com/powerpack/buy/">https://www.alfredapp.com/powerpack/buy/</a></li>
+<li>別の PC へ再アクティベーションする場合には上記サイトからフリー版をダウンロードして、アクティベート箇所から実施</li>
+</ul></li>
+<li><p>ショートカット変更</p>
+<ul>
+<li>起動
+<ul>
+<li>すでに ctr+space が割り当てられているので、事前に解除する</li>
+</ul></li>
+</ul></li>
+<li><p>clipboard</p>
+<ul>
+<li>ショートカットを shift+command+v にする</li>
+<li>Auto paste on return のチェックを外す</li>
+</ul></li>
+<li><p>Web search 追加</p>
+<pre><code class="hljs">http:<span class="hljs-regexp">//</span>wiki.renoretriever.net/search.html?q={query}&amp;check_keywords=<span class="hljs-literal">yes</span>&amp;area=<span class="hljs-keyword">default</span>
+</code></pre>
+<ul>
+<li>{query} 指定すると文字列で検索してくれる</li>
+</ul></li>
+<li><p>ショートカット追加</p>
+<ul>
+<li><a href="https://github.com/aelsabbahy/goss/blob/master/docs/manual.md">goss</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="past"></a><a href="#past" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Past</h4>
+<ul>
+<li>Clipy</li>
+<li>Evernote</li>
+<li>mi</li>
+<li>Thinker tool</li>
+<li>Dropbox</li>
+<li>OneNote</li>
+<li>vagrant の環境移設</li>
+</ul>
+<ul>
+<li><p>Ricty</p>
+<ul>
+<li><a href="http://blog.sotm.jp/2014/01/10/Installing-SublimeText3-iTerm2-Ricty-on-MacOSX-109/">Mac OSXに超カッコイイプログラミング用フォント「Ricty」をセットアップする</a></li>
+</ul></li>
+<li><p>Prezto</p>
+<ul>
+<li><a href="http://dev.classmethod.jp/tool/zsh-prezto/">Zsh + Prezto で快適コマンド環境を構築する</a></li>
+<li><a href="https://gist.github.com/thomd/956095">SSH 接続先によってターミナルの背景色変える</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="finder-1"></a><a href="#finder-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Finder</h2>
+<hr>
+<ul>
+<li>隠しファイルの表示
+<ul>
+<li><code>Shift + Command + .</code></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="others"></a><a href="#others" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Others</h2>
+<hr>
+<ul>
+<li>GNU grep のインストール
+<ul>
+<li><p>デフォルトは下記 BSD</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">grep</span> --<span class="hljs-keyword">version</span>
+<span class="hljs-keyword">grep</span> (BSD <span class="hljs-keyword">grep</span>) <span class="hljs-number">2.5</span>.<span class="hljs-number">1</span>-FreeBSD
+</code></pre></li>
+<li><p>インストール</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>grep
+</code></pre></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#コマンド">コマンド</a></li><li><a href="#ショートカット">ショートカット</a></li><li><a href="#finder">Finder</a></li><li><a href="#macos-high-sierra">macOS High Sierra</a></li><li><a href="#セットアップ">セットアップ</a><ul class="toc-headings"><li><a href="#システム環境変数">システム環境変数</a></li></ul></li><li><a href="#finder-1">Finder</a></li><li><a href="#others">Others</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

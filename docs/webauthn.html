@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>WebAuthn · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基礎"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="WebAuthn · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基礎"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">WebAuthn</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基礎"></a><a href="#基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基礎</h2>
+<hr>
+<ul>
+<li>FIDO2 プロジェクトにおいて，Web アプリケーションと Authenticator を繋ぐ JavaScript API</li>
+<li>この API を利用することで，スマートフォンや PC の生体認証，あるいはセキュリティキーを利用して Web アプリケーションにログインできる</li>
+<li>パスワードに依存した認証ではなく公開鍵暗号などを用いることで Web の安全性や利便性をより高めようとしている</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="登録の仕組みと各動作におけるデータの流れ"></a><a href="#登録の仕組みと各動作におけるデータの流れ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>登録の仕組みと各動作におけるデータの流れ</h2>
+<hr>
+<p><a href="https://developer.mozilla.org/ja/docs/Web/API/Web_Authentication_API#Web_authentication_%E3%81%AE%E6%A6%82%E5%BF%B5%E3%81%A8%E4%BD%BF%E3%81%84%E6%96%B9">https://developer.mozilla.org/ja/docs/Web/API/Web_Authentication_API#Web_authentication_%E3%81%AE%E6%A6%82%E5%BF%B5%E3%81%A8%E4%BD%BF%E3%81%84%E6%96%B9</a>
+<a href="https://gihyo.jp/dev/column/newyear/2019/webauthn">https://gihyo.jp/dev/column/newyear/2019/webauthn</a></p>
+<ul>
+<li>ブラウザや関連するウェブプラットフォーム基盤に組み込むことのできる標準の Web API を定義
+<ul>
+<li>これは FIDO アライアンスと協働で開発されたもので、FIDO のClient to Authenticator Protocol (CTAP)と FIDO2 プロジェクトの中核を成す構成要素</li>
+<li>CTAP を使用することで、セキュリティキーや携帯電話などの外部認証器は、USB、Bluetooth または NFC を介して、ローカルの強力な認証資格情報をユーザーのデバイス (パソコンや携帯電話)と通信ができます</li>
+<li>FIDO2 の仕様により、ユーザーはフィッシング耐性のある セキュリティを備えたデスクトップ、あるいはモバイルデバイスで簡単にオンラインのサービスを認証できる</li>
+</ul></li>
+</ul>
+<ul>
+<li>WebAuthen と FIDO2 プロジェクトの利点
+<ul>
+<li>サイトごとに強固でユニークな公開鍵ベースの認証情報を使用できるため、あるサイトから盗まれたパスワードを他のサイトで使用するリスクを排除できる</li>
+<li>FIDO Authenticator を搭載したデバイスにロードされた、ブラウザで実行されているウェブアプリケーションや、パブリックな API を簡単に呼び出すことができ、パスワード交換の代わり、あるいはサービスに多くの利点をもたらす暗号操作による、より簡単で強力な FIDO 認証をユーザとプロバイダに提供する</li>
+<li>簡単な認証
+<ul>
+<li>パスコン、ラップトップ、モバイルデバイス機器の内部、あるいは内臓の Authenticator(指紋や顔のバイオメトリクスなど)</li>
+<li>FIDO アライアンス開発の CTAP(WebAuthn を補完する外部認証者向けのプロトコル) を使用した、デバイス間認証用のセキュリティキーやモバイルデバイスなどの外部認証ツール</li>
+</ul></li>
+<li>強力な認証
+<ul>
+<li>ユーザの資格情報と生体認証のテンプレートは、ユーザのデバイスから離れることなく、決してサーバに保存されない</li>
+<li>アカウントは、盗まれたパスワードを使用するフィッシング、中間者や再攻撃から保護されています</li>
+</ul></li>
+<li>ウェブデベロッパ向けに
+<ul>
+<li>FIDO のウェブページから FIDO 認証を有するアプリケーションやサービス作成を開始することができる</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="fido"></a><a href="#fido" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FIDO</h2>
+<hr>
+<ul>
+<li><a href="fido">FIDO</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基礎">基礎</a></li><li><a href="#登録の仕組みと各動作におけるデータの流れ">登録の仕組みと各動作におけるデータの流れ</a></li><li><a href="#fido">FIDO</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

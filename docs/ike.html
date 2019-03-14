@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>IKE(Internet Key Exchange : 鍵交換) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 暗号化アルゴリズムを決定し、暗号化鍵を動的に生成する鍵プロトコルで、暗号化通信を行う"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="IKE(Internet Key Exchange : 鍵交換) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 暗号化アルゴリズムを決定し、暗号化鍵を動的に生成する鍵プロトコルで、暗号化通信を行う"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">IKE(Internet Key Exchange : 鍵交換)</h1></header><article><div><span><ul>
+<li>暗号化アルゴリズムを決定し、暗号化鍵を動的に生成する鍵プロトコルで、暗号化通信を行う</li>
+<li>UDP/500</li>
+<li>パケット構成
+<img src="ipsec_ikev1_packet.png" alt=""></li>
+<li>IKEv1 の主な機能と動作
+<ul>
+<li>通信相手の認証
+<img src="ipsec_ikev1_auth.png" alt=""></li>
+<li>SA の作成と管理
+<ul>
+<li>ISAKMP SA, IPsec SA の順番で SA を作成</li>
+<li>パケットの交換方法によって幾つかの交換タイプ(Exchange type) がある
+<ul>
+<li>ISAKMP SA の作成にはメインモードかアグレッシブモード
+<ul>
+<li>メインモード
+<img src="ipsec_ikev1_isakmp_mainmode.png" alt="">
+<ol>
+<li>ネゴシエーション
+<ul>
+<li>イニシエータが ISAKMP パラメタ(暗号化アルゴリズム、ハッシュアルゴリズム、認証方式など) を提案し、レスポンダがその中から受諾可能なパラメタを選択</li>
+</ul></li>
+<li>秘密対称鍵の生成・交換
+<ul>
+<li>イニシエータとレスポンダが DH 鍵交換アルゴリズムによって秘密鍵を共有し、そららをもとにそれぞれ次の 4 つの秘密対称鍵を生成
+<ol>
+<li>SKEYID</li>
+<li>SKEYID_d</li>
+<li>SKEYID_a</li>
+<li>SKEYID_e</li>
+</ol></li>
+</ul></li>
+<li>相手の認証
+<ul>
+<li>ID と認証用のハッシュ値により相手を認証し、ISAKMP SA が確立</li>
+<li>ID と認証用のハッシュ値は SKEYID_e によって暗号化される</li>
+</ul></li>
+</ol>
+<ul>
+<li>メインモードで事前共有鍵認証を行う場合、3 で ID を交換する前に 2 において通信相手の事前共有鍵を特定する必要がある
+<ul>
+<li>これを行なうには、通信相手の IP アドレスを頼りにするしかない</li>
+<li>そのため 3 の ID には IP アドレスしか使用できない制約がある</li>
+<li><font color='red'>毎回動的に IP がかわる環境では事前共有鍵が特定できなくなるため、この組み合わせ(事前共有鍵認証によるメインモードでは使用できない)</font></li>
+</ul></li>
+</ul></li>
+<li>アグレッシブモード
+<img src="ipsec_ikev1_isakmp_aggressivemode.png" alt="">
+<ol>
+<li>イニシエータが ISAKMP パラメタ、DH 公開値、ID, 認証用乱数を送信
+<ul>
+<li>メインモードとは異なり、秘密対称鍵を生成する前に最初のパケット ID を送るため、暗号化はされない</li>
+</ul></li>
+<li>レスポンダが、受諾するパラメタ、DH 公開値、ID, 認証用乱数、認証用ハッシュ値を送信
+<ul>
+<li>これによりイニシエータとレスポンダが DH 秘密鍵を共有し、メインモードと同様に 4 つの秘密対称鍵を生成</li>
+</ul></li>
+<li>イニシエータが、認証用のハッシュ値をレスポンダに送信
+<ul>
+<li>これによりレスポンダはイニシエータを認証し、ISAKMP SA が確立</li>
+</ul></li>
+</ol>
+<ul>
+<li>事前共有鍵認証を行う場合、ID は暗号化されないが、最初に送信されるため、ID に FQDN などを使用して事前共有鍵との対応付を行なうことができる
+<ul>
+<li>IP が動的に変更されても問題ない</li>
+<li>IKEv2 ではメインモード、アグレッシブモードが統合化され、動的に設定される IP アドレスにも標準で対応</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>IPsec SA の作成にはクイックモードが使用
+<ul>
+<li>イニシエータとレスポンダが 1 往復半のパケット交換によって IPsec SA を作成する</li>
+<li>この通信は前フェーズで確立された ISAKMP SA を使用して行われるため、パケットのペイロード部分が暗号化される</li>
+<li>IPsec SA で使用される秘密対称鍵の生成には、前フェーズで生成された SKEYID_d が使用されるため、通常は DH 鍵交換アルゴリズムによる新たな秘密対称鍵の生成は行わない
+<img src="ipsec_ikev1_quickmode.png" alt=""></li>
+</ul>
+<ol>
+<li>イニシエータが IPSec SA パラメタ、認証用乱数、認証用ハッシュ値を送信
+<ul>
+<li>これらのデータは前フェーズで生成した SKEYID_e によって暗号化される</li>
+</ul></li>
+<li>レスポンダが、受諾するパラメタ、認証用乱数、認証用ハッシュ値を送信
+<ul>
+<li>イニシエータとレスポンダは、SKEYID_d, SPI, イニシエータ認証用乱数、レスポンダ認証用乱数などから IPsec SA で使用する秘密対称鍵を生成する</li>
+</ul></li>
+<li>イニシエータが、認証用のハッシュ値をレスポンダに送信</li>
+</ol></li>
+<li>一般的な事前共有鍵(Pre-Shared Key) による認証</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

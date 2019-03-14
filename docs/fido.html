@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>FIDO (Fast IDentity Online) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基礎"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="FIDO (Fast IDentity Online) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基礎"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">FIDO (Fast IDentity Online)</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基礎"></a><a href="#基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基礎</h2>
+<hr>
+<ul>
+<li>FIDO 認証 3 つのポイント
+<ol>
+<li>サーバに秘密、生体情報を持たなくて良い
+<ul>
+<li>パスワードで問題となったなりすましを原理的に防止</li>
+<li>秘密情報の管理にかかるコストを低減</li>
+</ul></li>
+<li>必要な認証手段を後から容易に追加可能
+<ul>
+<li>異なる手段の認証手段を追加してもパッケージの再導入は不要</li>
+<li>方式選定に迷う必要はなく、スピーディーな立上げが可能</li>
+</ul></li>
+<li>充実した認定制度と多数の製品ラインナップ
+<ul>
+<li>FIDO 標準仕様への準拠が担保された製品を利用することにより、導入時の構築コストは最低限、品質も担保される</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="認証モデル"></a><a href="#認証モデル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>認証モデル</h2>
+<hr>
+<ul>
+<li>利用者のデバイスなど手元にある <code>認証器</code> (Authenticator) が、利用者の本人性を検証する機能を持つ
+<ul>
+<li>認証器による利用者の検証結果は認証サーバに送付され、認証サーバは検証結果の妥当性を確認し、認証が完結する</li>
+</ul></li>
+<li>FIDO 認証では、ネットワーク上にクレデンシャル情報が流れることはない
+<ul>
+<li>偽のサイトに誘導して利用者のパスワードを盗み出すようなフィッシング攻撃に耐性がある</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="登録の手順"></a><a href="#登録の手順" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>登録の手順</h3>
+<ol>
+<li>認証器 =&gt; RP
+<ul>
+<li>ユーザが RP にアクセスし、登録のリクエストを送る</li>
+<li>このときの認証には従来の ID/パスワードが使用</li>
+</ul></li>
+<li>RP =&gt; 認証サーバ
+<ul>
+<li>RP が、認証サーバにリクエストを送る</li>
+</ul></li>
+<li>認証サーバ
+<ul>
+<li>登録時に使用するチャレンジを生成</li>
+</ul></li>
+<li>認証サーバ =&gt; 認証器
+<ul>
+<li>あらかじめ定めている認証ポリシーとチャレンジを送る</li>
+</ul></li>
+<li>ユーザ =&gt; 認証器
+<ul>
+<li>ポリシーをもとに、ユーザに認証を求める</li>
+<li>生体認証の場合は、ここで認証器が使用される</li>
+</ul></li>
+<li>認証器
+<ul>
+<li>認証で使用する公開鍵・秘密鍵のペアと、鍵 ID を生成</li>
+</ul></li>
+<li>認証器 =&gt; 認証サーバ
+<ul>
+<li>生成した認証用の公開鍵と鍵 ID などを、あらかじめアプリが用意しているアテステーション秘密鍵で署名し、署名データを認証サーバに送信</li>
+</ul></li>
+<li>認証サーバ
+<ul>
+<li>認証サーバがあらかじめ用意しているアテステーション公開鍵で署名を検証し、送信された公開鍵と鍵 ID を保存する</li>
+</ul></li>
+<li>RP =&gt; 認証サーバ
+<ul>
+<li>RP が結果を問い合わせ、登録を確認する</li>
+</ul></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="認証の手順"></a><a href="#認証の手順" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>認証の手順</h3>
+<ol>
+<li>認証器 =&gt; RP
+<ul>
+<li>ユーザが、ログインのリクエストを送る</li>
+</ul></li>
+<li>RP =&gt; 認証サーバ
+<ul>
+<li>RP が、認証サーバにリクエストを送る</li>
+</ul></li>
+<li>認証サーバ
+<ul>
+<li>認証サーバが認証で使用するチャレンジを生成する</li>
+</ul></li>
+<li>認証サーバ =&gt; 認証器
+<ul>
+<li>あらかじめ定めている認証ポリシーとチャレンジを送る</li>
+</ul></li>
+<li>ユーザ =&gt; 認証器
+<ul>
+<li>ポリシーをもとに、ユーザに認証を求める</li>
+<li>生体認証の場合は、ここで認証器による生体認証を行う</li>
+</ul></li>
+<li>認証器 =&gt; 認証サーバ
+<ul>
+<li>チャレンジを認証用の秘密鍵で署名し、認証サーバに送付する</li>
+</ul></li>
+<li>認証サーバ
+<ul>
+<li>認証サーバがあらかじめ用意しているアテステーション公開鍵で署名を検証し、送信された公開鍵と鍵 ID を保存する</li>
+<li>認証サーバが認証用の公開鍵で署名を検証</li>
+</ul></li>
+<li>RP =&gt; 認証サーバ
+<ul>
+<li>RP が結果を問い合わせ認証を確認する</li>
+</ul></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="仕様"></a><a href="#仕様" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>仕様</h2>
+<hr>
+<ul>
+<li><a href="u2f">U2F</a></li>
+<li><a href="uaf">UAF</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="fido2"></a><a href="#fido2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FIDO2</h2>
+<hr>
+<ul>
+<li>仕様
+<ul>
+<li><a href="webauthn">WebAuthn</a></li>
+<li>CTAP</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基礎">基礎</a></li><li><a href="#認証モデル">認証モデル</a><ul class="toc-headings"><li><a href="#登録の手順">登録の手順</a></li><li><a href="#認証の手順">認証の手順</a></li></ul></li><li><a href="#仕様">仕様</a></li><li><a href="#fido2">FIDO2</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

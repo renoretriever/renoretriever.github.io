@@ -1,0 +1,769 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>IT 基礎 · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## テクノロジー"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="IT 基礎 · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## テクノロジー"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">IT 基礎</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="テクノロジー"></a><a href="#テクノロジー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>テクノロジー</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="コンピュータ基礎"></a><a href="#コンピュータ基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンピュータ基礎</h3>
+<ul>
+<li><p>NUMA</p></li>
+<li><p>レスポンスタイム</p></li>
+<li><p>スループット</p></li>
+<li><p><a href="cpu">CPU</a></p></li>
+<li><p>サイジング</p>
+<ul>
+<li>必要なコンピュータリソースの見積もり</li>
+<li>プロセッサのサイジングに利用するデファクトスタンダード
+<ul>
+<li><a href="https://www.spec.org/">SPEC CPU</a></li>
+</ul></li>
+</ul></li>
+<li><p><a href="memory">memory</a></p>
+<ul>
+<li>スワップが発生しないようにする必要がある</li>
+</ul></li>
+<li><p><a href="storage">storage</a></p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="ストレージ基礎"></a><a href="#ストレージ基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストレージ基礎</h3>
+<ul>
+<li>ハードディスク装置の基本的な仕組み
+<ul>
+<li>複数のプラッタ(磁気ディスク) が含まれており、各プラッタ上にデータが記録される</li>
+<li>1 枚のプラッタは複数のトラックに分割
+<ul>
+<li>トラックはデータが連続して記録される領域で、同心円状またはらせん状に配置</li>
+<li>トラックはさらに複数のセクタに分割
+<ul>
+<li>セクタはデータアクセスの最小単位</li>
+</ul></li>
+</ul></li>
+<li>複数のプラッタにおいて同じ位置にあるトラックの集合をシリンダという</li>
+<li>ハードディスク装置では基本的にセクタ、トラック、シリンダによって位置を特定してデータの読み書きを行いますが、ハードディスク装置を搭載したストレージはこのような物理的構造を隠蔽し、よりわかりやすい <code>ブロック</code> や <code>ファイル</code> といった論理単位でアクセスを行う
+<ul>
+<li>ブロックアクセス</li>
+<li>ファイルアクセス</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ストレージ機器のアクセス方式"></a><a href="#ストレージ機器のアクセス方式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストレージ機器のアクセス方式</h4>
+<ul>
+<li><p>ブロックアクセス型ストレージ</p>
+<ul>
+<li>サーバからストレージへアクセスする際に特定のブロック単位でデータをやり取りする方式
+<ul>
+<li>ブロックアクセス型のストレージではディスクを論理ボリュームに分割し、論理ボリュームをさらにブロックに分割</li>
+<li>論理ボリュームの番号とブロックの番号により、データを特定し、読み書きを行う</li>
+</ul></li>
+<li>ブロック単位でアクセスするため、データの属性情報を保持したりデータを共有したりすることは原則できない
+<ul>
+<li>ブロックアクセス型のストレージにアクセスするサーバ OS のファイルシステムを介すことで、クライアントからファイル単位でのアクセスが可能になる</li>
+</ul></li>
+<li>データベースシステム、業務システム、バックアップ / アーカイブなどの構造化データの管理に適している</li>
+<li>ファイルシステムのおかげでブロック単位の利便性をアップ</li>
+<li>Windows
+<ul>
+<li>NTFS</li>
+</ul></li>
+<li>Linux
+<ul>
+<li>ext4</li>
+<li>xfs</li>
+</ul></li>
+<li>SAN
+<ul>
+<li>データアクセス用プロトコル
+<ul>
+<li>FC</li>
+<li>iSCSI</li>
+<li>FCoE</li>
+<li><a href="sas">SAS</a></li>
+<li><a href="sata">SATA</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>ファイルアクセス型ストレージ</p>
+<ul>
+<li><p>可変長のファイル単位でデータを読み書きする手法</p></li>
+<li><p>ファイルアクセス型のストレージでもディスクを論理ボリュームとブロックに分割しますが、ボリュームとブロックではなく、ストレージに搭載されたファイルシステムにより、ルートからのディレクトリとファイル名を含むパス名でデータをファイルとして特定し、読み書きを行う</p></li>
+<li><p>ファイルとブロックは 1 対 1 で対応するわけではなく、通常 1 つのファイルは、1 つまたは複数のブロックにまたがっている</p></li>
+<li><p>ファイルにアクセスする際に、ボリュームとブロックとファイルとのマッピング処理が行われる分、データの転送速度がやや落ちる</p>
+<ul>
+<li>ファイルの属性情報（種類、サイズ、更新日など）の保持やファイルの共有が可能</li>
+<li>テキストファイル、画像や動画といったマルチメディアデータなどの非構造化データの管理に適している</li>
+</ul></li>
+<li><p>NAS と呼ばれる製品</p></li>
+<li><p>NFS や CIFS(Common Internet File System) と言ったネットワークファイルシステム用の通信プロトコルが、ネットワーク越しにファイルシステムへのアクセスを可能にしている</p></li>
+<li><p>ファイルを直接操作できる</p></li>
+</ul></li>
+<li><p>Unified Storage</p>
+<ul>
+<li>複数のアクセスをサポートしてくれるストレージ</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ストレージの接続機器"></a><a href="#ストレージの接続機器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストレージの接続機器</h4>
+<ul>
+<li><p>ローカル接続の規格</p>
+<ul>
+<li>SAS(Serial Attached SCSI)
+<ul>
+<li>サーバ用ストレージ規格の代表</li>
+</ul></li>
+<li>SATA
+<ul>
+<li>パソコン用ストレージデバイスとして提供されているものと同じ規格</li>
+</ul></li>
+<li>InfiniBand
+<ul>
+<li>IBTA(InfiniBand Trade Assosiation) において策定された高速インターコネクトの規格</li>
+<li>RDMA(Remote Direct Memory Access) 機構を利用し、メモリー空間で直接アクセスすることが可能</li>
+<li>高帯域、低レイテンシー、高信頼性を持つハイパフォーマンスな規格</li>
+<li>HPC(High Performance Computing) や基幹系の領域で数多く使われる</li>
+</ul></li>
+</ul></li>
+<li><p>ネットワーク接続の規格</p>
+<ul>
+<li>FC(Fiber Channel)
+<ul>
+<li>ファイバーチャネルと呼ばれる専用の光ファイバーを用いた高速転送を実現できるインタフェース</li>
+<li>FC ネットワークの中では SCSI コマンドを利用してアクセスを行っている</li>
+<li>SCSI 規格に比較して長距離の伝送距離を実現していて、複数のサーバから共有ストレージとして利用する SAN の環境では多く使われる</li>
+<li>サーバ側では FC 用の専用ポート(HBA) を、中間経路では FC 用の専用スイッチを用意する必要があり、一般的には高価格になる</li>
+</ul></li>
+<li>iSCSI
+<ul>
+<li>SCSI コマンドを利用したアクセス経路をネットワーク越しに利用するために策定された規格</li>
+<li>専用ケーブルが必要なく、一般的な IP ネットワークを利用するため、既存のネットワークを流用・活用することが可能</li>
+<li>ソフトウェアイニシエータ
+<ul>
+<li>サーバ側には IP ネットワークへアクセスできるインタフェースが必要ですが、専用のストレージアダプターに加えて、通常のネットワークカードを iSCSI ソフトウェアを利用してストレージアダプターとして使うこともできる</li>
+</ul></li>
+</ul></li>
+<li>FCoE
+<ul>
+<li>iSCSI と同じく、IP ネットワークを介して SCSI コマンドでストレージへアクセスする規格</li>
+<li>iSCSI は IP ネットワーク上で SCSI コマンドをラッピングして通信を行うが、FCoE では IP ネットワークを使わず、DCB(Data Center Bridging) と呼ばれる専用のイーサネット拡張機能を利用してアクセスする</li>
+<li>通信経路はイーサネットを利用するが、IP ルーティングとは関係のない FC ネットワークとして、ターゲットに直接アクセスする</li>
+<li>サーバ側には CNA(Converged Network Adapter) と呼ばれるアダプターを利用</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ストレージのコンポーネント"></a><a href="#ストレージのコンポーネント" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストレージのコンポーネント</h4>
+<ul>
+<li>サーバからストレージのディスクへアクセスするまでの経路上に存在する要素</li>
+<li>サーバ OS
+<ul>
+<li>アプリケーションの I/O 要求を管理し、指定されたストレージの I/O 処理をストレージアダプター(HBA) ドライバ経由でネットワーク上へ送信</li>
+</ul></li>
+<li>ストレージアダプターのドライバ
+<ul>
+<li>ストレージアダプターをコントロールするためのドライバソフトウェア</li>
+<li>OS とストレージの仲介役</li>
+</ul></li>
+<li>ストレージアダプターポート
+<ul>
+<li>ネットワークへの物理的インタフェース</li>
+<li>例
+<ul>
+<li>FC 用ストレージアダプター(HBA) では、ファイバーチャネル用のコネクターポートを持っている</li>
+</ul></li>
+</ul></li>
+<li>ストレージスイッチ
+<ul>
+<li>FC スイッチや、IP レイヤースイッチ</li>
+</ul></li>
+<li>ストレージコントローラーポート
+<ul>
+<li>ストレージ側のコントローラの持つ物理ポート</li>
+</ul></li>
+<li>ストレージコントローラ
+<ul>
+<li>CPU やキャッシュ用メモリーなどを持ち、論理ボリュームの管理や RAID の管理、I/O の負荷分散などを担う</li>
+<li>一般的には冗長化されている</li>
+</ul></li>
+<li>論理ボリューム
+<ul>
+<li>RAID やストレージプールなど、ストレージコントローラの機能により、物理ディスクリソースを抽象化した領域</li>
+<li>サーバからのアクセスはこのボリューム単位</li>
+<li>論理ボリュームに対する I/O 処理は、ストレージコントローラが実際の物理ディスクへのアクセスと読み替えて処理を実行する</li>
+</ul></li>
+<li>物理ディスク
+<ul>
+<li>HDD, SSD</li>
+<li>ディスクエンクロージャー
+<ul>
+<li>物理ディスクを格納する機器の部分</li>
+<li>ストレージコントローラとは内部のポートで接続されている</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="論理ボリューム"></a><a href="#論理ボリューム" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>論理ボリューム</h4>
+<ul>
+<li>物理なドライブは記憶容量や性能、データの保護性能などの特性が、各ドライブの固有の性能に完全に紐付いているため、ストレージは物理デバイスを直接利用させるのではなく、デバイスを論理的なボリュームとして抽象化することによって柔軟なデータ格納を実現</li>
+<li>抽象化テクノロジー
+<ul>
+<li><a href="raid">RAID</a></li>
+<li>ストレージプール、LUN
+<ul>
+<li>RAID で抽象化されたディスクをそのまま使うと、多数の HDD を一元管理するストレージ機器においては、作成されるボリュームが大きくなりすぎる</li>
+<li>=&gt; 一般的に RAID などで抽象化された大きなディスクをストレージプールとして扱い、そこから任意のサイズの論理ボリューム(LUN) を切り出してサーバ側に提供</li>
+</ul></li>
+<li>論理ボリュームマネージャー
+<ul>
+<li>OS レベルで実装されるブロックデバイスの抽象化テクノロジー</li>
+<li>RAID やブロックストレージから任意のサイズの論理ボリュームを作り出す</li>
+<li><a href="lvm">LVM</a></li>
+</ul></li>
+<li>仮想ディスク
+<ul>
+<li>論理ボリュームをファイルとして扱うことで、ポータビリティなど管理性の向上が図られている</li>
+<li>VMWare の VMDK フォーマット</li>
+<li>Microsoft の VHD フォーマット</li>
+</ul></li>
+<li>SDS(Software-Defined Storage)
+<ul>
+<li>サーバベースストレージソフトウェア
+<ul>
+<li>汎用サーバに直結されたローカルストレージをネットワーク越しにソフトウェアでプール化し、共有ストレージとして利用可能にする</li>
+</ul></li>
+<li>Auto Tier Storage
+<ul>
+<li>複数のストレージを統合管理し、用途に合わせてストレージの利用を自律運用させる製品</li>
+<li>複数の異なる性能のストレージを自動階層化し、利用状況に応じて再配置などを目的としている</li>
+<li>IBM の Spectrum Storage</li>
+<li>EMC の EMC ViPR 2.0</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="アクセスコントロール"></a><a href="#アクセスコントロール" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>アクセスコントロール</h4>
+<ul>
+<li>ゾーニング
+<ul>
+<li>サーバとストレージ間のアクセス範囲をゾーンとして分割し、互いに参照できる範囲を絞ることが可能</li>
+<li>FC スイッチ上で構成</li>
+<li>ハードウェアゾーニング
+<ul>
+<li>接続するポートとポートの組み合わせをゾーンで指定</li>
+<li>ハードウェアゾーニングを用いる場合、物理ポート単位でゾーンを指定することで WWN を意識することなくアクセスをコントロールすることが可能</li>
+</ul></li>
+<li>ソフトウェアゾーニング
+<ul>
+<li>サーバやストレージのインタフェースとなるデバイス単位でゾーンを指定</li>
+<li>LUN ごとのアクセスコントロールや仮想環境内での仮想的なデバイスもコントロール可能</li>
+</ul></li>
+<li>WWN(World Wide Name)
+<ul>
+<li>一意の ID</li>
+<li>ハードウェアゾーニングを用いる場合、物理ポート単位でゾーンを指定することで WWN を意識することなくアクセスをコントロールすることが可能</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>マスキング</p>
+<ul>
+<li>サーバやストレージのデバイス側でアクセス可能な WWN を指定する方法</li>
+</ul></li>
+<li><p>iSCSI における ACL</p>
+<ul>
+<li>ACL レコードを管理
+<ul>
+<li>IP アドレス</li>
+<li>iqn(iSCSI Qualified Name)</li>
+<li>CHAP 認証ユーザ名</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="オブジェクトストレージ"></a><a href="#オブジェクトストレージ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>オブジェクトストレージ</h4>
+<ul>
+<li>ファイル型、ブロック型ストレージ以降に登場</li>
+<li>階層型のファイルシステムを持たず、すべてのデータをメタデータとともにフラットに管理</li>
+<li>メタデータのみで管理することで、データの位置情報とデータの特性・固有情報の依存関係を切り離し、データの移動やコピーなどが格納場所の管理がしやすくなる</li>
+<li>特徴
+<ul>
+<li>オブジェクトに多くのメタ情報を紐付けられる
+<ul>
+<li>オブジェクトサイズ</li>
+<li>アクセス許可</li>
+<li>ユーザ</li>
+<li>etc...</li>
+</ul></li>
+<li>ファイルシステムを持たず、REST API を通じてオブジェクトに直接アクセスする
+<ul>
+<li>アクセスする OS やデバイスを選ばない</li>
+</ul></li>
+</ul></li>
+<li>業界標準
+<ul>
+<li>Amazon S3 に準拠した S3 互換 API</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ハイパーコンバージドインフラストラクチャーhyper-converged-infrastructure-hci"></a><a href="#ハイパーコンバージドインフラストラクチャーhyper-converged-infrastructure-hci" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ハイパーコンバージドインフラストラクチャー(Hyper-Converged Infrastructure : HCI)</h4>
+<ul>
+<li>各サーバで保持したローカルストレージを、SDS のテクノロジーを利用してプール化し、ネットワークを介して利用できるようになっている</li>
+<li>本来のストレージ I/O 性能を担保していたストレージコントローラの機能は各ホストの I/O 機能が分散して行う形になる</li>
+<li>単一の共有ストレージに比べてボトルネックが集中しにくく、サーバリソースの拡張に合わせたストレージ性能のスケールが簡単という特徴がある</li>
+<li>製品
+<ul>
+<li>Nutanix</li>
+<li>HCI Powered by VMware vSAN</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="データベース基礎"></a><a href="#データベース基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>データベース基礎</h3>
+<ul>
+<li><a href="database">基礎</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="ネットワーク基礎"></a><a href="#ネットワーク基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ネットワーク基礎</h3>
+<h4><a class="anchor" aria-hidden="true" id="通信量をさばくネットワーク構造"></a><a href="#通信量をさばくネットワーク構造" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通信量をさばくネットワーク構造</h4>
+<ul>
+<li>オーバーサブスクリプション</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="通信を安定して伝送処理する仕組み"></a><a href="#通信を安定して伝送処理する仕組み" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通信を安定して伝送処理する仕組み</h4>
+<ul>
+<li><p>DiffServ モデル</p>
+<ul>
+<li>特定のパケットを優先制御できる</li>
+<li>「分類」「マーキング」「キューイング」「スケジューリング」</li>
+</ul></li>
+<li><p>FC(Fibre Channel)</p>
+<ul>
+<li>通信対象感で到達性が保証されたプロトコル</li>
+<li>伝送途中で喪失する心配は不要</li>
+</ul></li>
+<li><p>iSCSI 通信に対しては絶対的に帯域を確保する以外、良い対策はない</p></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ルール規約-と作法処理方式"></a><a href="#ルール規約-と作法処理方式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ルール(規約) と作法(処理方式)</h4>
+<ul>
+<li><a href="ietf">IETF</a></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="非機能要件を満たす機能と技術"></a><a href="#非機能要件を満たす機能と技術" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>非機能要件を満たす機能と技術</h4>
+<ul>
+<li><p>可用性</p>
+<ul>
+<li>冗長化プロトコル</li>
+<li>L2 のネットワークセグメントを複数経路も受ける手段として STP(Spanning Tree Protocol) やベンダーによる拡張発展型である PVST+(Per Vlan Spanning Tree Plus) がある</li>
+<li>L3 では IP アドレスを仮想化して冗長系で持ち回るゲートウェイ仮想化</li>
+</ul></li>
+<li><p>L4 では FW の NAT やロードバランサーのバーチャルサービスなどを使う</p>
+<ul>
+<li>Flex Link
+<ul>
+<li>音声や映像の伝送路の仕様にあわせ、物理ポートで 0.5 秒の経路切替が可能</li>
+</ul></li>
+</ul></li>
+<li><p>拡張性</p>
+<ul>
+<li>回線や機器を増強</li>
+</ul></li>
+<li><p>運用性</p></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="仮想化に対応する技術と活用法"></a><a href="#仮想化に対応する技術と活用法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>仮想化に対応する技術と活用法</h4>
+<ul>
+<li><p>VLAN(Virtual LAN)</p>
+<ul>
+<li>L2 セグメントの分割・分離</li>
+</ul></li>
+<li><p>VRF(Virtual Routing and Forwarding)</p>
+<ul>
+<li>L3 の IP 通信では IP ルーティング空間を分割・分離する仕組み</li>
+</ul></li>
+<li><p>SDN(Software Defined Networking)</p>
+<ul>
+<li>OpenFlow という標準プロトコルを使ってネットワークの構成を変更するなどが可能</li>
+<li>VLAN のようにネットワークを論理的に分割することもできる</li>
+</ul></li>
+<li><p>マイクロセグメンテーション</p>
+<ul>
+<li>昨今の VLAN に代表されるセグメントにとらわれない単位でアクセス管理・整理するという考え方</li>
+</ul></li>
+<li><p>エッジオーバーレイ</p>
+<ul>
+<li>既存のネットワーク機器設備上に論理的通信経路を構築する技術</li>
+<li><a href="gre">GRE</a> トンネル</li>
+<li><a href="vxlan">VXLAN</a> カプセリング</li>
+</ul></li>
+<li><p>機器</p>
+<ul>
+<li>Cisco の ACI(Application Centric Infrastructure)</li>
+<li>Juniper Network の Contrail</li>
+<li>VMware の NSX</li>
+</ul></li>
+<li><p>NFV(Network Function Virtualization)</p>
+<ul>
+<li>通信キャリアの仮想化技術サービス</li>
+<li>個別のネットワーク機器の機能をソフトウェアで実現し、仮想化基盤上に仮想アプライアンスとして構築する技術</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ネットワークにおけるセキュリティ"></a><a href="#ネットワークにおけるセキュリティ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ネットワークにおけるセキュリティ</h4>
+<ul>
+<li>スイッチ認証(認証 VLAN, IEEE 802.1X)</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="プログラミング基礎"></a><a href="#プログラミング基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>プログラミング基礎</h3>
+<ul>
+<li><p>オブジェクト指向</p>
+<ul>
+<li>カプセル化</li>
+<li>継承</li>
+<li>ポリモーフィズム</li>
+</ul></li>
+<li><p>関数型プログラミング</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="os-基礎"></a><a href="#os-基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OS 基礎</h3>
+<h4><a class="anchor" aria-hidden="true" id="os-の役割"></a><a href="#os-の役割" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OS の役割</h4>
+<ul>
+<li>POSIX
+<ul>
+<li>Unix や Linux の API</li>
+</ul></li>
+<li>Single Unix Specification</li>
+<li>Win32</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="os-の構成要素"></a><a href="#os-の構成要素" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OS の構成要素</h4>
+<ul>
+<li><p>OS の構成要素</p>
+<ul>
+<li>シェル</li>
+<li>基本ツール</li>
+<li>標準ライブラリ</li>
+<li>カーネル
+<ul>
+<li>デバイスドライバ</li>
+</ul></li>
+</ul></li>
+<li><p>カーネル</p>
+<ul>
+<li>メモリーに常駐し、ハードウェアの操作および OS 専用のデータをアクセス可能な CPU の特権状態で実行する
+<ul>
+<li>=&gt; カーネルをアップデートするには、システムの再起動が必要</li>
+</ul></li>
+<li>モノリシックカーネル
+<ul>
+<li>多様な機能を含む</li>
+</ul></li>
+<li>マイクロカーネル
+<ul>
+<li>CPU の特権状態を要する必要最小限の機能だけからなる</li>
+</ul></li>
+</ul></li>
+<li><p>デバイスドライバ</p>
+<ul>
+<li>ハードウェアを直接操作する部分</li>
+<li>サードパーティが提供することが多いため、カーネルとは別の要素として扱う OS が多い</li>
+</ul></li>
+</ul>
+<ul>
+<li>標準ライブラリ
+<ul>
+<li>API の実装</li>
+<li>プログラムは標準ライブラリを呼び出すことによって API を実行する</li>
+<li>メモリー、ファイルなどの OS が管理するリソースを使用する場合、カーネルを呼び出す</li>
+<li>Linux の glibc や Windows の kernel64(32).dll のようにすべてのプログラムで使用されるライブラリはメモリーに常駐しており、更新にはシステムの再起動が必要</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="スケジューリングと-cpu-使用率"></a><a href="#スケジューリングと-cpu-使用率" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>スケジューリングと CPU 使用率</h4>
+<ul>
+<li>プロセス
+<ul>
+<li>カーネルがプログラムをストレージから読み込んでメモリー上に配置し、実行可能な状態になったもの</li>
+</ul></li>
+<li>スレッド
+<ul>
+<li>プロセスの中で実行する命令の流れ</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="メモリー管理とメモリー使用率"></a><a href="#メモリー管理とメモリー使用率" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>メモリー管理とメモリー使用率</h4>
+<ul>
+<li>回収可能なメモリーかどうかのチェックも必要</li>
+<li>スワップを発生させないことが重要</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="ファイルシステムとストレージ-i-o"></a><a href="#ファイルシステムとストレージ-i-o" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ファイルシステムとストレージ I/O</h4>
+<h4><a class="anchor" aria-hidden="true" id="プロトコルとネットワーク-i-o"></a><a href="#プロトコルとネットワーク-i-o" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>プロトコルとネットワーク I/O</h4>
+<ul>
+<li>ネットワーク API の事実上の標準
+<ul>
+<li>socket</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="仮想化とコンテナ"></a><a href="#仮想化とコンテナ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>仮想化とコンテナ</h4>
+<ul>
+<li><p>仮想マシン (VM) 方式の仮想化</p>
+<ul>
+<li>ハードウェアを模擬した環境を OS に提供するので、複数の異なる OS を同時に動作させることが可能</li>
+<li>他の OS の動作には影響がない</li>
+<li>オーバーヘッド
+<ul>
+<li>仮想化ソフトウェアが介在するのでストレージ I/O とネットワーク I/O 顕著</li>
+<li>逆に CPU 命令を実行し続け I/O をほとんど行わない処理は、オーバーヘッドの影響を受けづらい</li>
+</ul></li>
+<li>準仮想化
+<ul>
+<li>上記のオーバーヘッドを減らす工夫</li>
+<li>特別なデバイスドライバをゲスト OS に入れ、仮想マシンがハードウェアを模擬することなく、直接 I/O 対象のデータを送受することで、仮想下のオーバーヘッドを削減</li>
+</ul></li>
+</ul></li>
+<li><p>コンテナ</p>
+<ul>
+<li>一つの OS の中を分割して、OS を専有しているように見せる</li>
+<li>カーネルは共通なので、コンテナー間で共通なリソースを共有することにより、VM に比べて省リソースである</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="エンジニアリング"></a><a href="#エンジニアリング" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>エンジニアリング</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="システム設計基礎"></a><a href="#システム設計基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>システム設計基礎</h3>
+<h3><a class="anchor" aria-hidden="true" id="モデリング基礎"></a><a href="#モデリング基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>モデリング基礎</h3>
+<h3><a class="anchor" aria-hidden="true" id="it-アーキテクチャ基礎"></a><a href="#it-アーキテクチャ基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>IT アーキテクチャ基礎</h3>
+<h3><a class="anchor" aria-hidden="true" id="テスト-qa-基礎"></a><a href="#テスト-qa-基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>テスト/QA 基礎</h3>
+<h3><a class="anchor" aria-hidden="true" id="要件定義基礎"></a><a href="#要件定義基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>要件定義基礎</h3>
+<h3><a class="anchor" aria-hidden="true" id="セキュリティ基礎"></a><a href="#セキュリティ基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>セキュリティ基礎</h3>
+<h3><a class="anchor" aria-hidden="true" id="データサイエンス基礎"></a><a href="#データサイエンス基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>データサイエンス基礎</h3>
+<h2><a class="anchor" aria-hidden="true" id="マネジメント"></a><a href="#マネジメント" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>マネジメント</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="プロジェクトマネジメント"></a><a href="#プロジェクトマネジメント" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>プロジェクトマネジメント</h3>
+<h3><a class="anchor" aria-hidden="true" id="システム企画"></a><a href="#システム企画" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>システム企画</h3>
+<h2><a class="anchor" aria-hidden="true" id="ヒューマンスキル"></a><a href="#ヒューマンスキル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ヒューマンスキル</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="文章力"></a><a href="#文章力" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>文章力</h3>
+<h3><a class="anchor" aria-hidden="true" id="コミュニケーション"></a><a href="#コミュニケーション" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コミュニケーション</h3>
+<h3><a class="anchor" aria-hidden="true" id="ヒアリング"></a><a href="#ヒアリング" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ヒアリング</h3>
+<h3><a class="anchor" aria-hidden="true" id="ドキュメント作成"></a><a href="#ドキュメント作成" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ドキュメント作成</h3>
+<h3><a class="anchor" aria-hidden="true" id="ロジカルシンキング"></a><a href="#ロジカルシンキング" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ロジカルシンキング</h3>
+<ul>
+<li>インフラエンジニア
+<ul>
+<li>サービスを提供するためにサーバやネットワーク、ミドルウェアの準備を行う</li>
+<li>広く浅く広がり続ける IT システムを可能な限りキャッチアップし、必要に応じて掘り下げる</li>
+</ul></li>
+</ul>
+<ul>
+<li>データセンターの契約形態
+<ul>
+<li>ハウジング
+<ul>
+<li>ラックと電源と WAN 回線だけ借り、サーバを自前で調達して設置するところからすべてを運用</li>
+</ul></li>
+<li>ホスティング
+<ul>
+<li>すでに用意されたネットワークやサーバ機器を借りて運用</li>
+<li>レンタルサーバ</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>技術要件として確認しておきたいこと
+<ul>
+<li>予算</li>
+<li>OSS or 有償製品</li>
+<li>冗長性
+<ul>
+<li>単一障害点(SPOF:Single Point Of Failure) の排除</li>
+<li>そもそも障害が発生しづらいシステムの選択</li>
+<li>「障害」 と判断する項目の洗い出し</li>
+<li>障害発生を自動検知するまでの時間の短縮</li>
+<li>障害がおきてもサービスに影響しないためのアーキテクチャ設計</li>
+<li>障害からの復旧のしやすや、復旧時間の短縮</li>
+<li>障害を自動復旧する仕組みづくり</li>
+</ul></li>
+<li>分散性
+<ul>
+<li>スケールアウト</li>
+<li>スケールアップ</li>
+</ul></li>
+<li>堅牢性(セキュリティ)
+<ul>
+<li>すべてを閉鎖し、最小限を開放する</li>
+</ul></li>
+<li>運用性</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="インフラアーキテクチャ"></a><a href="#インフラアーキテクチャ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>インフラアーキテクチャ</h2>
+<ul>
+<li><p>垂直分割型</p>
+<ul>
+<li>クライアント・サーバアーキテクチャ</li>
+<li>3 階層型アーキテクチャ
+<ul>
+<li>プレゼンテーション層
+<ul>
+<li>ユーザからの入力を受け付ける</li>
+</ul></li>
+<li>アプリケーション層
+<ul>
+<li>ユーザからのリクエストに応じて、業務処理を行う</li>
+</ul></li>
+<li>データ層
+<ul>
+<li>アプリケーション層からのリクエストに応じて、データの入出力を行う</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>水平分割型</p>
+<ul>
+<li>スケールアウト</li>
+<li>シャーディング</li>
+<li>パーティショニング</li>
+</ul></li>
+<li><p>地理分割型</p>
+<ul>
+<li>アクティブ / スタンバイ型</li>
+<li>災害対策</li>
+<li>クラウド型</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="システム障害"></a><a href="#システム障害" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>システム障害</h2>
+<hr>
+<ul>
+<li>フェールセーフ
+<ul>
+<li>システムに障害が発生したときでも、常に安全側にシステムを制御する</li>
+<li>例
+<ul>
+<li>制御プログラムの障害時に，システムの暴走を避け，安全に停止できるようにする</li>
+</ul></li>
+</ul></li>
+<li>フェールソフト
+<ul>
+<li>異常が発生しても機能を縮退させて運用を継続</li>
+<li>例
+<ul>
+<li>ハードウェアの障害時に，パフォーマンスは低下するが，構成を縮小して運転を続けられるようにする</li>
+</ul></li>
+</ul></li>
+<li>フォールトアボイダンス
+<ul>
+<li>システム構成要素の信頼性を高めることでシステムが故障する確率を下げる</li>
+</ul></li>
+<li>フールプルーフ
+<ul>
+<li>不特定多数の人が操作しても、誤動作が起こりにくい設計にする</li>
+<li>メニュー画面上の使用権限のない機能は，実行できないようにするなど</li>
+<li>例
+<ul>
+<li>利用者の誤操作や誤入力を未然に防ぐことによって，システムの誤動作を防止できるようにする</li>
+</ul></li>
+</ul></li>
+<li>フォールトトレラント
+<ul>
+<li>例
+<ul>
+<li>UPSを設置することによって，停電時に手順どおりにシステムを停止できるようにする</li>
+</ul></li>
+</ul></li>
+<li>フォールトマスキング
+<ul>
+<li>障害発生時に外部に対して行うサービスに異常を一切生じないようにマスクする考え方</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="リソース監視ツール"></a><a href="#リソース監視ツール" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>リソース監視ツール</h2>
+<ul>
+<li>collectd
+<ul>
+<li>システムの各種情報を定期的に収集するデーモン</li>
+</ul></li>
+<li><a href="nagios">Nagios</a></li>
+<li>MRTG(Multi Router Traffic Grapher)</li>
+<li><a href="cacti">Cacti</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="other"></a><a href="#other" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other</h2>
+<ul>
+<li><p>mBaaS (mobile Backend as a Service)</p>
+<ul>
+<li>スマートフォンアプリでよく利用される汎用的な機能をクラウドから提供するサービス</li>
+<li>クラウド上に用意された機能を API で呼び出すだけで利用できるので、サーバー開発・運用不要でよりリッチなバックエンド機能をアプリに実装することができ、工数削減によるコストカット・スピードアップに貢献</li>
+<li><a href="firebase">Firebase</a></li>
+</ul></li>
+<li><p>共有ライブラリ</p>
+<ul>
+<li>複数のプログラムが共通して利用する汎用性の高いプログラムの部品の集まりのこと</li>
+<li>UNIX 系の OS
+<ul>
+<li><code>.so.(バージョン番号)</code> という拡張子のファイル</li>
+</ul></li>
+<li>Windows
+<ul>
+<li><code>.DLL</code> という拡張子のファイル</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>サービスメッシュ
+<ul>
+<li><a href="linkerd">Linkerd</a></li>
+<li><a href="istio">Istio</a></li>
+</ul></li>
+</ul>
+<ul>
+<li>プログラム
+<ul>
+<li>コンピュータが実行すべき命令の一つひとつが書かれた手順書</li>
+<li>入力装置から入力 =&gt; 補助記憶装置に格納 =&gt; 実行時には補助記憶装置からプログラムを主記憶装置に転送し、それを CPU が解釈</li>
+</ul></li>
+</ul>
+<ul>
+<li>パスワードマネージャー
+<ul>
+<li><a href="https://keeweb.info/">KeeWeb</a></li>
+</ul></li>
+</ul>
+<ul>
+<li><p><code>コーデック</code></p>
+<ul>
+<li>デジタルデータの圧縮の方式や、圧縮処理を行う装置</li>
+</ul></li>
+<li><p><code>RTP(Real-time Transport Protocol)</code></p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="改行コード"></a><a href="#改行コード" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>改行コード</h2>
+<hr>
+<ul>
+<li><p>CR(Carriage Return)</p>
+<ul>
+<li>行頭の戻る、折り返す</li>
+</ul></li>
+<li><p>LF(Line Feed)</p>
+<ul>
+<li>1 行送る</li>
+</ul></li>
+</ul>
+<table>
+<thead>
+<tr><th>OS</th><th>改行コード</th><th>改行コード(16 進数)</th><th>C 言語</th></tr>
+</thead>
+<tbody>
+<tr><td>UNIX(Linux)</td><td>LF</td><td>0A</td><td>\n</td></tr>
+<tr><td>DOS/Windows</td><td>CR+LF</td><td>0D 0A</td><td>\r\n</td></tr>
+<tr><td>TCP/IP アプリケーション</td><td>CR+LF</td><td>0D 0A</td><td>\r\n</td></tr>
+<tr><td>macOS</td><td>CR</td><td>0D</td><td>\r</td></tr>
+</tbody>
+</table>
+<ul>
+<li>周波数
+<ul>
+<li>1 秒間に繰り返す波の数のこと</li>
+<li>単位 : ヘルツ(Hz)</li>
+<li>例 : 60 Hz
+<ul>
+<li>波(山と谷で 1 組) が 1 秒間に 60 回繰り返すこと</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="devops"></a><a href="#devops" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DevOps</h2>
+<hr>
+<ul>
+<li>ビジネスニーズを捉え、開発から運用までのスピードを限りなく早めるために考え出された概念
+<ul>
+<li>ツールの話と文化の話がある</li>
+</ul></li>
+</ul>
+<ul>
+<li><a href="ci">CI</a></li>
+<li><a href="cd">CD</a></li>
+<li><a href="monitoring">モニタリング</a></li>
+</ul>
+<ul>
+<li>ローリングアップデート
+<ul>
+<li>複数のコンポーネントからなるシステムにおいて、部分的にコンポーネントをアップデートしていくことで、システムを停止させずにシステム全体のアップデートを図る手法</li>
+</ul></li>
+</ul>
+<ul>
+<li>コンウェイの法則
+<ul>
+<li>「システムを設計する組織は、その構造をそっくりまねた構造のシステムを生み出してしまう」</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#テクノロジー">テクノロジー</a><ul class="toc-headings"><li><a href="#コンピュータ基礎">コンピュータ基礎</a></li><li><a href="#ストレージ基礎">ストレージ基礎</a></li><li><a href="#データベース基礎">データベース基礎</a></li><li><a href="#ネットワーク基礎">ネットワーク基礎</a></li><li><a href="#プログラミング基礎">プログラミング基礎</a></li><li><a href="#os-基礎">OS 基礎</a></li></ul></li><li><a href="#エンジニアリング">エンジニアリング</a><ul class="toc-headings"><li><a href="#システム設計基礎">システム設計基礎</a></li><li><a href="#モデリング基礎">モデリング基礎</a></li><li><a href="#it-アーキテクチャ基礎">IT アーキテクチャ基礎</a></li><li><a href="#テスト-qa-基礎">テスト/QA 基礎</a></li><li><a href="#要件定義基礎">要件定義基礎</a></li><li><a href="#セキュリティ基礎">セキュリティ基礎</a></li><li><a href="#データサイエンス基礎">データサイエンス基礎</a></li></ul></li><li><a href="#マネジメント">マネジメント</a><ul class="toc-headings"><li><a href="#プロジェクトマネジメント">プロジェクトマネジメント</a></li><li><a href="#システム企画">システム企画</a></li></ul></li><li><a href="#ヒューマンスキル">ヒューマンスキル</a><ul class="toc-headings"><li><a href="#文章力">文章力</a></li><li><a href="#コミュニケーション">コミュニケーション</a></li><li><a href="#ヒアリング">ヒアリング</a></li><li><a href="#ドキュメント作成">ドキュメント作成</a></li><li><a href="#ロジカルシンキング">ロジカルシンキング</a></li></ul></li><li><a href="#インフラアーキテクチャ">インフラアーキテクチャ</a></li><li><a href="#システム障害">システム障害</a></li><li><a href="#リソース監視ツール">リソース監視ツール</a></li><li><a href="#other">Other</a></li><li><a href="#改行コード">改行コード</a></li><li><a href="#devops">DevOps</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>gitlab-ctl · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- GitLab 操作コマンド"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="gitlab-ctl · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- GitLab 操作コマンド"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">gitlab-ctl</h1></header><article><div><span><ul>
+<li><p>GitLab 操作コマンド</p></li>
+<li><p>ステータス表示</p>
+<pre><code class="hljs">$ sudo gitlab-ctl status
+<span class="hljs-keyword">run</span><span class="bash">: alertmanager: (pid 16238) 156s; run: <span class="hljs-built_in">log</span>: (pid 16254) 155s
+</span><span class="hljs-keyword">run</span><span class="bash">: gitaly: (pid 16095) 162s; run: <span class="hljs-built_in">log</span>: (pid 16111) 161s
+</span><span class="hljs-keyword">run</span><span class="bash">: gitlab-monitor: (pid 16142) 160s; run: <span class="hljs-built_in">log</span>: (pid 16147) 159s
+</span><span class="hljs-keyword">run</span><span class="bash">: gitlab-workhorse: (pid 16058) 164s; run: <span class="hljs-built_in">log</span>: (pid 16069) 164s
+</span><span class="hljs-keyword">run</span><span class="bash">: logrotate: (pid 15452) 308s; run: <span class="hljs-built_in">log</span>: (pid 16085) 162s
+</span><span class="hljs-keyword">run</span><span class="bash">: nginx: (pid 15432) 314s; run: <span class="hljs-built_in">log</span>: (pid 16077) 163s
+</span><span class="hljs-keyword">run</span><span class="bash">: node-exporter: (pid 16122) 161s; run: <span class="hljs-built_in">log</span>: (pid 16131) 160s
+</span><span class="hljs-keyword">run</span><span class="bash">: postgres-exporter: (pid 16264) 155s; run: <span class="hljs-built_in">log</span>: (pid 16275) 154s
+</span><span class="hljs-keyword">run</span><span class="bash">: postgresql: (pid 15089) 465s; run: <span class="hljs-built_in">log</span>: (pid 16031) 166s
+</span><span class="hljs-keyword">run</span><span class="bash">: prometheus: (pid 16195) 158s; run: <span class="hljs-built_in">log</span>: (pid 16228) 156s
+</span><span class="hljs-keyword">run</span><span class="bash">: redis: (pid 15013) 477s; run: <span class="hljs-built_in">log</span>: (pid 16022) 166s
+</span><span class="hljs-keyword">run</span><span class="bash">: redis-exporter: (pid 16159) 159s; run: <span class="hljs-built_in">log</span>: (pid 16182) 158s
+</span><span class="hljs-keyword">run</span><span class="bash">: sidekiq: (pid 15395) 322s; run: <span class="hljs-built_in">log</span>: (pid 16046) 165s
+</span><span class="hljs-keyword">run</span><span class="bash">: unicorn: (pid 15352) 328s; run: <span class="hljs-built_in">log</span>: (pid 16039) 165s
+</span></code></pre></li>
+<li><p>起動</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> sudo gitlab-ctl start</span>
+</code></pre></li>
+<li><p>停止</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> sudo gitlab-ctl stop</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>設定再構築</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> gitlab-ctl reconfigure</span>
+</code></pre></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

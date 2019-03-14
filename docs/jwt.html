@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>JWT(JSON Web Token) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 特徴"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="JWT(JSON Web Token) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 特徴"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">JWT(JSON Web Token)</h1></header><article><div><span><ul>
+<li>特徴
+<ul>
+<li>コンパクト
+<ul>
+<li>token という形で URL のクエリパラメーターや POST のパラメーター、HTTP Headerに含む事ができる等、非常に小さいサイズで情報をやり取り可</li>
+</ul></li>
+<li>自己完結
+<ul>
+<li>必要な情報を全て、token という形で含めることができる</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="要素"></a><a href="#要素" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>要素</h2>
+<ul>
+<li><p>Header</p>
+<ul>
+<li><p>alg</p>
+<ul>
+<li>Signature を hash 化する際に利用するアルゴリズムを指定</li>
+</ul></li>
+<li><p>typ</p>
+<ul>
+<li>token のタイプを指定</li>
+<li>通常はJWTで問題ない</li>
+</ul></li>
+<li><p>例</p>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"alg"</span>: <span class="hljs-string">"HS256"</span>,
+  <span class="hljs-attr">"typ"</span>: <span class="hljs-string">"JWT"</span>
+}
+</code></pre>
+<ul>
+<li>上記を Base64UrlEncode したものが Header</li>
+</ul></li>
+</ul></li>
+<li><p>Payload</p>
+<ul>
+<li><p>サーバサイドとクライアントサイドで共有したい情報</p></li>
+<li><p>Header と同様に key と value で表す</p>
+<ul>
+<li>通常このセットをclaimsと呼ぶ</li>
+<li>claims には既に定義されているものや、独自に claims を設定することができる</li>
+<li>既に定義されているものとしては iss, exp 等がある</li>
+</ul></li>
+<li><p>例</p>
+<pre><code class="hljs">{
+<span class="hljs-attr">"iss"</span>: <span class="hljs-string">"Hoge Publisher"</span>,
+<span class="hljs-attr">"sub"</span>: <span class="hljs-string">"Hoge User"</span>
+}
+</code></pre>
+<ul>
+<li>Base64UrlEncode される</li>
+</ul></li>
+</ul></li>
+<li><p>Signature</p>
+<ul>
+<li><p>下記の形式で Header と Playload を Hash 化したものが Signature</p>
+<pre><code class="hljs">&lt;ハッシュアルゴリズム&gt;(
+  <span class="hljs-keyword">base64UrlEncode(header) </span>+ <span class="hljs-string">"."</span> +
+  <span class="hljs-keyword">base64UrlEncode(payload),
+</span>  secret)
+</code></pre></li>
+<li><p>サーバサイド側でしか知らない secret key でハッシュ化する為、Header と Payload が例え推測できたとしても、Signature を第三者が生成することが不可能になる</p></li>
+<li><p>サーバサイド側ではクライアントから送られてきた token について Signature を検証することで、その token が正しいものかどうかを判定することができる</p></li>
+</ul></li>
+<li><p>この要素を.で繋ぐことで 1 つの token として扱う</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">xxxx</span><span class="hljs-selector-attr">[header]</span><span class="hljs-selector-class">.yyyy</span><span class="hljs-selector-attr">[Payload]</span><span class="hljs-selector-class">.zzzz</span><span class="hljs-selector-attr">[Signature]</span>
+</code></pre>
+<ul>
+<li><p>最終的に生成される token サンプル</p>
+<pre><code class="hljs">eyJhbGciOiJIUzI<span class="hljs-number">1</span><span class="hljs-symbol">NiIsInR5</span>cCI<span class="hljs-number">6</span>IkpX<span class="hljs-attr">VCJ9</span>.eyJpc<span class="hljs-number">3</span>MiOiJIb<span class="hljs-number">2</span>dlIFB<span class="hljs-number">1</span>Ymxpc<span class="hljs-number">2</span>hlciIsI<span class="hljs-symbol">nN1</span>YiI<span class="hljs-number">6</span>IkhvZ<span class="hljs-number">2</span>UgVX<span class="hljs-symbol">NlciJ9</span>.zs<span class="hljs-number">2</span>WOqs<span class="hljs-number">2</span>M-Aah<span class="hljs-number">5417</span>-YfoC<span class="hljs-name">g6</span>MdUaCsz<span class="hljs-number">5</span>qTLCdb<span class="hljs-meta">O7</span>aEc
+</code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>一般的にセッション ID と Cookie を利用した認証のフローイメージ</p>
+<ul>
+<li><img src="sessionid_cookie_auth_flow.png" alt=""></li>
+</ul></li>
+<li><p>JSON の形で表した情報を URLEncode し、token としてクライアントサイドに送り、認証が完了したクライアントは次回のリクエストからその token を HTTP Header 等に含めてサーバサイドに送る</p>
+<ul>
+<li>サーバサイド側ではその token について検証し、正しいものであるかを判定</li>
+<li><img src="jwt_auth.png" alt=""></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#要素">要素</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

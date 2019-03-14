@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>メール · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## ヘッダー情報"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="メール · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## ヘッダー情報"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">メール</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="ヘッダー情報"></a><a href="#ヘッダー情報" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ヘッダー情報</h2>
+<hr>
+<ul>
+<li><p>ヘッダー情報とボディの間は空行で分ける</p></li>
+<li><p>ヘッダFrom</p>
+<ul>
+<li>差出人に記載される情報</li>
+<li>実際に送信されるアドレスとは異なることもある</li>
+</ul></li>
+<li><p>ヘッダTo</p>
+<ul>
+<li>宛先に記載される情報</li>
+<li>実際に送信されるアドレスとは異なることもある</li>
+</ul></li>
+<li><p>エンベロープFrom</p>
+<ul>
+<li>実際の送信先などの情報が記載される</li>
+</ul></li>
+<li><p>In-Reply-To</p>
+<ul>
+<li>メールに対する返信であることを示す</li>
+</ul></li>
+</ul>
+<table>
+<thead>
+<tr><th>item</th><th>contents</th></tr>
+</thead>
+<tbody>
+<tr><td>Content-Type</td><td>メール内容のタイプ</td></tr>
+<tr><td>Date</td><td>メールの受信時間</td></tr>
+<tr><td>Delivered-To</td><td>送信者が本来送信した宛先から別のアドレスに転送された宛先<br>受信したメールサーバで別のメールアドレスに転送している場合などに付加される</td></tr>
+<tr><td>DKIM-Signature</td><td>多くの場合、署名する MTA が発信者に代わり DKIM-Signature ヘッダを追加し、また検証する MTA が DNS を通じて発信者の公開鍵を検索する事で、受信者に代わり署名の正当性を立証する</td></tr>
+<tr><td>From</td><td>送信元のアドレス<br>偽装可能</td></tr>
+<tr><td>Message-Id</td><td>メールの識別番号(一意)</td></tr>
+<tr><td>MIME-Version</td><td>MIME バージョン</td></tr>
+<tr><td>Received</td><td>経由したサーバの IP アドレス、ドメイン名、送信元の IP アドレス、ドメイン名などが記録<br>経由したサーバの数だけ Received が記録<br>一番下の Received が送信元で、一番上の Received が自分のメールサーバ</td></tr>
+<tr><td>Reply-To</td><td>メールの返信先アドレス</td></tr>
+<tr><td>Return-Path</td><td>送信先不達の場合に、返信するアドレス<br>通常は FROM<br>エンベロープ From</td></tr>
+<tr><td>Subject</td><td>件名</td></tr>
+<tr><td>To</td><td>メール宛先</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="迷惑メール対策"></a><a href="#迷惑メール対策" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>迷惑メール対策</h2>
+<hr>
+<ul>
+<li><a href="spf">SPF</a></li>
+<li><a href="dkim">DKIM</a></li>
+<li>ホスト名の逆引き</li>
+<li><a href="https://www.google.com/recaptcha/intro/v3.html">reCAPTCHA</a></li>
+<li>tarpitting(ターピッティング)
+<ul>
+<li>スパムメールを排除するために、SMTP プロトコルの通信をわざと遅らせる手法</li>
+<li>応答をわざと遅らせることで、応答を送る前に相手が次のコマンドを送ってくるかを確認
+<ul>
+<li>相手がすぐに次のコマンドを送ってくるようであれば、スパム送信者として受信を拒否</li>
+</ul></li>
+<li>sendmail
+<ul>
+<li>グリーティングメッセージを送らせる greet pause という機能として実装</li>
+</ul></li>
+<li>Postfix
+<ul>
+<li>設定ファイル中に sleep 指定をすることで任意の応答を遅延させることができる</li>
+</ul></li>
+</ul></li>
+<li>ブラックリスト確認
+<ul>
+<li><a href="https://www.dnsbl.info/dnsbl-database-check.php">https://www.dnsbl.info/dnsbl-database-check.php</a></li>
+<li><a href="https://www.aguse.jp/">https://www.aguse.jp/</a></li>
+</ul></li>
+<li>IP レピュテーションの確認
+<ul>
+<li><a href="https://www.talosintelligence.com">https://www.talosintelligence.com</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="メール送信のセキュリティ"></a><a href="#メール送信のセキュリティ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>メール送信のセキュリティ</h2>
+<ul>
+<li><a href="op25b">Outbound Port 25 Blocking</a></li>
+<li><code>SMTP Authentication (SMTP Auth)</code>
+<ul>
+<li>SMTP でユーザ認証を行う技術</li>
+</ul></li>
+<li>SMTP over SSL(SMTPS)
+<ul>
+<li>SSL/TLS を利用して SMTP 通信を暗号化する技術</li>
+<li>注意点
+<ul>
+<li>メールソフトとメールサーバが SMTPS に対応する必要がある</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="メール受信のセキュリティ"></a><a href="#メール受信のセキュリティ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>メール受信のセキュリティ</h2>
+<ul>
+<li>APOP</li>
+<li>POP3 over SSL</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="メール本文のセキュリティ"></a><a href="#メール本文のセキュリティ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>メール本文のセキュリティ</h2>
+<ul>
+<li><a href="pgp">PGP</a></li>
+<li><a href="smime">S/MIME</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="アプリケーション"></a><a href="#アプリケーション" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>アプリケーション</h2>
+<hr>
+<ul>
+<li><a href="thunderbird">Thunderbird</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<hr>
+<ul>
+<li><a href="https://www.slideshare.net/AmazonWebServicesJapan/aws-42885668">AWS EC2 Eメール上限緩和 / 逆引き(rDNS)設定 申請手順</a></li>
+<li><a href="http://www.mail-tester.com/">迷惑メール判定</a></li>
+<li><a href="https://toolbox.googleapps.com/apps/checkmx/">CheckMX</a></li>
+<li>ヘッダー解析
+<ul>
+<li><a href="https://toolbox.googleapps.com/apps/messageheader/">G Suite Toolbox  Messageheader</a></li>
+<li>Email Header Analyzer
+<ul>
+<li><a href="https://mxtoolbox.com/EmailHeaders.aspx">https://mxtoolbox.com/EmailHeaders.aspx</a></li>
+</ul></li>
+</ul></li>
+<li><a href="https://toolbox.googleapps.com/apps/checkmx/">CheckMX</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ヘッダー情報">ヘッダー情報</a></li><li><a href="#迷惑メール対策">迷惑メール対策</a></li><li><a href="#メール送信のセキュリティ">メール送信のセキュリティ</a></li><li><a href="#メール受信のセキュリティ">メール受信のセキュリティ</a></li><li><a href="#メール本文のセキュリティ">メール本文のセキュリティ</a></li><li><a href="#アプリケーション">アプリケーション</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

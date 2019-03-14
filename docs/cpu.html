@@ -1,0 +1,345 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>CPU(Central Processing Unit) · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- OS からの命令を受け、データに対して演算処理を行い、結果を返却"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="CPU(Central Processing Unit) · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- OS からの命令を受け、データに対して演算処理を行い、結果を返却"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">CPU(Central Processing Unit)</h1></header><article><div><span><ul>
+<li>OS からの命令を受け、データに対して演算処理を行い、結果を返却</li>
+<li>機械語(マシン語) で記述されたソフトウェアを理解し、実行することができる</li>
+<li>プロセッサ、中央処理装置</li>
+<li>基本構図
+<ol>
+<li>演算装置(コア)
+<ul>
+<li>プログラムの計算</li>
+</ul></li>
+<li>メモリ(レジスタ、L1, L2, L3 キャッシュ)
+<ul>
+<li>演算結果の一時置き場</li>
+<li>L1 キャッシュ
+<ul>
+<li>超高速にアクセスしたいデータを置く</li>
+</ul></li>
+<li>L2 キャッシュ
+<ul>
+<li>高速にアクセスしたいデータを置く</li>
+</ul></li>
+</ul></li>
+<li>入出力インタフェース
+<ul>
+<li>メモリとのやり取り</li>
+</ul></li>
+</ol></li>
+</ul>
+<ul>
+<li>パイプライン制御
+<ul>
+<li>CPU 処理を高速化させるため、1 命令を、命令読出し(フェッチ)、解読(デコード)、アドレス計算、オペランド呼出し、実行 などのように複数のステージに分け、各ステージを少しずつずらしながら独立した処理機構で並列に実行することで、処理時間全体を短縮させる技法</li>
+<li>パイプライン処理が完了するまでの時間を求める公式は、(I＋D－1)×P</li>
+<li><img src="cpu_pipeline.png" alt="">
+<ul>
+<li>パイピラインピッチ 10 msとすると、実行する命令数(I)＝4、命令の分割数(D)=3 のため処理終了までの時間は <code>(4＋3－1)×10＝60(ms)</code></li>
+</ul></li>
+<li>IF (Instruction Fetch)
+<ul>
+<li>命令を命令キャッシュから読み出す</li>
+</ul></li>
+<li>ID (Instruction Decode/register read)
+<ul>
+<li>制御信号を生成し、レジスタ・ファイルをレジスタ指定子で参照する</li>
+</ul></li>
+<li>EX (EXecution/address calculation)
+<ul>
+<li>数値の計算やロード・ストアのデータやアドレス・分岐先の計算を行う</li>
+</ul></li>
+<li>MA (Memory Access)
+<ul>
+<li>ロード（メモリの読み出し）・ストア（メモリへの書き込み）を行う</li>
+</ul></li>
+<li>WB (Write Back)
+<ul>
+<li><p>レジスタにデータを書き込む</p>
+<pre><code class="hljs">時間    1      2      3      4      5      6     7     8     9     10
+命令1  <span class="hljs-keyword">IF</span>     ID     <span class="hljs-keyword">EX</span>     <span class="hljs-keyword">MA</span>     WB                        
+命令2         <span class="hljs-keyword">IF</span>     ID     <span class="hljs-keyword">EX</span>     <span class="hljs-keyword">MA</span>     WB                   
+命令3                <span class="hljs-keyword">IF</span>     ID     <span class="hljs-keyword">EX</span>     <span class="hljs-keyword">MA</span>     WB              
+命令4                       <span class="hljs-keyword">IF</span>     ID     <span class="hljs-keyword">EX</span>     <span class="hljs-keyword">MA</span>     WB         
+命令5                              <span class="hljs-keyword">IF</span>     ID     <span class="hljs-keyword">EX</span>     <span class="hljs-keyword">MA</span>     WB    
+命令6                                     <span class="hljs-keyword">IF</span>     ID     <span class="hljs-keyword">EX</span>     <span class="hljs-keyword">MA</span>     WB
+```
+</code></pre></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>性能
+<ul>
+<li>クロック周波数
+<ul>
+<li><code>クロック(同期信号)</code>
+<ul>
+<li>電圧の「高」と「低」を繰り返し入力</li>
+</ul></li>
+<li>1 秒間にクロックを何回刻むかを表した数値</li>
+<li>CPU の名前の表記の後ろに 1.8 GHz とか 2.4 GHz とか書いてある数字の事
+<ul>
+<li>1.8 GHz の場合、1 秒間に 18 億回切り替えが可能</li>
+</ul></li>
+<li>単純にこの数字が大きいほど処理が速い</li>
+<li>クロック周波数をあげる高速化は 2000 年頃に頭打ちになる
+<ul>
+<li>マルチコアへ</li>
+</ul></li>
+</ul></li>
+<li>コアの数
+<ul>
+<li>コアとは CPU の中心部分であり、実際に処理を行うところ</li>
+<li>マルチコアの CPU は性能の表記で 3 Ghz×2 や 2.6 Ghz×4 などという表記でコアの数が表される事が多い</li>
+<li>フルパワーで動いたときの電力の消費量は通常と比べて多くなり、発熱も高い
+<ul>
+<li>これを抑えるため、コアが多い CPU はコア 1 つあたりの能力が抑えられている</li>
+</ul></li>
+<li>よく使っているコアの性能を一時的に高める技術(ターボブーストテクノロジー) がある</li>
+<li>2P/28C
+<ul>
+<li>1 プロセッサあたり 14 コア</li>
+</ul></li>
+<li>総コア数が多いほど性能は良くなるが、プログラム側もマルチコアを意識した作りにすることが重要</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>ハイパースレッディング
+<ul>
+<li>これは CPU (の中にあるコア) がその時に使っていない部分を有効利用して、もう 1 つの処理を行うもの</li>
+<li>この技術が導入されていると、1 つのコアで最大 2 つの作業を行う事が可能
+<ul>
+<li>よってコアが 2 つの CPU なら同時に 4 つの作業が可能
+<ul>
+<li>この同時に行える作業の数をスレッドと言う</li>
+</ul></li>
+</ul></li>
+<li>発熱も消費電力も通常より多い</li>
+<li>1 つ目の作業より処理速度に劣る</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="リソース分析"></a><a href="#リソース分析" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>リソース分析</h2>
+<ul>
+<li><a href="top">top</a></li>
+<li><a href="mpstat">mpstat</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ボトルネック"></a><a href="#ボトルネック" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ボトルネック</h2>
+<ul>
+<li>CPU を利用する処理が多いため、待ち行列が発生
+<ul>
+<li>スケールアウトで対応</li>
+</ul></li>
+<li>CPU のレスポンスが遅い
+<ul>
+<li>スケールアップで対応</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="仮想化"></a><a href="#仮想化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>仮想化</h2>
+<hr>
+<ul>
+<li><p>CPU 仮想化支援機能(CPU エミュレーション)</p>
+<ul>
+<li>ソフトウェアレベルで行っていた仮想化の仕組みを CPU で実現するための拡張機能</li>
+<li>Intel VT(intel)</li>
+<li>AMD-V(amd)</li>
+</ul></li>
+<li><p><code>SLAT(Second Level Address Translation)</code></p>
+<ul>
+<li>複数のゲスト OS とホスト OS(ハイパーバイザー) 間のアドレス処理をハードウェアが担うことにより、安全にハイパフォーマンスを提供する仮想化支援</li>
+<li>Intel
+<ul>
+<li><code>EAP(Extended Page Table)</code> と呼ばれる</li>
+</ul></li>
+<li>AMD
+<ul>
+<li><code>NPT(Nested Page Table)</code> と呼ばれる</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><code>CPU フラグ</code>
+<ul>
+<li>仮想化支援機能が利用できる場合の目印</li>
+<li><code>/proc/cpuinfo</code> を見る</li>
+<li>Intel
+<ul>
+<li><code>vmx</code></li>
+</ul></li>
+<li>AMD
+<ul>
+<li><code>svm</code></li>
+</ul></li>
+<li>注意
+<ul>
+<li>BIOS レベルで無効化されている可能性がある</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="others"></a><a href="#others" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Others</h2>
+<hr>
+<ul>
+<li>CPU モード / 特権レベル
+<ul>
+<li><code>特権モード(カーネルモード)</code>
+<ul>
+<li>CPU が備えるすべての機能を無制限に利用できる</li>
+<li>特権 CPU 命令
+<ul>
+<li>特権モードでの CPU に対する命令</li>
+</ul></li>
+</ul></li>
+<li><code>ユーザモード</code>
+<ul>
+<li>CPU 利用に制限が課せられた CPU モード</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>SMP(Symmetric Multiple-Processor)</p>
+<ul>
+<li>対称型マルチプロセッシング</li>
+<li>複数のプロセッサに処理を分散することで並列処理を行う方式</li>
+<li>一つのシステムに複数の CPU やプロセッサコアがあり、それらに特別な役割や主従関係などがなく対等、対称な関係になっているシステム</li>
+</ul></li>
+<li><p>コンペア・アンド・スワップ(Compare-and-Swap、CAS)</p>
+<ul>
+<li>アトミックに、あるメモリ位置の内容と指定された値を比較し、等しければそのメモリ位置に別の指定された値を格納する CPU の特別な命令の一種</li>
+</ul></li>
+<li><p>テスト・アンド・セット</p>
+<ul>
+<li>あるメモリ位置へアトミックに書き込みを行うコンピュータの命令</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>8, 16, 32, 64 ビット</p>
+<ul>
+<li>CPU や CPU レジスタの大きさ、レジスタとメモリとを結ぶデータバスが、8, 16, 32, 64 となっている</li>
+<li>ビット数の量のデータを一度に処理したり転送したりすることができる</li>
+</ul></li>
+<li><p>AES-NI</p>
+<ul>
+<li>AES 暗号化処理を高速化するための仕組み</li>
+</ul></li>
+<li><p>プロセッサナンバー、モデルナンバー</p>
+<ul>
+<li>最近の CPU は名前にクロック数を表す「MHz」の単位ではなく、「520」とか「2700」とかの数字が書かれているものが多い
+<ul>
+<li>今の CPU は特殊技術によってクロック数以上の性能を発揮するようになったため、従来のクロック数の表記のままでは性能をアピールできないという事で、別の表記になったため</li>
+</ul></li>
+<li>プロセッサナンバー
+<ul>
+<li>Intel 社(Pentium や Core など)での呼び名</li>
+</ul></li>
+<li>モデルナンバー
+<ul>
+<li>AMD 社(Athlon など)での呼び名</li>
+</ul></li>
+<li>プロセッサナンバー / モデルナンバー(型番) には、記号が付いている場合がある
+<ul>
+<li>Core i7-2700K, Core i5-2540M</li>
+<li>K (Core i7 2700K など)
+<ul>
+<li>CPU の性能を調整できるもの</li>
+<li>クロック数の最大倍率をユーザーが自由に変更できるもの
+<ul>
+<li>オーバークロック可能</li>
+</ul></li>
+</ul></li>
+<li>S (Core i5 2500S など)
+<ul>
+<li>低電圧版を意味</li>
+<li>通常版よりも性能が低い分、発熱や消費電力が抑えられている</li>
+</ul></li>
+<li>T (Core i5 2500T など)
+<ul>
+<li>S よりもっと省電力なタイプ</li>
+</ul></li>
+<li>X (Core i7 3960X など)
+<ul>
+<li>Extreme Edition の略</li>
+<li>最上級モデルの CPU</li>
+</ul></li>
+<li>G (Celeron G530 など)
+<ul>
+<li>Pentium や Celeron についている型番</li>
+<li>CPU に内蔵グラフィック機能があることを表している</li>
+</ul></li>
+<li>M (Core i7 2640M など)
+<ul>
+<li>モバイル用</li>
+<li>デスクトップの CPU より低電圧で、発熱や消費電力が抑えられている反面、性能は低めで、コアの数も少ない場合が多い</li>
+</ul></li>
+<li>QM (Core i7 2720QM など)
+<ul>
+<li>クアッドコア の モバイル用の意味</li>
+<li>4 コアあるノートパソコン用の CPU</li>
+</ul></li>
+<li>XM (Core i7 2960XM など)
+<ul>
+<li>最上級なモバイル用 CPU という意味</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>FSB / QPI / DMI (データバス)</p>
+<ul>
+<li>FSB とは「フロント・サイド・バス」の略で、CPU がそれ以外のパーツとデータをやり取りするスピードを表す</li>
+<li>同じクロック数でも、この FSB が高い CPU の方が性能が良くなる</li>
+<li>マザーボードには「FSB 200MHz までの CPU が動作可能です」みたいに使用可能な CPU の FSB 制限がある</li>
+<li>AMD 社の CPU は、FSB の代わりに「HyperTransport」という用語が使われています</li>
+</ul></li>
+<li><p>ターボブーストテクノロジー</p>
+<ul>
+<li>コアがたくさんある CPU は消費電力や発熱が大きくなるために、コア 1 つ 1 つの性能を抑える必要がある</li>
+<li>そのためコアを 1 つしか使っていない時は、コアが少ない CPU の方が処理速度が早い、という状況が生じていました</li>
+<li>この問題を解消するため、Intel 社は「あまり使っていないコアがある時に、その分の電力をよく使っているコアに集中させて、使っているコアの性能を引き上げる技術」を開発
+<ul>
+<li>ターボ・ブースト・テクノロジー</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>ソケット形状
+<ul>
+<li>CPU をはめるための取り付け口の事を「ソケット」と言う</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="reference"></a><a href="#reference" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reference</h2>
+<hr>
+<ul>
+<li><a href="http://qiita.com/bokotomo/items/5352b8ceb6ccb70390c8">NUMAとnumactlの説明</a></li>
+</ul>
+<ul>
+<li><p>CPI(Cycle Per Instructions)</p>
+<ul>
+<li>1 命令を実行するのに必要なクロック数</li>
+</ul></li>
+<li><p>MIPS(Million Instructions Per Second)</p>
+<ul>
+<li>1 秒間に何百万回命令が実行されるかを表す</li>
+</ul></li>
+<li><p>FLOPS(Floating-Point number Operations Per Second)</p>
+<ul>
+<li>1 秒間に実行できる浮動小数点数演算の回数</li>
+</ul></li>
+<li><p>命令ミックス</p>
+<ul>
+<li>使用される命令の組み合わせ</li>
+</ul></li>
+<li><p>CISC(Complex Instructions Set Computer)</p>
+<ul>
+<li>CPU に複雑な命令を理解できるようにした構成</li>
+<li>複雑な命令を <code>マイクロコード</code> と呼ばれるプログラムによって実現</li>
+</ul></li>
+<li><p>RISC(Reduced Instructions Set Computer)</p>
+<ul>
+<li>CPU に単純な命令をもたせる構成</li>
+<li>命令長は固定で、単純な命令をハードウェア回路によって構成
+<ul>
+<li>=&gt; ワイヤードロジック</li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#リソース分析">リソース分析</a></li><li><a href="#ボトルネック">ボトルネック</a></li><li><a href="#仮想化">仮想化</a></li><li><a href="#others">Others</a></li><li><a href="#reference">Reference</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

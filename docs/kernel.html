@@ -1,0 +1,421 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>カーネル · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 基礎"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="カーネル · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="## 基礎"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">カーネル</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基礎"></a><a href="#基礎" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基礎</h2>
+<hr>
+<ul>
+<li>コンピュータの電源が入っている間、メモリに常駐し、すべてのハードウェアとソフトウェアを管理するソフトウェア</li>
+<li>狭義の OS</li>
+</ul>
+<table>
+<thead>
+<tr><th>item</th><th>content</th></tr>
+</thead>
+<tbody>
+<tr><td>プロセス管理</td><td>システム上で動作するアプリケーションの実行制御<br>各プロセスごとに独自の実行環境を割り当て、マルチタスクを実現</td></tr>
+<tr><td>空間管理</td><td>プロセスごとに仮想メモリ空間を作り、メモリ割り当てを行なう<br>メモリ不足になると、その一部をディスクに退避させたりしてメモリを効率的に利用</td></tr>
+<tr><td>時間管理</td><td>システム実行時間の管理</td></tr>
+<tr><td>割り込み管理</td><td>HW からの信号を受け取ってプログラムを起動する割り込みの制御を行なう<br>キーボードの入力やディスク・ネットワークの入出力</td></tr>
+<tr><td>ファイルシステム</td><td>ファイル格納</td></tr>
+<tr><td>ネットワーク</td><td>ネットワーク通信機能の提供</td></tr>
+</tbody>
+</table>
+<ul>
+<li><p>プロセス管理</p></li>
+<li><p>メモリ管理</p>
+<ul>
+<li><a href="memory">メモリ</a></li>
+<li>仮想メモリ</li>
+</ul></li>
+<li><p><a href="filesystem">ファイルシステム</a></p>
+<ul>
+<li>ext4</li>
+<li>VFS(Virtual File System)</li>
+</ul></li>
+<li><p><a href="network">ネットワーク</a></p></li>
+<li><p><a href="interrupts-signal">割り込みとシグナル</a></p></li>
+<li><p>デバイス管理</p>
+<ul>
+<li>デバイスファイル</li>
+<li>キャラクタデバイス
+<ul>
+<li>キーボード</li>
+<li>マウス</li>
+<li>USB カメラ</li>
+</ul></li>
+<li>ブロックデバイス
+<ul>
+<li>ハードディスク</li>
+<li>USB メモリ</li>
+<li>SD カード</li>
+</ul></li>
+</ul></li>
+<li><p>設計思想および実装</p>
+<ul>
+<li>モノリシックカーネル
+<ul>
+<li>OS の主要構成要素をすべて 1 つのメモリ空間にて提供</li>
+<li>Linux</li>
+</ul></li>
+<li>マイクロカーネル
+<ul>
+<li>必要最小限のみをカーネルが提供し、それ以外の機能はカーネル外で提供</li>
+<li>Mac OS X</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="時間管理"></a><a href="#時間管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>時間管理</h2>
+<ul>
+<li>時刻管理機能
+<ul>
+<li>xtime
+<ul>
+<li>1970 年 1 月 1 日からの経過時間を秒単位/ナノ秒単位で保持する変数</li>
+</ul></li>
+<li>jiffiles
+<ul>
+<li>一定周期(タイマー割り込み)でカウントアップされる変数</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>クロックソース
+<ul>
+<li><p>タイマーデバイス</p>
+<ul>
+<li>TSC(Time Stamp Counter)
+<ul>
+<li>CPU 内部のカウンター</li>
+</ul></li>
+<li>HPET(High Precision Event Timer)</li>
+<li>PIT(Periodic Interrupt Timer)</li>
+</ul></li>
+<li><p>現状値</p>
+<pre><code class="hljs"># cat <span class="hljs-regexp">/sys/</span>devices<span class="hljs-regexp">/system/</span>clocksource<span class="hljs-regexp">/clocksource0/</span>current_clocksource
+kvm-clock
+</code></pre></li>
+<li><p>利用可能なクロックソース</p>
+<pre><code class="hljs"># cat <span class="hljs-regexp">/sys/</span>devices<span class="hljs-regexp">/system/</span>clocksource<span class="hljs-regexp">/clocksource0/</span>available_clocksource
+kvm-clock hpet acpi_pm
+</code></pre></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="カーネルの構成要素"></a><a href="#カーネルの構成要素" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>カーネルの構成要素</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="カーネルイメージ"></a><a href="#カーネルイメージ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>カーネルイメージ</h3>
+<ul>
+<li><p>Linux カーネルは通常、イメージファイルつぃてファイルシステム上に格納されている</p></li>
+<li><p><code>vmlinuz-</code> で始まる名前がカーネルの実体</p></li>
+<li><p>起動に必要なファイルは <code>/boot</code> 配下に存在</p>
+<pre><code class="hljs">$ ll /boot/ | grep vmlinuz-
+-rwxr-xr-x.<span class="hljs-number"> 1 </span>root root <span class="hljs-number"> 5877760 </span> 9月<span class="hljs-number"> 21 </span><span class="hljs-number"> 2017 </span>vmlinuz-0-rescue-19f87e08fcd744f53d522029d0081944
+-rwxr-xr-x.<span class="hljs-number"> 1 </span>root root <span class="hljs-number"> 5877504 </span>12月 <span class="hljs-number"> 5 </span><span class="hljs-number"> 2017 </span>vmlinuz-3.10.0-693.11.1.el7.x86_64
+-rwxr-xr-x.<span class="hljs-number"> 1 </span>root root <span class="hljs-number"> 5877760 </span> 8月<span class="hljs-number"> 23 </span><span class="hljs-number"> 2017 </span>vmlinuz-3.10.0-693.el7.x86_64
+-rwxr-xr-x.<span class="hljs-number"> 1 </span>root root <span class="hljs-number"> 6242208 </span> 8月<span class="hljs-number"> 15 </span>07:02 vmlinuz-3.10.0-862.11.6.el7.x86_64
+</code></pre>
+<ul>
+<li>実際に動いているカーネルバージョン確認
+<ul>
+<li><p><a href="uname">uname</a></p></li>
+<li><p><code># cat /proc/version</code></p>
+<pre><code class="hljs"><span class="hljs-selector-tag">Linux</span> <span class="hljs-selector-tag">version</span> <span class="hljs-selector-tag">3</span><span class="hljs-selector-class">.10</span><span class="hljs-selector-class">.0-862</span><span class="hljs-selector-class">.14</span><span class="hljs-selector-class">.4</span><span class="hljs-selector-class">.el7</span><span class="hljs-selector-class">.x86_64</span> (mockbuild<span class="hljs-variable">@kbuilder</span>.bsys.centos.org) (gcc version <span class="hljs-number">4.8</span>.<span class="hljs-number">5</span> <span class="hljs-number">20150623</span> (Red Hat <span class="hljs-number">4.8</span>.<span class="hljs-number">5</span>-<span class="hljs-number">28</span>) (GCC) ) <span class="hljs-selector-id">#1</span> <span class="hljs-selector-tag">SMP</span> <span class="hljs-selector-tag">Wed</span> <span class="hljs-selector-tag">Sep</span> <span class="hljs-selector-tag">26</span> <span class="hljs-selector-tag">15</span><span class="hljs-selector-pseudo">:12</span><span class="hljs-selector-pseudo">:11</span> <span class="hljs-selector-tag">UTC</span> <span class="hljs-selector-tag">2018</span>
+</code></pre></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="カーネルモジュールの管理"></a><a href="#カーネルモジュールの管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>カーネルモジュールの管理</h2>
+<hr>
+<ul>
+<li><p><code>/lib/modules/&lt;kernel-version&gt;/</code> 配下に置かれる</p>
+<pre><code class="hljs"># ll /lib/modules/<span class="hljs-number">3.10</span><span class="hljs-number">.0</span><span class="hljs-number">-693.11</span><span class="hljs-number">.1</span>.el7.x86_64/kernel/
+合計 <span class="hljs-number">16</span>
+drwxr-xr-x.  <span class="hljs-number">3</span> root root   <span class="hljs-number">17</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> arch
+drwxr-xr-x.  <span class="hljs-number">3</span> root root <span class="hljs-number">4096</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> crypto
+drwxr-xr-x. <span class="hljs-number">69</span> root root <span class="hljs-number">4096</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> drivers
+drwxr-xr-x. <span class="hljs-number">26</span> root root <span class="hljs-number">4096</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> fs
+drwxr-xr-x.  <span class="hljs-number">3</span> root root   <span class="hljs-number">19</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> kernel
+drwxr-xr-x.  <span class="hljs-number">4</span> root root  <span class="hljs-number">249</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> lib
+drwxr-xr-x.  <span class="hljs-number">2</span> root root   <span class="hljs-number">35</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> mm
+drwxr-xr-x. <span class="hljs-number">33</span> root root <span class="hljs-number">4096</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> net
+drwxr-xr-x. <span class="hljs-number">11</span> root root  <span class="hljs-number">162</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> sound
+drwxr-xr-x.  <span class="hljs-number">3</span> root root   <span class="hljs-number">17</span> <span class="hljs-number">12</span>月 <span class="hljs-number">25</span>  <span class="hljs-number">2017</span> virt
+</code></pre>
+<ul>
+<li>カテゴリごとに存在</li>
+</ul></li>
+<li><p>拡張子は <code>.ko</code></p></li>
+<li><p>カーネルモジュール操作コマンド</p>
+<ul>
+<li><a href="lsmod">lsmod</a>
+<ul>
+<li>ロードされているモジュールリストを表示</li>
+</ul></li>
+<li><a href="insmod">insmod</a>
+<ul>
+<li>モジュールをロード</li>
+</ul></li>
+<li><a href="rmmod">rmmod</a>
+<ul>
+<li>モジュールをアンロード</li>
+</ul></li>
+<li><a href="modprobe">modprobe</a>
+<ul>
+<li>依存関係を解決してモジュールをロード、アンロードする</li>
+</ul></li>
+<li><a href="depmod">depmod</a>
+<ul>
+<li>モジュールの依存関係情報を更新</li>
+</ul></li>
+<li><a href="modinfo">modinfo</a>
+<ul>
+<li>モジュールの情報を表示</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="カーネルパラメータ"></a><a href="#カーネルパラメータ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>カーネルパラメータ</h2>
+<hr>
+<ul>
+<li>カーネルパラメータを変更した場合には、<code>/etc/sysctl.conf</code> や <code>/etc/rc.local</code> にて起動時に変更が反映されるようにする</li>
+<li><a href="sysctl">sysctl</a></li>
+</ul>
+<ul>
+<li><p>ビルド</p>
+<ul>
+<li>コンパイルや、ライブラリのリンクを実施して実行可能なプログラムを作ること</li>
+<li><a href="nice">nice</a> コマンドを利用することでタスクの優先順位を変更することが可能</li>
+</ul></li>
+<li><p>タスクスケジューラ</p>
+<ul>
+<li>CPU の利用時間を分割して複数のプロセスに分与</li>
+<li>CFS(Completely Fair Scheduler)
+<ul>
+<li>各タスクの CPU 使用時間を n (ナノ) 秒精度で管理し、どのタスクも均等に CPU を使用できるようにするタスクスケジューラ</li>
+</ul></li>
+<li>autogroup スケジューリング
+<ul>
+<li><p>実行中のタスクを自動的にグループ分けして、各グループに対して均等に CPU 時間を割り当てる機能</p></li>
+<li><p>CFS だとすべてのタスクに均等に CPU 時間を割り当てるため、サーバープログラム配下のタスクが増えれば増えるほど、他のタスク(GUI アプリケーション) に割り当てる CPU 時間は少なくなるのでそれを解消するために</p></li>
+<li><p>現状値</p>
+<pre><code class="hljs"># cat <span class="hljs-regexp">/proc/</span>sys<span class="hljs-regexp">/kernel/</span>sched_autogroup_enabled
+<span class="hljs-number">0</span>
+</code></pre>
+<ul>
+<li>0 は無効</li>
+<li>1 は有効</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="proc-配下"></a><a href="#proc-配下" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>/proc</code> 配下</h2>
+<hr>
+<ul>
+<li>カーネル内部の情報を <code>擬似的</code> に、ディレクトリで分けられたファイルとして見せているもの</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="proc-sys-fs"></a><a href="#proc-sys-fs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>/proc/sys/fs/*</h3>
+<ul>
+<li>fs.file-max
+<ul>
+<li>ファイルシステムでのオープンファイルの上限確認</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="デバイス管理"></a><a href="#デバイス管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>デバイス管理</h2>
+<hr>
+<ul>
+<li><a href="device">デバイス管理</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="parameter"></a><a href="#parameter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parameter</h2>
+<ul>
+<li>kernel.panic
+<ul>
+<li>カーネルパニック時に再起動するまでの秒数</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>vm.swappiness</p>
+<ul>
+<li>システムがスワップを行う程度の制御</li>
+<li>10 くらいが良い</li>
+</ul></li>
+<li><p>net.ipv4.tcp_fin_timeout</p>
+<ul>
+<li>FIN のタイムアウト値(秒)</li>
+<li>5 秒より短い時間でタイムアウトするように設定</li>
+</ul></li>
+<li><p>net.ipv4.ip_local_port_range</p>
+<ul>
+<li>外に向かう接続におけるローカルポートの範囲</li>
+<li>16384 - 65535 を使うよう設定</li>
+</ul></li>
+<li><p>net.ipv4.tcp_orphan_retries</p>
+<ul>
+<li>こちら側からクローズした TCP コネクションを終了する前の再送回数</li>
+<li>リソースの消費を防ぐため 2 に設定する。</li>
+</ul></li>
+<li><p>net.ipv4.tcp_tw_reuse</p>
+<ul>
+<li>TIME_WAIT 状態のコネクションを再利用するかどうか</li>
+<li>1(再利用する)に設定</li>
+</ul></li>
+<li><p>net.ipv4.tcp_max_tw_buckets</p>
+<ul>
+<li>システムが同時に保持する time-wait ソケットの最大数</li>
+<li>メモリ量に応じて調節するが 65535 ぐらいにしておく</li>
+</ul></li>
+<li><p>net.ipv4.tcp_rmem</p>
+<ul>
+<li>TCP 受信バッファサイズ。[min, default, max] の順番</li>
+<li>理想値
+<ul>
+<li>:</li>
+</ul></li>
+</ul></li>
+<li><p>net.ipv4.tcp_wmem</p>
+<ul>
+<li>TCP 送信バッファサイズ。[min, default, max] の順番</li>
+<li>理想値
+<ul>
+<li>:</li>
+</ul></li>
+</ul></li>
+<li><p>fs.file-max</p>
+<ul>
+<li>オープン可能なファイル数の上限</li>
+<li>65536 以上に設定</li>
+</ul></li>
+<li><p>net.core.somaxconn</p>
+<ul>
+<li>TCP の LISTEN Backlog</li>
+<li>2048 以上に設定</li>
+<li>TCP ソケットは listen() 関数の第二引数 backlog に指定した数の、完全に確率された接続要求を待ち受けることができるキューを作成</li>
+<li>キューがいっぱいになった状態で新たに接続要求を受け取ると、サーバーは ECONNREFUSED を返す</li>
+<li>下位層のプロトコルが再送信をサポートしていれば、ECONNREFUSED は無視され、リトライが成功するかもしれません</li>
+<li>net.core.somaxconn は TCP ソケットが受け付けた接続要求を格納する、キューの最大長</li>
+<li>backlog &gt; net.core.somaxconn のとき、キューの大きさは暗黙に net.core.somaxconn に切り詰められる</li>
+<li>net.core.somaxconn の影響
+<ul>
+<li>net.core.somaxconn は OS レベルの接続キューの最大長として、TCP ソケットで待ち受けるサービス全般に影響を与える</li>
+<li>具体的には、アプリケーションレベルで指定した接続キューの最大長 &gt; net.core.somaxconn の場合、接続キューの大きさは暗黙にnet.core.somaxconnに切り詰められている可能性がある</li>
+<li>最大数には、1 から 2147483647 までを指定可</li>
+<li>本ディレクティブの設定値は、MaxClients ディレクティブで設定したクライアントの同時接続数よりも多くの接続要求があった場合に、Linux システム内にキューイングされる数として有効</li>
+<li>本ディレクティブの設定値が Linux システムに設定されている待機中 TCP コネクションの最大値（/proc/sys/net/core/somaxconn）よりも大きい場合は、待機中 TCP コネクションの最大値が有効</li>
+</ul></li>
+</ul></li>
+<li><p>net.core.netdev_max_backlog</p>
+<ul>
+<li>カーネルがキューイングするパケットの最大個数</li>
+<li>2048 以上に設定</li>
+</ul></li>
+<li><p>net.ipv4.tcp_max_syn_backlog</p>
+<ul>
+<li>SYN パケットを送った際に SYN/ACK の応答待ちに使うソケットの最大数</li>
+<li>2048 以上に設定</li>
+</ul></li>
+</ul>
+<ul>
+<li><p>/sys/class/net/<em>/queues/rx-</em>/rps_cpus</p></li>
+<li><p>/sys/class/net/<em>/queues/rx-</em>/rps_flow_cnt</p></li>
+<li><p>net.core.rps_sock_flow_entries</p>
+<ul>
+<li>グローバルフローテーブルのエントリ数</li>
+<li>アクティブな接続の最大数ぐらいに設定</li>
+<li>推奨値は 32768</li>
+</ul></li>
+</ul>
+<ul>
+<li><a href="systemtap">SystemTapp</a></li>
+</ul>
+<ul>
+<li><p>システムコール、スーパバイザコール</p>
+<ul>
+<li>プロセス/スレッドからカーネルへの処理依頼するためのインタフェース</li>
+<li>ハードウェアとの直接操作することができないので、カーネル経由で処理を依頼する</li>
+<li>例
+<ul>
+<li>open</li>
+<li>read</li>
+<li>write</li>
+</ul></li>
+</ul></li>
+<li><p>ライブラリ</p>
+<ul>
+<li>関数がたくさん記載されたファイル</li>
+<li>関数の利用 = <code>リンク</code></li>
+<li>ライブラリ関数
+<ul>
+<li>printf()</li>
+<li>exit()</li>
+</ul></li>
+<li>標準 C ライブラリ
+<ul>
+<li><p>libc</p>
+<pre><code class="hljs"><span class="hljs-comment"># cat /etc/redhat-release</span>
+CentOS Linux release 7.5.1804 (Core)
+<span class="hljs-comment"># ll /lib64/libc.so</span>
+-rw-r--r--.<span class="hljs-number"> 1 </span>root root<span class="hljs-number"> 253 </span>10月<span class="hljs-number"> 30 </span>16:55 /lib64/libc.so
+</code></pre>
+<ul>
+<li>普段使われているのは GNU libc(glibc)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>API(Application Programming Interface)</p>
+<ul>
+<li>何かを使ってプログラミングするときのインタフェース</li>
+<li>ライブラリの API
+<ul>
+<li>関数</li>
+<li>マクロ</li>
+</ul></li>
+<li>カーネルの API
+<ul>
+<li>システムコール</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="ストリーム"></a><a href="#ストリーム" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストリーム</h3>
+<ul>
+<li>バイト列が流れる通り道</li>
+<li>FILE 型の値</li>
+<li>STREAMS カーネルモジュール</li>
+<li>POSIX IPC
+<ul>
+<li>ストリームを使わないプロセス間通信機構</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="省電力"></a><a href="#省電力" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>省電力</h2>
+<ul>
+<li><p>システムの処理状況に応じて、省電力処理を実施する</p>
+<ol>
+<li>CPU の動作モードを省電力モードに切り替える</li>
+<li>CPU の動作クロックを調整する</li>
+<li>CPU を停止させるサスペンドやハイバネーションなどのシステム休止モードに移行する</li>
+</ol></li>
+<li><p>C ステート</p>
+<ul>
+<li>CPU の動作モード</li>
+<li><a href="powertop">powertop</a></li>
+</ul></li>
+<li><p>CPUfreq</p>
+<ul>
+<li>CPU の動作クロックを制御</li>
+<li>クロック制御ポリシー(governor)
+<ul>
+<li><code>ondemand</code>
+<ul>
+<li>システム負荷に合わせてクロック周波数を上下</li>
+</ul></li>
+<li><code>performance</code>
+<ul>
+<li>常に最高クロック周波数</li>
+</ul></li>
+<li><code>powersave</code>
+<ul>
+<li>常に最低クロック周波数</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>ハイバネーション</p>
+<ul>
+<li>CPU の実行状態や主メモリのデータを記録装置に一時保存して、 PC の電源を落とす節電機能</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="other"></a><a href="#other" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other</h2>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基礎">基礎</a></li><li><a href="#時間管理">時間管理</a></li><li><a href="#カーネルの構成要素">カーネルの構成要素</a><ul class="toc-headings"><li><a href="#カーネルイメージ">カーネルイメージ</a></li></ul></li><li><a href="#カーネルモジュールの管理">カーネルモジュールの管理</a></li><li><a href="#カーネルパラメータ">カーネルパラメータ</a></li><li><a href="#proc-配下"><code>/proc</code> 配下</a><ul class="toc-headings"><li><a href="#proc-sys-fs">/proc/sys/fs/*</a></li></ul></li><li><a href="#デバイス管理">デバイス管理</a></li><li><a href="#parameter">parameter</a><ul class="toc-headings"><li><a href="#ストリーム">ストリーム</a></li></ul></li><li><a href="#省電力">省電力</a></li><li><a href="#other">Other</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

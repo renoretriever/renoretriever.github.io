@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>tcptraceroute / traceroute · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- TCP パケットを利用した経路探索を行う"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="tcptraceroute / traceroute · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- TCP パケットを利用した経路探索を行う"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">tcptraceroute / traceroute</h1></header><article><div><span><ul>
+<li>TCP パケットを利用した経路探索を行う</li>
+<li>動作原理
+<ul>
+<li>TCP/UDP パケットを送信し、TTL を増加させていって、その応答をもって経路を判断</li>
+</ul>
+<ol>
+<li>一番最初のパケットは、TTL に 1 をセットする
+<ul>
+<li>隣接するルータから ICMP TIME EXCEEDED が届く</li>
+</ul></li>
+<li>TTL を 2 にして UDP パケットを送信
+<ul>
+<li>その次のルータから ICMP TIME EXCEEDED を受けとる。</li>
+<li>ICMP TIME EXCEEDED
+<ul>
+<li>どのルータでパケットが破棄されたかという IP アドレスが記録されているので、1つずつ TTL を増やしたパケットを送信すれば、結果としてパケットが通過した経路がわかる</li>
+<li>UDP パケットはポート番号 33434～33499 あたりであるが、このポートは大抵の場合は誰も使っていないため、対象ホストから ICMP Port Unreachable というパケットが返される</li>
+<li>この ICMP が届けば対象ホストに到達したことがわかる</li>
+</ul></li>
+</ul></li>
+</ol>
+<ul>
+<li>最後の 1 ホップの動作は下記のどちらかを利用
+<ul>
+<li>ICMP Echo パケットの利用し、ICMP Echo Reply を返してくれる</li>
+<li>UDP 利用
+<ul>
+<li>UDP 宛先ポート番号は、宛先でサービスが存在しないものを利用</li>
+<li>宛先に UDP パケットが届いたときに、宛先ホストは ICMP を使って「そのポート番号は使われていませ」というメッセージを送り返す</li>
+<li>ICMP の Type が Destination Unreachable で、Code が port unreachable</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>ICMP TIME EXCEEDED</p>
+<ul>
+<li>パケットがインターネット上で存在し続けてしまっても良い限度を超えて転送され続けてしまったために破棄されたことを伝える ICMP メッセージ</li>
+</ul></li>
+<li><p>異常メッセージ</p>
+<table>
+<thead>
+<tr><th>項目</th><th>説明</th></tr>
+</thead>
+<tbody>
+<tr><td>!</td><td>応答の TTL が 1以下<br>TTL が不正な ICMP TIME EXCEEDED が返されたということ</td></tr>
+<tr><td>!N</td><td>ネットワーク到達不能</td></tr>
+<tr><td>!H</td><td>ホスト到達不達</td></tr>
+<tr><td>!P</td><td>プロトコル到達不能</td></tr>
+<tr><td>!S</td><td>ソースルーティング失敗</td></tr>
+<tr><td>!F-[MTU値]</td><td>フラグメンテーションが必要</td></tr>
+<tr><td>!X</td><td>管理上、通信が禁止されている</td></tr>
+<tr><td>!V</td><td>ホスト順序違反</td></tr>
+<tr><td>!C</td><td>順序カットオフ発生</td></tr>
+<tr><td>![コード番号]</td><td>ICMP type3 code[コード番号] により到達不能</td></tr>
+</tbody>
+</table>
+</li>
+<li><p>TTL(Time To Live)</p>
+<ul>
+<li>パケットの生存を表す</li>
+<li>パケットがルータを 1 つ通過するたびに TTL の値は 1 だけ引かれます
+<ul>
+<li>TTL が 0 になったら、パケットの破棄となる</li>
+</ul></li>
+<li>破棄したタイミングで、ICMP TIME EXCEEDED というパケットをホストに返却</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="例"></a><a href="#例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>例</h2>
+<ul>
+<li><p>google.jp の80番ポートへの経路探索</p>
+<pre><code class="hljs"><span class="hljs-comment"># tcptraceroute -w1 google.jp 80</span>
+Selected device eth0, address <span class="hljs-number">158.199</span>.<span class="hljs-number">143.102</span>, port <span class="hljs-number">35238</span> for outgoing packets
+Tracing the path to google.jp (<span class="hljs-number">74.125</span>.<span class="hljs-number">235.151</span>) on TCP port <span class="hljs-number">80</span> (http), <span class="hljs-number">30</span> hops max
+ <span class="hljs-number">1</span>  <span class="hljs-number">158.199</span>.<span class="hljs-number">143.1</span>  <span class="hljs-number">1.141</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">1</span>.<span class="hljs-number">069</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">1</span>.<span class="hljs-number">012</span> <span class="hljs-keyword">ms</span>
+ <span class="hljs-title">2</span>  <span class="hljs-number">10.0</span>.<span class="hljs-number">11.137</span>  <span class="hljs-number">0.768</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">722</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">632</span> <span class="hljs-keyword">ms</span>
+ <span class="hljs-title">3</span>  <span class="hljs-number">10.0</span>.<span class="hljs-number">11.125</span>  <span class="hljs-number">6.086</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">322</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">317</span> <span class="hljs-keyword">ms</span>
+ <span class="hljs-title">4</span>  <span class="hljs-number">10.0</span>.<span class="hljs-number">10.41</span>  <span class="hljs-number">0.301</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">258</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">268</span> <span class="hljs-keyword">ms</span>
+ <span class="hljs-title">5</span>  <span class="hljs-number">111.87</span>.<span class="hljs-number">16.41</span>  <span class="hljs-number">0.627</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">639</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">624</span> <span class="hljs-keyword">ms</span>
+ <span class="hljs-title">6</span>  otejbb206.int-gw.kddi.<span class="hljs-keyword">ne</span>.jp (<span class="hljs-number">118.155</span>.<span class="hljs-number">197.130</span>)  <span class="hljs-number">0.822</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">996</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">836</span> <span class="hljs-keyword">ms</span>
+ <span class="hljs-title">7</span>  ix-ote212.int-gw.kddi.<span class="hljs-keyword">ne</span>.jp (<span class="hljs-number">106.187</span>.<span class="hljs-number">6.126</span>)  <span class="hljs-number">9.376</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">11</span>.<span class="hljs-number">757</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">0</span>.<span class="hljs-number">830</span> <span class="hljs-keyword">ms</span>
+ <span class="hljs-title">8</span>  <span class="hljs-number">72.14</span>.<span class="hljs-number">220.145</span>  <span class="hljs-number">1.082</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">1</span>.<span class="hljs-number">288</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">1</span>.<span class="hljs-number">272</span> <span class="hljs-keyword">ms</span>
+ <span class="hljs-title">9</span>  <span class="hljs-number">72.14</span>.<span class="hljs-number">236.80</span>  <span class="hljs-number">1.260</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">1</span>.<span class="hljs-number">276</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">1</span>.<span class="hljs-number">021</span> <span class="hljs-keyword">ms</span>
+<span class="hljs-title">10</span>  <span class="hljs-number">209.85</span>.<span class="hljs-number">241.129</span>  <span class="hljs-number">1.352</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">1</span>.<span class="hljs-number">317</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">1</span>.<span class="hljs-number">396</span> <span class="hljs-keyword">ms</span>
+<span class="hljs-title">11</span>  nrt19s11-<span class="hljs-keyword">in</span>-f23.<span class="hljs-number">1</span>e100.net (<span class="hljs-number">74.125</span>.<span class="hljs-number">235.151</span>) [open]  <span class="hljs-number">1.133</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">1</span>.<span class="hljs-number">336</span> <span class="hljs-keyword">ms</span>  <span class="hljs-title">1</span>.<span class="hljs-number">128</span> <span class="hljs-keyword">ms</span>
+<span class="hljs-title"></span></code></pre>
+<ul>
+<li><code>1 158.199.143.1 1.141 ms 1.069 ms 1.012 ms</code>
+<ul>
+<li>158.199.143.1 への 3 パケット分の往復時間を記録</li>
+</ul></li>
+<li><code>1 * * *</code>
+<ul>
+<li>タイムアウト、応答を返さない</li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#例">例</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

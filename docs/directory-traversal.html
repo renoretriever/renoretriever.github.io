@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ディレクトリ・トラバーサル · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- Web サイトのパス名に上位ディレクトリ(../)を示す記号を入れることで、公開予定のないファイルを指定する方法"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ディレクトリ・トラバーサル · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- Web サイトのパス名に上位ディレクトリ(../)を示す記号を入れることで、公開予定のないファイルを指定する方法"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ディレクトリ・トラバーサル</h1></header><article><div><span><ul>
+<li>Web サイトのパス名に上位ディレクトリ(../)を示す記号を入れることで、公開予定のないファイルを指定する方法</li>
+<li>対策
+<ul>
+<li>パス名を直接指定させない</li>
+<li>アクセス権を必要最低限にする</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="影響"></a><a href="#影響" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>影響</h2>
+<ul>
+<li>ウェブサーバ内のファイルの閲覧、改ざん、削除
+<ul>
+<li>本来公開していないファイルを閲覧されることで、重要情報の漏えいにつながる</li>
+<li>ウェブコンテンツ改ざんによるデマ、誹謗中傷の書き込みや、スクリプトファイルや設定ファイル削除によるサーバ機能停止などの被害を受ける可能性がある</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="検査方法"></a><a href="#検査方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>検査方法</h2>
+<ul>
+<li>ファイル名の入力欄に親ディレクトリを示す「../」を含む値を入力して送信し、本来参照できてはいけないファイルが表示されてしまった場合、そのシステムにはディレクトリ・トラバーサルの脆弱性が存在</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="対策"></a><a href="#対策" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>対策</h2>
+<ul>
+<li>外部からファイル名を指定できる仕様を避ける</li>
+<li>ファイル名にディレクトリ名が含まれないようにする
+<ul>
+<li>また、保険的対策としてファイル名の文字種の仕様を英数字に限定すれば、ディレクトリ・トラバーサル攻撃に用いる記号文字が使用できなくなるため、ディレクトリ・トラバーサルの対策になる
+<ul>
+<li>PHP では basename() を使用することで、ディレクトリ名が含まれていてもファイル名だけを取得することが可能</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="脆弱性コードの発見と修正方法"></a><a href="#脆弱性コードの発見と修正方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>脆弱性コードの発見と修正方法</h2>
+<ul>
+<li><p>脆弱性のコード</p>
+<pre><code class="hljs css languages- php"><span class="hljs-meta">&lt;?php</span>
+define(<span class="hljs-string">'TMPLDIR'</span>, <span class="hljs-string">'/var/www/dt/tmpl/'</span>);
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>($_GET[<span class="hljs-string">'template'</span>])) {
+
+    <span class="hljs-comment">// 脆弱なコード</span>
+    readfile(TMPLDIR . $_GET[<span class="hljs-string">'template'</span>]);
+
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+<ul>
+<li>$_GET['template'] に入力値があるときに readfile() で読み込む処理
+<ul>
+<li>このようにディレクトリ階層（「../」）を含むファイル名を指定していると、ディレクトリ・トラバーサルの脆弱性になる</li>
+</ul></li>
+</ul></li>
+<li><p>修正コード</p>
+<pre><code class="hljs css languages- php"><span class="hljs-meta">&lt;?php</span>
+define(<span class="hljs-string">'TMPLDIR'</span>, <span class="hljs-string">'/var/www/dt/tmpl/'</span>);
+<span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>($_GET[<span class="hljs-string">'template'</span>])){
+
+    <span class="hljs-comment">// 修正したコード</span>
+    $file_name = basename($_GET[<span class="hljs-string">'template'</span>]);
+    readfile(TMPLDIR . $file_name);
+
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+<ul>
+<li>$_GET['template'] に格納されているファイル名からディレクトリ階層を basename() が除外して、readfile() に渡しています</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#影響">影響</a></li><li><a href="#検査方法">検査方法</a></li><li><a href="#対策">対策</a></li><li><a href="#脆弱性コードの発見と修正方法">脆弱性コードの発見と修正方法</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

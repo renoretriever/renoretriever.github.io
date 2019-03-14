@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>PostgreSQL · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- PostgreSQL ではテーブル内に INSERT/UPDATE/DELETE で格納する行(row)のことをタプル(tuple)と呼ぶ"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="PostgreSQL · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- PostgreSQL ではテーブル内に INSERT/UPDATE/DELETE で格納する行(row)のことをタプル(tuple)と呼ぶ"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">PostgreSQL</h1></header><article><div><span><ul>
+<li>PostgreSQL ではテーブル内に INSERT/UPDATE/DELETE で格納する行(row)のことをタプル(tuple)と呼ぶ</li>
+</ul>
+<ul>
+<li><p>show processlist</p>
+<pre><code class="hljs"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> pg_stat_activity;
+</code></pre></li>
+<li><p>接続</p>
+<pre><code class="hljs"><span class="hljs-comment">#</span> <span class="hljs-comment">psql</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">host=localhost</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">username=hoge</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dbname=hoge_db</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">password</span>
+</code></pre></li>
+<li><p>設定ファイルリロード</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">test</span>&gt; select pg_reload_conf();</span>
+</code></pre>
+<ul>
+<li>再起動が必要な設定値もある</li>
+</ul></li>
+<li><p>SQL 処理時間計測</p>
+<ul>
+<li>クエリ実行前に \timing 実行する</li>
+</ul></li>
+<li><p>PG-Storm</p></li>
+</ul>
+<ul>
+<li><p>backup</p>
+<pre><code class="hljs"># <span class="hljs-selector-tag">pg_dump</span> <span class="hljs-selector-tag">-U</span> <span class="hljs-selector-attr">[user]</span> <span class="hljs-selector-tag">-h</span> <span class="hljs-selector-attr">[host]</span> <span class="hljs-selector-attr">[database]</span> &gt; <span class="hljs-selector-tag">dump</span><span class="hljs-selector-class">.sql</span>
+</code></pre></li>
+<li><p>restore</p>
+<pre><code class="hljs"># <span class="hljs-selector-tag">psql</span> <span class="hljs-selector-attr">[database]</span> &lt; <span class="hljs-selector-tag">dump</span><span class="hljs-selector-class">.sql</span>
+</code></pre></li>
+<li><p>kill query</p>
+<ul>
+<li><p>SIGINT</p>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">pg_cancel_backend</span>(<span class="hljs-params">process_id</span>)</span>;
+</code></pre></li>
+<li><p>SIGTERM</p>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">pg_terminate_backend</span>(<span class="hljs-params">process_id</span>)</span>;
+</code></pre></li>
+</ul></li>
+<li><p>show database</p>
+<pre><code class="hljs">=&gt; \l
+</code></pre></li>
+<li><p>show tables</p>
+<pre><code class="hljs">=&gt; \d
+</code></pre></li>
+<li><p>change database(example_sql)</p>
+<pre><code class="hljs">postgres=<span class="hljs-comment"># \c example_sql</span>
+psql (9.2.23, サーバー 10.1)
+注意： psql バージョン 9.2, サーバーバージョン 10.0.
+         psql の機能の中で、動作しないものがあるかもしれません。
+データベース <span class="hljs-string">"example_sql"</span> にユーザ<span class="hljs-string">"postgres"</span>として接続しました。
+example_sql=<span class="hljs-comment">#</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>タプルのみ表示</p>
+<pre><code class="hljs">=&gt; \t
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="docker"></a><a href="#docker" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Docker</h2>
+<hr>
+<ul>
+<li><p><a href="https://hub.docker.com/_/postgres/">postgres</a></p></li>
+<li><p>run</p>
+<pre><code class="hljs">$ sudo docker <span class="hljs-builtin-name">run</span> --name postgresql_training -e <span class="hljs-attribute">POSTGRES_PASSWORD</span>=sql -d postgres
+</code></pre></li>
+<li><p>connect</p>
+<pre><code class="hljs">$ psql <span class="hljs-attribute">--host</span>=172.17.0.2 <span class="hljs-attribute">--username</span>=postgres --password
+ユーザ postgres のパスワード:
+psql (9.2.23, サーバー 10.1)
+注意： psql バージョン 9.2, サーバーバージョン 10.0.
+         psql の機能の中で、動作しないものがあるかもしれません。
+<span class="hljs-string">"help"</span> でヘルプを表示します.
+
+<span class="hljs-attribute">postgres</span>=#
+</code></pre></li>
+<li><p>create database</p>
+<pre><code class="hljs">postgres=# <span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> example_sql;
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<hr>
+<ul>
+<li><a href="https://github.com/reorg/pg_repack/blob/master/doc/pg_repack_jp.rst">pg_repack -- PostgreSQLデータベースのテーブルを最小限のロックで再編成します</a></li>
+<li><a href="http://postgis.net/">PostGIS</a></li>
+</ul>
+<ul>
+<li><p>work_mem</p>
+<ul>
+<li>コネクション毎に、内部並べ替えとハッシュテーブル操作が使用するメモリ容量を指定</li>
+</ul></li>
+<li><p>rds.log_retention_period</p>
+<ul>
+<li>ログを保存する期間</li>
+</ul></li>
+<li><p>log_hostname</p>
+<ul>
+<li>接続元のホスト名を名前解決するかどうか</li>
+</ul></li>
+<li><p>PostgreSQL のスペック変更に合わせて調整するパラメータ</p>
+<ul>
+<li>shared_buffers</li>
+<li>work_mem</li>
+<li>effective_cache_size</li>
+<li>SSD を採用している場合は以下のパラメータを調整
+<ul>
+<li>random_page_cost</li>
+</ul></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#docker">Docker</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

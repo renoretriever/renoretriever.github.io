@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Docker · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- Docker 社が開発して無償配布する OSS"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Docker · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- Docker 社が開発して無償配布する OSS"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Docker</h1></header><article><div><span><ul>
+<li><p>Docker 社が開発して無償配布する OSS</p></li>
+<li><p>コンテナ技術の利用</p>
+<ul>
+<li>ソフトウェア実行環境</li>
+<li>ソフトウェア的に独立しているため、アプリケーション間で動作に必要なライブラリが競合しない</li>
+</ul></li>
+<li><p>Docker エンジン</p>
+<ul>
+<li>コンテナをベースにしたアプリケーションの実行環境</li>
+</ul></li>
+<li><p>プロビジョニング支援ツール</p>
+<ul>
+<li>オーケストレーション
+<ul>
+<li>アプリケーションの配備</li>
+<li><a href="capistrano">Capistrano</a></li>
+<li><a href="fabric">Fabric</a></li>
+<li><a href="func">Func</a></li>
+</ul></li>
+<li>設定
+<ul>
+<li>システム設定</li>
+<li><a href="chef">Chef</a></li>
+<li><a href="puppet">Puppet</a></li>
+<li><a href="aws-opsworks">AWS OpsWorks</a></li>
+</ul></li>
+<li>ブートストラッピング
+<ul>
+<li>クラウド/仮想イメージの実行や OS インストール</li>
+<li>Docker</li>
+<li><a href="vagrant">Vagrant</a></li>
+<li><a href="packer">Packer</a></li>
+<li><a href="aws">AWS</a></li>
+<li><a href="openstack">OpenStack</a></li>
+<li><a href="kickstart">Kickstart</a></li>
+</ul></li>
+</ul></li>
+<li><p>コンテナ管理ソフト</p>
+<ul>
+<li>LXC(Linux Container) =&gt; libcontainer</li>
+</ul></li>
+</ul>
+<ul>
+<li>イメージ
+<ul>
+<li>AUFS</li>
+<li>Overlayfs</li>
+<li>Device Mapper</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="仕組み"></a><a href="#仕組み" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>仕組み</h2>
+<ul>
+<li><p>Docker は Linux カーネルの複数の機能を活用してコンテナ型仮想化を実現</p>
+<ul>
+<li><a href="chroot">chroot</a></li>
+<li><a href="cgroups">cgroups</a></li>
+<li><a href="namespace">Namespace</a></li>
+<li>仮想ネットワークドライバ</li>
+<li>Netfilter</li>
+</ul></li>
+<li><p><a href="docker_command">Docker コマンド</a></p></li>
+</ul>
+<ul>
+<li><a href="docker-make-image">コンテナからの Docker イメージ作成</a></li>
+<li><a href="docker-make-dockerfile">Dockerfile からの Docker イメージ作成</a></li>
+<li><a href="dockerhub-registry">Docker レジストリ</a></li>
+</ul>
+<ul>
+<li>複数の Docker ホストを管理するためのツール
+<ul>
+<li><a href="docker-machine">Docker Machine</a></li>
+<li><a href="docker-swarm">Docker Swarm</a></li>
+<li><a href="docker-compose">Docker Compose</a></li>
+</ul></li>
+</ul>
+<ul>
+<li><p><a href="docker-cloud">Docker Cloud</a></p></li>
+<li><p>Docker のデータ保存場所</p>
+<pre><code class="hljs"><span class="hljs-comment"># ll /var/lib/docker/</span>
+合計 0
+drwx------.<span class="hljs-number"> 2 </span>root root <span class="hljs-number"> 6 </span>11月<span class="hljs-number"> 28 </span>12:10 containers
+drwx------.<span class="hljs-number"> 3 </span>root root<span class="hljs-number"> 22 </span>11月<span class="hljs-number"> 28 </span>12:10 image
+drwxr-x---.<span class="hljs-number"> 3 </span>root root<span class="hljs-number"> 19 </span>11月<span class="hljs-number"> 28 </span>12:10 network
+drwx------.<span class="hljs-number"> 3 </span>root root<span class="hljs-number"> 40 </span>12月<span class="hljs-number"> 17 </span>09:19 overlay2
+drwx------.<span class="hljs-number"> 4 </span>root root<span class="hljs-number"> 32 </span>11月<span class="hljs-number"> 28 </span>12:10 plugins
+drwx------.<span class="hljs-number"> 2 </span>root root <span class="hljs-number"> 6 </span>11月<span class="hljs-number"> 28 </span>12:10 swarm
+drwx------.<span class="hljs-number"> 2 </span>root root <span class="hljs-number"> 6 </span>11月<span class="hljs-number"> 28 </span>12:10 tmp
+drwx------.<span class="hljs-number"> 2 </span>root root <span class="hljs-number"> 6 </span>11月<span class="hljs-number"> 28 </span>12:10 trust
+drwx------.<span class="hljs-number"> 2 </span>root root<span class="hljs-number"> 25 </span>11月<span class="hljs-number"> 28 </span>12:10 volumes
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="mysql"></a><a href="#mysql" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MySQL</h3>
+<ul>
+<li>5.1
+<ul>
+<li><a href="https://github.com/vsamov/mysql-5.1.73">mysql-5.1.73</a></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="エラー"></a><a href="#エラー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>エラー</h3>
+<ul>
+<li>host にマウントしたディレクトリにアクセスできない
+<ul>
+<li><p>SELinux 疑ってみる</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> getenforce</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="tips"></a><a href="#tips" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tips</h2>
+<ul>
+<li>改行コード
+<ul>
+<li><p>通常の run は LF</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> sudo docker run --rm centos <span class="hljs-built_in">echo</span> <span class="hljs-string">"test"</span> | cat -e</span>
+<span class="hljs-meta">test$</span><span class="bash"></span>
+</code></pre></li>
+<li><p>TTY を有効にすると、CRLF</p>
+<pre><code class="hljs">$ sudo docker <span class="hljs-keyword">run</span> --<span class="hljs-keyword">rm</span> -t centos echo <span class="hljs-string">"test"</span> | <span class="hljs-keyword">cat</span> -<span class="hljs-built_in">e</span>
+<span class="hljs-keyword">test</span>^<span class="hljs-keyword">M</span>$
+</code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li>ホスト側で NTPD などで時刻同期をしていれば、コンテナ内の時刻管理は必要がないらしい
+<ul>
+<li><a href="https://qiita.com/hirotaka-tajiri/items/f5900b236a005d7ffe58">Docker コンテナの時刻同期(時刻データ)について</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li><a href="https://docs.docker.com/engine/getstarted/">Get Started with Docker</a>
+<ul>
+<li><a href="https://docs.docker.com/engine/installation/linux/centos/">CnetOS</a></li>
+</ul></li>
+<li><a href="https://thinkit.co.jp/story/2015/05/26/6037">Dockerコンテナのパフォーマンス劣化とチューニング</a></li>
+<li><a href="https://thinkit.co.jp/story/2015/06/09/6105">DockerとLinux OSのリソース共有状況の調査</a></li>
+<li><a href="http://qiita.com/kyanon30/items/9ad2ceb4933b85f96c0a?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items">dockerコンテナ自動テストツール dgossを使ってみた</a></li>
+<li>CentOS 過去イメージ
+<ul>
+<li><a href="http://cloud.centos.org/centos/7/vagrant/x86_64/images/">CentOS</a></li>
+</ul></li>
+<li>systemd 利用できるコンテナ
+<ul>
+<li><a href="https://hub.docker.com/r/centos/systemd/">centos/systemd</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="コンテナ化-するための-linux-の機能"></a><a href="#コンテナ化-するための-linux-の機能" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>「コンテナ化」するための Linux の機能</h2>
+<h3><a class="anchor" aria-hidden="true" id="linux-namespace"></a><a href="#linux-namespace" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linux Namespace</h3>
+<ul>
+<li><p>/proc/PID/ns</p>
+<pre><code class="hljs"><span class="hljs-comment"># ll /proc/$(docker inspect --format='{{.State.Pid}}' 7cb633b15bc2 )/ns/</span>
+合計 0
+lrwxrwxrwx<span class="hljs-number"> 1 </span>root root<span class="hljs-number"> 0 </span> 3月<span class="hljs-number"> 17 </span>15:37 ipc -&gt; ipc:[4026532171]
+lrwxrwxrwx<span class="hljs-number"> 1 </span>root root<span class="hljs-number"> 0 </span> 3月<span class="hljs-number"> 16 </span>11:13 mnt -&gt; mnt:[4026532169]
+lrwxrwxrwx<span class="hljs-number"> 1 </span>root root<span class="hljs-number"> 0 </span> 3月<span class="hljs-number"> 16 </span>11:13 net -&gt; net:[4026532174]
+lrwxrwxrwx<span class="hljs-number"> 1 </span>root root<span class="hljs-number"> 0 </span> 3月<span class="hljs-number"> 17 </span>15:37 pid -&gt; pid:[4026532172]
+lrwxrwxrwx<span class="hljs-number"> 1 </span>root root<span class="hljs-number"> 0 </span> 3月<span class="hljs-number"> 17 </span>15:37 user -&gt; user:[4026531837]
+lrwxrwxrwx<span class="hljs-number"> 1 </span>root root<span class="hljs-number"> 0 </span> 3月<span class="hljs-number"> 17 </span>15:37 uts -&gt; uts:[4026532170]
+</code></pre>
+<ul>
+<li>グローバルな名前空間とは別の OS リソースが割り当てられている
+<ul>
+<li>=&gt; Linux Namespace</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li>nsenter</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="contents"></a><a href="#contents" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contents</h2>
+<h3><a class="anchor" aria-hidden="true" id="ociopen-container-initiative"></a><a href="#ociopen-container-initiative" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OCI(Open Container Initiative)</h3>
+<ul>
+<li>団体</li>
+</ul>
+<ul>
+<li>CRI(Container Runtime Interface)</li>
+</ul>
+<ul>
+<li><p>/etc/hosts に追記するのは <code>--add-host</code> を利用する</p>
+<pre><code class="hljs">docker run -t -<span class="hljs-selector-tag">i</span> --add-host=test<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.co</span><span class="hljs-selector-class">.jp</span>:<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span> --add-host=test2<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.co</span><span class="hljs-selector-class">.jp</span>:<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span> test/hoge /bin/bash
+</code></pre></li>
+</ul>
+<ul>
+<li><p>コンテナ情報取得</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker inspect ID</span>
+</code></pre>
+<ul>
+<li><p>作成日の取得</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> docker inspect -f {{.Created}} [container_id]</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>シェルを立ち上げる際は -i, -t オプションを付けて標準入力と端末を仮想環境につなげる。</p></li>
+<li><p>検索(例 : nginx)</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker search nginx</span>
+</code></pre></li>
+<li><p>コンテナのファイルシステムに加えられた変更を表示</p>
+<ul>
+<li><p>下記はコンテナに Vagrantfile をコピーした時に実行した場合</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker diff <span class="hljs-built_in">test</span>-new</span>
+C /tmp
+A /tmp/Vagrantfile
+</code></pre></li>
+</ul></li>
+<li><p>コンテナ内のプロセス確認</p>
+<pre><code class="hljs">$ docker <span class="hljs-built_in">top</span> [コンテナ ID] ax | <span class="hljs-type">unexpand</span> -t20
+</code></pre></li>
+<li><p>イメージ作成履歴の確認</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker <span class="hljs-built_in">history</span> [image name]</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>ローカルイメージの書き出しとリストア</p>
+<ul>
+<li><p><code>save</code> コマンドを実行することで、リポジトリ単位で tar アフィるとして書き出すことが可能</p>
+<ul>
+<li><p>標準出力になるので圧縮するよう渡してあげる</p>
+<pre><code class="hljs"># docker <span class="hljs-keyword">save</span> [image <span class="hljs-keyword">name</span>] | gzip -<span class="hljs-number">9</span> &gt; /tmp/test.gz
+</code></pre></li>
+<li><p><code>-o</code> オプションをつけると圧縮されない tar 形式で出力</p></li>
+</ul></li>
+<li><p><code>load</code> コマンドで他のサーバのローカルのイメージとして登録可能</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> docker load -i filetame.gz</span>
+</code></pre></li>
+</ul></li>
+<li><p>ファイルシステムの書き出しとリストア</p>
+<ul>
+<li><p><code>export</code> コマンドで起動中のコンテナのルートファイルシステムの内容を tar ファイルに書き出す</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> docker <span class="hljs-built_in">export</span> CONTAINER_ID | gzip &gt; container.tar.gz</span>
+</code></pre></li>
+<li><p><code>import</code> コマンドで tar ファイルからルートファイルシステムを復元したものをコンテナイメージとして登録することができる</p>
+<pre><code class="hljs">$ cat container.tar.gz | docker <span class="hljs-keyword">import</span> - centos:imported
+</code></pre>
+<ul>
+<li><p>アーカイブファイルが web に公開されている場合</p>
+<pre><code class="hljs">$ docker <span class="hljs-keyword">import</span> <span class="hljs-string">http:</span><span class="hljs-comment">//example.com/test.tgz [image name]</span>
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>ビルド(ノーキャッシュ)</p>
+<pre><code class="hljs"><span class="hljs-comment">#</span> <span class="hljs-comment">docker</span> <span class="hljs-comment">build</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">no</span><span class="hljs-literal">-</span><span class="hljs-comment">cache</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">rm</span> <span class="hljs-literal">-</span><span class="hljs-comment">t</span>  <span class="hljs-string">.</span>
+</code></pre></li>
+<li><p>コンテナ名を指定して起動</p>
+<pre><code class="hljs">$ docker run -d -P <span class="hljs-comment">--name localnginx nginx</span>
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED                  STATUS              PORTS                   NAMES
+<span class="hljs-number">223350</span>df1b54        nginx               <span class="hljs-string">"nginx -g 'daemon of…"</span>   Less than <span class="hljs-keyword">a</span> <span class="hljs-keyword">second</span> ago   Up <span class="hljs-number">10</span> <span class="hljs-built_in">seconds</span>       <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">32769</span>-&gt;<span class="hljs-number">80</span>/tcp   localnginx
+</code></pre>
+<ul>
+<li>コンテナ名の重複不可</li>
+</ul></li>
+<li><p>環境編集</p>
+<ul>
+<li><p>タイムゾーンの設定</p>
+<pre><code class="hljs">$ docker <span class="hljs-builtin-name">run</span> -it -e <span class="hljs-attribute">TZ</span>=Asia/Tokyo --rm ubuntu:16.04 date
+</code></pre></li>
+</ul></li>
+<li><p>ボリュームのバインド</p></li>
+<li><p>nginx とか公式のイメージを pull してくると vim とか入ってないので入れたい(本来は入れない</p>
+<ul>
+<li><p>exec して中へ</p>
+<pre><code class="hljs">apt-<span class="hljs-builtin-name">get</span> update
+apt-<span class="hljs-builtin-name">get</span> install vim
+</code></pre></li>
+</ul></li>
+<li><p>コンテナ名の変更</p>
+<pre><code class="hljs">$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+e2e87861947d        ubuntu              "/bin/bash"         7 seconds ago       Up 5 seconds                            test01
+$ docker <span class="hljs-keyword">rename</span> test01 <span class="hljs-keyword">test</span>-<span class="hljs-keyword">new</span>
+$ docker ps
+<span class="hljs-keyword">CONTAINER</span> <span class="hljs-keyword">ID</span>        IMAGE               COMMAND             CREATED             <span class="hljs-keyword">STATUS</span>              PORTS               <span class="hljs-keyword">NAMES</span>
+e2e87861947d        ubuntu              <span class="hljs-string">"/bin/bash"</span>         <span class="hljs-number">51</span> seconds ago      Up <span class="hljs-number">49</span> seconds                           <span class="hljs-keyword">test</span>-<span class="hljs-keyword">new</span>
+</code></pre></li>
+<li><p>ポート転送設定の表示</p>
+<pre><code class="hljs">$ docker<span class="hljs-built_in"> port </span>[コンテナ]
+</code></pre></li>
+</ul>
+<ul>
+<li><p>Docker がホスト上の全てのデバイスに対して接続可能になる設定</p>
+<ul>
+<li>この時、 AppArmor や SELinux の設定があれば、ホスト上のコンテナ外のプロセスと同じように、ホスト上の同じアクセス権限が与えられた状態で利用可能になる</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> docker run --privileged</span>
+</code></pre>
+<ul>
+<li><a href="https://blog.docker.com/2013/09/docker-can-now-run-within-docker/">DOCKER CAN NOW RUN WITHIN DOCKER</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="メトリクス"></a><a href="#メトリクス" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>メトリクス</h2>
+<hr>
+<ul>
+<li><p><a href="https://docs.docker.com/engine/reference/commandline/stats/">docker stats</a></p>
+<pre><code class="hljs">$ docker stats
+CONTAINER ID        NAME                CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+e2e87861947d        test-new            <span class="hljs-number">0.00</span>%               <span class="hljs-number">780</span>KiB / <span class="hljs-number">1.952</span>GiB   <span class="hljs-number">0.04</span>%               <span class="hljs-number">1.25</span>kB / <span class="hljs-number">0</span>B         <span class="hljs-number">0</span>B / <span class="hljs-number">0</span>B             <span class="hljs-number">1</span>
+</code></pre></li>
+<li><p><a href="https://github.com/bcicen/ctop">ctop</a></p></li>
+</ul>
+<ul>
+<li>初期化とバックアップ
+<ul>
+<li><code>/var/lib/docker/*</code> 配下にデータが存在するので、これを削除すると初期化可能
+<ul>
+<li>逆にバックアップも上記配下をバックアップすると良い</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ストレージドライバの切り替え手順"></a><a href="#ストレージドライバの切り替え手順" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ストレージドライバの切り替え手順</h2>
+<hr>
+<ol>
+<li><p>Docker を停止</p></li>
+<li><p>既存のデータの削除</p>
+<pre><code class="hljs"># rm -rf <span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/docker/</span>*
+</code></pre></li>
+<li><p>zfs, btrfs を使用する場合には、 /var/lib/docker ディレクトリに、ZFS ファイルシステムまたは Btfs ファイルシステムをマウントする必要がある</p></li>
+<li><p>Docker 起動</p>
+<pre><code class="hljs"><span class="hljs-meta">#</span><span class="bash"> docker deamon -s [ストレージドライバ名]</span>
+</code></pre></li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#仕組み">仕組み</a><ul class="toc-headings"><li><a href="#mysql">MySQL</a></li><li><a href="#エラー">エラー</a></li></ul></li><li><a href="#tips">Tips</a></li><li><a href="#references">References</a></li><li><a href="#コンテナ化-するための-linux-の機能">「コンテナ化」するための Linux の機能</a><ul class="toc-headings"><li><a href="#linux-namespace">Linux Namespace</a></li></ul></li><li><a href="#contents">Contents</a><ul class="toc-headings"><li><a href="#ociopen-container-initiative">OCI(Open Container Initiative)</a></li></ul></li><li><a href="#メトリクス">メトリクス</a></li><li><a href="#ストレージドライバの切り替え手順">ストレージドライバの切り替え手順</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
