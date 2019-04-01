@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>config.fish · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="```"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="config.fish · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="```"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">config.fish</h1></header><article><div><span><pre><code class="hljs"><span class="hljs-keyword">set</span> -g fish_user_paths <span class="hljs-string">"/usr/local/sbin"</span> $fish_user_paths
+
+<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $HOME/.anyenv/<span class="hljs-keyword">bin</span> $<span class="hljs-keyword">PATH</span>
+#eval (anyenv init - | <span class="hljs-keyword">source</span>)
+#
+# <span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $HOME/<span class="hljs-keyword">Library</span>/Android/sdk/platform-tools/ $<span class="hljs-keyword">PATH</span>
+
+<span class="hljs-keyword">function</span> fish_user_key_bindings
+  bind \cr <span class="hljs-string">'peco_select_history (commandline -b)'</span>
+<span class="hljs-keyword">end</span>
+
+# <span class="hljs-keyword">go</span>
+<span class="hljs-keyword">set</span> -x GOROOT /usr/<span class="hljs-keyword">local</span>/opt/<span class="hljs-keyword">go</span>/libexec
+<span class="hljs-keyword">set</span> -x GOPATH $HOME/.go
+#<span class="hljs-keyword">set</span> -x GOENV_ROOT $HOME/.goenv
+#<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $<span class="hljs-keyword">PATH</span> $GOROOT/<span class="hljs-keyword">bin</span> $GOPATH/<span class="hljs-keyword">bin</span> $GOENV_ROOT/<span class="hljs-keyword">bin</span>
+<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $<span class="hljs-keyword">PATH</span> $GOROOT/<span class="hljs-keyword">bin</span> $GOPATH/<span class="hljs-keyword">bin</span>
+#eval (goenv init - | <span class="hljs-keyword">source</span>)
+
+#GOENV
+#<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $HOME/.goenv/<span class="hljs-keyword">bin</span> $<span class="hljs-keyword">PATH</span>
+#goenv rehash &gt;/dev/<span class="hljs-literal">null</span> ^&amp;<span class="hljs-number">1</span>
+
+<span class="hljs-keyword">set</span> -g fish_user_paths <span class="hljs-string">"/usr/local/sbin"</span> $fish_user_paths
+
+# ndenv
+<span class="hljs-keyword">set</span> -x NDENV_ROOT $HOME/.anyenv/envs/ndenv
+<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $HOME/.anyenv/envs/ndenv/<span class="hljs-keyword">bin</span> $<span class="hljs-keyword">PATH</span>
+<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $NDENV_ROOT/shims $<span class="hljs-keyword">PATH</span>
+
+
+
+<span class="hljs-keyword">alias</span> nvim=$HOME<span class="hljs-string">'/Documents/private/nvim-osx64/bin/nvim'</span>
+<span class="hljs-keyword">alias</span> vim=$HOME<span class="hljs-string">'/Documents/private/nvim-osx64/bin/nvim'</span>
+<span class="hljs-keyword">alias</span> vi=$HOME<span class="hljs-string">'/Documents/private/nvim-osx64/bin/nvim'</span>
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

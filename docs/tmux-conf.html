@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>.tmux.conf · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="```"/><meta name="docsearch:language" content="en"/><meta property="og:title" content=".tmux.conf · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="```"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">.tmux.conf</h1></header><article><div><span><pre><code class="hljs"><span class="hljs-string">unbind </span><span class="hljs-string">C-b
+</span><span class="hljs-string">set </span>-g <span class="hljs-string">prefix </span>^G
+<span class="hljs-string">bind </span>g <span class="hljs-string">send-prefix
+</span>
+<span class="hljs-built_in">set-option</span> -g <span class="hljs-string">default-shell </span><span class="hljs-string">"/usr/local/bin/fish"</span>
+<span class="hljs-built_in">set-option</span> -g <span class="hljs-string">allow-rename </span><span class="hljs-string">off
+</span>
+<span class="hljs-string">unbind </span>^X
+<span class="hljs-string">bind </span>^X <span class="hljs-string">lock-server
+</span><span class="hljs-string">unbind </span>x
+<span class="hljs-string">bind </span>x <span class="hljs-string">lock-server
+</span>
+<span class="hljs-string">unbind </span>^W
+<span class="hljs-string">bind </span>^W <span class="hljs-built_in">list-windows</span>
+<span class="hljs-string">unbind </span>w
+<span class="hljs-string">bind </span>w <span class="hljs-built_in">list-windows</span>
+
+<span class="hljs-string">unbind </span>K
+<span class="hljs-string">bind </span>K <span class="hljs-string">confirm-before </span><span class="hljs-string">"kill-window"</span>
+<span class="hljs-string">unbind </span>k
+<span class="hljs-string">bind </span>k <span class="hljs-string">confirm-before </span><span class="hljs-string">"kill-window"</span>
+
+<span class="hljs-string">unbind </span>^L
+<span class="hljs-string">bind </span>^L <span class="hljs-string">refresh-client
+</span><span class="hljs-string">unbind </span>l
+<span class="hljs-string">bind </span>l <span class="hljs-string">refresh-client
+</span>
+<span class="hljs-string">unbind </span>|
+<span class="hljs-string">bind </span>| <span class="hljs-string">split-window </span>-h
+
+<span class="hljs-string">unbind </span>S
+<span class="hljs-string">bind </span>S <span class="hljs-string">split-windo
+</span>
+<span class="hljs-string">unbind </span><span class="hljs-string">'"'</span>
+<span class="hljs-string">bind </span><span class="hljs-string">'"'</span> <span class="hljs-string">choose-window
+</span>
+<span class="hljs-comment">#set-option -g mouse-select-pane on</span>
+<span class="hljs-built_in">set-option</span> -g <span class="hljs-string">history-limit </span><span class="hljs-string">20000
+</span><span class="hljs-built_in">set-window-option</span> -g <span class="hljs-string">mode-keys </span><span class="hljs-string">vi
+</span>
+<span class="hljs-comment">#set-window-option -g utf8 on</span>
+
+<span class="hljs-comment">#set-window-option -g mode-mouse on</span>
+<span class="hljs-comment">#set-option -g mouse-select-window on</span>
+<span class="hljs-comment">#set-option -g mouse-select-pane on</span>
+<span class="hljs-comment">#set-option -g mouse-resize-pane on</span>
+<span class="hljs-comment">#set -g terminal-overrides 'xterm*:smcup@:rmcup@'</span>
+
+<span class="hljs-comment">#set-window-option -g automatic-rename off</span>
+<span class="hljs-comment">#set-option -g terminal-overrides "*:colors=256"</span>
+
+<span class="hljs-built_in">set-option</span> -g <span class="hljs-string">mouse </span><span class="hljs-string">on
+</span>
+<span class="hljs-string">bind </span>h <span class="hljs-string">select-pane </span>-L
+<span class="hljs-string">bind </span>j <span class="hljs-string">select-pane </span>-D
+<span class="hljs-string">bind </span>k <span class="hljs-string">select-pane </span>-U
+<span class="hljs-string">bind </span>l <span class="hljs-string">select-pane </span>-R
+
+<span class="hljs-built_in">set-option</span> -g <span class="hljs-string">default-command </span><span class="hljs-string">"/usr/local/bin/reattach-to-user-namespace -l $SHELL"</span>
+<span class="hljs-string">bind-key </span><span class="hljs-string">C-c </span><span class="hljs-string">run </span><span class="hljs-string">"tmux save-buffer - | /usr/local/bin/reattach-to-user-namespace pbcopy"</span>
+<span class="hljs-string">bind-key </span><span class="hljs-string">C-v </span><span class="hljs-string">run </span><span class="hljs-string">"/usr/local/bin/reattach-to-user-namespace pbpaste | tmux load-buffer - &amp;&amp; tmux paste-buffer"</span>
+
+<span class="hljs-comment">#パネルのサイズ変更(repeat on)</span>
+<span class="hljs-string">bind </span>-r J <span class="hljs-string">resize-pane </span>-D 5
+<span class="hljs-string">bind </span>-r K <span class="hljs-string">resize-pane </span>-U 5
+<span class="hljs-string">bind </span>-r H <span class="hljs-string">resize-pane </span>-L 5
+<span class="hljs-string">bind </span>-r L <span class="hljs-string">resize-pane </span>-R 5
+
+<span class="hljs-comment"># window-status のフォーマットを指定する。</span>
+<span class="hljs-comment">#set-window-option -g window-status-format " #I: #W "</span>
+
+<span class="hljs-comment"># color scheme (styled as vim-powerline)</span>
+<span class="hljs-comment">#set -g status-left-length 52</span>
+<span class="hljs-comment">#set -g status-right-length 451</span>
+<span class="hljs-comment">#set -g status-fg white</span>
+<span class="hljs-comment">#set -g status-bg colour234</span>
+<span class="hljs-comment">#set -g pane-border-fg colour245</span>
+<span class="hljs-comment">#set -g pane-active-border-fg colour39</span>
+<span class="hljs-comment">#set -g message-fg colour16</span>
+<span class="hljs-comment">#set -g message-bg colour221</span>
+<span class="hljs-comment">#set -g message-attr bold</span>
+<span class="hljs-comment">#set -g window-status-format "#[fg=colour235,bg=colour252,bold] #I #W "</span>
+<span class="hljs-comment">#set -g window-status-format "#[fg=colour235,bg=colour252,bold] #I #W "</span>
+<span class="hljs-comment">#set -g window-status-current-format "#[fg=colour234,bg=colour39] [fg=black,bg=colour39,noreverse,bold] #I: #W #[fg=colour39,bg=colour234,nobold]</span>
+<span class="hljs-comment">## カレントウィンドウの window-status のフォーマットを指定する</span>
+<span class="hljs-comment">#set -g terminal-overrides 'xterm*:smcup@:rmcup@'</span>
+
+<span class="hljs-comment"># window-status のフォーマットを指定する。</span>
+<span class="hljs-built_in">set-window-option</span> -g <span class="hljs-string">window-status-</span><span class="hljs-string">format </span><span class="hljs-string">" #I: #W "</span>
+
+<span class="hljs-comment"># カレントウィンドウの window-status のフォーマットを指定する</span>
+<span class="hljs-built_in">set-window-option</span> -g <span class="hljs-string">window-status-</span><span class="hljs-string">current-format </span><span class="hljs-string">"#[fg=colour255,bg=colour27,bold] #I: #W #[default]"</span>
+
+
+<span class="hljs-string">bind </span>r <span class="hljs-string">source-file </span>~/.<span class="hljs-string">tmux.</span><span class="hljs-string">conf </span>\; <span class="hljs-string">display-message </span><span class="hljs-string">"Reloaded config !!"</span>
+
+<span class="hljs-comment"># Prefix+v でコピーモード開始</span>
+<span class="hljs-string">bind-key </span>v <span class="hljs-string">copy-mode </span>\; <span class="hljs-string">display </span><span class="hljs-string">"Copy mode!"</span>
+<span class="hljs-comment">#bind-key -t vi-copy v begin-selection</span>
+
+<span class="hljs-comment"># Prefix+y でコピー</span>
+<span class="hljs-string">bind-key </span>-T <span class="hljs-string">copy-mode-</span><span class="hljs-string">vi </span>y <span class="hljs-string">send-keys </span>-X <span class="hljs-string">copy-pipe-</span><span class="hljs-string">and-cancel </span><span class="hljs-string">"reattach-to-user-namespace pbcopy"</span>
+
+<span class="hljs-comment"># Prefix+p でペースト</span>
+<span class="hljs-comment"># クリップボードにも保存されているので Cmd-v でもペースト可能</span>
+<span class="hljs-string">bind-key </span>p <span class="hljs-string">paste-buffer
+</span></code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

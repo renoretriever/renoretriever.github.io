@@ -59,37 +59,12 @@ env |<span class="hljs-comment"> grep MyVariable</span>
 <pre><code class="hljs"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> foo bar baz; echo $i; <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> sato suzuki takahashi tanaka ito watanabe yamamoto nakamura kobayashi kato yoshida yamada sasaki yamaguchi matsumoto inoue kimura hayashi saito shimizu ; curl -d <span class="hljs-string">"name="</span>$i -d <span class="hljs-string">"password="</span>{$i}<span class="hljs-number">201808</span> <span class="hljs-string">"http://localhost:5000/login"</span> ; sleep <span class="hljs-number">1</span>; <span class="hljs-keyword">end</span>
 </code></pre></li>
-<li><p>sample</p>
-<pre><code class="hljs">$ cat ~/.config/fish/config.fish
-
-<span class="hljs-keyword">set</span> -g fish_user_paths <span class="hljs-string">"/usr/local/sbin"</span> $fish_user_paths
-
-<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $HOME/.anyenv/<span class="hljs-keyword">bin</span> $<span class="hljs-keyword">PATH</span>
-eval (anyenv init - | <span class="hljs-keyword">source</span>)
-
-<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $HOME/<span class="hljs-keyword">Library</span>/Android/sdk/platform-tools/ $<span class="hljs-keyword">PATH</span>
-
-<span class="hljs-keyword">function</span> fish_user_key_bindings
-  bind \cr <span class="hljs-string">'peco_select_history (commandline -b)'</span>
-<span class="hljs-keyword">end</span>
-
-# <span class="hljs-keyword">go</span>
-<span class="hljs-keyword">set</span> -x GOROOT /usr/<span class="hljs-keyword">local</span>/opt/<span class="hljs-keyword">go</span>/libexec
-<span class="hljs-keyword">set</span> -x GOPATH $HOME/.go
-<span class="hljs-keyword">set</span> -x GOENV_ROOT $HOME/.goenv
-<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $<span class="hljs-keyword">PATH</span> $GOROOT/<span class="hljs-keyword">bin</span> $GOPATH/<span class="hljs-keyword">bin</span> $GOENV_ROOT/<span class="hljs-keyword">bin</span>
-eval (goenv init - | <span class="hljs-keyword">source</span>)
-
-#GOENV
-#<span class="hljs-keyword">set</span> -x <span class="hljs-keyword">PATH</span> $HOME/.goenv/<span class="hljs-keyword">bin</span> $<span class="hljs-keyword">PATH</span>
-#goenv rehash &gt;/dev/<span class="hljs-literal">null</span> ^&amp;<span class="hljs-number">1</span>
-
-# G Cloud
-<span class="hljs-keyword">set</span> fish_user_paths $HOME/google-cloud-sdk/<span class="hljs-keyword">bin</span>
-<span class="hljs-keyword">set</span> -x MANPATH $HOME/google-cloud-sdk/<span class="hljs-keyword">help</span>/man /usr/<span class="hljs-keyword">local</span>/<span class="hljs-keyword">share</span>/man /usr/<span class="hljs-keyword">share</span>/man /opt/x11/<span class="hljs-keyword">share</span>/man
-
-<span class="hljs-keyword">set</span> -g fish_user_paths <span class="hljs-string">"/usr/local/sbin"</span> $fish_user_paths
-</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="設定ファイル"></a><a href="#設定ファイル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>設定ファイル</h2>
+<hr>
+<ul>
+<li><p>~/.config/fish/config.fish</p></li>
+<li><p><a href="config-fish">サンプル</a></p></li>
 <li><p>golang</p>
 <pre><code class="hljs"><span class="hljs-comment"># go</span>
 <span class="hljs-builtin-name">set</span> -x GOROOT /usr/local/opt/go/libexec
@@ -116,5 +91,5 @@ eval (goenv init - | source)
 <ul>
 <li><a href="https://fishshell.com/docs/current/commands.html">Command reference</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#設定ファイル">設定ファイル</a><ul class="toc-headings"><li><a href="#centos">CentOS</a></li></ul></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

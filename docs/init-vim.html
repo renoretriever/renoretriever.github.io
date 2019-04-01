@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>init.vim · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="```"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="init.vim · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="```"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">init.vim</h1></header><article><div><span><pre><code class="hljs"><span class="hljs-keyword">call</span> plug#<span class="hljs-keyword">begin</span>(<span class="hljs-string">'~/.config/nvim/plugged'</span>)
+
+Plug <span class="hljs-string">'rcmdnk/vim-markdown'</span>
+Plug <span class="hljs-string">'kannokanno/previm'</span>
+Plug <span class="hljs-string">'tyru/open-browser.vim'</span>
+Plug <span class="hljs-string">'sjl/badwolf'</span>
+Plug <span class="hljs-string">'ervandew/supertab'</span>
+Plug <span class="hljs-string">'chase/vim-ansible-yaml'</span>
+Plug <span class="hljs-string">'fatih/vim-go'</span>
+Plug <span class="hljs-string">'w0rp/ale'</span>
+Plug <span class="hljs-string">'Shougo/deoplete.nvim'</span>, { <span class="hljs-string">'do'</span>: <span class="hljs-string">':UpdateRemotePlugins'</span> }
+Plug <span class="hljs-string">'zchee/deoplete-go'</span>, { <span class="hljs-string">'do'</span>: <span class="hljs-string">'make'</span>}
+Plug <span class="hljs-string">'itchyny/lightline.vim'</span>
+Plug <span class="hljs-string">'scrooloose/nerdtree'</span>
+Plug <span class="hljs-string">'vim-scripts/vim-auto-save'</span>
+
+<span class="hljs-keyword">call</span> plug#<span class="hljs-keyword">end</span>()
+
+let g:deoplete#enable_at_startup = <span class="hljs-number">1</span>
+let g:deoplete#sources#<span class="hljs-keyword">go</span>#gocode_binary = $GOPATH.<span class="hljs-string">'/bin/gocode'</span>
+let g:deoplete#sources#<span class="hljs-keyword">go</span>#sort_class = [<span class="hljs-string">'package'</span>, <span class="hljs-string">'func'</span>, <span class="hljs-string">'type'</span>, <span class="hljs-string">'var'</span>, <span class="hljs-string">'const'</span>]
+
+let g:go_highlight_functions = <span class="hljs-number">1</span>
+let g:go_highlight_methods = <span class="hljs-number">1</span>
+let g:go_highlight_structs = <span class="hljs-number">1</span>
+let g:go_highlight_interfaces = <span class="hljs-number">1</span>
+let g:go_highlight_operators = <span class="hljs-number">1</span>
+let g:go_highlight_build_constraints = <span class="hljs-number">1</span>
+let g:go_fmt_command = <span class="hljs-string">"goimports"</span>
+
+
+colorscheme badwolf
+
+let g:python3_host_prog = <span class="hljs-string">'/usr/local/bin/python3'</span>
+
+syntax <span class="hljs-keyword">on</span>
+<span class="hljs-keyword">set</span> <span class="hljs-keyword">encoding</span>=utf<span class="hljs-number">-8</span>
+<span class="hljs-keyword">set</span> fileencoding=utf<span class="hljs-number">-8</span>
+<span class="hljs-keyword">set</span> <span class="hljs-built_in">number</span>
+<span class="hljs-keyword">set</span> incsearch
+<span class="hljs-keyword">set</span> ignorecase
+<span class="hljs-keyword">set</span> showmatch
+<span class="hljs-keyword">set</span> showmode
+<span class="hljs-keyword">set</span> title
+<span class="hljs-keyword">set</span> ruler
+<span class="hljs-keyword">set</span> tabstop=<span class="hljs-number">4</span>
+<span class="hljs-keyword">set</span> shiftwidth=<span class="hljs-number">4</span>
+<span class="hljs-keyword">set</span> clipboard+=unnamedplus
+
+<span class="hljs-string">" auto save"</span>
+au BufRead,BufNewFile *.md let g:auto_save = <span class="hljs-number">1</span>
+au BufRead,BufNewFile *.md let g:auto_save_in_insert_mode = <span class="hljs-number">1</span>
+au BufRead,BufNewFile *.mdb <span class="hljs-keyword">set</span> updatetime=<span class="hljs-number">50</span>
+
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+<span class="hljs-keyword">match</span> ZenkakuSpace /　/
+
+
+<span class="hljs-keyword">set</span> cursorline
+
+<span class="hljs-keyword">set</span> backspace=<span class="hljs-keyword">start</span>,eol,indent
+
+<span class="hljs-keyword">set</span> splitbelow
+<span class="hljs-keyword">set</span> splitright
+<span class="hljs-keyword">set</span> expandtab
+<span class="hljs-keyword">set</span> textwidth=<span class="hljs-number">0</span>
+
+inoremap &lt;C-j&gt; &lt;Down&gt;
+inoremap &lt;C-k&gt; &lt;Up&gt;
+inoremap &lt;C-h&gt; &lt;<span class="hljs-keyword">Left</span>&gt;
+inoremap &lt;C-l&gt; &lt;<span class="hljs-keyword">Right</span>&gt;
+
+inoremap &lt;C-f&gt; &lt;Del&gt;
+inoremap &lt;C-e&gt; &lt;<span class="hljs-keyword">End</span>&gt;
+inoremap &lt;C-h&gt;&lt;C-o&gt; &lt;Home&gt;
+inoremap &lt;C-b&gt; &lt;Backspace&gt;
+
+vnoremap v $
+
+noremap &lt;CR&gt; o&lt;ESC&gt;
+
+<span class="hljs-keyword">set</span> <span class="hljs-keyword">list</span>
+<span class="hljs-keyword">set</span> listchars=tab:▸_
+
+<span class="hljs-keyword">set</span> helplang=ja
+
+<span class="hljs-keyword">set</span> autoindent
+
+<span class="hljs-keyword">set</span> imdisable
+
+<span class="hljs-keyword">function</span>! ZenkakuSpace()
+     highlight ZenkakuSpace cterm=<span class="hljs-keyword">reverse</span> ctermfg=DarkMagenta gui=<span class="hljs-keyword">reverse</span> guifg=DarkMagenta
+endfunction
+
+<span class="hljs-keyword">if</span> has(<span class="hljs-string">'syntax'</span>)
+     augroup ZenkakuSpace
+          autocmd!
+          autocmd ColorScheme * <span class="hljs-keyword">call</span> ZenkakuSpace()
+          autocmd VimEnter,WinEnter * <span class="hljs-keyword">match</span> ZenkakuSpace /　/
+     augroup <span class="hljs-keyword">END</span>
+     <span class="hljs-keyword">call</span> ZenkakuSpace()
+endif
+
+
+inoremap { {}&lt;<span class="hljs-keyword">Left</span>&gt;
+inoremap [ []&lt;<span class="hljs-keyword">Left</span>&gt;
+inoremap ( ()&lt;<span class="hljs-keyword">Left</span>&gt;
+inoremap <span class="hljs-string">" ""&lt;Left&gt;
+inoremap ' ''&lt;Left&gt;
+inoremap &lt; &lt;&gt;&lt;Left&gt;
+
+set foldlevel=100
+
+au BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'open -a Firefox'
+
+let g:SuperTabDefaultCompletionType = "</span>&lt;c-n&gt;<span class="hljs-string">"
+
+"</span> https://github.com/plasticboy/vim-markdown/issues/<span class="hljs-number">162</span>
+let g:vim_markdown_folding_disabled = <span class="hljs-number">1</span>
+
+<span class="hljs-string">" syntax check
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
+let g:ale_linters = {
+\   'markdown': ['textlint'],
+\}
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:lightline = {
+  \'colorscheme': 'one',
+  \'active': {
+  \  'left': [
+  \    ['mode', 'paste'],
+  \    ['readonly', 'filename', 'modified', 'ale'],
+  \  ]
+  \},
+  \'component_function': {
+  \  'ale': 'ALEGetStatusLine'
+  \}
+\ }
+
+set noswapfile
+set nobackup
+set nowritebackup
+</span></code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
