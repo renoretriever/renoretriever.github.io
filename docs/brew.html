@@ -16,11 +16,20 @@
 </code></pre></li>
 </ul></li>
 <li><p><a href="brewfile">Brewfile</a> 利用して一括インストール</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="コマンド"></a><a href="#コマンド" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コマンド</h2>
+<hr>
+<ul>
 <li><p>潜在的な問題を見つけてくれる</p>
 <pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> brew doctor</span>
 </code></pre></li>
 <li><p>キャッシュ削除</p>
 <pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> brew cleanup -s</span>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>環境変数</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> brew --env</span>
 </code></pre></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="linux-環境"></a><a href="#linux-環境" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linux 環境</h2>
@@ -66,5 +75,45 @@ echo "eval \$($(brew --prefix)/bin/brew shellenv)" &gt;&gt;~/.profile
 </ul></li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#linux-環境">Linux 環境</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+<h2><a class="anchor" aria-hidden="true" id="個別パスインストール"></a><a href="#個別パスインストール" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>個別パスインストール</h2>
+<hr>
+<ul>
+<li><p><code>$HOME/.homebrew/</code> 配下にインストールすることを想定</p></li>
+<li><p>パスの設定</p>
+<pre><code class="hljs">$ cat .bashrc 
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$HOME</span>/.homebrew/bin:$PATH
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">HOMEBREW_CASK_OPTS</span>=<span class="hljs-string">"--appdir=/Applications"</span>
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">HOMEBREW_CACHE</span>=<span class="hljs-variable">$HOME</span>/.homebrew/cache
+</code></pre>
+<ul>
+<li>HOMEBREW_CASK_OPTS
+<ul>
+<li>GUI アプリケーションのパス</li>
+</ul></li>
+<li>HOMEBREW_CACHE
+<ul>
+<li>キャッシュパス</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>インストール先ディレクトリの作成と brew のダウンロード</p>
+<pre><code class="hljs">$ mkdir <span class="hljs-string">.homebrew</span> &amp;&amp; curl -L https:<span class="hljs-string">//github.com/Homebrew/brew/tarball/master</span> | tar xz <span class="hljs-params">--strip</span> 1 -C <span class="hljs-string">.homebrew</span>
+</code></pre></li>
+<li><p>sudo 時にパスワード聞かれないように設定</p></li>
+<li><p>インストール</p>
+<ul>
+<li><p>Xcode</p>
+<pre><code class="hljs">$ xcode-<span class="hljs-keyword">select</span> <span class="hljs-comment">--install</span>
+</code></pre></li>
+<li><p>Java の reinstall</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">brew </span>cask reinstall <span class="hljs-keyword">java
+</span></code></pre></li>
+</ul></li>
+<li><p>Brewfile 利用して <code>brew bundle</code> 実行すると指定したバス配下にインストールされる</p>
+<ul>
+<li>GUI アプリケーションは /Applications 配下にインストール</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#コマンド">コマンド</a></li><li><a href="#linux-環境">Linux 環境</a></li><li><a href="#個別パスインストール">個別パスインストール</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

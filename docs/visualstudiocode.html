@@ -6,14 +6,10 @@
 <li><p>golang 実行時に補完が効かなくなったら、gocode を kill する</p></li>
 <li><p>mimimap を無効にする</p>
 <ul>
-<li><code>Shift + command + p</code> でパレットを開き、settings と入力していく(preference...)</li>
+<li><p><code>Shift + command + p</code> でパレットを開き、settings と入力していく(preference...)</p>
+<pre><code class="hljs"><span class="hljs-string">"editor.minimap.enabled"</span>: <span class="hljs-literal">false</span>
+</code></pre></li>
 </ul></li>
-</ul>
-<pre><code class="hljs">    ```
-    &quot;editor.minimap.enabled&quot;: false
-    ```
-</code></pre>
-<ul>
 <li><p>関数定義移動</p>
 <ul>
 <li>ジャンプ
@@ -111,6 +107,7 @@ $ sudo chmod a+x <span class="hljs-regexp">/usr/</span>local<span class="hljs-re
     <span class="hljs-attr">"remote.onstartup"</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">"vim.useSystemClipboard"</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">"editor.minimap.enabled"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">"terminal.integrated.shell.osx"</span>: <span class="hljs-string">"/Users/r0306/.homebrew/bin/fish"</span>,
     <span class="hljs-attr">"workbench.statusBar.visible"</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">"vim.insertModeKeyBindings"</span>: [
         {

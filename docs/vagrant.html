@@ -90,6 +90,36 @@ centos7                    (virtualbox, <span class="hljs-number">0</span>)
 <span class="hljs-meta">$</span><span class="bash"> vagrant box remove boxname</span>
 </code></pre></li>
 </ul>
+<h2><a class="anchor" aria-hidden="true" id="ホスト-ゲスト間のファイル共有"></a><a href="#ホスト-ゲスト間のファイル共有" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ホスト &lt;=&gt; ゲスト間のファイル共有</h2>
+<hr>
+<ul>
+<li><p>やること</p>
+<ul>
+<li>ホストとゲスト間でのファイルの共有</li>
+<li>ただ共有しただけだとホストを更新した場合に、ゲスト側に更新通知(inotify) がされないので、更新通知されるようにする</li>
+</ul></li>
+<li><p>ホスト側にてプラグインのインストール</p>
+<ul>
+<li><p>共有用</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> vagrant plugin install vagrant-vbguest</span>
+</code></pre></li>
+<li><p>更新通知用</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> vagrant plugin install vagrant-fsnotify</span>
+</code></pre>
+<ul>
+<li><a href="https://github.com/adrienkohlbecker/vagrant-fsnotify">https://github.com/adrienkohlbecker/vagrant-fsnotify</a></li>
+</ul></li>
+</ul></li>
+<li><p>ゲストの再起動</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> vagrant reload</span>
+</code></pre></li>
+<li><p>Vagrantfile の修正</p>
+<pre><code class="hljs">config<span class="hljs-selector-class">.vm</span><span class="hljs-selector-class">.synced_folder</span> <span class="hljs-string">"/Users/r0306/Documents/project/gitbook/doc/"</span>, <span class="hljs-string">"/srv/engineering/"</span>, fsnotify: true
+</code></pre></li>
+<li><p>ホスト側更新を検知し、ゲスト側に通知</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> vagrant fsnotify</span>
+</code></pre></li>
+</ul>
 <h2><a class="anchor" aria-hidden="true" id="エラー"></a><a href="#エラー" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>エラー</h2>
 <ul>
 <li><p>Mac 移設時エラーが発生。下記エラーは .vagrant/machines/default/virtualbox/creator_uid を変更してあげる</p>
@@ -110,5 +140,5 @@ Your UID <span class="hljs-keyword">is</span>: <span class="hljs-number">501</sp
 <li><a href="http://cloud.centos.org/centos/7/vagrant/x86_64/images/">CentOS</a></li>
 </ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#仮想マシン起動まで">仮想マシン起動まで</a></li><li><a href="#仮想マシン複製">仮想マシン複製</a></li><li><a href="#other">other</a></li><li><a href="#エラー">エラー</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#仮想マシン起動まで">仮想マシン起動まで</a></li><li><a href="#仮想マシン複製">仮想マシン複製</a></li><li><a href="#other">other</a></li><li><a href="#ホスト-ゲスト間のファイル共有">ホスト ゲスト間のファイル共有</a></li><li><a href="#エラー">エラー</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

@@ -15,9 +15,9 @@
 <pre><code class="hljs"><span class="hljs-variable">$ </span>curl -Lo ~<span class="hljs-regexp">/.config/fish</span><span class="hljs-regexp">/functions/fisher</span>.fish --create-dirs <span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/git.io/fisher</span>
 </code></pre></li>
 <li><p>プラグイン導入</p>
-<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> fisher z</span>
-<span class="hljs-meta">$</span><span class="bash"> fisher oh-my-fish/plugin-peco</span>
-</code></pre></li>
+<pre><code class="hljs">$ fisher <span class="hljs-keyword">add</span><span class="bash"> z
+</span>$ fisher <span class="hljs-keyword">add</span><span class="bash"> oh-my-fish/plugin-peco
+</span></code></pre></li>
 </ul></li>
 <li><p>環境変数へ代入</p>
 <ul>
@@ -83,6 +83,23 @@ eval (goenv init - | source)
 </code></pre></li>
 </ul></li>
 </ul>
+<h2><a class="anchor" aria-hidden="true" id="サンプル"></a><a href="#サンプル" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>サンプル</h2>
+<hr>
+<ul>
+<li><p>seq 利用</p>
+<pre><code class="hljs">$ for i in (seq <span class="hljs-number">1</span> <span class="hljs-number">10</span>); echo $i; end
+<span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+<span class="hljs-number">4</span>
+<span class="hljs-number">5</span>
+<span class="hljs-number">6</span>
+<span class="hljs-number">7</span>
+<span class="hljs-number">8</span>
+<span class="hljs-number">9</span>
+<span class="hljs-number">10</span>
+</code></pre></li>
+</ul>
 <h3><a class="anchor" aria-hidden="true" id="centos"></a><a href="#centos" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CentOS</h3>
 <ul>
 <li><a href="https://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&amp;package=fish">ダウンロード</a></li>
@@ -91,5 +108,5 @@ eval (goenv init - | source)
 <ul>
 <li><a href="https://fishshell.com/docs/current/commands.html">Command reference</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#設定ファイル">設定ファイル</a><ul class="toc-headings"><li><a href="#centos">CentOS</a></li></ul></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#設定ファイル">設定ファイル</a></li><li><a href="#サンプル">サンプル</a><ul class="toc-headings"><li><a href="#centos">CentOS</a></li></ul></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
