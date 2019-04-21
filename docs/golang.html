@@ -1,4 +1,134 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Golang · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- 複数行にまたがる文字列(`` で囲む)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Golang · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- 複数行にまたがる文字列(`` で囲む)"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Golang</h1></header><article><div><span><ul>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Golang · Life is ...</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- ~ などは OS の表現ではなくシェルの表現なので golang のコアでは提供してない"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Golang · Life is ..."/><meta property="og:type" content="website"/><meta property="og:url" content="https://renoretriever.github.io//index.html"/><meta property="og:description" content="- ~ などは OS の表現ではなくシェルの表現なので golang のコアでは提供してない"/><meta property="og:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://renoretriever.github.io/img/reno-site-min.png"/><link rel="shortcut icon" href="/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css"/><link rel="alternate" type="application/atom+xml" href="https://renoretriever.github.io/blog/atom.xml" title="Life is ... Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://renoretriever.github.io/blog/feed.xml" title="Life is ... Blog RSS Feed"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Life is ...</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/index.html" target="_self">Wiki</a></li><li class=""><a href="/blog" target="_self">Blog</a></li><li class=""><a href="/docs/search.html" target="_self">Search</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Golang</h1></header><article><div><span><ul>
+<li>~ などは OS の表現ではなくシェルの表現なので golang のコアでは提供してない
+<ul>
+<li><a href="http://tkuchiki.hatenablog.com/entry/2015/07/31/184555">Golang で filepath.Abs に ~(ホームディレクトリ) を指定した時にカレントワーキングディレクトリが先頭についてしまう</a></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>install golang tool</p>
+<ul>
+<li><p>under 1.10</p>
+<pre><code class="hljs">$ <span class="hljs-keyword">go</span> <span class="hljs-built_in">get</span> -<span class="hljs-keyword">u</span> github.<span class="hljs-keyword">com</span>/XXX/xxx
+</code></pre></li>
+<li><p>over 1.11</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">clone</span> https://github.com/XXX/xxx</span>
+<span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> xxx</span>
+<span class="hljs-meta">$</span><span class="bash"> go install</span>
+</code></pre></li>
+</ul></li>
+<li><p>インタフェース型から string への変換</p>
+<pre><code class="hljs css languages- golang"><span class="hljs-keyword">var</span> x <span class="hljs-keyword">interface</span>{} = <span class="hljs-string">"abc"</span>
+str := fmt.Sprintf(<span class="hljs-string">"%v"</span>, x)
+</code></pre></li>
+<li><p>ファイルの存在確認</p>
+<pre><code class="hljs"><span class="hljs-keyword">if</span> _, err := os.Stat(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>; os.IsNotExist(err) {
+    fmt.Println(<span class="hljs-string">"file doesn't exist"</span>)
+}
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="package"></a><a href="#package" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>package</h2>
+<ul>
+<li><p>import したパッケージに任意の名前をつける</p>
+<pre><code class="hljs css languages- golang"><span class="hljs-keyword">import</span> format <span class="hljs-string">"fmt"</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="ポインタ"></a><a href="#ポインタ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ポインタ</h2>
+<ul>
+<li><p>例</p>
+<pre><code class="hljs css languages- golang"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">"fmt"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-comment">// int 型のポインタ変数を定義</span>
+    <span class="hljs-keyword">var</span> ptr *<span class="hljs-keyword">int</span>
+
+    <span class="hljs-comment">// int 型の変数を定義</span>
+    <span class="hljs-keyword">var</span> i <span class="hljs-keyword">int</span> = <span class="hljs-number">12345</span>
+
+    <span class="hljs-comment">// アドレス演算子を使い、i のアドレスを ptr に代入</span>
+    ptr = &amp;i
+
+    <span class="hljs-comment">// 出力</span>
+    fmt.Println(<span class="hljs-string">"i のアドレス : "</span>, &amp;i)
+    fmt.Println(<span class="hljs-string">"ptr の値(変数 i のアドレス) : "</span>, ptr)
+
+    fmt.Println(<span class="hljs-string">"i の値 : "</span>, i)
+    fmt.Println(<span class="hljs-string">"ポインタ経由の i の値"</span>, *ptr)
+
+    <span class="hljs-comment">// ポインタ経由で i の値を変更</span>
+    *ptr = <span class="hljs-number">9999</span>
+
+    <span class="hljs-comment">// 出力</span>
+    fmt.Println(<span class="hljs-string">"ポインタ経由で変更した i の値 : "</span>, i)
+
+}
+
+
+$ <span class="hljs-keyword">go</span> run test.<span class="hljs-keyword">go</span>
+i のアドレス :  <span class="hljs-number">0xc420018068</span>
+ptr の値(変数 i のアドレス) :  <span class="hljs-number">0xc420018068</span>
+i の値 :  <span class="hljs-number">12345</span>
+ポインタ経由の i の値 <span class="hljs-number">12345</span>
+ポインタ経由で変更した i の値 :  <span class="hljs-number">9999</span>
+</code></pre></li>
+<li><p>new 組み込み関数によるメモリの割り当て</p>
+<pre><code class="hljs css languages- golang"><span class="hljs-comment">// int 型のメモリの割り当て</span>
+<span class="hljs-keyword">var</span> i *<span class="hljs-keyword">int</span> = <span class="hljs-built_in">new</span>(<span class="hljs-keyword">int</span>)
+
+<span class="hljs-comment">// string 型のメモリの割り当て</span>
+<span class="hljs-keyword">var</span> s *<span class="hljs-keyword">string</span> = <span class="hljs-built_in">new</span>(<span class="hljs-keyword">string</span>)
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="for"></a><a href="#for" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>for</h2>
+<ul>
+<li><p>無限ループ</p>
+<pre><code class="hljs css languages- golang"><span class="hljs-keyword">for</span> {
+    ...
+}
+</code></pre></li>
+</ul>
+<ul>
+<li><p>型情報の表示</p>
+<pre><code class="hljs">fmt.<span class="hljs-type">Println</span>(<span class="hljs-built_in">reflect</span>.<span class="hljs-type">TypeOf</span>(<span class="hljs-number">1</span>))          <span class="hljs-comment">// int</span>
+fmt.<span class="hljs-type">Println</span>(<span class="hljs-built_in">reflect</span>.<span class="hljs-type">TypeOf</span>(<span class="hljs-string">""</span>))         <span class="hljs-comment">// string</span>
+fmt.<span class="hljs-type">Println</span>(<span class="hljs-built_in">reflect</span>.<span class="hljs-type">TypeOf</span>([]string{})) <span class="hljs-comment">// []string</span>
+fmt.<span class="hljs-type">Println</span>(<span class="hljs-built_in">reflect</span>.<span class="hljs-type">TypeOf</span>(<span class="hljs-literal">true</span>))       <span class="hljs-comment">// bool</span>
+fmt.<span class="hljs-type">Println</span>(<span class="hljs-built_in">reflect</span>.<span class="hljs-type">TypeOf</span>(<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> {}))  <span class="hljs-comment">// func()</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="定数"></a><a href="#定数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>定数</h2>
+<ul>
+<li>const</li>
+<li>iota を使用するとグループ内の先頭は 0 を返し、その後は iota が呼び出されるたびに +1 された値が返る
+<ul>
+<li><p>通常</p>
+<pre><code class="hljs css languages- golang"><span class="hljs-keyword">const</span> (
+    ZERO = <span class="hljs-literal">iota</span> <span class="hljs-comment">// = 0</span>
+    ONE  = <span class="hljs-literal">iota</span> <span class="hljs-comment">// = 1</span>
+    TWO  = <span class="hljs-literal">iota</span> <span class="hljs-comment">// = 2</span>
+    THRE = <span class="hljs-literal">iota</span> <span class="hljs-comment">// = 3</span>
+
+)
+</code></pre></li>
+<li><p>省略版</p>
+<pre><code class="hljs css languages- golang"><span class="hljs-keyword">const</span> (
+    ZERO = <span class="hljs-literal">iota</span> <span class="hljs-comment">// = 0</span>
+    ONE
+    TWO
+    THRE
+
+)
+</code></pre></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="web-フレームワーク"></a><a href="#web-フレームワーク" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Web フレームワーク</h2>
+<ul>
+<li><a href="gin">gin</a></li>
+</ul>
+<ul>
 <li><p>複数行にまたがる文字列(`` で囲む)</p>
 <pre><code class="hljs">str := `one
 twe
@@ -13,6 +143,34 @@ three`
 <pre><code class="hljs"><span class="hljs-selector-tag">reflect</span><span class="hljs-selector-class">.TypeOf</span>(1)
 </code></pre></li>
 </ul>
+<h2><a class="anchor" aria-hidden="true" id="環境設定"></a><a href="#環境設定" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>環境設定</h2>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="bash"></a><a href="#bash" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>bash</h3>
+<ul>
+<li><p>ダウンロード</p>
+<pre><code class="hljs">$ curl -kL https:<span class="hljs-regexp">//</span>storage.googleapis.com<span class="hljs-regexp">/golang/g</span>o1.<span class="hljs-number">9.2</span>.linux-amd64.tar.gz | tar zxf - -C <span class="hljs-regexp">/usr/</span>local
+</code></pre></li>
+<li><p>goenv</p>
+<pre><code class="hljs">$ git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/wfarr/goenv.git ~/.goenv
+</code></pre></li>
+<li><p>.bashrc</p>
+<ul>
+<li><p>add</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">GOPATH</span>=<span class="hljs-variable">$HOME</span>/go
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">GOENV</span>=<span class="hljs-variable">$HOME</span>/.goenv
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$PATH</span>:$GOPATH/bin:$GOENV/bin
+eval <span class="hljs-string">"<span class="hljs-variable">$(goenv init -)</span>"</span>
+</code></pre></li>
+<li><p>反映</p>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">source</span> .bashrc</span>
+</code></pre></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="fish"></a><a href="#fish" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>fish</h3>
+<pre><code class="hljs"><span class="hljs-comment"># go</span>
+<span class="hljs-builtin-name">set</span> -x GOPATH <span class="hljs-variable">$HOME</span>/go
+<span class="hljs-builtin-name">set</span> -x PATH <span class="hljs-variable">$PATH</span> <span class="hljs-variable">$GOPATH</span>/bin
+</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="vecty"></a><a href="#vecty" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Vecty</h2>
 <ul>
 <li>Golang を利用したフロントエンドツール</li>
@@ -27,6 +185,11 @@ three`
 <li><code>The zerolog package provides a fast and simple logger dedicated to JSON output.</code></li>
 <li><a href="https://qiita.com/takd4com/items/f2a7d12e9db169232d7a">https://qiita.com/takd4com/items/f2a7d12e9db169232d7a</a></li>
 </ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="io"></a><a href="#io" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>io</h2>
+<hr>
+<ul>
+<li><a href="golang-io">io パッケージ</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="os"></a><a href="#os" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>os</h2>
 <hr>
@@ -100,6 +263,8 @@ three`
 <li><a href="sshclient-go">SSH クライアント</a></li>
 <li><a href="agouti">キャプチャ</a></li>
 <li><a href="aws-route53-list-resource-recordsets-go">Route53 の特定ホストゾーンのレコードセットを取得</a></li>
+<li><a href="redis-connect-go">Redis 接続</a></li>
+<li><a href="redis-file-add-go">特定ディレクトリ配下のファイルを Redis に登録</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#vecty">Vecty</a></li><li><a href="#log">log</a></li><li><a href="#os">os</a></li><li><a href="#rand">rand</a></li><li><a href="#runtime">runtime</a></li><li><a href="#strings">strings</a></li><li><a href="#time">time</a></li><li><a href="#ライブラリ">ライブラリ</a></li><li><a href="#エディタ">エディタ</a></li><li><a href="#スクレイピング">スクレイピング</a></li><li><a href="#デプロイツール">デプロイツール</a></li><li><a href="#aws-sdk-for-go">AWS SDK for Go</a></li><li><a href="#サンプル">サンプル</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#package">package</a></li><li><a href="#ポインタ">ポインタ</a></li><li><a href="#for">for</a></li><li><a href="#定数">定数</a></li><li><a href="#web-フレームワーク">Web フレームワーク</a></li><li><a href="#環境設定">環境設定</a><ul class="toc-headings"><li><a href="#bash">bash</a></li><li><a href="#fish">fish</a></li></ul></li><li><a href="#vecty">Vecty</a></li><li><a href="#log">log</a></li><li><a href="#io">io</a></li><li><a href="#os">os</a></li><li><a href="#rand">rand</a></li><li><a href="#runtime">runtime</a></li><li><a href="#strings">strings</a></li><li><a href="#time">time</a></li><li><a href="#ライブラリ">ライブラリ</a></li><li><a href="#エディタ">エディタ</a></li><li><a href="#スクレイピング">スクレイピング</a></li><li><a href="#デプロイツール">デプロイツール</a></li><li><a href="#aws-sdk-for-go">AWS SDK for Go</a></li><li><a href="#サンプル">サンプル</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 renoretriever</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'258674454985396',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
